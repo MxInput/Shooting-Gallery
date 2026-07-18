@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://dc3bvg3wiwqgr"]
+
+[ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshair_outline_small.png" id="1_hneav"]
+[ext_resource type="Script" uid="uid://e6t01tta7kxc" path="res://scripts/aim_controller.gd" id="2_cpdmu"]
+[ext_resource type="Texture2D" uid="uid://cu4mbydrx3ovm" path="res://images/rifle.png" id="2_g5j3c"]
+[ext_resource type="Texture2D" uid="uid://db1trufita3ew" path="res://images/curtain_straight.png" id="3_dv0a3"]
+[ext_resource type="Script" uid="uid://cpufec1r6ag50" path="res://scripts/target_spawner.gd" id="4_6hfer"]
+[ext_resource type="Texture2D" uid="uid://0sprqq1u60dd" path="res://images/curtain.png" id="4_ff8ca"]
+[ext_resource type="PackedScene" uid="uid://c615hf1ce8red" path="res://nodes/target.tscn" id="5_flw6b"]
+[ext_resource type="Texture2D" uid="uid://cfedxeautpdmm" path="res://images/curtain_rope.png" id="5_uodeg"]
+[ext_resource type="Texture2D" uid="uid://b2pysu0r2i7hc" path="res://images/cloud1.png" id="6_b11oy"]
+[ext_resource type="Texture2D" uid="uid://cdo161nvwj1om" path="res://images/target_colored.png" id="6_ubvaf"]
+[ext_resource type="Script" uid="uid://dk60mg2ah7mmj" path="res://nodes/cloud_movement.gd" id="7_15wb7"]
+[ext_resource type="Texture2D" uid="uid://daqgtta2l3dqu" path="res://images/cloud2.png" id="7_dmoo1"]
+[ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/target_red1.png" id="7_dv0a3"]
+[ext_resource type="Texture2D" uid="uid://dgx3ium1xm0ew" path="res://images/target_white.png" id="8_fjk5n"]
+
+[node name="Game" type="Node" unique_id=1002405761]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=70036684]
+
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer" unique_id=1077621011]
+offset_left = 572.0
+offset_top = 384.0
+offset_right = 618.0
+offset_bottom = 430.0
+texture = ExtResource("1_hneav")
+
+[node name="Rifle" type="TextureRect" parent="CanvasLayer" unique_id=22720746]
+z_index = 2
+offset_left = 978.0
+offset_top = 312.0
+offset_right = 1120.0
+offset_bottom = 631.0
+texture = ExtResource("2_g5j3c")
+
+[node name="Curtains" type="TextureRect" parent="CanvasLayer" unique_id=1043752201]
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_dv0a3")
+
+[node name="Curtains2" type="TextureRect" parent="CanvasLayer" unique_id=1826913710]
+z_index = 1
+offset_left = 256.0
+offset_right = 512.0
+offset_bottom = 80.0
+texture = ExtResource("3_dv0a3")
+
+[node name="Curtains3" type="TextureRect" parent="CanvasLayer" unique_id=428466821]
+z_index = 1
+offset_left = 512.0
+offset_right = 768.0
+offset_bottom = 80.0
+texture = ExtResource("3_dv0a3")
+
+[node name="Curtains4" type="TextureRect" parent="CanvasLayer" unique_id=1286391748]
+z_index = 1
+offset_left = 768.0
+offset_right = 1024.0
+offset_bottom = 80.0
+texture = ExtResource("3_dv0a3")
+
+[node name="Curtains5" type="TextureRect" parent="CanvasLayer" unique_id=919382094]
+z_index = 1
+offset_left = 1024.0
+offset_right = 1280.0
+offset_bottom = 80.0
+texture = ExtResource("3_dv0a3")
+
+[node name="Tied_Curtains1" type="TextureRect" parent="CanvasLayer" unique_id=1256283787]
+offset_left = -50.0
+offset_top = 51.0
+offset_right = 206.0
+offset_bottom = 477.0
+texture = ExtResource("4_ff8ca")
+
+[node name="Rope" type="TextureRect" parent="CanvasLayer/Tied_Curtains1" unique_id=723403050]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 204.0
+offset_right = 67.0
+offset_bottom = 225.0
+texture = ExtResource("5_uodeg")
+
+[node name="Tied_Curtains2" type="TextureRect" parent="CanvasLayer" unique_id=844573992]
+offset_left = 946.0
+offset_top = 51.0
+offset_right = 1202.0
+offset_bottom = 477.0
+texture = ExtResource("4_ff8ca")
+flip_h = true
+
+[node name="Rope" type="TextureRect" parent="CanvasLayer/Tied_Curtains2" unique_id=351718953]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 204.0
+offset_right = 218.0
+offset_bottom = 225.0
+texture = ExtResource("5_uodeg")
+
+[node name="Cloud" type="TextureRect" parent="CanvasLayer" unique_id=1384056266]
+visible = false
+offset_left = 1303.0
+offset_top = 90.0
+offset_right = 1437.0
+offset_bottom = 172.0
+texture = ExtResource("6_b11oy")
+script = ExtResource("7_15wb7")
+
+[node name="Cloud2" type="TextureRect" parent="CanvasLayer" unique_id=704814391]
+visible = false
+offset_left = 1448.0
+offset_top = 90.0
+offset_right = 1582.0
+offset_bottom = 172.0
+texture = ExtResource("7_dmoo1")
+script = ExtResource("7_15wb7")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
+
+[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle")]
+script = ExtResource("2_cpdmu")
+crosshair = NodePath("../CanvasLayer/Crosshair")
+rifle = NodePath("../CanvasLayer/Rifle")
+
+[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "game_timer", "game", "cloud", "cloud2")]
+script = ExtResource("4_6hfer")
+target = ExtResource("5_flw6b")
+colored_target_texture = ExtResource("6_ubvaf")
+red_target_texture = ExtResource("7_dv0a3")
+white_target_texture = ExtResource("8_fjk5n")
+delay_timer = NodePath("DelayTimer")
+cloud_timer = NodePath("CloudTimer")
+game_timer = NodePath("GameTimer")
+game = NodePath("..")
+cloud = NodePath("../CanvasLayer/Cloud")
+cloud2 = NodePath("../CanvasLayer/Cloud2")
+
+[node name="DelayTimer" type="Timer" parent="TargetSpawner" unique_id=1665403982]
+wait_time = 3.0
+one_shot = true
+
+[node name="GameTimer" type="Timer" parent="TargetSpawner" unique_id=2523586]
+wait_time = 120.0
+one_shot = true
+
+[node name="CloudTimer" type="Timer" parent="TargetSpawner" unique_id=450915509]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="TargetSpawner/DelayTimer" to="TargetSpawner" method="_on_delay_timer_timeout"]
+[connection signal="timeout" from="TargetSpawner/CloudTimer" to="TargetSpawner" method="_on_cloud_timer_timeout"]
