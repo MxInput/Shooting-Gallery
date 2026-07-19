@@ -23,6 +23,11 @@ PlayerVariables="*uid://djh5fsbtnisud"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[global_group]
+
+target=""
+duck=""
+
 [input]
 
 left_click={

@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jabdv"]
 size = Vector2(133, 130)
 
-[node name="Target" type="Node2D" unique_id=1861554854]
+[node name="Target" type="Node2D" unique_id=1861554854 groups=["target"]]
 script = ExtResource("1_jabdv")
 
 [node name="Stick" type="Sprite2D" parent="." unique_id=746360038]
@@ -15,6 +15,7 @@ position = Vector2(67, 188)
 texture = ExtResource("1_i8w8x")
 
 [node name="Target" type="Sprite2D" parent="." unique_id=830299947]
+clip_children = 2
 position = Vector2(67, 67)
 texture = ExtResource("2_jabdv")
 
