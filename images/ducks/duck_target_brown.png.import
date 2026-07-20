@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://es5f86flxtia"
-path="res://.godot/imported/curtain_top.png-ffb7ace2d603364bbb9b10b890ced71a.ctex"
+uid="uid://bmco8f52vri1k"
+path="res://.godot/imported/duck_target_brown.png-828e81126e18ea961246839ce5d6caad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/curtain_top.png"
-dest_files=["res://.godot/imported/curtain_top.png-ffb7ace2d603364bbb9b10b890ced71a.ctex"]
+source_file="res://images/ducks/duck_target_brown.png"
+dest_files=["res://.godot/imported/duck_target_brown.png-828e81126e18ea961246839ce5d6caad.ctex"]
 
 [params]
 

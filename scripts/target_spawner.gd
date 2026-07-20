@@ -15,6 +15,7 @@ extends Node
 @export var cloud_timer : Timer;
 @export var game_timer : Timer;
 @export var duck_timer : Timer;
+@export var countdown_timer : Timer;
 
 @export var game : Node;
 
@@ -22,6 +23,10 @@ extends Node
 @export var cloud2 : TextureRect;
 
 @onready var clouds = [cloud, cloud2]
+
+@export var game_over : TextureRect;
+@export var start : TextureRect;
+@export var go : TextureRect;
 
 enum Targets {
 	RED,
@@ -47,13 +52,24 @@ var upper_delay_limit := 5.0;
 var cloud_upper_limit := 1.0;
 var cloud_lower_limit := 3.0;
 
-var cloud_lower_y := 90.0;
+var cloud_lower_y := 111.0;
 var cloud_upper_y := 180.0;
 
+@export var canvas_layer : CanvasLayer;
+
 func _ready() -> void:
-	game_timer.start();
+	countdown_timer.start();
 	
 func _process(delta: float) -> void:
+	if (!countdown_timer.is_stopped()):
+		var time_left := countdown_timer.time_left;
+		if (time_left <= 1.0):
+			start.visible = false;
+			go.visible = true;
+		else:
+			start.visible = true;
+		
+	
 	if (!game_timer.is_stopped()):
 		if (delay_timer.is_stopped()):
 			var random_start_time := randf_range(lower_delay_limit, upper_delay_limit);
@@ -90,7 +106,7 @@ func _on_cloud_timer_timeout() -> void:
 	var selected_cloud = clouds.pick_random().duplicate();
 	var y_pos = randf_range(cloud_lower_y, cloud_upper_y);
 	
-	cloud.get_parent().add_child(selected_cloud)
+	canvas_layer.add_child(selected_cloud)
 	cloud.position.y = y_pos;
 	selected_cloud.visible = true;
 
@@ -109,3 +125,10 @@ func _on_duck_timer_timeout() -> void:
 		"WHITE":
 			new_duck.find_child("Duck").texture = white_duck_texture;
 	new_duck.points = duck_points[Ducks.values()[Ducks.keys().find(selected_duck_value)]];
+
+func _on_game_timer_timeout() -> void:
+	game_over.visible = true;
+
+func _on_countdown_timer_timeout() -> void:
+	game_timer.start();
+	go.visible = false;

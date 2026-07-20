@@ -19,6 +19,9 @@ var upper_pos = -120.0;
 
 var shot := false;
 
+var time_till_destory := 2.0;
+var time_left := 0.0;
+
 func _ready() -> void:
 	var aim_controller = self.get_parent().find_child("AimController");
 	hit.connect(aim_controller.destroy_target);
@@ -29,22 +32,28 @@ func _ready() -> void:
 	original_y = position.y;
 
 func _process(delta: float) -> void:	
-	if (moving_up):
-		position.y += 0.5;
+	if (!shot):
+		if (moving_up):
+			position.y += 0.5;
+			
+			if (position.y >= original_y + distance):
+				moving_up = false;
+		else:
+			position.y -= 0.5;
+			
+			if (position.y <= original_y - distance):
+				moving_up = true;
+				
+		position.x -= speed;
 		
-		if (position.y >= original_y + distance):
-			moving_up = false;
+		if (position.x <= end_pos):
+			queue_free();
 	else:
-		position.y -= 0.5;
+		time_left += delta;
 		
-		if (position.y <= original_y - distance):
-			moving_up = true;
-			
-	position.x -= speed;
-	
-	if (position.x <= end_pos):
-		queue_free();
-			
+		if (time_left >= time_till_destory):
+			queue_free();
+		
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if (event.is_action("left_click")):
 		if (!shot):

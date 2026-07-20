@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgmaefveep0vh"
-path="res://.godot/imported/shot_brown_large.png-99c154339ef18a742251f8f9cd331fed.ctex"
+uid="uid://cfedxeautpdmm"
+path="res://.godot/imported/curtain_rope.png-5758bd5179cc140a3b7718416bbc4e36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/shot_brown_large.png"
-dest_files=["res://.godot/imported/shot_brown_large.png-99c154339ef18a742251f8f9cd331fed.ctex"]
+source_file="res://images/curtains/curtain_rope.png"
+dest_files=["res://.godot/imported/curtain_rope.png-5758bd5179cc140a3b7718416bbc4e36.ctex"]
 
 [params]
 

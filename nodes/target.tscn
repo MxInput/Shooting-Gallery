@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c62qldanl6gj5" path="res://images/stick_wood.png" id="1_i8w8x"]
 [ext_resource type="Script" uid="uid://3ownneww0nfn" path="res://scripts/target.gd" id="1_jabdv"]
-[ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/target_red1.png" id="2_jabdv"]
+[ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="2_jabdv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jabdv"]
 size = Vector2(133, 130)

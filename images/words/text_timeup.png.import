@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfedxeautpdmm"
-path="res://.godot/imported/curtain_rope.png-664a70647b7aac14ffd85263e8dfb6f2.ctex"
+uid="uid://cy70516ppu4b0"
+path="res://.godot/imported/text_timeup.png-32f55db64e1c5a79f90b897d4a6fe36f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/curtain_rope.png"
-dest_files=["res://.godot/imported/curtain_rope.png-664a70647b7aac14ffd85263e8dfb6f2.ctex"]
+source_file="res://images/words/text_timeup.png"
+dest_files=["res://.godot/imported/text_timeup.png-32f55db64e1c5a79f90b897d4a6fe36f.ctex"]
 
 [params]
 

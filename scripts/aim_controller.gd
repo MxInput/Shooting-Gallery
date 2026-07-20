@@ -18,26 +18,32 @@ func destroy_target(target, points) -> void:
 	var new_shot_sprite = shot_sprite.instantiate();
 	
 	var mouse_pos = get_global_mouse_position();
-	
-	match (target.texture):
-		target_spawner.colored_target_texture:
-			shot_sprite.texture = grey_shot_texture;
-		target_spawner.red_target_texture:
-			shot_sprite.texture = grey_shot_texture;
-		target_spawner.white_target_texture:
-			shot_sprite.texture = grey_shot_texture;
-		target_spawner.brown_duck_texture:
-			shot_sprite.texture = brown_shot_texture;
-		target_spawner.yellow_duck_texture:
-			shot_sprite.texture = yellow_shot_texture;
-		target_spawner.white_duck_texture:
-			shot_sprite.texture = grey_shot_texture;
 			
 	if (target.is_in_group("duck")):
-		target.find_child("Duck").add_child(new_shot_sprite);
+		var duck_object = target.find_child("Duck");
+		
+		match (duck_object.texture):
+			target_spawner.brown_duck_texture:
+				new_shot_sprite.texture = brown_shot_texture;
+			target_spawner.yellow_duck_texture:
+				new_shot_sprite.texture = yellow_shot_texture;
+			target_spawner.white_duck_texture:
+				new_shot_sprite.texture = grey_shot_texture;
+				
+		duck_object.add_child(new_shot_sprite);
 		new_shot_sprite.position = Vector2(-4.0, 21.0);
 	else:
-		target.find_child("Target").add_child(new_shot_sprite);	
+		var target_object = target.find_child("Target");
+		
+		match (target_object.texture):
+			target_spawner.colored_target_texture:
+				new_shot_sprite.texture = grey_shot_texture;
+			target_spawner.red_target_texture:
+				new_shot_sprite.texture = grey_shot_texture;
+			target_spawner.white_target_texture:
+				new_shot_sprite.texture = grey_shot_texture;
+				
+		target_object.add_child(new_shot_sprite);	
 		new_shot_sprite.global_position = mouse_pos;
 	
 	PlayerVariables.points += points;
