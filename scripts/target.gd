@@ -55,7 +55,10 @@ func _process(delta: float) -> void:
 			queue_free();
 		
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	var aim_controller = self.get_parent().find_child("AimController");
+	
 	if (event.is_action("left_click")):
 		if (!shot):
+			if (aim_controller.loaded):
+				shot = true;
 			hit.emit(self, points);
-			shot = true;

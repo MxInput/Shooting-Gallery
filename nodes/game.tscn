@@ -29,8 +29,48 @@
 [ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="14_tvltm"]
 [ext_resource type="Texture2D" uid="uid://bmco8f52vri1k" path="res://images/ducks/duck_target_brown.png" id="15_827r2"]
 [ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="16_4axws"]
+[ext_resource type="Texture2D" uid="uid://cf4wfn77gqsor" path="res://images/bullets/icon_bullet_empty_short.png" id="16_5777o"]
+[ext_resource type="Texture2D" uid="uid://bci1emp7ci1h5" path="res://images/bullets/icon_bullet_gold_short.png" id="17_jdg4n"]
 [ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="17_s00i6"]
 [ext_resource type="Texture2D" uid="uid://b54pcyr3ja50r" path="res://images/bg_wood.png" id="24_engdv"]
+[ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="24_k35x6"]
+
+[sub_resource type="Animation" id="Animation_k35x6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jdg4n"]
+resource_name = "dying"
+length = 3.7333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.6666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.53333336, 0.1254902, 0.16470589, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k35x6"]
+_data = {
+&"RESET": SubResource("Animation_k35x6"),
+&"dying": SubResource("Animation_jdg4n")
+}
 
 [node name="Game" type="Node" unique_id=1002405761]
 
@@ -131,6 +171,9 @@ offset_top = 312.0
 offset_right = 1120.0
 offset_bottom = 631.0
 texture = ExtResource("2_g5j3c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Rifle" unique_id=1287633496]
+libraries/ = SubResource("AnimationLibrary_k35x6")
 
 [node name="Cloud" type="TextureRect" parent="CanvasLayer" unique_id=1384056266]
 visible = false
@@ -306,9 +349,48 @@ offset_right = 218.0
 offset_bottom = 225.0
 texture = ExtResource("5_uodeg")
 
+[node name="BulletOutline1" type="TextureRect" parent="CanvasLayer" unique_id=672980384]
+offset_left = 17.0
+offset_top = 599.0
+offset_right = 38.0
+offset_bottom = 635.0
+texture = ExtResource("16_5777o")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/BulletOutline1" unique_id=1199231854]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("17_jdg4n")
+
+[node name="BulletOutline2" type="TextureRect" parent="CanvasLayer" unique_id=361983933]
+offset_left = 43.0
+offset_top = 599.0
+offset_right = 64.0
+offset_bottom = 635.0
+texture = ExtResource("16_5777o")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/BulletOutline2" unique_id=1404913085]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("17_jdg4n")
+
+[node name="BulletOutline3" type="TextureRect" parent="CanvasLayer" unique_id=408085949]
+offset_left = 71.0
+offset_top = 599.0
+offset_right = 92.0
+offset_bottom = 635.0
+texture = ExtResource("16_5777o")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/BulletOutline3" unique_id=1403312024]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("17_jdg4n")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
-[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner")]
+[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3")]
 script = ExtResource("2_cpdmu")
 crosshair = NodePath("../CanvasLayer/Crosshair")
 rifle = NodePath("../CanvasLayer/Rifle")
@@ -319,6 +401,16 @@ grey_shot_texture = ExtResource("12_engdv")
 yellow_shot_texture = ExtResource("13_rylax")
 shot_sprite = ExtResource("14_tvltm")
 target_spawner = NodePath("../TargetSpawner")
+reload_timer = NodePath("ReloadTimer")
+bullet_outline1 = NodePath("../CanvasLayer/BulletOutline1")
+bullet_outline2 = NodePath("../CanvasLayer/BulletOutline2")
+bullet_outline3 = NodePath("../CanvasLayer/BulletOutline3")
+gold_bullet = ExtResource("17_jdg4n")
+silver_bullet = ExtResource("24_k35x6")
+
+[node name="ReloadTimer" type="Timer" parent="AimController" unique_id=218863506]
+wait_time = 3.0
+one_shot = true
 
 [node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "game_timer", "duck_timer", "countdown_timer", "game", "cloud", "cloud2", "game_over", "start", "go", "canvas_layer")]
 script = ExtResource("4_6hfer")
@@ -383,6 +475,7 @@ texture = ExtResource("24_engdv")
 position = Vector2(525, -195)
 texture = ExtResource("24_engdv")
 
+[connection signal="timeout" from="AimController/ReloadTimer" to="AimController" method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/DelayTimer" to="TargetSpawner" method="_on_delay_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/DuckTimer" to="TargetSpawner" method="_on_duck_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/GameTimer" to="TargetSpawner" method="_on_game_timer_timeout"]
