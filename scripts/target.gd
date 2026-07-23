@@ -22,14 +22,21 @@ var shot := false;
 var time_till_destory := 2.0;
 var time_left := 0.0;
 
+@onready var points_teller := find_child("Points");
+
+var canvas_layer : CanvasLayer;
+
 func _ready() -> void:
-	var aim_controller = self.get_parent().find_child("AimController");
+	var aim_controller = get_parent().find_child("AimController");
 	hit.connect(aim_controller.destroy_target);
 	
 	if (is_in_group("target")):
 		position.y = upper_pos;
 		
 	original_y = position.y;
+	
+	var game = get_parent();
+	canvas_layer = game.find_child("CanvasLayer");
 
 func _process(delta: float) -> void:	
 	if (!shot):
@@ -54,11 +61,16 @@ func _process(delta: float) -> void:
 		if (time_left >= time_till_destory):
 			queue_free();
 		
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	var aim_controller = self.get_parent().find_child("AimController");
-	
+func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	var aim_controller = get_parent().find_child("AimController");
 	if (event.is_action("left_click")):
+		print("ok")
 		if (!shot):
 			if (aim_controller.loaded):
 				shot = true;
 			hit.emit(self, points);
+			points_teller.text = "+" + str(points);
+			points_teller.reparent(canvas_layer);
+			points_teller.global_position = position;
+			points_teller.visible = true;
+			

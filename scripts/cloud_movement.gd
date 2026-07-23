@@ -1,6 +1,6 @@
 extends TextureRect
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (visible):
 		position.x -= 1.5;
 		if (position.x < -390):

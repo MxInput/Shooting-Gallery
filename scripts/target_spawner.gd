@@ -18,6 +18,7 @@ extends Node
 @export var countdown_timer : Timer;
 
 @export var game : Node;
+@export var aim_controller : Node;
 
 @export var cloud : TextureRect;
 @export var cloud2 : TextureRect;
@@ -60,7 +61,7 @@ var cloud_upper_y := 180.0;
 func _ready() -> void:
 	countdown_timer.start();
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (!countdown_timer.is_stopped()):
 		var time_left := countdown_timer.time_left;
 		if (time_left <= 1.0):

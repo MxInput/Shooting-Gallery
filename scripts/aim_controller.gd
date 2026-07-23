@@ -29,6 +29,9 @@ var loaded := true;
 @export var gold_bullet : Texture2D;
 @export var silver_bullet : Texture2D;
 
+var is_hovering := false;
+var is_active := false;
+
 func destroy_target(target, points) -> void:
 	if (loaded):
 		var new_shot_sprite = shot_sprite.instantiate();
@@ -66,7 +69,7 @@ func destroy_target(target, points) -> void:
 		
 		point_teller.text = "Points: " + str(PlayerVariables.points);
 		
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("left_click")):
 		if (ammo == 0):
 			if (reload_timer.is_stopped()):
@@ -88,8 +91,7 @@ func _input(event: InputEvent) -> void:
 				
 			ammo -= 1;
 			
-func _process(delta: float) -> void:
-	print(ammo, loaded)
+func _process(_delta: float) -> void:
 	var mouse_pos := crosshair.get_global_mouse_position();
 	var offset := Vector2(-20, -15);
 	
