@@ -70,7 +70,6 @@ func _process(_delta: float) -> void:
 		else:
 			start.visible = true;
 		
-	
 	if (!game_timer.is_stopped()):
 		if (delay_timer.is_stopped()):
 			var random_start_time := randf_range(lower_delay_limit, upper_delay_limit);

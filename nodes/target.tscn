@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="4_k6474"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jabdv"]
-size = Vector2(133, 130)
+size = Vector2(181, 175)
 
 [node name="Target" type="Node2D" unique_id=1861554854 groups=["target"]]
 top_level = true
@@ -21,22 +21,23 @@ clip_children = 2
 position = Vector2(67, 67)
 texture = ExtResource("2_jabdv")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1629788621]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=527996678]
-position = Vector2(66.5, 66)
-shape = SubResource("RectangleShape2D_jabdv")
-
 [node name="Points" type="RichTextLabel" parent="." unique_id=866700623]
 visible = false
 offset_left = 355.0
 offset_top = 307.0
 offset_right = 461.0
 offset_bottom = 391.0
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 50
 text = "+10"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_k6474")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1629788621]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=527996678]
+position = Vector2(61.5, 66.5)
+shape = SubResource("RectangleShape2D_jabdv")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

@@ -6,10 +6,7 @@
 [ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="4_eodfl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eodfl"]
-size = Vector2(89, 65)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nbxs"]
-size = Vector2(58, 38)
+size = Vector2(120, 128)
 
 [node name="duck" type="Node2D" unique_id=95386575 groups=["duck"]]
 top_level = true
@@ -25,27 +22,24 @@ clip_children = 2
 position = Vector2(52, 50)
 texture = ExtResource("2_3q8xi")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1961448749]
-position = Vector2(-15, -32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1914560581]
-position = Vector2(61.5, 96.5)
-shape = SubResource("RectangleShape2D_eodfl")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=686345275]
-position = Vector2(88, 54)
-shape = SubResource("RectangleShape2D_5nbxs")
-
 [node name="Points" type="RichTextLabel" parent="." unique_id=36347368]
 visible = false
 offset_left = 355.0
 offset_top = 307.0
 offset_right = 461.0
 offset_bottom = 391.0
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 50
 text = "+10"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_eodfl")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1961448749]
+position = Vector2(-15, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1914560581]
+position = Vector2(65, 87)
+shape = SubResource("RectangleShape2D_eodfl")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

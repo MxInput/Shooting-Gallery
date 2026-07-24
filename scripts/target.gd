@@ -64,13 +64,17 @@ func _process(delta: float) -> void:
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	var aim_controller = get_parent().find_child("AimController");
 	if (event.is_action("left_click")):
-		print("ok")
 		if (!shot):
-			if (aim_controller.loaded):
+			if (aim_controller.loaded):	
+				if (is_in_group("duck")):
+					aim_controller.duck_count += 1;
+				else:
+					aim_controller.target_count += 1;
+					
 				shot = true;
+				points_teller.text = "+" + str(points);
+				points_teller.reparent(canvas_layer);
+				points_teller.global_position = get_viewport().get_mouse_position();
+				points_teller.visible = true;
 			hit.emit(self, points);
-			points_teller.text = "+" + str(points);
-			points_teller.reparent(canvas_layer);
-			points_teller.global_position = position;
-			points_teller.visible = true;
 			

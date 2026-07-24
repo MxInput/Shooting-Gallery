@@ -15,6 +15,7 @@ extends Node2D
 @export var target_spawner : Node;
 
 @export var reload_timer : Timer;
+@export var delay_timer : Timer;
 
 var ammo := 3;
 
@@ -31,6 +32,9 @@ var loaded := true;
 
 var is_hovering := false;
 var is_active := false;
+
+var duck_count := 0;
+var target_count := 0;
 
 func destroy_target(target, points) -> void:
 	if (loaded):
@@ -68,30 +72,31 @@ func destroy_target(target, points) -> void:
 		PlayerVariables.points += points;
 		
 		point_teller.text = "Points: " + str(PlayerVariables.points);
-		
-func _unhandled_input(event: InputEvent) -> void:
-	if (event.is_action_pressed("left_click")):
-		if (ammo == 0):
-			if (reload_timer.is_stopped()):
-				reload_timer.start();
-				
-				var animation_player : AnimationPlayer = rifle.get_child(0);
-				animation_player.play("dying")
-				
-				bullet_outline1.get_child(0).visible = true;
-				bullet_outline1.get_child(0).texture = silver_bullet;
-		else:
-			if (ammo == 3):
-				bullet_outline3.get_child(0).visible = false;
-			elif (ammo == 2):
-				bullet_outline2.get_child(0).visible = false;
-			elif (ammo == 1):
-				bullet_outline1.get_child(0).visible = false;
-				loaded = false;		
-				
-			ammo -= 1;
 			
 func _process(_delta: float) -> void:
+	if (Input.is_action_pressed("left_click")):
+		if (delay_timer.is_stopped()):
+			delay_timer.start();
+			if (ammo == 0):
+				if (reload_timer.is_stopped()):
+					reload_timer.start();
+					
+					var animation_player : AnimationPlayer = rifle.get_child(0);
+					animation_player.play("dying")
+					
+					bullet_outline1.get_child(0).visible = true;
+					bullet_outline1.get_child(0).texture = silver_bullet;
+			else:
+				if (ammo == 3):
+					bullet_outline3.get_child(0).visible = false;
+				elif (ammo == 2):
+					bullet_outline2.get_child(0).visible = false;
+				elif (ammo == 1):
+					bullet_outline1.get_child(0).visible = false;
+					loaded = false;		
+					
+				ammo -= 1;
+		
 	var mouse_pos := crosshair.get_global_mouse_position();
 	var offset := Vector2(-20, -15);
 	
@@ -114,3 +119,6 @@ func _on_reload_timer_timeout() -> void:
 	bullet_outline1.get_child(0).texture = gold_bullet;
 	bullet_outline2.get_child(0).texture = gold_bullet;
 	bullet_outline3.get_child(0).texture = gold_bullet;
+
+func _on_delay_timer_timeout() -> void:
+	pass # Replace with function body.
