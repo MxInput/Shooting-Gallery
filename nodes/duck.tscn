@@ -6,11 +6,14 @@
 [ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="4_eodfl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eodfl"]
-size = Vector2(120, 128)
+size = Vector2(103, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nbxs"]
+size = Vector2(95, 50)
 
 [node name="duck" type="Node2D" unique_id=95386575 groups=["duck"]]
 top_level = true
-z_index = 1
+z_index = 2
 script = ExtResource("1_5nbxs")
 
 [node name="Stick" type="Sprite2D" parent="." unique_id=853564960]
@@ -39,7 +42,11 @@ script = ExtResource("4_eodfl")
 position = Vector2(-15, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1914560581]
-position = Vector2(65, 87)
+position = Vector2(65.5, 103)
 shape = SubResource("RectangleShape2D_eodfl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=686345275]
+position = Vector2(73.5, 57)
+shape = SubResource("RectangleShape2D_5nbxs")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

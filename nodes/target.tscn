@@ -4,9 +4,10 @@
 [ext_resource type="Script" uid="uid://3ownneww0nfn" path="res://scripts/target.gd" id="1_jabdv"]
 [ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="2_jabdv"]
 [ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="4_k6474"]
+[ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="4_yluix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jabdv"]
-size = Vector2(181, 175)
+size = Vector2(144, 149)
 
 [node name="Target" type="Node2D" unique_id=1861554854 groups=["target"]]
 top_level = true
@@ -28,6 +29,7 @@ offset_top = 307.0
 offset_right = 461.0
 offset_bottom = 391.0
 mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_yluix")
 theme_override_font_sizes/normal_font_size = 50
 text = "+10"
 horizontal_alignment = 1
@@ -37,7 +39,7 @@ script = ExtResource("4_k6474")
 [node name="Area2D" type="Area2D" parent="." unique_id=1629788621]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=527996678]
-position = Vector2(61.5, 66.5)
+position = Vector2(66, 67.5)
 shape = SubResource("RectangleShape2D_jabdv")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

@@ -36,13 +36,33 @@ var is_active := false;
 var duck_count := 0;
 var target_count := 0;
 
+var combo := 0;
+@export var combo_teller : RichTextLabel;
+@export var combo_timer : Timer;
+@export var disappear_timer : Timer;
+
+@export var duck_count_text : RichTextLabel;
+@export var target_count_text : RichTextLabel;
+
 func destroy_target(target, points) -> void:
 	if (loaded):
+		if (combo_timer.is_stopped()):
+			combo = 0;
+			combo_timer.start();
+		else:
+			combo += 1;
+		
+		if (combo >= 1):
+			combo_teller.text = "x" + str(combo+1) + " COMBO";
+			combo_teller.visible = true;
+			disappear_timer.start();
+			
 		var new_shot_sprite = shot_sprite.instantiate();
 	
 		var mouse_pos = get_global_mouse_position();
 				
 		if (target.is_in_group("duck")):
+			duck_count_text.text = str(duck_count);
 			var duck_object = target.find_child("Duck");
 			
 			match (duck_object.texture):
@@ -56,6 +76,8 @@ func destroy_target(target, points) -> void:
 			duck_object.add_child(new_shot_sprite);
 			new_shot_sprite.position = Vector2(-4.0, 21.0);
 		else:
+			target_count_text.text = str(target_count);
+			
 			var target_object = target.find_child("Target");
 			
 			match (target_object.texture):
@@ -120,5 +142,5 @@ func _on_reload_timer_timeout() -> void:
 	bullet_outline2.get_child(0).texture = gold_bullet;
 	bullet_outline3.get_child(0).texture = gold_bullet;
 
-func _on_delay_timer_timeout() -> void:
-	pass # Replace with function body.
+func _on_disappear_timer_timeout() -> void:
+	combo_teller.visible = false;

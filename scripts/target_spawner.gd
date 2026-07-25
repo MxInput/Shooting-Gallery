@@ -29,6 +29,8 @@ extends Node
 @export var start : TextureRect;
 @export var go : TextureRect;
 
+@export var clock : RichTextLabel;
+
 enum Targets {
 	RED,
 	COLORED,
@@ -56,6 +58,9 @@ var cloud_lower_limit := 3.0;
 var cloud_lower_y := 111.0;
 var cloud_upper_y := 180.0;
 
+var lower_target_spawn := -140.0;
+var upper_target_spawn := -200.0;
+
 @export var canvas_layer : CanvasLayer;
 
 func _ready() -> void:
@@ -71,6 +76,8 @@ func _process(_delta: float) -> void:
 			start.visible = true;
 		
 	if (!game_timer.is_stopped()):
+		var time_left := game_timer.time_left;
+		
 		if (delay_timer.is_stopped()):
 			var random_start_time := randf_range(lower_delay_limit, upper_delay_limit);
 			delay_timer.wait_time = random_start_time;
@@ -85,11 +92,21 @@ func _process(_delta: float) -> void:
 			var selected_time = randf_range(cloud_upper_limit, cloud_lower_limit);
 			cloud_timer.wait_time = selected_time;
 			cloud_timer.start();
+			
+		var minutes := (int(time_left/60));
+		var seconds := (int(time_left)%60);
+
+		if (seconds < 10):
+			clock.text = str(minutes) + ":0" + str(seconds);
+		else:
+			clock.text = str(minutes) + ":" + str(seconds);
 
 func _on_delay_timer_timeout() -> void:
 	var new_target := target.instantiate();
 	game.add_child(new_target);
 	new_target.position.x = 550.0;
+	new_target.position.y = randf_range(lower_target_spawn, upper_target_spawn);
+	new_target.original_y = new_target.position.y;
 	
 	var selected_target_value = Targets.keys().pick_random();
 	

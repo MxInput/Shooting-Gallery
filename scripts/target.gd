@@ -15,8 +15,6 @@ var end_pos := -700.0;
 
 var speed = randf_range(lower_speed, upper_speed);
 
-var upper_pos = -120.0;
-
 var shot := false;
 
 var time_till_destory := 2.0;
@@ -30,26 +28,22 @@ func _ready() -> void:
 	var aim_controller = get_parent().find_child("AimController");
 	hit.connect(aim_controller.destroy_target);
 	
-	if (is_in_group("target")):
-		position.y = upper_pos;
-		
-	original_y = position.y;
-	
 	var game = get_parent();
 	canvas_layer = game.find_child("CanvasLayer");
 
 func _process(delta: float) -> void:	
 	if (!shot):
-		if (moving_up):
-			position.y += 0.5;
-			
-			if (position.y >= original_y + distance):
-				moving_up = false;
-		else:
-			position.y -= 0.5;
-			
-			if (position.y <= original_y - distance):
-				moving_up = true;
+		if (original_y != null):
+			if (moving_up):
+				position.y += 0.5;
+				
+				if (position.y >= original_y + distance):
+					moving_up = false;
+			else:
+				position.y -= 0.5;
+				
+				if (position.y <= original_y - distance):
+					moving_up = true;
 				
 		position.x -= speed;
 		
