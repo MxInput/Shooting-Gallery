@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dk60mg2ah7mmj" path="res://scripts/cloud_movement.gd" id="7_15wb7"]
 [ext_resource type="Texture2D" uid="uid://daqgtta2l3dqu" path="res://images/clouds/cloud2.png" id="7_dmoo1"]
 [ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="7_dv0a3"]
+[ext_resource type="FontFile" uid="uid://bqhltna5u2i5f" path="res://fonts/ChailceNogginRegular-2OXoW.ttf" id="7_wlji1"]
 [ext_resource type="Texture2D" uid="uid://dgx3ium1xm0ew" path="res://images/targets/target_white.png" id="8_fjk5n"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="9_rylax"]
 [ext_resource type="Texture2D" uid="uid://cy70516ppu4b0" path="res://images/words/text_timeup.png" id="10_3huci"]
@@ -83,6 +84,7 @@ _data = {
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=70036684]
 
 [node name="Crosshair" type="TextureRect" parent="CanvasLayer" unique_id=1077621011]
+z_index = 12
 offset_left = 572.0
 offset_top = 384.0
 offset_right = 618.0
@@ -155,8 +157,8 @@ offset_top = 29.0
 offset_right = 1141.0
 offset_bottom = 109.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("9_rylax")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_fonts/normal_font = ExtResource("7_wlji1")
+theme_override_font_sizes/normal_font_size = 45
 text = "2:00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -399,7 +401,7 @@ offset_right = 490.0
 offset_bottom = 76.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("9_rylax")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 30
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -427,18 +429,23 @@ offset_right = 727.0
 offset_bottom = 76.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("9_rylax")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 30
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PerfectFinal" type="RichTextLabel" parent="CanvasLayer" unique_id=1960558147]
 visible = false
-offset_left = 349.0
-offset_top = 290.0
-offset_right = 563.0
-offset_bottom = 330.0
-text = "No Misses!!!"
+offset_left = 472.0
+offset_top = 194.0
+offset_right = 743.0
+offset_bottom = 234.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("7_wlji1")
+theme_override_font_sizes/normal_font_size = 30
+text = "No Misses"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
@@ -482,7 +489,7 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "game_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "clock", "canvas_layer")]
+[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "game_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "clock", "perfect_final_text", "perfect_teller", "canvas_layer")]
 script = ExtResource("4_6hfer")
 target = ExtResource("5_flw6b")
 duck = ExtResource("12_4axws")
@@ -505,6 +512,8 @@ game_over = NodePath("../CanvasLayer/GameOver")
 start = NodePath("../CanvasLayer/Ready")
 go = NodePath("../CanvasLayer/Go")
 clock = NodePath("../CanvasLayer/Clock")
+perfect_final_text = NodePath("../CanvasLayer/PerfectFinal")
+perfect_teller = NodePath("../CanvasLayer/PerfectTeller")
 canvas_layer = NodePath("../CanvasLayer")
 
 [node name="DelayTimer" type="Timer" parent="TargetSpawner" unique_id=1665403982]

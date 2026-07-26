@@ -30,6 +30,8 @@ extends Node
 @export var go : TextureRect;
 
 @export var clock : RichTextLabel;
+@export var perfect_final_text : RichTextLabel;
+@export var perfect_teller : RichTextLabel;
 
 enum Targets {
 	RED,
@@ -95,7 +97,12 @@ func _process(_delta: float) -> void:
 			
 		var minutes := (int(time_left/60));
 		var seconds := (int(time_left)%60);
-
+		
+		if (time_left <= 30.0):
+			clock.modulate = Color.ORANGE_RED;
+		elif (time_left <= 60.0):
+			clock.modulate = Color.ORANGE;
+			
 		if (seconds < 10):
 			clock.text = str(minutes) + ":0" + str(seconds);
 		else:
@@ -108,8 +115,6 @@ func _on_delay_timer_timeout() -> void:
 	new_target.position.y = randf_range(lower_target_spawn, upper_target_spawn);
 	new_target.original_y = new_target.position.y;
 	new_target.z_index = randi_range(2, 4);
-	print(new_target.z_index)
-	print("here")
 	
 	var selected_target_value = Targets.keys().pick_random();
 	
@@ -148,6 +153,8 @@ func _on_duck_timer_timeout() -> void:
 
 func _on_game_timer_timeout() -> void:
 	game_over.visible = true;
+	if (perfect_teller.visible):
+		perfect_final_text.visible = true;
 
 func _on_countdown_timer_timeout() -> void:
 	game_timer.start();

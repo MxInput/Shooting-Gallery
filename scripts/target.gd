@@ -71,25 +71,44 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 				if (aim_controller.loaded):	
 					var new_points_icon = points_icon.instantiate();
 					canvas_layer.add_child(new_points_icon);
-					if (is_in_group("duck")):
-						aim_controller.duck_count += 1;
-						new_points_icon.position = Vector2(434.0, 100.0);
-					else:
-						aim_controller.target_count += 1;
-						new_points_icon.position = Vector2(678.0, 100.0);
-						
+					
+					var new_points_total_icon = points_icon.instantiate();
+					canvas_layer.add_child(new_points_total_icon);
+					new_points_total_icon.text = "+" + str(points);
+					new_points_total_icon.modulate = Color.DARK_GREEN;
+					new_points_total_icon.position = Vector2(110.0, 100.0);
+					
 					var new_shot_particles := shot_particles.instantiate();
 					add_child(new_shot_particles);
 					new_shot_particles.emitting = true;
 					new_shot_particles.global_position = get_global_mouse_position();
 					
-					match (texture):
-						target_spawner.colored_target_texture:
-							new_shot_sprite.texture = grey_shot_texture;
-						target_spawner.red_target_texture:
-							new_shot_sprite.texture = grey_shot_texture;
-						target_spawner.white_target_texture:
-							new_shot_sprite.texture = grey_shot_texture;
+					if (is_in_group("duck")):
+						var duck_sprite = find_child("Duck");
+						match (duck_sprite.texture):
+							target_spawner.brown_duck_texture:
+								new_shot_particles.color = Color.from_string("#a36a31", Color.SADDLE_BROWN);
+							target_spawner.yellow_duck_texture:
+								new_shot_particles.color = Color.from_string("#edae1a", Color.YELLOW);
+							target_spawner.white_duck_texture:
+								new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
+								
+							
+						aim_controller.duck_count += 1;
+						new_points_icon.position = Vector2(434.0, 100.0);
+					else:
+						var target_sprite = find_child("Target");		
+						
+						match (target_sprite.texture):
+							target_spawner.colored_target_texture:
+								new_shot_particles.color = Color.from_string("#207bb0", Color.WHITE);
+							target_spawner.red_target_texture:
+								new_shot_particles.color = Color.from_string("#cf560a", Color.DARK_RED);
+							target_spawner.white_target_texture:
+								new_shot_particles.color = Color.WHITE;
+								
+						aim_controller.target_count += 1;
+						new_points_icon.position = Vector2(678.0, 100.0);
 						
 					shot = true;
 					points_teller.text = "+" + str(points);
