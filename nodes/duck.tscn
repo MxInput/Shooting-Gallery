@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c62qldanl6gj5" path="res://images/stick_wood.png" id="1_3q8xi"]
 [ext_resource type="Script" uid="uid://3ownneww0nfn" path="res://scripts/target.gd" id="1_5nbxs"]
 [ext_resource type="Texture2D" uid="uid://bmco8f52vri1k" path="res://images/ducks/duck_target_brown.png" id="2_3q8xi"]
+[ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="2_h6t1c"]
+[ext_resource type="PackedScene" uid="uid://btyieeu5inpvk" path="res://nodes/shot_particles.tscn" id="3_vys28"]
+[ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="4_0t7wi"]
 [ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="4_eodfl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eodfl"]
@@ -13,8 +16,10 @@ size = Vector2(95, 50)
 
 [node name="duck" type="Node2D" unique_id=95386575 groups=["duck"]]
 top_level = true
-z_index = 2
+z_index = 5
 script = ExtResource("1_5nbxs")
+points_icon = ExtResource("2_h6t1c")
+shot_particles = ExtResource("3_vys28")
 
 [node name="Stick" type="Sprite2D" parent="." unique_id=853564960]
 position = Vector2(52, 156)
@@ -32,6 +37,8 @@ offset_top = 307.0
 offset_right = 461.0
 offset_bottom = 391.0
 mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_0t7wi")
 theme_override_font_sizes/normal_font_size = 50
 text = "+10"
 horizontal_alignment = 1

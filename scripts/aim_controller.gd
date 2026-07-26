@@ -44,80 +44,85 @@ var combo := 0;
 @export var duck_count_text : RichTextLabel;
 @export var target_count_text : RichTextLabel;
 
+var bullet_3_reload_time := 0.5;
+var bullet_2_reload_time := 1.0;
+
 func destroy_target(target, points) -> void:
 	if (loaded):
-		if (combo_timer.is_stopped()):
-			combo = 0;
-			combo_timer.start();
-		else:
-			combo += 1;
-		
-		if (combo >= 1):
-			combo_teller.text = "x" + str(combo+1) + " COMBO";
-			combo_teller.visible = true;
-			disappear_timer.start();
+		if (!target_spawner.game_timer.is_stopped()):
+			if (combo_timer.is_stopped()):
+				combo = 0;
+				combo_timer.start();
+			else:
+				combo += 1;
 			
-		var new_shot_sprite = shot_sprite.instantiate();
-	
-		var mouse_pos = get_global_mouse_position();
+			if (combo >= 1):
+				combo_teller.text = "x" + str(combo+1) + " COMBO";
+				combo_teller.visible = true;
+				disappear_timer.start();
 				
-		if (target.is_in_group("duck")):
-			duck_count_text.text = str(duck_count);
-			var duck_object = target.find_child("Duck");
-			
-			match (duck_object.texture):
-				target_spawner.brown_duck_texture:
-					new_shot_sprite.texture = brown_shot_texture;
-				target_spawner.yellow_duck_texture:
-					new_shot_sprite.texture = yellow_shot_texture;
-				target_spawner.white_duck_texture:
-					new_shot_sprite.texture = grey_shot_texture;
-					
-			duck_object.add_child(new_shot_sprite);
-			new_shot_sprite.position = Vector2(-4.0, 21.0);
-		else:
-			target_count_text.text = str(target_count);
-			
-			var target_object = target.find_child("Target");
-			
-			match (target_object.texture):
-				target_spawner.colored_target_texture:
-					new_shot_sprite.texture = grey_shot_texture;
-				target_spawner.red_target_texture:
-					new_shot_sprite.texture = grey_shot_texture;
-				target_spawner.white_target_texture:
-					new_shot_sprite.texture = grey_shot_texture;
-					
-			target_object.add_child(new_shot_sprite);	
-			new_shot_sprite.global_position = mouse_pos;
+			var new_shot_sprite = shot_sprite.instantiate();
 		
-		PlayerVariables.points += points;
-		
-		point_teller.text = "Points: " + str(PlayerVariables.points);
+			var mouse_pos = get_global_mouse_position();
+					
+			if (target.is_in_group("duck")):
+				duck_count_text.text = str(duck_count);
+				var duck_object = target.find_child("Duck");
+				
+				match (duck_object.texture):
+					target_spawner.brown_duck_texture:
+						new_shot_sprite.texture = brown_shot_texture;
+					target_spawner.yellow_duck_texture:
+						new_shot_sprite.texture = yellow_shot_texture;
+					target_spawner.white_duck_texture:
+						new_shot_sprite.texture = grey_shot_texture;
+						
+				duck_object.add_child(new_shot_sprite);
+				new_shot_sprite.position = Vector2(-4.0, 21.0);
+			else:
+				target_count_text.text = str(target_count);
+				
+				var target_object = target.find_child("Target");
+				
+				match (target_object.texture):
+					target_spawner.colored_target_texture:
+						new_shot_sprite.texture = grey_shot_texture;
+					target_spawner.red_target_texture:
+						new_shot_sprite.texture = grey_shot_texture;
+					target_spawner.white_target_texture:
+						new_shot_sprite.texture = grey_shot_texture;
+						
+				target_object.add_child(new_shot_sprite);	
+				new_shot_sprite.global_position = mouse_pos;
+			
+			PlayerVariables.points += points;
+			
+			point_teller.text = "Points: " + str(PlayerVariables.points);
 			
 func _process(_delta: float) -> void:
 	if (Input.is_action_pressed("left_click")):
-		if (delay_timer.is_stopped()):
-			delay_timer.start();
-			if (ammo == 0):
-				if (reload_timer.is_stopped()):
-					reload_timer.start();
-					
-					var animation_player : AnimationPlayer = rifle.get_child(0);
-					animation_player.play("dying")
-					
-					bullet_outline1.get_child(0).visible = true;
-					bullet_outline1.get_child(0).texture = silver_bullet;
-			else:
-				if (ammo == 3):
-					bullet_outline3.get_child(0).visible = false;
-				elif (ammo == 2):
-					bullet_outline2.get_child(0).visible = false;
-				elif (ammo == 1):
-					bullet_outline1.get_child(0).visible = false;
-					loaded = false;		
-					
-				ammo -= 1;
+		if (!target_spawner.game_timer.is_stopped()):
+			if (delay_timer.is_stopped()):
+				delay_timer.start();
+				if (ammo == 0):
+					if (reload_timer.is_stopped()):
+						reload_timer.start();
+						
+						var animation_player : AnimationPlayer = rifle.get_child(0);
+						animation_player.play("dying")
+						
+						bullet_outline1.get_child(0).visible = true;
+						bullet_outline1.get_child(0).texture = silver_bullet;
+				else:
+					if (ammo == 3):
+						bullet_outline3.get_child(0).visible = false;
+					elif (ammo == 2):
+						bullet_outline2.get_child(0).visible = false;
+					elif (ammo == 1):
+						bullet_outline1.get_child(0).visible = false;
+						loaded = false;		
+						
+					ammo -= 1;
 		
 	var mouse_pos := crosshair.get_global_mouse_position();
 	var offset := Vector2(-20, -15);
@@ -127,10 +132,10 @@ func _process(_delta: float) -> void:
 	if (!reload_timer.is_stopped()):
 		var time_left := reload_timer.time_left;
 		
-		if (time_left <= 1.0):
+		if (time_left <= bullet_3_reload_time):
 			bullet_outline3.get_child(0).visible = true;
 			bullet_outline3.get_child(0).texture = silver_bullet;
-		elif (time_left <= 2.0):
+		elif (time_left <= bullet_2_reload_time):
 			bullet_outline2.get_child(0).visible = true;
 			bullet_outline2.get_child(0).texture = silver_bullet;
 			

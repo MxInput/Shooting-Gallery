@@ -24,6 +24,9 @@ var time_left := 0.0;
 
 var canvas_layer : CanvasLayer;
 
+@export var points_icon : PackedScene;
+@export var shot_particles : PackedScene;
+
 func _ready() -> void:
 	var aim_controller = get_parent().find_child("AimController");
 	hit.connect(aim_controller.destroy_target);
@@ -48,6 +51,10 @@ func _process(delta: float) -> void:
 		position.x -= speed;
 		
 		if (position.x <= end_pos):
+			var target_spawner = get_parent().find_child("TargetSpawner");
+			if (!target_spawner.game_timer.is_stopped()):
+				var perfect_text := canvas_layer.find_child("PerfectTeller");
+				perfect_text.visible = false;
 			queue_free();
 	else:
 		time_left += delta;
@@ -57,18 +64,48 @@ func _process(delta: float) -> void:
 		
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	var aim_controller = get_parent().find_child("AimController");
-	if (event.is_action("left_click")):
-		if (!shot):
-			if (aim_controller.loaded):	
-				if (is_in_group("duck")):
-					aim_controller.duck_count += 1;
-				else:
-					aim_controller.target_count += 1;
+	var target_spawner = get_parent().find_child("TargetSpawner");
+	if (!target_spawner.game_timer.is_stopped()):
+		if (event.is_action("left_click")):
+			if (!shot):
+				if (aim_controller.loaded):	
+					var new_points_icon = points_icon.instantiate();
+					canvas_layer.add_child(new_points_icon);
+					if (is_in_group("duck")):
+						aim_controller.duck_count += 1;
+						new_points_icon.position = Vector2(434.0, 100.0);
+					else:
+						aim_controller.target_count += 1;
+						new_points_icon.position = Vector2(678.0, 100.0);
+						
+					var new_shot_particles := shot_particles.instantiate();
+					add_child(new_shot_particles);
+					new_shot_particles.emitting = true;
+					new_shot_particles.global_position = get_global_mouse_position();
 					
-				shot = true;
-				points_teller.text = "+" + str(points);
-				points_teller.reparent(canvas_layer);
-				points_teller.global_position = get_viewport().get_mouse_position();
-				points_teller.visible = true;
-			hit.emit(self, points);
+					match (texture):
+						target_spawner.colored_target_texture:
+							new_shot_sprite.texture = grey_shot_texture;
+						target_spawner.red_target_texture:
+							new_shot_sprite.texture = grey_shot_texture;
+						target_spawner.white_target_texture:
+							new_shot_sprite.texture = grey_shot_texture;
+						
+					shot = true;
+					points_teller.text = "+" + str(points);
+					points_teller.reparent(canvas_layer);
+					points_teller.global_position = get_viewport().get_mouse_position();
+					points_teller.visible = true;
+					match points:
+						2:
+							points_teller.modulate = Color.DEEP_SKY_BLUE;
+						3:
+							points_teller.modulate = Color.HOT_PINK;
+						4:
+							points_teller.modulate = Color.ORANGE;
+						5:
+							points_teller.modulate = Color.SEA_GREEN;
+						7:
+							points_teller.modulate = Color.YELLOW;
+				hit.emit(self, points);
 			

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://vt2sly1s4bh1"]
+
+[ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="1_m6yeg"]
+[ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="2_1bmov"]
+
+[node name="Points" type="RichTextLabel" unique_id=1261841942]
+z_index = 5
+offset_right = 63.0
+offset_bottom = 80.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_m6yeg")
+theme_override_font_sizes/normal_font_size = 24
+text = "+1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_1bmov")

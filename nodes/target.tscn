@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://c615hf1ce8red"]
 
-[ext_resource type="Texture2D" uid="uid://c62qldanl6gj5" path="res://images/stick_wood.png" id="1_i8w8x"]
 [ext_resource type="Script" uid="uid://3ownneww0nfn" path="res://scripts/target.gd" id="1_jabdv"]
+[ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="2_i1i3u"]
 [ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="2_jabdv"]
+[ext_resource type="Texture2D" uid="uid://esx07d6t5h8p" path="res://images/stick_metal.png" id="2_yluix"]
+[ext_resource type="PackedScene" uid="uid://btyieeu5inpvk" path="res://nodes/shot_particles.tscn" id="3_yt0k2"]
 [ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="4_k6474"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="4_yluix"]
 
@@ -12,10 +14,12 @@ size = Vector2(144, 149)
 [node name="Target" type="Node2D" unique_id=1861554854 groups=["target"]]
 top_level = true
 script = ExtResource("1_jabdv")
+points_icon = ExtResource("2_i1i3u")
+shot_particles = ExtResource("3_yt0k2")
 
 [node name="Stick" type="Sprite2D" parent="." unique_id=746360038]
 position = Vector2(67, 188)
-texture = ExtResource("1_i8w8x")
+texture = ExtResource("2_yluix")
 
 [node name="Target" type="Sprite2D" parent="." unique_id=830299947]
 clip_children = 2
@@ -29,6 +33,7 @@ offset_top = 307.0
 offset_right = 461.0
 offset_bottom = 391.0
 mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_yluix")
 theme_override_font_sizes/normal_font_size = 50
 text = "+10"

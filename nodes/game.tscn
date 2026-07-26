@@ -135,6 +135,19 @@ text = "POINTS: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PerfectTeller" type="RichTextLabel" parent="CanvasLayer" unique_id=1128582590]
+z_index = 5
+offset_left = 18.0
+offset_top = 105.0
+offset_right = 185.0
+offset_bottom = 185.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("9_rylax")
+theme_override_font_sizes/normal_font_size = 24
+text = "GO FOR PERFECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Clock" type="RichTextLabel" parent="CanvasLayer" unique_id=1447923825]
 z_index = 5
 offset_left = 974.0
@@ -309,63 +322,77 @@ offset_right = 406.0
 offset_bottom = 141.0
 texture = ExtResource("12_bj5qg")
 
-[node name="BulletOutline1" type="TextureRect" parent="CanvasLayer" unique_id=672980384]
+[node name="Bullets" type="Control" parent="CanvasLayer" unique_id=282495835]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BulletOutline1" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=672980384]
+layout_mode = 0
 offset_left = 17.0
 offset_top = 599.0
 offset_right = 38.0
 offset_bottom = 635.0
 texture = ExtResource("16_5777o")
 
-[node name="BulletColor" type="TextureRect" parent="CanvasLayer/BulletOutline1" unique_id=1199231854]
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline1" unique_id=1199231854]
 layout_mode = 0
 offset_right = 21.0
 offset_bottom = 36.0
 texture = ExtResource("17_jdg4n")
 
-[node name="BulletOutline2" type="TextureRect" parent="CanvasLayer" unique_id=361983933]
+[node name="BulletOutline2" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=361983933]
+layout_mode = 0
 offset_left = 43.0
 offset_top = 599.0
 offset_right = 64.0
 offset_bottom = 635.0
 texture = ExtResource("16_5777o")
 
-[node name="BulletColor" type="TextureRect" parent="CanvasLayer/BulletOutline2" unique_id=1404913085]
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline2" unique_id=1404913085]
 layout_mode = 0
 offset_right = 21.0
 offset_bottom = 36.0
 texture = ExtResource("17_jdg4n")
 
-[node name="BulletOutline3" type="TextureRect" parent="CanvasLayer" unique_id=408085949]
+[node name="BulletOutline3" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=408085949]
+layout_mode = 0
 offset_left = 71.0
 offset_top = 599.0
 offset_right = 92.0
 offset_bottom = 635.0
 texture = ExtResource("16_5777o")
 
-[node name="BulletColor" type="TextureRect" parent="CanvasLayer/BulletOutline3" unique_id=1403312024]
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline3" unique_id=1403312024]
 layout_mode = 0
 offset_right = 21.0
 offset_bottom = 36.0
 texture = ExtResource("17_jdg4n")
 
-[node name="DuckIcon" type="TextureRect" parent="CanvasLayer" unique_id=1404438034]
+[node name="TargetCounts" type="Control" parent="CanvasLayer" unique_id=1745872370]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ducks" type="Control" parent="CanvasLayer/TargetCounts" unique_id=1766017242]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DuckIcon" type="TextureRect" parent="CanvasLayer/TargetCounts/Ducks" unique_id=1404438034]
 z_index = 11
+layout_mode = 0
 offset_left = 395.0
 offset_top = 33.0
 offset_right = 435.0
 offset_bottom = 73.0
 texture = ExtResource("16_sgon6")
 
-[node name="TargetIcon" type="TextureRect" parent="CanvasLayer" unique_id=1972242161]
+[node name="DuckCount" type="RichTextLabel" parent="CanvasLayer/TargetCounts/Ducks" unique_id=548178202]
 z_index = 11
-offset_left = 628.0
-offset_top = 33.0
-offset_right = 668.0
-offset_bottom = 73.0
-texture = ExtResource("17_n8beo")
-
-[node name="DuckCount" type="RichTextLabel" parent="CanvasLayer" unique_id=548178202]
-z_index = 11
+layout_mode = 0
 offset_left = 450.0
 offset_top = 36.0
 offset_right = 490.0
@@ -377,8 +404,23 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetCount" type="RichTextLabel" parent="CanvasLayer" unique_id=815337721]
+[node name="Target" type="Control" parent="CanvasLayer/TargetCounts" unique_id=290255532]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TargetIcon" type="TextureRect" parent="CanvasLayer/TargetCounts/Target" unique_id=1972242161]
 z_index = 11
+layout_mode = 0
+offset_left = 628.0
+offset_top = 33.0
+offset_right = 668.0
+offset_bottom = 73.0
+texture = ExtResource("17_n8beo")
+
+[node name="TargetCount" type="RichTextLabel" parent="CanvasLayer/TargetCounts/Target" unique_id=815337721]
+z_index = 11
+layout_mode = 0
 offset_left = 687.0
 offset_top = 36.0
 offset_right = 727.0
@@ -389,6 +431,14 @@ theme_override_font_sizes/normal_font_size = 20
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PerfectFinal" type="RichTextLabel" parent="CanvasLayer" unique_id=1960558147]
+visible = false
+offset_left = 349.0
+offset_top = 290.0
+offset_right = 563.0
+offset_bottom = 330.0
+text = "No Misses!!!"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
@@ -405,19 +455,19 @@ shot_sprite = ExtResource("14_tvltm")
 target_spawner = NodePath("../TargetSpawner")
 reload_timer = NodePath("ReloadTimer")
 delay_timer = NodePath("DelayTimer")
-bullet_outline1 = NodePath("../CanvasLayer/BulletOutline1")
-bullet_outline2 = NodePath("../CanvasLayer/BulletOutline2")
-bullet_outline3 = NodePath("../CanvasLayer/BulletOutline3")
+bullet_outline1 = NodePath("../CanvasLayer/Bullets/BulletOutline1")
+bullet_outline2 = NodePath("../CanvasLayer/Bullets/BulletOutline2")
+bullet_outline3 = NodePath("../CanvasLayer/Bullets/BulletOutline3")
 gold_bullet = ExtResource("17_jdg4n")
 silver_bullet = ExtResource("24_k35x6")
 combo_teller = NodePath("../CanvasLayer/ComboTeller")
 combo_timer = NodePath("ComboTimer")
 disappear_timer = NodePath("DisappearTimer")
-duck_count_text = NodePath("../CanvasLayer/DuckCount")
-target_count_text = NodePath("../CanvasLayer/TargetCount")
+duck_count_text = NodePath("../CanvasLayer/TargetCounts/Ducks/DuckCount")
+target_count_text = NodePath("../CanvasLayer/TargetCounts/Target/TargetCount")
 
 [node name="ReloadTimer" type="Timer" parent="AimController" unique_id=218863506]
-wait_time = 3.0
+wait_time = 1.5
 one_shot = true
 
 [node name="DelayTimer" type="Timer" parent="AimController" unique_id=1300094183]
@@ -478,91 +528,95 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Waves" type="Node2D" parent="." unique_id=1925072304]
-z_index = 3
+z_index = 6
 
-[node name="Wave1" type="Sprite2D" parent="Waves" unique_id=1724919786]
+[node name="Front" type="Node2D" parent="Waves" unique_id=1798991219]
+
+[node name="Wave1" type="Sprite2D" parent="Waves/Front" unique_id=1724919786]
 z_index = 2
 position = Vector2(-510, 219)
 texture = ExtResource("13_qbqap")
 
-[node name="Wave2" type="Sprite2D" parent="Waves" unique_id=576749167]
+[node name="Wave2" type="Sprite2D" parent="Waves/Front" unique_id=576749167]
 z_index = 2
 position = Vector2(-378, 219)
 texture = ExtResource("13_qbqap")
 
-[node name="Wave3" type="Sprite2D" parent="Waves" unique_id=1158018682]
+[node name="Wave3" type="Sprite2D" parent="Waves/Front" unique_id=1158018682]
 z_index = 2
 position = Vector2(-246, 219)
 texture = ExtResource("13_qbqap")
 
-[node name="Wave4" type="Sprite2D" parent="Waves" unique_id=2041700117]
+[node name="Wave4" type="Sprite2D" parent="Waves/Front" unique_id=2041700117]
 z_index = 2
 position = Vector2(-114, 219)
 texture = ExtResource("13_qbqap")
 
-[node name="Wave5" type="Sprite2D" parent="Waves" unique_id=513268677]
+[node name="Wave5" type="Sprite2D" parent="Waves/Front" unique_id=513268677]
 z_index = 2
 position = Vector2(18, 219)
 texture = ExtResource("13_qbqap")
 
-[node name="Wave6" type="Sprite2D" parent="Waves" unique_id=1047460600]
+[node name="Wave6" type="Sprite2D" parent="Waves/Front" unique_id=1047460600]
 z_index = 2
 position = Vector2(150, 219)
 texture = ExtResource("13_qbqap")
 
-[node name="Wave7" type="Sprite2D" parent="Waves" unique_id=1466377760]
+[node name="Wave7" type="Sprite2D" parent="Waves/Front" unique_id=1466377760]
 z_index = 2
 position = Vector2(282, 219)
 texture = ExtResource("13_qbqap")
 
-[node name="Wave8" type="Sprite2D" parent="Waves" unique_id=748853065]
+[node name="Wave8" type="Sprite2D" parent="Waves/Front" unique_id=748853065]
 z_index = 2
 position = Vector2(414, 219)
 texture = ExtResource("13_qbqap")
 
-[node name="Wave9" type="Sprite2D" parent="Waves" unique_id=314493338]
+[node name="Wave9" type="Sprite2D" parent="Waves/Front" unique_id=314493338]
 z_index = 2
 position = Vector2(546, 219)
 texture = ExtResource("13_qbqap")
 
-[node name="Wave10" type="Sprite2D" parent="Waves" unique_id=573968795]
+[node name="Back" type="Node2D" parent="Waves" unique_id=2056899081]
+
+[node name="Wave10" type="Sprite2D" parent="Waves/Back" unique_id=573968795]
 position = Vector2(-425, 191.5)
 texture = ExtResource("2_e8xm5")
 
-[node name="Wave11" type="Sprite2D" parent="Waves" unique_id=176294312]
+[node name="Wave11" type="Sprite2D" parent="Waves/Back" unique_id=176294312]
 position = Vector2(-293, 191.5)
 texture = ExtResource("2_e8xm5")
 
-[node name="Wave12" type="Sprite2D" parent="Waves" unique_id=529573218]
+[node name="Wave12" type="Sprite2D" parent="Waves/Back" unique_id=529573218]
 position = Vector2(-161, 191.5)
 texture = ExtResource("2_e8xm5")
 
-[node name="Wave13" type="Sprite2D" parent="Waves" unique_id=604520731]
+[node name="Wave13" type="Sprite2D" parent="Waves/Back" unique_id=604520731]
 position = Vector2(-29, 191.5)
 texture = ExtResource("2_e8xm5")
 
-[node name="Wave14" type="Sprite2D" parent="Waves" unique_id=1984069564]
+[node name="Wave14" type="Sprite2D" parent="Waves/Back" unique_id=1984069564]
 position = Vector2(103, 191.5)
 texture = ExtResource("2_e8xm5")
 
-[node name="Wave15" type="Sprite2D" parent="Waves" unique_id=645268010]
+[node name="Wave15" type="Sprite2D" parent="Waves/Back" unique_id=645268010]
 position = Vector2(235, 191.5)
 texture = ExtResource("2_e8xm5")
 
-[node name="Wave16" type="Sprite2D" parent="Waves" unique_id=28855231]
+[node name="Wave16" type="Sprite2D" parent="Waves/Back" unique_id=28855231]
 position = Vector2(367, 191.5)
 texture = ExtResource("2_e8xm5")
 
-[node name="Wave17" type="Sprite2D" parent="Waves" unique_id=1922145135]
+[node name="Wave17" type="Sprite2D" parent="Waves/Back" unique_id=1922145135]
 position = Vector2(499, 191.5)
 texture = ExtResource("2_e8xm5")
 
-[node name="Wave18" type="Sprite2D" parent="Waves" unique_id=359779652]
+[node name="Wave18" type="Sprite2D" parent="Waves/Back" unique_id=359779652]
 position = Vector2(-560, 197)
 texture = ExtResource("2_e8xm5")
 
 [node name="Grass" type="Node2D" parent="." unique_id=1614654496]
-z_index = 2
+z_index = 5
 
 [node name="Wave10" type="Sprite2D" parent="Grass" unique_id=1373063400]
 position = Vector2(-425, 86)
@@ -643,6 +697,7 @@ position = Vector2(525, 61)
 texture = ExtResource("24_engdv")
 
 [node name="Trees" type="Node2D" parent="." unique_id=343002866]
+z_index = 3
 
 [node name="Oak1" type="Sprite2D" parent="Trees" unique_id=504702511]
 position = Vector2(0, -108)

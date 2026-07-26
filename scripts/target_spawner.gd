@@ -107,6 +107,9 @@ func _on_delay_timer_timeout() -> void:
 	new_target.position.x = 550.0;
 	new_target.position.y = randf_range(lower_target_spawn, upper_target_spawn);
 	new_target.original_y = new_target.position.y;
+	new_target.z_index = randi_range(2, 4);
+	print(new_target.z_index)
+	print("here")
 	
 	var selected_target_value = Targets.keys().pick_random();
 	
