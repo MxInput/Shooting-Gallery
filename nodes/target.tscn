@@ -42,6 +42,7 @@ vertical_alignment = 1
 script = ExtResource("4_k6474")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1629788621]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=527996678]
 position = Vector2(66, 67.5)

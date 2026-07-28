@@ -47,8 +47,10 @@ var combo := 0;
 var bullet_3_reload_time := 0.5;
 var bullet_2_reload_time := 1.0;
 
-func destroy_target(target, points) -> void:
-	if (loaded):
+var blocked := false;
+
+func destroy_target(target, points, order) -> void:
+	if (loaded && (!blocked || order != 2)):
 		if (!target_spawner.game_timer.is_stopped()):
 			if (combo_timer.is_stopped()):
 				combo = 0;

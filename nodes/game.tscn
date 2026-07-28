@@ -39,8 +39,9 @@
 [ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="24_k35x6"]
 [ext_resource type="Texture2D" uid="uid://dbe8msqmll04s" path="res://images/grass1.png" id="34_04f7f"]
 [ext_resource type="Texture2D" uid="uid://c6k12oqk8hhq2" path="res://images/grass2.png" id="35_ds6ls"]
-[ext_resource type="Texture2D" uid="uid://bkmspyi5l0uja" path="res://images/tree_oak.png" id="39_8a8f1"]
-[ext_resource type="Texture2D" uid="uid://cppobt3dmfjpt" path="res://images/tree_pine.png" id="40_wlji1"]
+[ext_resource type="Script" uid="uid://c1hmg26vn0yb6" path="res://nodes/move_waves.gd" id="35_n35h0"]
+[ext_resource type="PackedScene" uid="uid://fqhia3wjxywc" path="res://nodes/oak.tscn" id="40_n35h0"]
+[ext_resource type="PackedScene" uid="uid://d4ch0ashg2rki" path="res://nodes/pine.tscn" id="41_wlji1"]
 
 [sub_resource type="Animation" id="Animation_k35x6"]
 length = 0.001
@@ -536,8 +537,11 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="Waves" type="Node2D" parent="." unique_id=1925072304]
+[node name="Waves" type="Node2D" parent="." unique_id=1925072304 node_paths=PackedStringArray("front_waves", "back_waves")]
 z_index = 6
+script = ExtResource("35_n35h0")
+front_waves = NodePath("Front")
+back_waves = NodePath("Back")
 
 [node name="Front" type="Node2D" parent="Waves" unique_id=1798991219]
 
@@ -708,21 +712,17 @@ texture = ExtResource("24_engdv")
 [node name="Trees" type="Node2D" parent="." unique_id=343002866]
 z_index = 3
 
-[node name="Oak1" type="Sprite2D" parent="Trees" unique_id=504702511]
+[node name="Oak1" parent="Trees" unique_id=1420543239 instance=ExtResource("40_n35h0")]
 position = Vector2(0, -108)
-texture = ExtResource("39_8a8f1")
 
-[node name="Oak2" type="Sprite2D" parent="Trees" unique_id=564747594]
+[node name="Oak2" parent="Trees" unique_id=230151973 instance=ExtResource("40_n35h0")]
 position = Vector2(442, -108)
-texture = ExtResource("39_8a8f1")
 
-[node name="Pine1" type="Sprite2D" parent="Trees" unique_id=656161751]
+[node name="Pine1" parent="Trees" unique_id=1324752454 instance=ExtResource("41_wlji1")]
 position = Vector2(-451, -108)
-texture = ExtResource("40_wlji1")
 
-[node name="Pine2" type="Sprite2D" parent="Trees" unique_id=1517697388]
+[node name="Pine2" parent="Trees" unique_id=96647167 instance=ExtResource("41_wlji1")]
 position = Vector2(290, -108)
-texture = ExtResource("40_wlji1")
 
 [connection signal="timeout" from="AimController/ReloadTimer" to="AimController" method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="AimController/DisappearTimer" to="AimController" method="_on_disappear_timer_timeout"]

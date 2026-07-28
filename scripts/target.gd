@@ -1,7 +1,7 @@
 extends Node2D
 
 var points := 0;
-signal hit(obj, point_value);
+signal hit(obj, point_value, order);
 
 var moving_up = true;
 var original_y;
@@ -67,7 +67,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 	var target_spawner = get_parent().find_child("TargetSpawner");
 	if (!target_spawner.game_timer.is_stopped()):
 		if (event.is_action("left_click")):
-			if (!shot):
+			if (!shot && (!aim_controller.blocked || (z_index != 2))):
 				if (aim_controller.loaded):	
 					var new_points_icon = points_icon.instantiate();
 					canvas_layer.add_child(new_points_icon);
@@ -126,5 +126,5 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 							points_teller.modulate = Color.SEA_GREEN;
 						7:
 							points_teller.modulate = Color.YELLOW;
-				hit.emit(self, points);
+				hit.emit(self, points, z_index);
 			
