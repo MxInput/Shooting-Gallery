@@ -52,9 +52,16 @@ func _process(delta: float) -> void:
 		
 		if (position.x <= end_pos):
 			var target_spawner = get_parent().find_child("TargetSpawner");
-			if (!target_spawner.game_timer.is_stopped()):
-				var perfect_text := canvas_layer.find_child("PerfectTeller");
-				perfect_text.visible = false;
+			if (target_spawner.find_child("GameTimer") != null):
+				if (!target_spawner.game_timer.is_stopped()):
+					var perfect_text := canvas_layer.find_child("PerfectTeller");
+					perfect_text.visible = false;
+			else:
+				var current_target = target_spawner.chosen_hit;
+				var target_type;
+				match (current_target):
+					""
+				target_spawner.lives -= 1;
 			queue_free();
 	else:
 		time_left += delta;
@@ -65,66 +72,129 @@ func _process(delta: float) -> void:
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	var aim_controller = get_parent().find_child("AimController");
 	var target_spawner = get_parent().find_child("TargetSpawner");
-	if (!target_spawner.game_timer.is_stopped()):
-		if (event.is_action("left_click")):
-			if (!shot && (!aim_controller.blocked || (z_index != 2))):
-				if (aim_controller.loaded):	
-					var new_points_icon = points_icon.instantiate();
-					canvas_layer.add_child(new_points_icon);
-					
-					var new_points_total_icon = points_icon.instantiate();
-					canvas_layer.add_child(new_points_total_icon);
-					new_points_total_icon.text = "+" + str(points);
-					new_points_total_icon.modulate = Color.DARK_GREEN;
-					new_points_total_icon.position = Vector2(110.0, 100.0);
-					
-					var new_shot_particles := shot_particles.instantiate();
-					add_child(new_shot_particles);
-					new_shot_particles.emitting = true;
-					new_shot_particles.global_position = get_global_mouse_position();
-					
-					if (is_in_group("duck")):
-						var duck_sprite = find_child("Duck");
-						match (duck_sprite.texture):
-							target_spawner.brown_duck_texture:
-								new_shot_particles.color = Color.from_string("#a36a31", Color.SADDLE_BROWN);
-							target_spawner.yellow_duck_texture:
-								new_shot_particles.color = Color.from_string("#edae1a", Color.YELLOW);
-							target_spawner.white_duck_texture:
-								new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
+	if (target_spawner.find_child("GameTimer") != null):
+		if (!target_spawner.game_timer.is_stopped()):
+			if (event.is_action("left_click")):
+				if (!shot && (!aim_controller.blocked || (z_index != 2))):
+					if (aim_controller.loaded):	
+						var new_points_icon = points_icon.instantiate();
+						canvas_layer.add_child(new_points_icon);
+						
+						var new_points_total_icon = points_icon.instantiate();
+						canvas_layer.add_child(new_points_total_icon);
+						new_points_total_icon.text = "+" + str(points);
+						new_points_total_icon.modulate = Color.DARK_GREEN;
+						new_points_total_icon.position = Vector2(110.0, 100.0);
+						
+						var new_shot_particles := shot_particles.instantiate();
+						add_child(new_shot_particles);
+						new_shot_particles.emitting = true;
+						new_shot_particles.global_position = get_global_mouse_position();
+						
+						if (is_in_group("duck")):
+							var duck_sprite = find_child("Duck");
+							match (duck_sprite.texture):
+								target_spawner.brown_duck_texture:
+									new_shot_particles.color = Color.from_string("#a36a31", Color.SADDLE_BROWN);
+								target_spawner.yellow_duck_texture:
+									new_shot_particles.color = Color.from_string("#edae1a", Color.YELLOW);
+								target_spawner.white_duck_texture:
+									new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
+									
 								
+							aim_controller.duck_count += 1;
+							new_points_icon.position = Vector2(434.0, 100.0);
+						else:
+							var target_sprite = find_child("Target");		
 							
-						aim_controller.duck_count += 1;
-						new_points_icon.position = Vector2(434.0, 100.0);
-					else:
-						var target_sprite = find_child("Target");		
+							match (target_sprite.texture):
+								target_spawner.colored_target_texture:
+									new_shot_particles.color = Color.from_string("#207bb0", Color.WHITE);
+								target_spawner.red_target_texture:
+									new_shot_particles.color = Color.from_string("#cf560a", Color.DARK_RED);
+								target_spawner.white_target_texture:
+									new_shot_particles.color = Color.WHITE;
+									
+							aim_controller.target_count += 1;
+							new_points_icon.position = Vector2(678.0, 100.0);
+							
+						shot = true;
+						points_teller.text = "+" + str(points);
+						points_teller.reparent(canvas_layer);
+						points_teller.global_position = get_viewport().get_mouse_position();
+						points_teller.visible = true;
+						match points:
+							2:
+								points_teller.modulate = Color.DEEP_SKY_BLUE;
+							3:
+								points_teller.modulate = Color.HOT_PINK;
+							4:
+								points_teller.modulate = Color.ORANGE;
+							5:
+								points_teller.modulate = Color.SEA_GREEN;
+							7:
+								points_teller.modulate = Color.YELLOW;
+					hit.emit(self, points, z_index);
+	else:		
+		if (target_spawner.lives > 0):
+			if (event.is_action("left_click")):
+				if (!shot && (!aim_controller.blocked || (z_index != 2))):
+					if (aim_controller.loaded):	
+						var new_points_icon = points_icon.instantiate();
+						canvas_layer.add_child(new_points_icon);
 						
-						match (target_sprite.texture):
-							target_spawner.colored_target_texture:
-								new_shot_particles.color = Color.from_string("#207bb0", Color.WHITE);
-							target_spawner.red_target_texture:
-								new_shot_particles.color = Color.from_string("#cf560a", Color.DARK_RED);
-							target_spawner.white_target_texture:
-								new_shot_particles.color = Color.WHITE;
+						var new_points_total_icon = points_icon.instantiate();
+						canvas_layer.add_child(new_points_total_icon);
+						new_points_total_icon.text = "+" + str(points);
+						new_points_total_icon.modulate = Color.DARK_GREEN;
+						new_points_total_icon.position = Vector2(110.0, 100.0);
+						
+						var new_shot_particles := shot_particles.instantiate();
+						add_child(new_shot_particles);
+						new_shot_particles.emitting = true;
+						new_shot_particles.global_position = get_global_mouse_position();
+						
+						if (is_in_group("duck")):
+							var duck_sprite = find_child("Duck");
+							match (duck_sprite.texture):
+								target_spawner.brown_duck_texture:
+									new_shot_particles.color = Color.from_string("#a36a31", Color.SADDLE_BROWN);
+								target_spawner.yellow_duck_texture:
+									new_shot_particles.color = Color.from_string("#edae1a", Color.YELLOW);
+								target_spawner.white_duck_texture:
+									new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
+									
 								
-						aim_controller.target_count += 1;
-						new_points_icon.position = Vector2(678.0, 100.0);
-						
-					shot = true;
-					points_teller.text = "+" + str(points);
-					points_teller.reparent(canvas_layer);
-					points_teller.global_position = get_viewport().get_mouse_position();
-					points_teller.visible = true;
-					match points:
-						2:
-							points_teller.modulate = Color.DEEP_SKY_BLUE;
-						3:
-							points_teller.modulate = Color.HOT_PINK;
-						4:
-							points_teller.modulate = Color.ORANGE;
-						5:
-							points_teller.modulate = Color.SEA_GREEN;
-						7:
-							points_teller.modulate = Color.YELLOW;
-				hit.emit(self, points, z_index);
-			
+							aim_controller.duck_count += 1;
+							new_points_icon.position = Vector2(434.0, 100.0);
+						else:
+							var target_sprite = find_child("Target");		
+							
+							match (target_sprite.texture):
+								target_spawner.colored_target_texture:
+									new_shot_particles.color = Color.from_string("#207bb0", Color.WHITE);
+								target_spawner.red_target_texture:
+									new_shot_particles.color = Color.from_string("#cf560a", Color.DARK_RED);
+								target_spawner.white_target_texture:
+									new_shot_particles.color = Color.WHITE;
+									
+							aim_controller.target_count += 1;
+							new_points_icon.position = Vector2(678.0, 100.0);
+							
+						shot = true;
+						points_teller.text = "+" + str(points);
+						points_teller.reparent(canvas_layer);
+						points_teller.global_position = get_viewport().get_mouse_position();
+						points_teller.visible = true;
+						match points:
+							2:
+								points_teller.modulate = Color.DEEP_SKY_BLUE;
+							3:
+								points_teller.modulate = Color.HOT_PINK;
+							4:
+								points_teller.modulate = Color.ORANGE;
+							5:
+								points_teller.modulate = Color.SEA_GREEN;
+							7:
+								points_teller.modulate = Color.YELLOW;
+					hit.emit(self, points, z_index);	

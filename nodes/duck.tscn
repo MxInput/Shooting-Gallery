@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="2_h6t1c"]
 [ext_resource type="PackedScene" uid="uid://btyieeu5inpvk" path="res://nodes/shot_particles.tscn" id="3_vys28"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="4_0t7wi"]
-[ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="4_eodfl"]
+[ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://scripts/points_disappear.gd" id="4_eodfl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eodfl"]
 size = Vector2(103, 86)

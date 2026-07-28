@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="2_jabdv"]
 [ext_resource type="Texture2D" uid="uid://esx07d6t5h8p" path="res://images/stick_metal.png" id="2_yluix"]
 [ext_resource type="PackedScene" uid="uid://btyieeu5inpvk" path="res://nodes/shot_particles.tscn" id="3_yt0k2"]
-[ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="4_k6474"]
+[ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://scripts/points_disappear.gd" id="4_k6474"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="4_yluix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jabdv"]

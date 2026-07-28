@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fqhia3wjxywc"]
 
 [ext_resource type="Texture2D" uid="uid://bkmspyi5l0uja" path="res://images/tree_oak.png" id="1_bfbkq"]
-[ext_resource type="Script" uid="uid://b2an3pujnvwyj" path="res://nodes/block.gd" id="2_mjvgk"]
+[ext_resource type="Script" uid="uid://b2an3pujnvwyj" path="res://scripts/block.gd" id="2_mjvgk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfbkq"]
 size = Vector2(123, 244)

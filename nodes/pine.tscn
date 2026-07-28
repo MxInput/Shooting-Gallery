@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d4ch0ashg2rki"]
 
 [ext_resource type="Texture2D" uid="uid://cppobt3dmfjpt" path="res://images/tree_pine.png" id="1_mwu0i"]
-[ext_resource type="Script" uid="uid://b2an3pujnvwyj" path="res://nodes/block.gd" id="2_4ely2"]
+[ext_resource type="Script" uid="uid://b2an3pujnvwyj" path="res://scripts/block.gd" id="2_4ely2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwu0i"]
 size = Vector2(89, 244)

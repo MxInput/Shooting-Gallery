@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vt2sly1s4bh1"]
 
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="1_m6yeg"]
-[ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://nodes/points_disappear.gd" id="2_1bmov"]
+[ext_resource type="Script" uid="uid://dh8x38o1w0c6m" path="res://scripts/points_disappear.gd" id="2_1bmov"]
 
 [node name="Points" type="RichTextLabel" unique_id=1261841942]
 z_index = 5

@@ -39,7 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="24_k35x6"]
 [ext_resource type="Texture2D" uid="uid://dbe8msqmll04s" path="res://images/grass1.png" id="34_04f7f"]
 [ext_resource type="Texture2D" uid="uid://c6k12oqk8hhq2" path="res://images/grass2.png" id="35_ds6ls"]
-[ext_resource type="Script" uid="uid://c1hmg26vn0yb6" path="res://nodes/move_waves.gd" id="35_n35h0"]
+[ext_resource type="Script" uid="uid://c1hmg26vn0yb6" path="res://scripts/move_waves.gd" id="35_n35h0"]
 [ext_resource type="PackedScene" uid="uid://fqhia3wjxywc" path="res://nodes/oak.tscn" id="40_n35h0"]
 [ext_resource type="PackedScene" uid="uid://d4ch0ashg2rki" path="res://nodes/pine.tscn" id="41_wlji1"]
 
@@ -141,9 +141,9 @@ vertical_alignment = 1
 [node name="PerfectTeller" type="RichTextLabel" parent="CanvasLayer" unique_id=1128582590]
 z_index = 5
 offset_left = 18.0
-offset_top = 105.0
+offset_top = 172.0
 offset_right = 185.0
-offset_bottom = 185.0
+offset_bottom = 252.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("9_rylax")
 theme_override_font_sizes/normal_font_size = 24
@@ -544,6 +544,7 @@ front_waves = NodePath("Front")
 back_waves = NodePath("Back")
 
 [node name="Front" type="Node2D" parent="Waves" unique_id=1798991219]
+position = Vector2(0, 9)
 
 [node name="Wave1" type="Sprite2D" parent="Waves/Front" unique_id=1724919786]
 z_index = 2
