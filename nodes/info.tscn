@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dk5q43x7ix3ci"]
 
-[ext_resource type="Script" uid="uid://bgylmnqbrg41q" path="res://nodes/load_info.gd" id="1_5spqv"]
+[ext_resource type="Script" uid="uid://bgylmnqbrg41q" path="res://scripts/load_info.gd" id="1_5spqv"]
 
 [node name="Info" type="Node" unique_id=727299429 node_paths=PackedStringArray("timed_high_score", "hunting_high_score", "last_played")]
 script = ExtResource("1_5spqv")
@@ -21,5 +21,13 @@ offset_bottom = 101.0
 
 [node name="LastPlayed" type="RichTextLabel" parent="CanvasLayer" unique_id=564283181]
 offset_top = 151.0
-offset_right = 326.0
+offset_right = 566.0
 offset_bottom = 191.0
+
+[node name="Return" type="Button" parent="CanvasLayer" unique_id=32758297]
+offset_left = 583.0
+offset_right = 654.0
+offset_bottom = 31.0
+text = "RETURN"
+
+[connection signal="button_down" from="CanvasLayer/Return" to="." method="_on_return_button_down"]

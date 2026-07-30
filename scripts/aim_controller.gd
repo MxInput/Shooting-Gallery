@@ -64,7 +64,8 @@ func destroy_target(target, points, order) -> void:
 				combo += 1;
 			
 			if (combo >= 1):
-				combo_teller.text = "x" + str(combo+1) + " COMBO";
+				var combo_additive = (1 + (combo * 0.25));
+				combo_teller.text = "[tornado freq=" + str(combo_additive) + "]x" + str(combo+1) + " COMBO";
 				combo_teller.visible = true;
 				disappear_timer.start();
 				
@@ -103,8 +104,8 @@ func destroy_target(target, points, order) -> void:
 				new_shot_sprite.global_position = mouse_pos;
 			
 			PlayerVariables.points += points;
-			
-			point_teller.text = "Points: " + str(PlayerVariables.points);
+
+			point_teller.text = str(PlayerVariables.points);
 			
 func _process(_delta: float) -> void:
 	if (initial_timer.is_stopped()):
@@ -157,3 +158,6 @@ func _on_reload_timer_timeout() -> void:
 
 func _on_disappear_timer_timeout() -> void:
 	combo_teller.visible = false;
+
+func _on_combo_timer_timeout() -> void:
+	PlayerVariables.points += 1 * combo;

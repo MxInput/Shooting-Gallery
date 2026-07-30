@@ -9,7 +9,7 @@ var back_moving_up : Array[bool];
 var front_initial_y;
 var back_initial_y;
 
-var dist = 2.0;
+var dist = 4.0;
 
 func _ready() -> void:
 	front_initial_y = front_waves.get_children()[0].position.y;

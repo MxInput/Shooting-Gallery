@@ -40,6 +40,7 @@ var combo := 0;
 @export var combo_teller : RichTextLabel;
 @export var combo_timer : Timer;
 @export var disappear_timer : Timer;
+var combo_possible = true;
 
 @export var duck_count_text : RichTextLabel;
 @export var target_count_text : RichTextLabel;
@@ -51,6 +52,9 @@ var blocked := false;
 
 @export var initial_timer : Timer;
 
+@export var points_icon : PackedScene;
+@export var canvas_layer : CanvasLayer;
+
 func destroy_target(target, points, order) -> void:
 	if (loaded && (!blocked || order != 2)):
 		if (target_spawner.lives > 0):
@@ -58,12 +62,20 @@ func destroy_target(target, points, order) -> void:
 				combo = 0;
 				combo_timer.start();
 			else:
+				if (points < 0):
+					combo_possible = false;
+					
 				combo += 1;
 			
 			if (combo >= 1):
-				combo_teller.text = "x" + str(combo+1) + " COMBO";
-				combo_teller.visible = true;
-				disappear_timer.start();
+				if (combo_possible):
+					var combo_additive = (1 + (combo * 0.25));
+					combo_teller.text = "[tornado freq=" + str(combo_additive) + "]x" + str(combo+1) + " COMBO";
+					combo_teller.visible = true;
+					disappear_timer.start();
+				else:
+					combo_teller.visible = false;
+					combo = 0;
 				
 			var new_shot_sprite = shot_sprite.instantiate();
 		
@@ -101,7 +113,10 @@ func destroy_target(target, points, order) -> void:
 			
 			PlayerVariables.points += points;
 			
-			point_teller.text = "Points: " + str(PlayerVariables.points);
+			if (PlayerVariables.points < 0):
+				PlayerVariables.points = 0;
+
+			point_teller.text = str(PlayerVariables.points);
 			
 func _ready() -> void:
 	initial_timer.start();	
@@ -158,3 +173,18 @@ func _on_reload_timer_timeout() -> void:
 
 func _on_disappear_timer_timeout() -> void:
 	combo_teller.visible = false;
+
+
+func _on_combo_timer_timeout() -> void:
+	combo_possible = true;
+	
+	var points_val = 1 * combo;
+	
+	if (combo > 0):
+		PlayerVariables.points += points_val;
+		
+		var new_points_total_icon = points_icon.instantiate();
+		canvas_layer.add_child(new_points_total_icon);
+		new_points_total_icon.position = Vector2(160.0, 100.0);
+		new_points_total_icon.text = "+" + str(points_val);
+		new_points_total_icon.modulate = Color.GOLD;

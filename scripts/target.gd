@@ -121,7 +121,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 						canvas_layer.add_child(new_points_total_icon);
 						new_points_total_icon.text = "+" + str(points);
 						new_points_total_icon.modulate = Color.DARK_GREEN;
-						new_points_total_icon.position = Vector2(110.0, 100.0);
+						new_points_total_icon.position = Vector2(160.0, 100.0);
 						
 						var new_shot_particles := shot_particles.instantiate();
 						add_child(new_shot_particles);
@@ -153,7 +153,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 									new_shot_particles.color = Color.WHITE;
 									
 							aim_controller.target_count += 1;
-							new_points_icon.position = Vector2(678.0, 100.0);
+							new_points_icon.position = Vector2(670.0, 100.0);
 							
 						shot = true;
 						points_teller.text = "+" + str(points);
@@ -175,6 +175,8 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 	else:		
 		if (target_spawner.lives > 0):
 			if (event.is_action("left_click")):
+				var wrong_target = false;
+				
 				if (!shot && (!aim_controller.blocked || (z_index != 2))):
 					if (aim_controller.loaded):	
 						var current_target = target_spawner.chosen_hit;
@@ -183,48 +185,65 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 							var target_sprite = find_child("Target");		
 							
 							if (target_sprite == null):
+								wrong_target = true;
 								target_spawner.lives -= 1;
+								updateLives.emit();
 							else:
 								match (current_target):
 									"WHITE":
 										if (target_sprite.texture != target_spawner.white_target_texture):
 											target_spawner.lives -= 1;
+											wrong_target = true;
 											updateLives.emit();
 									"COLORED":
 										if (target_sprite.texture != target_spawner.colored_target_texture):
 											target_spawner.lives -= 1;
+											wrong_target = true;
 											updateLives.emit();
 									"RED":
 										if (target_sprite.texture != target_spawner.red_target_texture):
 											target_spawner.lives -= 1;
+											wrong_target = true;
 											updateLives.emit();
 						elif (target_type == "Duck"):
 							var duck_sprite = find_child("Duck");
 							
 							if (duck_sprite == null):
 								target_spawner.lives -= 1;
+								wrong_target = true;
+								updateLives.emit();
 							else:
 								match (current_target):
 									"WHITE":
 										if (duck_sprite.texture != target_spawner.white_duck_texture):
 											target_spawner.lives -= 1;
+											wrong_target = true;
 											updateLives.emit();
 									"BROWN":
 										if (duck_sprite.texture != target_spawner.brown_duck_texture):
 											target_spawner.lives -= 1;
+											wrong_target = true;
 											updateLives.emit();
 									"YELLOW":
 										if (duck_sprite.texture != target_spawner.yellow_duck_texture):
 											target_spawner.lives -= 1;		
+											wrong_target = true;
 											updateLives.emit();	
-						var new_points_icon = points_icon.instantiate();
-						canvas_layer.add_child(new_points_icon);
 						
 						var new_points_total_icon = points_icon.instantiate();
 						canvas_layer.add_child(new_points_total_icon);
-						new_points_total_icon.text = "+" + str(points);
-						new_points_total_icon.modulate = Color.DARK_GREEN;
-						new_points_total_icon.position = Vector2(110.0, 100.0);
+						new_points_total_icon.position = Vector2(160.0, 100.0);
+						
+						var new_points_icon = points_icon.instantiate();
+						
+						if (!wrong_target):
+							canvas_layer.add_child(new_points_icon);
+							
+							new_points_total_icon.text = "+" + str(points);
+							new_points_total_icon.modulate = Color.DARK_GREEN;
+						else:
+							new_points_total_icon.text = "-" + str(points);
+							new_points_total_icon.modulate = Color.CRIMSON;
 						
 						var new_shot_particles := shot_particles.instantiate();
 						add_child(new_shot_particles);
@@ -242,7 +261,8 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 									new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
 									
 								
-							aim_controller.duck_count += 1;
+							if (!wrong_target):
+								aim_controller.duck_count += 1;
 							new_points_icon.position = Vector2(434.0, 100.0);
 						else:
 							var target_sprite = find_child("Target");		
@@ -254,12 +274,12 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 									new_shot_particles.color = Color.from_string("#cf560a", Color.DARK_RED);
 								target_spawner.white_target_texture:
 									new_shot_particles.color = Color.WHITE;
-									
-							aim_controller.target_count += 1;
-							new_points_icon.position = Vector2(678.0, 100.0);
+							
+							if (!wrong_target):		
+								aim_controller.target_count += 1;
+							new_points_icon.position = Vector2(670.0, 100.0);
 							
 						shot = true;
-						points_teller.text = "+" + str(points);
 						points_teller.reparent(canvas_layer);
 						points_teller.global_position = get_viewport().get_mouse_position();
 						points_teller.visible = true;
@@ -274,4 +294,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 								points_teller.modulate = Color.SEA_GREEN;
 							7:
 								points_teller.modulate = Color.YELLOW;
-					hit.emit(self, points, z_index);	
+					if (wrong_target):
+						points_teller.modulate = Color.CRIMSON;
+						points_teller.text = "-" + str(points);
+						hit.emit(self, -points, z_index);	
+					else:
+						points_teller.text = "+" + str(points);
+						hit.emit(self, points, z_index);	
