@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b45psw7pvjmil"]
+
+[ext_resource type="Script" uid="uid://bqanoghc26a3d" path="res://scripts/customize_game.gd" id="1_60ugw"]
+
+[node name="Customization" type="Node" unique_id=1072075760 node_paths=PackedStringArray("color_picker")]
+script = ExtResource("1_60ugw")
+color_picker = NodePath("ColorPicker")
+
+[node name="ColorPicker" type="ColorPicker" parent="." unique_id=1786490803]
+offset_right = 298.0
+offset_bottom = 607.0
+
+[node name="Return" type="Button" parent="." unique_id=145855524]
+offset_left = 583.0
+offset_right = 591.0
+offset_bottom = 8.0
+text = "RETURN"
+
+[connection signal="color_changed" from="ColorPicker" to="." method="_on_color_picker_color_changed"]
+[connection signal="button_down" from="Return" to="." method="_on_return_button_down"]

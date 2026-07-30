@@ -27,12 +27,18 @@ var canvas_layer : CanvasLayer;
 @export var points_icon : PackedScene;
 @export var shot_particles : PackedScene;
 
+signal updateLives;
+
 func _ready() -> void:
 	var aim_controller = get_parent().find_child("AimController");
+	var target_spawner = get_parent().find_child("TargetSpawner");
 	hit.connect(aim_controller.destroy_target);
 	
 	var game = get_parent();
 	canvas_layer = game.find_child("CanvasLayer");
+	
+	if (target_spawner.find_child("GameTimer") == null):
+		updateLives.connect(target_spawner.updateLives);
 
 func _process(delta: float) -> void:	
 	if (!shot):
@@ -58,10 +64,41 @@ func _process(delta: float) -> void:
 					perfect_text.visible = false;
 			else:
 				var current_target = target_spawner.chosen_hit;
-				var target_type;
-				match (current_target):
-					""
-				target_spawner.lives -= 1;
+				var target_type = target_spawner.chosen_type;
+				if (target_type == "Duck"):
+					var duck_sprite = find_child("Duck", true, false);
+					
+					if (duck_sprite != null):
+						match (current_target):
+							"WHITE":
+								if (duck_sprite.texture == target_spawner.white_duck_texture):
+									target_spawner.lives -= 1;
+									updateLives.emit();
+							"BROWN":
+								if (duck_sprite.texture == target_spawner.brown_duck_texture):
+									target_spawner.lives -= 1;
+									updateLives.emit();
+							"YELLOW":
+								if (duck_sprite.texture == target_spawner.yellow_duck_texture):
+									target_spawner.lives -= 1;
+									updateLives.emit();
+				elif (target_type == "Target"):
+					var target_sprite = find_child("Target", true, false);
+					
+					if (target_sprite != null):
+						match (current_target):
+							"WHITE":
+								if (target_sprite.texture == target_spawner.white_target_texture):
+									target_spawner.lives -= 1;
+									updateLives.emit();
+							"COLORED":
+								if (target_sprite.texture == target_spawner.colored_target_texture):
+									target_spawner.lives -= 1;
+									updateLives.emit();
+							"RED":
+								if (target_sprite.texture == target_spawner.red_target_texture):
+									target_spawner.lives -= 1;
+									updateLives.emit();
 			queue_free();
 	else:
 		time_left += delta;
@@ -92,7 +129,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 						new_shot_particles.global_position = get_global_mouse_position();
 						
 						if (is_in_group("duck")):
-							var duck_sprite = find_child("Duck");
+							var duck_sprite = find_child("Duck", true, false);
 							match (duck_sprite.texture):
 								target_spawner.brown_duck_texture:
 									new_shot_particles.color = Color.from_string("#a36a31", Color.SADDLE_BROWN);
@@ -105,7 +142,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 							aim_controller.duck_count += 1;
 							new_points_icon.position = Vector2(434.0, 100.0);
 						else:
-							var target_sprite = find_child("Target");		
+							var target_sprite = find_child("Target", true, false);		
 							
 							match (target_sprite.texture):
 								target_spawner.colored_target_texture:
@@ -140,6 +177,46 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 			if (event.is_action("left_click")):
 				if (!shot && (!aim_controller.blocked || (z_index != 2))):
 					if (aim_controller.loaded):	
+						var current_target = target_spawner.chosen_hit;
+						var target_type = target_spawner.chosen_type;
+						if (target_type == "Target"):
+							var target_sprite = find_child("Target");		
+							
+							if (target_sprite == null):
+								target_spawner.lives -= 1;
+							else:
+								match (current_target):
+									"WHITE":
+										if (target_sprite.texture != target_spawner.white_target_texture):
+											target_spawner.lives -= 1;
+											updateLives.emit();
+									"COLORED":
+										if (target_sprite.texture != target_spawner.colored_target_texture):
+											target_spawner.lives -= 1;
+											updateLives.emit();
+									"RED":
+										if (target_sprite.texture != target_spawner.red_target_texture):
+											target_spawner.lives -= 1;
+											updateLives.emit();
+						elif (target_type == "Duck"):
+							var duck_sprite = find_child("Duck");
+							
+							if (duck_sprite == null):
+								target_spawner.lives -= 1;
+							else:
+								match (current_target):
+									"WHITE":
+										if (duck_sprite.texture != target_spawner.white_duck_texture):
+											target_spawner.lives -= 1;
+											updateLives.emit();
+									"BROWN":
+										if (duck_sprite.texture != target_spawner.brown_duck_texture):
+											target_spawner.lives -= 1;
+											updateLives.emit();
+									"YELLOW":
+										if (duck_sprite.texture != target_spawner.yellow_duck_texture):
+											target_spawner.lives -= 1;		
+											updateLives.emit();	
 						var new_points_icon = points_icon.instantiate();
 						canvas_layer.add_child(new_points_icon);
 						

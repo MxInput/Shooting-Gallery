@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dk5q43x7ix3ci"]
+
+[ext_resource type="Script" uid="uid://bgylmnqbrg41q" path="res://nodes/load_info.gd" id="1_5spqv"]
+
+[node name="Info" type="Node" unique_id=727299429 node_paths=PackedStringArray("timed_high_score", "hunting_high_score", "last_played")]
+script = ExtResource("1_5spqv")
+timed_high_score = NodePath("CanvasLayer/TimedHighScore")
+hunting_high_score = NodePath("CanvasLayer/HuntingHighScore")
+last_played = NodePath("CanvasLayer/LastPlayed")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1444414097]
+
+[node name="TimedHighScore" type="RichTextLabel" parent="CanvasLayer" unique_id=1398266000]
+offset_right = 370.0
+offset_bottom = 40.0
+
+[node name="HuntingHighScore" type="RichTextLabel" parent="CanvasLayer" unique_id=587507763]
+offset_top = 61.0
+offset_right = 326.0
+offset_bottom = 101.0
+
+[node name="LastPlayed" type="RichTextLabel" parent="CanvasLayer" unique_id=564283181]
+offset_top = 151.0
+offset_right = 326.0
+offset_bottom = 191.0

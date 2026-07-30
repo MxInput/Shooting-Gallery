@@ -49,6 +49,8 @@ var bullet_2_reload_time := 1.0;
 
 var blocked := false;
 
+@export var initial_timer : Timer;
+
 func destroy_target(target, points, order) -> void:
 	if (loaded && (!blocked || order != 2)):
 		if (target_spawner.lives > 0):
@@ -101,30 +103,35 @@ func destroy_target(target, points, order) -> void:
 			
 			point_teller.text = "Points: " + str(PlayerVariables.points);
 			
+func _ready() -> void:
+	initial_timer.start();	
+	crosshair.modulate = PlayerVariables.target_color;	
+	
 func _process(_delta: float) -> void:
-	if (Input.is_action_pressed("left_click")):
-		if (target_spawner.lives > 0):
-			if (delay_timer.is_stopped()):
-				delay_timer.start();
-				if (ammo == 0):
-					if (reload_timer.is_stopped()):
-						reload_timer.start();
-						
-						var animation_player : AnimationPlayer = rifle.get_child(0);
-						animation_player.play("dying")
-						
-						bullet_outline1.get_child(0).visible = true;
-						bullet_outline1.get_child(0).texture = silver_bullet;
-				else:
-					if (ammo == 3):
-						bullet_outline3.get_child(0).visible = false;
-					elif (ammo == 2):
-						bullet_outline2.get_child(0).visible = false;
-					elif (ammo == 1):
-						bullet_outline1.get_child(0).visible = false;
-						loaded = false;		
-						
-					ammo -= 1;
+	if (initial_timer.is_stopped()):
+		if (Input.is_action_pressed("left_click")):
+			if (target_spawner.lives > 0):
+				if (delay_timer.is_stopped()):
+					delay_timer.start();
+					if (ammo == 0):
+						if (reload_timer.is_stopped()):
+							reload_timer.start();
+							
+							var animation_player : AnimationPlayer = rifle.get_child(0);
+							animation_player.play("dying")
+							
+							bullet_outline1.get_child(0).visible = true;
+							bullet_outline1.get_child(0).texture = silver_bullet;
+					else:
+						if (ammo == 3):
+							bullet_outline3.get_child(0).visible = false;
+						elif (ammo == 2):
+							bullet_outline2.get_child(0).visible = false;
+						elif (ammo == 1):
+							bullet_outline1.get_child(0).visible = false;
+							loaded = false;		
+							
+						ammo -= 1;
 		
 	var mouse_pos := crosshair.get_global_mouse_position();
 	var offset := Vector2(-20, -15);

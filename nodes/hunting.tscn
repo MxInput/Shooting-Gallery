@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dk60mg2ah7mmj" path="res://scripts/cloud_movement.gd" id="4_yjbog"]
 [ext_resource type="Texture2D" uid="uid://daqgtta2l3dqu" path="res://images/clouds/cloud2.png" id="5_xxcmm"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="6_aowaw"]
-[ext_resource type="Texture2D" uid="uid://cy70516ppu4b0" path="res://images/words/text_timeup.png" id="8_icfry"]
+[ext_resource type="Texture2D" uid="uid://cjohdwb7ksmkn" path="res://images/words/text_gameover.png" id="7_utfi2"]
 [ext_resource type="Texture2D" uid="uid://2qv6sebyxgaf" path="res://images/words/text_ready.png" id="9_lhmj2"]
 [ext_resource type="Texture2D" uid="uid://dvkajuh7r20e7" path="res://images/words/text_go.png" id="10_vrdas"]
 [ext_resource type="Texture2D" uid="uid://dgfaloaluoym3" path="res://images/curtains/curtain_top.png" id="11_cgpsn"]
@@ -96,7 +96,7 @@ mouse_behavior_recursive = 1
 texture = ExtResource("1_gtafp")
 
 [node name="Rifle" type="TextureRect" parent="CanvasLayer" unique_id=22720746]
-z_index = 2
+z_index = 10
 offset_left = 978.0
 offset_top = 312.0
 offset_right = 1120.0
@@ -160,7 +160,7 @@ offset_left = 458.0
 offset_top = 110.0
 offset_right = 753.0
 offset_bottom = 179.0
-texture = ExtResource("8_icfry")
+texture = ExtResource("7_utfi2")
 
 [node name="Ready" type="TextureRect" parent="CanvasLayer" unique_id=1031185667]
 visible = false
@@ -411,6 +411,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CurrentTeller" type="Control" parent="CanvasLayer" unique_id=918161993]
+visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
@@ -420,17 +421,33 @@ offset_right = 267.0
 offset_bottom = 80.0
 
 [node name="Picture" type="TextureRect" parent="CanvasLayer/CurrentTeller" unique_id=1358007230]
+z_index = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 14.0
+offset_top = 19.0
+offset_right = 142.0
+offset_bottom = 147.0
 texture = ExtResource("30_ew3wv")
 
 [node name="Text" type="RichTextLabel" parent="CanvasLayer/CurrentTeller" unique_id=1600269968]
+z_index = 1
 layout_mode = 0
+offset_left = 9.0
 offset_top = -32.0
-offset_right = 140.0
+offset_right = 149.0
 offset_bottom = 9.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_aowaw")
 text = "CURRENT TARGET"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/CurrentTeller" unique_id=1543529009]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -41.0
+offset_right = 165.0
+offset_bottom = 167.0
 
 [node name="Crosses" type="Control" parent="CanvasLayer" unique_id=247741753]
 z_index = 10
@@ -461,10 +478,17 @@ offset_right = 1052.0
 offset_bottom = 32.0
 texture = ExtResource("20_utfi2")
 
+[node name="Return" type="Button" parent="CanvasLayer" unique_id=947007059]
+visible = false
+offset_left = 583.0
+offset_top = 282.0
+offset_right = 707.0
+offset_bottom = 313.0
+text = "RETURN HOME"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
-[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text")]
-visible = false
+[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text", "initial_timer")]
 script = ExtResource("21_5ikoq")
 crosshair = NodePath("../CanvasLayer/Crosshair")
 rifle = NodePath("../CanvasLayer/Rifle")
@@ -487,6 +511,11 @@ combo_timer = NodePath("ComboTimer")
 disappear_timer = NodePath("DisappearTimer")
 duck_count_text = NodePath("../CanvasLayer/TargetCounts/Ducks/DuckCount")
 target_count_text = NodePath("../CanvasLayer/TargetCounts/Target/TargetCount")
+initial_timer = NodePath("InitialTimer")
+
+[node name="InitialTimer" type="Timer" parent="AimController" unique_id=137918211]
+wait_time = 0.5
+one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="AimController" unique_id=218863506]
 wait_time = 1.5
@@ -504,7 +533,7 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "perfect_final_text", "perfect_teller", "canvas_layer", "crosses", "cross1", "cross2", "cross3")]
+[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "return_button", "canvas_layer", "crosses", "cross1", "cross2", "cross3", "target_display", "entire_target_display")]
 script = ExtResource("19_utfi2")
 target = ExtResource("27_wmhc1")
 duck = ExtResource("28_hwsv3")
@@ -525,14 +554,15 @@ cloud2 = NodePath("../CanvasLayer/Cloud2")
 game_over = NodePath("../CanvasLayer/GameOver")
 start = NodePath("../CanvasLayer/Ready")
 go = NodePath("../CanvasLayer/Go")
-perfect_final_text = NodePath("")
-perfect_teller = NodePath("")
+return_button = NodePath("../CanvasLayer/Return")
 canvas_layer = NodePath("../CanvasLayer")
 crosses = NodePath("../CanvasLayer/Crosses")
 cross1 = NodePath("../CanvasLayer/Crosses/Cross1")
 cross2 = NodePath("../CanvasLayer/Crosses/Cross2")
 cross3 = NodePath("../CanvasLayer/Crosses/Cross3")
 cross_texture = ExtResource("36_u1vwu")
+target_display = NodePath("../CanvasLayer/CurrentTeller/Picture")
+entire_target_display = NodePath("../CanvasLayer/CurrentTeller")
 
 [node name="DelayTimer" type="Timer" parent="TargetSpawner" unique_id=1665403982]
 wait_time = 3.0
@@ -738,6 +768,7 @@ position = Vector2(-451, -108)
 [node name="Pine2" parent="Trees" unique_id=96647167 instance=ExtResource("42_0q1ue")]
 position = Vector2(290, -108)
 
+[connection signal="button_down" from="CanvasLayer/Return" to="TargetSpawner" method="_on_return_button_down"]
 [connection signal="timeout" from="AimController/ReloadTimer" to="AimController" method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="AimController/DisappearTimer" to="AimController" method="_on_disappear_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/DelayTimer" to="TargetSpawner" method="_on_delay_timer_timeout"]

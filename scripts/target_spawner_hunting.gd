@@ -28,8 +28,7 @@ extends Node
 @export var start : TextureRect;
 @export var go : TextureRect;
 
-@export var perfect_final_text : RichTextLabel;
-@export var perfect_teller : RichTextLabel;
+@export var return_button : Button;
 
 enum Targets {
 	RED,
@@ -70,8 +69,46 @@ var upper_target_spawn := -200.0;
 
 @export var cross_texture : Texture2D;
 
+@export var target_display : TextureRect;
+@export var entire_target_display : Control;
+
 var lives := 3;
 var chosen_hit := "";
+var chosen_type := "";
+
+var num_cycles := 0;
+var lower_target_cycle := 4;
+var upper_target_cycle := 8;
+
+var target_cycle := 0;
+
+var finished := false;
+
+var menu = "res://nodes/menu.tscn";
+
+func generate_random_hit_object() -> void:
+	var chance = randi_range(0, 1);
+	match (chance):
+		0:
+			chosen_hit = generate_random_duck();
+			chosen_type = "Duck";
+			match (chosen_hit):
+				"YELLOW":
+					target_display.texture = yellow_duck_texture;
+				"BROWN":
+					target_display.texture = brown_duck_texture;
+				"WHITE":
+					target_display.texture = white_duck_texture;	
+		1:
+			chosen_hit = generate_random_target();
+			chosen_type = "Target";
+			match (chosen_hit):
+				"RED":
+					target_display.texture = red_target_texture;
+				"COLORED":
+					target_display.texture = colored_target_texture;
+				"WHITE":
+					target_display.texture = white_target_texture;
 
 func generate_random_duck() -> String:
 	var duck_arr = Ducks.keys();
@@ -83,10 +120,28 @@ func generate_random_target() -> String:
 	var chosen_target = target_arr.pick_random();
 	return chosen_target;
 	
+func updateLives() -> void:
+	if (lives == 2):
+		cross1.texture = cross_texture;
+	elif (lives == 1):
+		cross2.texture = cross_texture;
+	elif (lives == 0):
+		cross3.texture = cross_texture;
+		
 func _ready() -> void:
 	countdown_timer.start();
 	
 func _process(_delta: float) -> void:
+	if (lives == 0):
+		PlayerVariables.game_last_played = "Hunting";
+
+		if (PlayerVariables.points > PlayerVariables.high_score_hunting):
+			PlayerVariables.high_score_hunting = PlayerVariables.points;
+		
+		finished = true;
+		game_over.visible = true;
+		return_button.visible = true;
+		
 	if (!countdown_timer.is_stopped()):
 		var time_left := countdown_timer.time_left;
 		if (time_left <= 1.0):
@@ -112,6 +167,14 @@ func _process(_delta: float) -> void:
 			cloud_timer.start();
 			
 func _on_delay_timer_timeout() -> void:
+	if (chosen_type == "Target"):
+		num_cycles += 1;
+		
+	if (num_cycles > target_cycle):
+		target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
+		num_cycles = 0;
+		generate_random_hit_object();
+		
 	var new_target := target.instantiate();
 	game.add_child(new_target);
 	new_target.position.x = 550.0;
@@ -139,6 +202,14 @@ func _on_cloud_timer_timeout() -> void:
 	selected_cloud.visible = true;
 
 func _on_duck_timer_timeout() -> void:
+	if (chosen_type == "Duck"):
+		num_cycles += 1;
+		
+	if (num_cycles > target_cycle):
+		target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
+		num_cycles = 0;
+		generate_random_hit_object();
+		
 	var new_duck := duck.instantiate();
 	game.add_child(new_duck);
 	new_duck.position.x = 550.0;
@@ -154,18 +225,13 @@ func _on_duck_timer_timeout() -> void:
 			new_duck.find_child("Duck").texture = white_duck_texture;
 	new_duck.points = duck_points[Ducks.values()[Ducks.keys().find(selected_duck_value)]];
 
-func _on_game_timer_timeout() -> void:
-	game_over.visible = true;
-	if (perfect_teller.visible):
-		perfect_final_text.visible = true;
-
 func _on_countdown_timer_timeout() -> void:
+	entire_target_display.visible = true;
 	go.visible = false;
 	
-	var chance = randi_range(0, 1);
-	match (chance):
-		0:
-			chosen_hit = generate_random_duck();
-		1:
-			chosen_hit = generate_random_target();
-		
+	target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
+	generate_random_hit_object();
+
+
+func _on_return_button_down() -> void:
+	get_tree().change_scene_to_file(menu);

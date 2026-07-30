@@ -65,6 +65,10 @@ var upper_target_spawn := -200.0;
 
 @export var canvas_layer : CanvasLayer;
 
+@export var return_button : Button;
+
+var menu = "res://nodes/menu.tscn";
+
 func _ready() -> void:
 	countdown_timer.start();
 	
@@ -152,6 +156,11 @@ func _on_duck_timer_timeout() -> void:
 	new_duck.points = duck_points[Ducks.values()[Ducks.keys().find(selected_duck_value)]];
 
 func _on_game_timer_timeout() -> void:
+	PlayerVariables.game_last_played = "Timed";
+	if (PlayerVariables.points > PlayerVariables.high_score_timed):
+		PlayerVariables.high_score_timed = PlayerVariables.points;
+		
+	return_button.visible = true;
 	game_over.visible = true;
 	if (perfect_teller.visible):
 		perfect_final_text.visible = true;
@@ -159,3 +168,7 @@ func _on_game_timer_timeout() -> void:
 func _on_countdown_timer_timeout() -> void:
 	game_timer.start();
 	go.visible = false;
+
+
+func _on_return_button_down() -> void:
+	get_tree().change_scene_to_file(menu);
