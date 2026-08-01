@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="19_faxbm"]
 [ext_resource type="Texture2D" uid="uid://b54pcyr3ja50r" path="res://images/bg_wood.png" id="24_engdv"]
 [ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="24_k35x6"]
+[ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="27_t5q4l"]
 [ext_resource type="Texture2D" uid="uid://dbe8msqmll04s" path="res://images/grass1.png" id="34_04f7f"]
 [ext_resource type="Texture2D" uid="uid://c6k12oqk8hhq2" path="res://images/grass2.png" id="35_ds6ls"]
 [ext_resource type="Script" uid="uid://c1hmg26vn0yb6" path="res://scripts/move_waves.gd" id="35_n35h0"]
@@ -471,7 +472,7 @@ texture = ExtResource("19_faxbm")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
-[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text", "initial_timer")]
+[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text", "initial_timer", "canvas_layer")]
 script = ExtResource("2_cpdmu")
 crosshair = NodePath("../CanvasLayer/Crosshair")
 rifle = NodePath("../CanvasLayer/Rifle")
@@ -495,6 +496,8 @@ disappear_timer = NodePath("DisappearTimer")
 duck_count_text = NodePath("../CanvasLayer/TargetCounts/Ducks/DuckCount")
 target_count_text = NodePath("../CanvasLayer/TargetCounts/Target/TargetCount")
 initial_timer = NodePath("InitialTimer")
+points_icon = ExtResource("27_t5q4l")
+canvas_layer = NodePath("../CanvasLayer")
 
 [node name="ReloadTimer" type="Timer" parent="AimController" unique_id=218863506]
 wait_time = 1.5

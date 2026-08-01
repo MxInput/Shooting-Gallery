@@ -132,13 +132,16 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 							var duck_sprite = find_child("Duck", true, false);
 							match (duck_sprite.texture):
 								target_spawner.brown_duck_texture:
+									PlayerVariables.num_shot["BROWN_DUCK"] += 1;
 									new_shot_particles.color = Color.from_string("#a36a31", Color.SADDLE_BROWN);
 								target_spawner.yellow_duck_texture:
+									PlayerVariables.num_shot["YELLOW_DUCK"] += 1;
 									new_shot_particles.color = Color.from_string("#edae1a", Color.YELLOW);
 								target_spawner.white_duck_texture:
+									PlayerVariables.num_shot["WHITE_DUCK"] += 1;
 									new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
 									
-								
+							PlayerVariables.num_shot_ducks += 1;
 							aim_controller.duck_count += 1;
 							new_points_icon.position = Vector2(434.0, 100.0);
 						else:
@@ -146,12 +149,16 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 							
 							match (target_sprite.texture):
 								target_spawner.colored_target_texture:
+									PlayerVariables.num_shot["COLORED_TARGET"] += 1;
 									new_shot_particles.color = Color.from_string("#207bb0", Color.WHITE);
 								target_spawner.red_target_texture:
+									PlayerVariables.num_shot["RED_TARGET"] += 1;
 									new_shot_particles.color = Color.from_string("#cf560a", Color.DARK_RED);
 								target_spawner.white_target_texture:
+									PlayerVariables.num_shot["WHITE_TARGET"] += 1;
 									new_shot_particles.color = Color.WHITE;
 									
+							PlayerVariables.num_shot_targets += 1;
 							aim_controller.target_count += 1;
 							new_points_icon.position = Vector2(670.0, 100.0);
 							
@@ -255,13 +262,19 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 							match (duck_sprite.texture):
 								target_spawner.brown_duck_texture:
 									new_shot_particles.color = Color.from_string("#a36a31", Color.SADDLE_BROWN);
+									if (!wrong_target):
+										PlayerVariables.num_shot["BROWN_DUCK"] += 1;
 								target_spawner.yellow_duck_texture:
 									new_shot_particles.color = Color.from_string("#edae1a", Color.YELLOW);
+									if (!wrong_target):
+										PlayerVariables.num_shot["YELLOW_DUCK"] += 1;
 								target_spawner.white_duck_texture:
 									new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
-									
-								
+									if (!wrong_target):
+										PlayerVariables.num_shot["WHITE_DUCK"] += 1;
+										
 							if (!wrong_target):
+								PlayerVariables.num_shot_ducks += 1;
 								aim_controller.duck_count += 1;
 							new_points_icon.position = Vector2(434.0, 100.0);
 						else:
@@ -270,13 +283,21 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 							match (target_sprite.texture):
 								target_spawner.colored_target_texture:
 									new_shot_particles.color = Color.from_string("#207bb0", Color.WHITE);
+									if (!wrong_target):
+										PlayerVariables.num_shot["COLORED_TARGET"] += 1;
 								target_spawner.red_target_texture:
 									new_shot_particles.color = Color.from_string("#cf560a", Color.DARK_RED);
+									if (!wrong_target):
+										PlayerVariables.num_shot["RED_TARGET"] += 1;
 								target_spawner.white_target_texture:
 									new_shot_particles.color = Color.WHITE;
-							
+									if (!wrong_target):
+										PlayerVariables.num_shot["WHITE_TARGET"] += 1;
+										
 							if (!wrong_target):		
 								aim_controller.target_count += 1;
+								PlayerVariables.num_shot_targets += 1;
+								
 							new_points_icon.position = Vector2(670.0, 100.0);
 							
 						shot = true;

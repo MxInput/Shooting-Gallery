@@ -6,15 +6,40 @@
 script = ExtResource("1_60ugw")
 color_picker = NodePath("ColorPicker")
 
+[node name="Background" type="ColorRect" parent="." unique_id=973405137]
+offset_right = 1152.0
+offset_bottom = 647.0
+color = Color(0.32971603, 0.3267183, 0.6125207, 1)
+
+[node name="ColorBg" type="ColorRect" parent="." unique_id=1302572787]
+offset_left = 20.0
+offset_top = 61.0
+offset_right = 345.0
+offset_bottom = 640.0
+color = Color(0.21475631, 0.21003792, 0.4241555, 1)
+
 [node name="ColorPicker" type="ColorPicker" parent="." unique_id=1786490803]
-offset_right = 298.0
-offset_bottom = 607.0
+z_index = 1
+offset_left = 34.0
+offset_top = 78.0
+offset_right = 332.0
+offset_bottom = 615.0
+presets_visible = false
 
 [node name="Return" type="Button" parent="." unique_id=145855524]
-offset_left = 583.0
-offset_right = 591.0
-offset_bottom = 8.0
+z_index = 1
+offset_left = 1054.0
+offset_top = 596.0
+offset_right = 1125.0
+offset_bottom = 627.0
 text = "RETURN"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1766399528]
+offset_left = 395.0
+offset_top = 117.0
+offset_right = 886.0
+offset_bottom = 157.0
+text = "CHOOSE THE COLOR FOR YOUR CROSSHAIR"
 
 [connection signal="color_changed" from="ColorPicker" to="." method="_on_color_picker_color_changed"]
 [connection signal="button_down" from="Return" to="." method="_on_return_button_down"]

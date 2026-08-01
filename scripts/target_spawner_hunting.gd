@@ -86,6 +86,12 @@ var finished := false;
 
 var menu = "res://nodes/menu.tscn";
 
+var time_ongoing := 0.0;
+var current_cycle = 0;
+var change_times = [30.0, 90.0, 160.0, 240.0];
+var lower_target_cycles = [4, 3, 2, 1];
+var upper_target_cycles = [8, 7, 6, 5];
+
 func generate_random_hit_object() -> void:
 	var chance = randi_range(0, 1);
 	match (chance):
@@ -131,7 +137,7 @@ func updateLives() -> void:
 func _ready() -> void:
 	countdown_timer.start();
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if (lives == 0):
 		PlayerVariables.game_last_played = "Hunting";
 
@@ -142,6 +148,12 @@ func _process(_delta: float) -> void:
 		game_over.visible = true;
 		return_button.visible = true;
 		
+	if (current_cycle < change_times.size()):
+		if (time_ongoing >= change_times[current_cycle]):
+			current_cycle += 1;
+			lower_target_cycle = lower_target_cycles[current_cycle];
+			upper_target_cycle = upper_target_cycles[current_cycle];
+		
 	if (!countdown_timer.is_stopped()):
 		var time_left := countdown_timer.time_left;
 		if (time_left <= 1.0):
@@ -151,6 +163,8 @@ func _process(_delta: float) -> void:
 			start.visible = true;
 		
 	if (lives > 0):
+		time_ongoing += delta;
+		
 		if (delay_timer.is_stopped()):
 			var random_start_time := randf_range(lower_delay_limit, upper_delay_limit);
 			delay_timer.wait_time = random_start_time;

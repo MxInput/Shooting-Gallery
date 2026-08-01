@@ -51,6 +51,9 @@ var blocked := false;
 
 @export var initial_timer : Timer;
 
+@export var points_icon : PackedScene;
+@export var canvas_layer : CanvasLayer;
+
 func _ready() -> void:
 	crosshair.modulate = PlayerVariables.target_color;
 
@@ -160,4 +163,13 @@ func _on_disappear_timer_timeout() -> void:
 	combo_teller.visible = false;
 
 func _on_combo_timer_timeout() -> void:
-	PlayerVariables.points += 1 * combo;
+	var points_val = 1 * combo;
+
+	if (combo > 0):
+		PlayerVariables.points += points_val;
+		
+		var new_points_total_icon = points_icon.instantiate();
+		canvas_layer.add_child(new_points_total_icon);
+		new_points_total_icon.position = Vector2(160.0, 100.0);
+		new_points_total_icon.text = "+" + str(points_val);
+		new_points_total_icon.modulate = Color.GOLD;
