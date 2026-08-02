@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://siccwcto2xov"]
+
+[ext_resource type="Texture2D" uid="uid://bqohl1ei4ct81" path="res://icon.svg" id="1_05rh6"]
+[ext_resource type="Texture2D" uid="uid://l6s1r0laa1gx" path="res://images/crosshairs/crosshair002.png" id="2_b3lsg"]
+[ext_resource type="Script" uid="uid://dwerp60ch4phn" path="res://nodes/cross_hair_container.gd" id="2_fp3rd"]
+
+[node name="CrosshairContainer" type="TextureRect" unique_id=1968619012]
+offset_right = 223.0
+offset_bottom = 285.0
+texture = ExtResource("1_05rh6")
+script = ExtResource("2_fp3rd")
+
+[node name="CrosshairImage" type="TextureRect" parent="." unique_id=946553461]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_b3lsg")
+
+[node name="Description" type="RichTextLabel" parent="." unique_id=360436196]
+layout_mode = 0
+offset_top = 167.0
+offset_right = 223.0
+offset_bottom = 285.0
+text = "aaaaaaaaaaaaaaaaaaaaaaaaa"
+
+[node name="Equip" type="Button" parent="." unique_id=1178595699]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "EQUIP"
+
+[connection signal="button_down" from="Equip" to="." method="_on_equip_button_down"]

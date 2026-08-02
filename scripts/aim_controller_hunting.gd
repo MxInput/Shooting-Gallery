@@ -121,6 +121,7 @@ func destroy_target(target, points, order) -> void:
 func _ready() -> void:
 	initial_timer.start();	
 	crosshair.modulate = PlayerVariables.target_color;	
+	crosshair.texture = PlayerVariables.cross_hair_texture;
 	
 func _process(_delta: float) -> void:
 	if (initial_timer.is_stopped()):
@@ -149,8 +150,8 @@ func _process(_delta: float) -> void:
 						ammo -= 1;
 		
 	var mouse_pos := crosshair.get_global_mouse_position();
-	var offset := Vector2(-20, -15);
-	
+	var offset := Vector2(-PlayerVariables.cross_hair_texture.get_width()/2, -PlayerVariables.cross_hair_texture.get_height()/2);
+
 	crosshair.position = mouse_pos + offset;
 	
 	if (!reload_timer.is_stopped()):

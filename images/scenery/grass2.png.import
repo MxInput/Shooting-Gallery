@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du5r10lt74524"
-path="res://.godot/imported/check_square_color_cross.png-cd60a513f7d545e0c4b73c91e453ddb6.ctex"
+uid="uid://c6k12oqk8hhq2"
+path="res://.godot/imported/grass2.png-fd4b12fa94b982d5dc04ccfc4f11e954.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/check_square_color_cross.png"
-dest_files=["res://.godot/imported/check_square_color_cross.png-cd60a513f7d545e0c4b73c91e453ddb6.ctex"]
+source_file="res://images/scenery/grass2.png"
+dest_files=["res://.godot/imported/grass2.png-fd4b12fa94b982d5dc04ccfc4f11e954.ctex"]
 
 [params]
 

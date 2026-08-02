@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cr2lrhkvlmgcw"]
 
-[ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshair_outline_small.png" id="1_gtafp"]
+[ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshairs/crosshair_outline_small.png" id="1_gtafp"]
 [ext_resource type="Texture2D" uid="uid://cu4mbydrx3ovm" path="res://images/rifle.png" id="2_utfi2"]
 [ext_resource type="Texture2D" uid="uid://b2pysu0r2i7hc" path="res://images/clouds/cloud1.png" id="3_u1vwu"]
 [ext_resource type="Script" uid="uid://dk60mg2ah7mmj" path="res://scripts/cloud_movement.gd" id="4_yjbog"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cjohdwb7ksmkn" path="res://images/words/text_gameover.png" id="7_utfi2"]
 [ext_resource type="Texture2D" uid="uid://2qv6sebyxgaf" path="res://images/words/text_ready.png" id="9_lhmj2"]
 [ext_resource type="Texture2D" uid="uid://dvkajuh7r20e7" path="res://images/words/text_go.png" id="10_vrdas"]
-[ext_resource type="Texture2D" uid="uid://dgfaloaluoym3" path="res://images/curtains/curtain_top.png" id="11_cgpsn"]
+[ext_resource type="Texture2D" uid="uid://es5f86flxtia" path="res://images/curtains/curtain_top.png" id="11_cgpsn"]
 [ext_resource type="Texture2D" uid="uid://db1trufita3ew" path="res://images/curtains/curtain_straight.png" id="12_igja6"]
 [ext_resource type="Texture2D" uid="uid://0sprqq1u60dd" path="res://images/curtains/curtain.png" id="13_6qi6q"]
 [ext_resource type="Texture2D" uid="uid://cfedxeautpdmm" path="res://images/curtains/curtain_rope.png" id="14_bedoe"]
@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cikjucu56ltg" path="res://images/icons/icon_target.png" id="18_yp141"]
 [ext_resource type="Script" uid="uid://cdneh5ul8r832" path="res://scripts/target_spawner_hunting.gd" id="19_utfi2"]
 [ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="20_u1vwu"]
-[ext_resource type="Texture2D" uid="uid://bn0bl82qelwmc" path="res://images/check_square_color.png" id="20_utfi2"]
+[ext_resource type="Texture2D" uid="uid://bn0bl82qelwmc" path="res://images/checks/check_square_color.png" id="20_utfi2"]
 [ext_resource type="Texture2D" uid="uid://dfyfatu8qjh1a" path="res://images/shots/shot_blue_large.png" id="20_ys27s"]
 [ext_resource type="Script" uid="uid://cw0rcyq2dxlg3" path="res://scripts/aim_controller_hunting.gd" id="21_5ikoq"]
 [ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="21_6bdp1"]
@@ -37,12 +37,12 @@
 [ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="33_qfxit"]
 [ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="34_0qjv5"]
 [ext_resource type="Script" uid="uid://c1hmg26vn0yb6" path="res://scripts/move_waves.gd" id="35_kfn6k"]
-[ext_resource type="Texture2D" uid="uid://cepm0jemtdvo3" path="res://images/water2.png" id="36_d5swe"]
-[ext_resource type="Texture2D" uid="uid://du5r10lt74524" path="res://images/check_square_color_cross.png" id="36_u1vwu"]
-[ext_resource type="Texture2D" uid="uid://r71e3ldnb754" path="res://images/water1.png" id="37_xi4tk"]
-[ext_resource type="Texture2D" uid="uid://dbe8msqmll04s" path="res://images/grass1.png" id="38_7xa58"]
-[ext_resource type="Texture2D" uid="uid://c6k12oqk8hhq2" path="res://images/grass2.png" id="39_b3g4p"]
-[ext_resource type="Texture2D" uid="uid://b54pcyr3ja50r" path="res://images/bg_wood.png" id="40_vqm4g"]
+[ext_resource type="Texture2D" uid="uid://cepm0jemtdvo3" path="res://images/scenery/water2.png" id="36_d5swe"]
+[ext_resource type="Texture2D" uid="uid://du5r10lt74524" path="res://images/checks/check_square_color_cross.png" id="36_u1vwu"]
+[ext_resource type="Texture2D" uid="uid://r71e3ldnb754" path="res://images/scenery/water1.png" id="37_xi4tk"]
+[ext_resource type="Texture2D" uid="uid://dbe8msqmll04s" path="res://images/scenery/grass1.png" id="38_7xa58"]
+[ext_resource type="Texture2D" uid="uid://c6k12oqk8hhq2" path="res://images/scenery/grass2.png" id="39_b3g4p"]
+[ext_resource type="Texture2D" uid="uid://b54pcyr3ja50r" path="res://images/game_background/bg_wood.png" id="40_vqm4g"]
 [ext_resource type="PackedScene" uid="uid://fqhia3wjxywc" path="res://nodes/oak.tscn" id="41_pffjl"]
 [ext_resource type="PackedScene" uid="uid://d4ch0ashg2rki" path="res://nodes/pine.tscn" id="42_0q1ue"]
 
@@ -91,8 +91,8 @@ _data = {
 z_index = 12
 offset_left = 572.0
 offset_top = 384.0
-offset_right = 636.0
-offset_bottom = 448.0
+offset_right = 618.0
+offset_bottom = 430.0
 mouse_filter = 2
 mouse_behavior_recursive = 1
 texture = ExtResource("1_gtafp")
@@ -158,10 +158,10 @@ vertical_alignment = 1
 [node name="GameOver" type="TextureRect" parent="CanvasLayer" unique_id=1195811075]
 visible = false
 z_index = 5
-offset_left = 458.0
+offset_left = 426.0
 offset_top = 110.0
-offset_right = 753.0
-offset_bottom = 179.0
+offset_right = 775.0
+offset_bottom = 182.0
 texture = ExtResource("7_utfi2")
 
 [node name="Ready" type="TextureRect" parent="CanvasLayer" unique_id=1031185667]

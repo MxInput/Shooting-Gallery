@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://b45psw7pvjmil"]
 
 [ext_resource type="Script" uid="uid://bqanoghc26a3d" path="res://scripts/customize_game.gd" id="1_60ugw"]
+[ext_resource type="PackedScene" uid="uid://siccwcto2xov" path="res://nodes/shop_item_template.tscn" id="2_my0bv"]
 
-[node name="Customization" type="Node" unique_id=1072075760 node_paths=PackedStringArray("color_picker")]
+[node name="Customization" type="Node" unique_id=1072075760 node_paths=PackedStringArray("color_picker", "h_box")]
 script = ExtResource("1_60ugw")
 color_picker = NodePath("ColorPicker")
+shop_item_template = ExtResource("2_my0bv")
+h_box = NodePath("ScrollContainer/HBoxContainer")
 
 [node name="Background" type="ColorRect" parent="." unique_id=973405137]
 offset_right = 1152.0
@@ -40,6 +43,15 @@ offset_top = 117.0
 offset_right = 886.0
 offset_bottom = 157.0
 text = "CHOOSE THE COLOR FOR YOUR CROSSHAIR"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1426171422]
+offset_left = 433.0
+offset_top = 193.0
+offset_right = 1084.0
+offset_bottom = 489.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=820785989]
+layout_mode = 2
 
 [connection signal="color_changed" from="ColorPicker" to="." method="_on_color_picker_color_changed"]
 [connection signal="button_down" from="Return" to="." method="_on_return_button_down"]

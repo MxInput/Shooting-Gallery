@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn0bl82qelwmc"
-path="res://.godot/imported/check_square_color.png-62ca52e4978d6bedab57280123717ada.ctex"
+uid="uid://cppobt3dmfjpt"
+path="res://.godot/imported/tree_pine.png-87b15467a15f15e7c184a26e6f1b5849.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/check_square_color.png"
-dest_files=["res://.godot/imported/check_square_color.png-62ca52e4978d6bedab57280123717ada.ctex"]
+source_file="res://images/scenery/tree_pine.png"
+dest_files=["res://.godot/imported/tree_pine.png-87b15467a15f15e7c184a26e6f1b5849.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkmspyi5l0uja"
-path="res://.godot/imported/tree_oak.png-de0134d64cffe00a10c0aa1c85b6771b.ctex"
+uid="uid://r71e3ldnb754"
+path="res://.godot/imported/water1.png-5e86651399c3ceef666aeb12fdf4257f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/tree_oak.png"
-dest_files=["res://.godot/imported/tree_oak.png-de0134d64cffe00a10c0aa1c85b6771b.ctex"]
+source_file="res://images/scenery/water1.png"
+dest_files=["res://.godot/imported/water1.png-5e86651399c3ceef666aeb12fdf4257f.ctex"]
 
 [params]
 

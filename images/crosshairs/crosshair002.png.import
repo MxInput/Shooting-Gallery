@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cppobt3dmfjpt"
-path="res://.godot/imported/tree_pine.png-ef2a59ac2ded46ba9fe46775c715cf51.ctex"
+uid="uid://l6s1r0laa1gx"
+path="res://.godot/imported/crosshair002.png-e7c03337f5f68a10154ffef50f164027.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/tree_pine.png"
-dest_files=["res://.godot/imported/tree_pine.png-ef2a59ac2ded46ba9fe46775c715cf51.ctex"]
+source_file="res://images/crosshairs/crosshair002.png"
+dest_files=["res://.godot/imported/crosshair002.png-e7c03337f5f68a10154ffef50f164027.ctex"]
 
 [params]
 

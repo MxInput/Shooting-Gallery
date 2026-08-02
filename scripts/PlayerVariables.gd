@@ -1,6 +1,7 @@
 extends Node
 
 var points := 0;
+var cross_hair_texture := ImageTexture.create_from_image(Image.load_from_file("res://images/crosshairs/crosshair_outline_small.png"));
 var game_last_played := "";
 var high_score_hunting := 0;
 var high_score_timed := 0;
