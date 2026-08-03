@@ -169,6 +169,5 @@ func _on_countdown_timer_timeout() -> void:
 	game_timer.start();
 	go.visible = false;
 
-
 func _on_return_button_down() -> void:
 	get_tree().change_scene_to_file(menu);

@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="11_tvltm"]
 [ext_resource type="Texture2D" uid="uid://2qv6sebyxgaf" path="res://images/words/text_ready.png" id="11_urx1x"]
 [ext_resource type="PackedScene" uid="uid://ejgc54eqt668" path="res://nodes/duck.tscn" id="12_4axws"]
-[ext_resource type="Texture2D" uid="uid://dgfaloaluoym3" path="res://images/curtains/curtain_top.png" id="12_bj5qg"]
+[ext_resource type="Texture2D" uid="uid://es5f86flxtia" path="res://images/curtains/curtain_top.png" id="12_bj5qg"]
 [ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="12_engdv"]
 [ext_resource type="Texture2D" uid="uid://dvkajuh7r20e7" path="res://images/words/text_go.png" id="12_fflsj"]
 [ext_resource type="Texture2D" uid="uid://cepm0jemtdvo3" path="res://images/scenery/water2.png" id="13_qbqap"]

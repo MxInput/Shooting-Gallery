@@ -73,14 +73,23 @@ func _process(delta: float) -> void:
 							"WHITE":
 								if (duck_sprite.texture == target_spawner.white_duck_texture):
 									target_spawner.lives -= 1;
+									target_spawner.number_on_screen -= 1;
+									
+									target_spawner.spawned_targets["WHITE_DUCK"].erase(self);
 									updateLives.emit();
 							"BROWN":
 								if (duck_sprite.texture == target_spawner.brown_duck_texture):
 									target_spawner.lives -= 1;
+									target_spawner.number_on_screen -= 1;
+									
+									target_spawner.spawned_targets["BROWN_DUCK"].erase(self);
 									updateLives.emit();
 							"YELLOW":
 								if (duck_sprite.texture == target_spawner.yellow_duck_texture):
 									target_spawner.lives -= 1;
+									target_spawner.number_on_screen -= 1;
+									
+									target_spawner.spawned_targets["YELLOW_DUCK"].erase(self);
 									updateLives.emit();
 				elif (target_type == "Target"):
 					var target_sprite = find_child("Target", true, false);
@@ -90,14 +99,23 @@ func _process(delta: float) -> void:
 							"WHITE":
 								if (target_sprite.texture == target_spawner.white_target_texture):
 									target_spawner.lives -= 1;
+									target_spawner.number_on_screen -= 1;
+									
+									target_spawner.spawned_targets["WHITE_TARGET"].erase(self);
 									updateLives.emit();
 							"COLORED":
 								if (target_sprite.texture == target_spawner.colored_target_texture):
 									target_spawner.lives -= 1;
+									target_spawner.number_on_screen -= 1;
+									
+									target_spawner.spawned_targets["COLORED_TARGET"].erase(self);
 									updateLives.emit();
 							"RED":
 								if (target_sprite.texture == target_spawner.red_target_texture):
 									target_spawner.lives -= 1;
+									target_spawner.number_on_screen -= 1;
+									
+									target_spawner.spawned_targets["RED_TARGET"].erase(self);
 									updateLives.emit();
 			queue_free();
 	else:
@@ -202,16 +220,19 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 											target_spawner.lives -= 1;
 											wrong_target = true;
 											updateLives.emit();
+										target_spawner.spawned_targets["WHITE_TARGET"].erase(self);	
 									"COLORED":
 										if (target_sprite.texture != target_spawner.colored_target_texture):
 											target_spawner.lives -= 1;
 											wrong_target = true;
 											updateLives.emit();
+										target_spawner.spawned_targets["COLORED_TARGET"].erase(self);	
 									"RED":
 										if (target_sprite.texture != target_spawner.red_target_texture):
 											target_spawner.lives -= 1;
 											wrong_target = true;
 											updateLives.emit();
+										target_spawner.spawned_targets["RED_TARGET"].erase(self);
 						elif (target_type == "Duck"):
 							var duck_sprite = find_child("Duck");
 							
@@ -226,17 +247,20 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 											target_spawner.lives -= 1;
 											wrong_target = true;
 											updateLives.emit();
+										target_spawner.spawned_targets["WHITE_DUCK"].erase(self);
 									"BROWN":
 										if (duck_sprite.texture != target_spawner.brown_duck_texture):
 											target_spawner.lives -= 1;
 											wrong_target = true;
 											updateLives.emit();
+										target_spawner.spawned_targets["BROWN_DUCK"].erase(self);
 									"YELLOW":
 										if (duck_sprite.texture != target_spawner.yellow_duck_texture):
 											target_spawner.lives -= 1;		
 											wrong_target = true;
 											updateLives.emit();	
-						
+										target_spawner.spawned_targets["YELLOW_DUCK"].erase(self);
+										
 						var new_points_total_icon = points_icon.instantiate();
 						canvas_layer.add_child(new_points_total_icon);
 						new_points_total_icon.position = Vector2(160.0, 100.0);
@@ -320,5 +344,6 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 						points_teller.text = "-" + str(points);
 						hit.emit(self, -points, z_index);	
 					else:
+						target_spawner.number_on_screen -= 1;
 						points_teller.text = "+" + str(points);
 						hit.emit(self, points, z_index);	

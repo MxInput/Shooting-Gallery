@@ -138,7 +138,7 @@ func _process(_delta: float) -> void:
 						ammo -= 1;
 		
 	var mouse_pos := crosshair.get_global_mouse_position();
-	var offset := Vector2(-PlayerVariables.cross_hair_texture.get_width()/2, -PlayerVariables.cross_hair_texture.get_height()/2);
+	var offset := Vector2(-PlayerVariables.cross_hair_texture.get_width()/2.0, -PlayerVariables.cross_hair_texture.get_height()/2.0);
 	
 	crosshair.position = mouse_pos + offset;
 	
