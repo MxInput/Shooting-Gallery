@@ -30,6 +30,8 @@ extends Node
 
 @export var return_button : Button;
 
+@export var time_till_change : RichTextLabel;
+
 enum Targets {
 	RED,
 	COLORED,
@@ -52,7 +54,10 @@ var spawned_targets = {
 }
 
 var target_points = [5, 7, 3];
+@onready var target_textures = [red_target_texture, colored_target_texture, white_target_texture];
+
 var duck_points = [2, 3, 4];
+@onready var duck_textures = [yellow_duck_texture, brown_duck_texture, white_duck_texture];
 
 var lower_duck_limit := 1.0;
 var upper_duck_limit := 2.0;
@@ -102,7 +107,10 @@ var upper_target_cycles = [8, 7, 6, 5];
 var number_on_screen := 0;
 var max_on_screen := 3;
 
+var first_time = true;
+
 func generate_random_hit_object() -> void:
+	time_till_change.visible = false;
 	number_on_screen = 0;
 	
 	var found_chosen;
@@ -130,32 +138,51 @@ func generate_random_hit_object() -> void:
 				"WHITE":
 					target_display.texture = white_target_texture;
 
-	if (chosen_type == "Duck"):	
-		match (chosen_hit):
-			"YELLOW":
-				found_chosen = spawned_targets["YELLOW_DUCK"];
-			"BROWN":
-				found_chosen = spawned_targets["BROWN_DUCK"];
-			"WHITE":
-				found_chosen = spawned_targets["WHITE_DUCK"];
-				
-		for found_chosen_duck in found_chosen:
-			var duck_sprite = found_chosen_duck.find_child("Duck");
-			var new_duck = Ducks.keys().pick_random();
-			
-			while (new_duck == chosen_hit):
-				new_duck = Ducks.keys().pick_random();
-				
-			found_chosen_duck.
+	if (first_time):
+		first_time = false;
 	else:
-		match (chosen_hit):
-			"RED":
-				found_chosen = spawned_targets["RED_TARGET"];
-			"COLORED":
-				found_chosen = spawned_targets["COLORED_TARGET"];
-			"WHITE":
-				found_chosen = spawned_targets["WHITE_TARGET"];
-				
+		if (chosen_type == "Duck"):	
+			match (chosen_hit):
+				"YELLOW":
+					found_chosen = spawned_targets["YELLOW_DUCK"];
+				"BROWN":
+					found_chosen = spawned_targets["BROWN_DUCK"];
+				"WHITE":
+					found_chosen = spawned_targets["WHITE_DUCK"];
+					
+			for found_chosen_duck in found_chosen:
+				if (is_instance_valid(found_chosen_duck)):
+					var duck_sprite = found_chosen_duck.find_child("Duck", true, false);
+					var new_duck = Ducks.keys().pick_random();
+					
+					while (new_duck == chosen_hit):
+						new_duck = Ducks.keys().pick_random();
+						
+					duck_sprite.texture = duck_textures[Ducks.values()[Ducks.keys().find(new_duck)]]
+					found_chosen_duck.points = duck_points[Ducks.values()[Ducks.keys().find(new_duck)]];
+				else:
+					print("invalid");
+		else:
+			match (chosen_hit):
+				"RED":
+					found_chosen = spawned_targets["RED_TARGET"];
+				"COLORED":
+					found_chosen = spawned_targets["COLORED_TARGET"];
+				"WHITE":
+					found_chosen = spawned_targets["WHITE_TARGET"];
+					
+			for found_chosen_target in found_chosen:
+				print(found_chosen.size())
+				if (is_instance_valid(found_chosen_target)):
+					var target_sprite = found_chosen_target.find_child("Target", true, false);
+					var new_target = Targets.keys().pick_random();
+					
+					while (new_target == chosen_hit):
+						new_target = Targets.keys().pick_random();
+						
+					target_sprite.texture = target_textures[Targets.values()[Targets.keys().find(new_target)]]
+					found_chosen_target.points = target_points[Targets.values()[Targets.keys().find(new_target)]];
+			
 func generate_random_duck() -> String:
 	var duck_arr = Ducks.keys();
 	var chosen_duck = duck_arr.pick_random();
@@ -177,7 +204,23 @@ func updateLives() -> void:
 func _ready() -> void:
 	countdown_timer.start();
 	
+func round_to_dec(num, place) -> float:
+	return round(num * pow(10.0, place)) / pow(10.0, place);
+	
 func _process(delta: float) -> void:
+	if (!first_time):
+		if (num_cycles == target_cycle):
+			var time_left_countdown;
+			
+			if (chosen_type == "Duck"):
+				time_left_countdown = duck_timer.time_left;
+			else:
+				time_left_countdown = delay_timer.time_left;
+			
+			if (time_left_countdown < 1.00):
+				time_till_change.visible = true;
+				time_till_change.text = str(round_to_dec(time_left_countdown, 3));
+			
 	if (lives == 0):
 		PlayerVariables.game_last_played = "Hunting";
 

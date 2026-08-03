@@ -151,6 +151,7 @@ offset_bottom = 185.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("6_aowaw")
 theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
 text = "x2 COMBO"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -413,7 +414,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CurrentTeller" type="Control" parent="CanvasLayer" unique_id=918161993]
-visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
@@ -460,6 +460,20 @@ offset_left = -2.0
 offset_top = -27.0
 offset_right = 154.0
 offset_bottom = 154.0
+
+[node name="TimeLeft" type="RichTextLabel" parent="CanvasLayer/CurrentTeller" unique_id=761812729]
+visible = false
+layout_mode = 0
+offset_left = -188.0
+offset_top = 120.0
+offset_right = -31.0
+offset_bottom = 160.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_aowaw")
+theme_override_font_sizes/normal_font_size = 30
+text = "1.00s"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Crosses" type="Control" parent="CanvasLayer" unique_id=247741753]
 z_index = 10
@@ -555,7 +569,7 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "return_button", "canvas_layer", "crosses", "cross1", "cross2", "cross3", "target_display", "entire_target_display")]
+[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "return_button", "time_till_change", "canvas_layer", "crosses", "cross1", "cross2", "cross3", "target_display", "entire_target_display")]
 script = ExtResource("19_utfi2")
 target = ExtResource("27_wmhc1")
 duck = ExtResource("28_hwsv3")
@@ -577,6 +591,7 @@ game_over = NodePath("../CanvasLayer/GameOver")
 start = NodePath("../CanvasLayer/Ready")
 go = NodePath("../CanvasLayer/Go")
 return_button = NodePath("../CanvasLayer/Return")
+time_till_change = NodePath("../CanvasLayer/CurrentTeller/TimeLeft")
 canvas_layer = NodePath("../CanvasLayer")
 crosses = NodePath("../CanvasLayer/Crosses")
 cross1 = NodePath("../CanvasLayer/Crosses/Cross1")

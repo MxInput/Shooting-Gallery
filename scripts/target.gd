@@ -57,6 +57,9 @@ func _process(delta: float) -> void:
 		position.x -= speed;
 		
 		if (position.x <= end_pos):
+			var duck_sprite = find_child("Duck", true, false);
+			var target_sprite = find_child("Target", true, false);
+			
 			var target_spawner = get_parent().find_child("TargetSpawner");
 			if (target_spawner.find_child("GameTimer") != null):
 				if (!target_spawner.game_timer.is_stopped()):
@@ -66,8 +69,6 @@ func _process(delta: float) -> void:
 				var current_target = target_spawner.chosen_hit;
 				var target_type = target_spawner.chosen_type;
 				if (target_type == "Duck"):
-					var duck_sprite = find_child("Duck", true, false);
-					
 					if (duck_sprite != null):
 						match (current_target):
 							"WHITE":
@@ -75,25 +76,20 @@ func _process(delta: float) -> void:
 									target_spawner.lives -= 1;
 									target_spawner.number_on_screen -= 1;
 									
-									target_spawner.spawned_targets["WHITE_DUCK"].erase(self);
 									updateLives.emit();
 							"BROWN":
 								if (duck_sprite.texture == target_spawner.brown_duck_texture):
 									target_spawner.lives -= 1;
 									target_spawner.number_on_screen -= 1;
 									
-									target_spawner.spawned_targets["BROWN_DUCK"].erase(self);
 									updateLives.emit();
 							"YELLOW":
 								if (duck_sprite.texture == target_spawner.yellow_duck_texture):
 									target_spawner.lives -= 1;
 									target_spawner.number_on_screen -= 1;
 									
-									target_spawner.spawned_targets["YELLOW_DUCK"].erase(self);
 									updateLives.emit();
 				elif (target_type == "Target"):
-					var target_sprite = find_child("Target", true, false);
-					
 					if (target_sprite != null):
 						match (current_target):
 							"WHITE":
@@ -101,22 +97,37 @@ func _process(delta: float) -> void:
 									target_spawner.lives -= 1;
 									target_spawner.number_on_screen -= 1;
 									
-									target_spawner.spawned_targets["WHITE_TARGET"].erase(self);
 									updateLives.emit();
 							"COLORED":
 								if (target_sprite.texture == target_spawner.colored_target_texture):
 									target_spawner.lives -= 1;
 									target_spawner.number_on_screen -= 1;
-									
-									target_spawner.spawned_targets["COLORED_TARGET"].erase(self);
+
 									updateLives.emit();
 							"RED":
 								if (target_sprite.texture == target_spawner.red_target_texture):
 									target_spawner.lives -= 1;
 									target_spawner.number_on_screen -= 1;
-									
-									target_spawner.spawned_targets["RED_TARGET"].erase(self);
+								
 									updateLives.emit();
+			
+				if (duck_sprite != null):
+					match (duck_sprite.texture):
+						target_spawner.white_duck_texture:
+							target_spawner.spawned_targets["WHITE_DUCK"].erase(self);
+						target_spawner.brown_duck_texture:
+							target_spawner.spawned_targets["BROWN_DUCK"].erase(self);
+						target_spawner.yellow_duck_texture:					
+							target_spawner.spawned_targets["YELLOW_DUCK"].erase(self);
+				elif (target_sprite != null):
+					match (target_sprite.texture):
+						target_spawner.colored_target_texture:
+							target_spawner.spawned_targets["COLORED_TARGET"].erase(self);
+						target_spawner.red_target_texture:
+							target_spawner.spawned_targets["RED_TARGET"].erase(self);			
+						target_spawner.white_target_texture:					
+							target_spawner.spawned_targets["WHITE_TARGET"].erase(self);
+					
 			queue_free();
 	else:
 		time_left += delta;
