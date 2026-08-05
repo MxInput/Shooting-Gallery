@@ -55,6 +55,8 @@ var blocked := false;
 @export var points_icon : PackedScene;
 @export var canvas_layer : CanvasLayer;
 
+@export var pause_manager : Node;
+
 func destroy_target(target, points, order) -> void:
 	if (loaded && (!blocked || order != 2)):
 		if (target_spawner.lives > 0):

@@ -109,8 +109,22 @@ var max_on_screen := 3;
 
 var first_time = true;
 
+var color_change_time := 0.0
+
+var last_spawn := "";
+var last_spawn_type := "";
+var num_spawn := 0;
+
+@export var pause_manager : Node;
+@export var pause_button : Button;
+
+var started = false;
+
 func generate_random_hit_object() -> void:
 	time_till_change.visible = false;
+	time_till_change.modulate = Color.WHITE;
+	time_till_change.text = "1.000s";
+	color_change_time = 0.0;
 	number_on_screen = 0;
 	
 	var found_chosen;
@@ -119,6 +133,11 @@ func generate_random_hit_object() -> void:
 	match (chance):
 		0:
 			chosen_hit = generate_random_duck();
+			
+			if (num_spawn >= 1):
+				while (chosen_hit == last_spawn && chosen_type == last_spawn_type):
+					chosen_hit = generate_random_duck();
+					
 			chosen_type = "Duck";
 			match (chosen_hit):
 				"YELLOW":
@@ -129,6 +148,11 @@ func generate_random_hit_object() -> void:
 					target_display.texture = white_duck_texture;	
 		1:
 			chosen_hit = generate_random_target();
+			
+			if (num_spawn >= 1):
+				while (chosen_hit == last_spawn && chosen_type == last_spawn_type):
+					chosen_hit = generate_random_target();
+					
 			chosen_type = "Target";
 			match (chosen_hit):
 				"RED":
@@ -151,17 +175,14 @@ func generate_random_hit_object() -> void:
 					found_chosen = spawned_targets["WHITE_DUCK"];
 					
 			for found_chosen_duck in found_chosen:
-				if (is_instance_valid(found_chosen_duck)):
-					var duck_sprite = found_chosen_duck.find_child("Duck", true, false);
-					var new_duck = Ducks.keys().pick_random();
+				var duck_sprite = found_chosen_duck.find_child("Duck", true, false);
+				var new_duck = Ducks.keys().pick_random();
 					
-					while (new_duck == chosen_hit):
-						new_duck = Ducks.keys().pick_random();
+				while (new_duck == chosen_hit):
+					new_duck = Ducks.keys().pick_random();
 						
-					duck_sprite.texture = duck_textures[Ducks.values()[Ducks.keys().find(new_duck)]]
-					found_chosen_duck.points = duck_points[Ducks.values()[Ducks.keys().find(new_duck)]];
-				else:
-					print("invalid");
+				duck_sprite.texture = duck_textures[Ducks.values()[Ducks.keys().find(new_duck)]]
+				found_chosen_duck.points = duck_points[Ducks.values()[Ducks.keys().find(new_duck)]];
 		else:
 			match (chosen_hit):
 				"RED":
@@ -172,16 +193,21 @@ func generate_random_hit_object() -> void:
 					found_chosen = spawned_targets["WHITE_TARGET"];
 					
 			for found_chosen_target in found_chosen:
-				print(found_chosen.size())
-				if (is_instance_valid(found_chosen_target)):
-					var target_sprite = found_chosen_target.find_child("Target", true, false);
-					var new_target = Targets.keys().pick_random();
+				var target_sprite = found_chosen_target.find_child("Target", true, false);
+				var new_target = Targets.keys().pick_random();
 					
-					while (new_target == chosen_hit):
-						new_target = Targets.keys().pick_random();
+				while (new_target == chosen_hit):
+					new_target = Targets.keys().pick_random();
 						
-					target_sprite.texture = target_textures[Targets.values()[Targets.keys().find(new_target)]]
-					found_chosen_target.points = target_points[Targets.values()[Targets.keys().find(new_target)]];
+				target_sprite.texture = target_textures[Targets.values()[Targets.keys().find(new_target)]]
+				found_chosen_target.points = target_points[Targets.values()[Targets.keys().find(new_target)]];
+	
+	if (last_spawn == chosen_hit && last_spawn_type == chosen_type):
+		num_spawn += 1;
+	else:
+		last_spawn = chosen_hit;
+		last_spawn_type = chosen_type;
+		num_spawn = 0;
 			
 func generate_random_duck() -> String:
 	var duck_arr = Ducks.keys();
@@ -217,9 +243,14 @@ func _process(delta: float) -> void:
 			else:
 				time_left_countdown = delay_timer.time_left;
 			
-			if (time_left_countdown < 1.00):
+			if (time_left_countdown < 1.00 && time_left_countdown > 0.0):
+				var target_color := Color.RED;
+				color_change_time += delta/12.0;
+				color_change_time = clampf(color_change_time, 0.0, 1.0)
+				
 				time_till_change.visible = true;
-				time_till_change.text = str(round_to_dec(time_left_countdown, 3));
+				time_till_change.text = str(round_to_dec(time_left_countdown, 3)) + "s";
+				time_till_change.modulate = lerp(time_till_change.modulate, target_color, color_change_time);
 			
 	if (lives == 0):
 		PlayerVariables.game_last_played = "Hunting";
@@ -346,11 +377,18 @@ func _on_duck_timer_timeout() -> void:
 	new_duck.points = duck_points[Ducks.values()[Ducks.keys().find(selected_duck_value)]];
 	
 func _on_countdown_timer_timeout() -> void:
-	entire_target_display.visible = true;
-	go.visible = false;
-	
-	target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
-	generate_random_hit_object();
+	if (!started):
+		started = true;
+		entire_target_display.visible = true;
+		go.visible = false;
+		
+		target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
+		generate_random_hit_object();
+		pause_button.visible = true;
+	else:
+		go.visible = false;
+		pause_manager.unpause();
+		pause_button.visible = true;
 
 func _on_return_button_down() -> void:
 	get_tree().change_scene_to_file(menu);

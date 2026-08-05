@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cr2lrhkvlmgcw" path="res://nodes/hunting.tscn" id="3_v4lp8"]
 [ext_resource type="PackedScene" uid="uid://b45psw7pvjmil" path="res://nodes/customization.tscn" id="4_v4lp8"]
 [ext_resource type="PackedScene" uid="uid://dk5q43x7ix3ci" path="res://nodes/info.tscn" id="5_n0hwq"]
+[ext_resource type="FontFile" uid="uid://bqhltna5u2i5f" path="res://fonts/ChailceNogginRegular-2OXoW.ttf" id="6_8hci8"]
 
 [node name="Menu" type="Node" unique_id=1250484082]
 script = ExtResource("1_01rij")
@@ -16,27 +17,41 @@ info_page = ExtResource("5_n0hwq")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=316015984]
 
 [node name="Timed" type="Button" parent="CanvasLayer" unique_id=745311735]
-offset_right = 33.0
-offset_bottom = 8.0
+offset_top = 247.0
+offset_right = 58.0
+offset_bottom = 278.0
 text = "TIMED"
 
 [node name="Hunting" type="Button" parent="CanvasLayer" unique_id=446894185]
-offset_top = 37.0
-offset_right = 58.0
-offset_bottom = 68.0
+offset_top = 284.0
+offset_right = 83.0
+offset_bottom = 315.0
 text = "HUNTING"
 
 [node name="Customize" type="Button" parent="CanvasLayer" unique_id=1767538120]
-offset_top = 77.0
-offset_right = 83.0
-offset_bottom = 108.0
+offset_top = 324.0
+offset_right = 99.0
+offset_bottom = 355.0
 text = "CUSTOMIZE"
 
 [node name="Info" type="Button" parent="CanvasLayer" unique_id=403362943]
-offset_top = 115.0
+offset_top = 362.0
 offset_right = 99.0
-offset_bottom = 146.0
+offset_bottom = 393.0
 text = "INFO"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=1762828201]
+offset_left = 11.0
+offset_top = 15.0
+offset_right = 1145.0
+offset_bottom = 194.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_8hci8")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[wave freq=20]SHOOTING GALLERY"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_down" from="CanvasLayer/Timed" to="." method="_on_timed_button_down"]
 [connection signal="button_down" from="CanvasLayer/Hunting" to="." method="_on_hunting_button_down"]
