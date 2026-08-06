@@ -380,15 +380,15 @@ func _on_countdown_timer_timeout() -> void:
 	if (!started):
 		started = true;
 		entire_target_display.visible = true;
-		go.visible = false;
 		
 		target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
 		generate_random_hit_object();
-		pause_button.visible = true;
 	else:
-		go.visible = false;
 		pause_manager.unpause();
-		pause_button.visible = true;
+		
+	pause_button.visible = true;
+	go.visible = false;
+	
 
 func _on_return_button_down() -> void:
 	get_tree().change_scene_to_file(menu);

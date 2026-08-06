@@ -5,6 +5,8 @@ var paused := false;
 @export var countdown_timer : Timer;
 @export var pause_button : Button;
 
+@export var target_spawner : Node;
+
 func pause() -> void:
 	paused = true;
 
@@ -17,6 +19,11 @@ func is_paused() -> bool:
 func _on_pause_button_down() -> void:
 	if (!paused):
 		paused = true;
+		
+		var game_timer := target_spawner.find_child("GameTimer");
+		if (game_timer != null):
+			game_timer.paused = true;
 	else:
 		countdown_timer.start();
 		pause_button.visible = false;
+		

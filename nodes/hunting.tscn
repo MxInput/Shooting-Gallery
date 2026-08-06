@@ -535,7 +535,7 @@ text = "||"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
-[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text", "initial_timer", "canvas_layer")]
+[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text", "initial_timer", "canvas_layer", "pause_manager")]
 script = ExtResource("21_5ikoq")
 crosshair = NodePath("../CanvasLayer/Crosshair")
 rifle = NodePath("../CanvasLayer/Rifle")
@@ -561,6 +561,7 @@ target_count_text = NodePath("../CanvasLayer/TargetCounts/Target/TargetCount")
 initial_timer = NodePath("InitialTimer")
 points_icon = ExtResource("28_yjbog")
 canvas_layer = NodePath("../CanvasLayer")
+pause_manager = NodePath("../PauseManager")
 
 [node name="InitialTimer" type="Timer" parent="AimController" unique_id=137918211]
 wait_time = 0.5
@@ -820,10 +821,11 @@ position = Vector2(-451, -108)
 [node name="Pine2" parent="Trees" unique_id=96647167 instance=ExtResource("42_0q1ue")]
 position = Vector2(290, -108)
 
-[node name="PauseManager" type="Node" parent="." unique_id=2103090731 node_paths=PackedStringArray("countdown_timer", "pause_button")]
+[node name="PauseManager" type="Node" parent="." unique_id=2103090731 node_paths=PackedStringArray("countdown_timer", "pause_button", "target_spawner")]
 script = ExtResource("47_aowaw")
 countdown_timer = NodePath("../TargetSpawner/CountdownTimer")
 pause_button = NodePath("../CanvasLayer/Pause")
+target_spawner = NodePath("../TargetSpawner")
 
 [connection signal="button_down" from="CanvasLayer/Return" to="TargetSpawner" method="_on_return_button_down"]
 [connection signal="button_down" from="CanvasLayer/Pause" to="PauseManager" method="_on_pause_button_down"]

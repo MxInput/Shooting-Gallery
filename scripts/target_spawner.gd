@@ -69,10 +69,21 @@ var upper_target_spawn := -200.0;
 
 var menu = "res://nodes/menu.tscn";
 
+@export var pause_manager : Node;
+@export var pause_button : Button;
+
+var color_change_time := 0.0;
+var reach_30 := false;
+var reach_60 := false;
+
+var target_color
+
+var inc_amt = 0.0;
+
 func _ready() -> void:
 	countdown_timer.start();
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if (!countdown_timer.is_stopped()):
 		var time_left := countdown_timer.time_left;
 		if (time_left <= 1.0):
@@ -101,16 +112,39 @@ func _process(_delta: float) -> void:
 			
 		var minutes := (int(time_left/60));
 		var seconds := (int(time_left)%60);
-		
+				
 		if (time_left <= 30.0):
-			clock.modulate = Color.ORANGE_RED;
+			if (!reach_30):
+				target_color = Color.ORANGE_RED;
+				reach_30 = true;
+				
+				color_change_time = 0.0;
+			
+			color_change_time += delta/10000.0;
+			color_change_time = clampf(color_change_time, 0.0, 1.0);
+		
+			clock.modulate = lerp(clock.modulate, target_color, color_change_time);
 		elif (time_left <= 60.0):
-			clock.modulate = Color.ORANGE;
+			if (!reach_60):
+				target_color = Color.ORANGE;
+				reach_60 = true;
+				
+				color_change_time = 0.0;
+				
+			color_change_time += delta/10000.0;
+			color_change_time = clampf(color_change_time, 0.0, 1.0);
+			
+			clock.modulate = lerp(clock.modulate, target_color, color_change_time);
 			
 		if (seconds < 10):
 			clock.text = str(minutes) + ":0" + str(seconds);
 		else:
 			clock.text = str(minutes) + ":" + str(seconds);
+			
+		if (time_left < 10.0 && time_left > 0):
+			var clock_font_size = clock.get_theme_font_size("normal_font_size");
+			var new_font_size = clock_font_size + 1;
+			clock.add_theme_font_size_override("normal_font_size", new_font_size);
 
 func _on_delay_timer_timeout() -> void:
 	var new_target := target.instantiate();
@@ -166,8 +200,14 @@ func _on_game_timer_timeout() -> void:
 		perfect_final_text.visible = true;
 
 func _on_countdown_timer_timeout() -> void:
-	game_timer.start();
+	if (!game_timer.paused):
+		game_timer.start();
+	else:
+		game_timer.paused = false;
+		pause_manager.unpause();
+		
+	pause_button.visible = true;
 	go.visible = false;
-
+	
 func _on_return_button_down() -> void:
 	get_tree().change_scene_to_file(menu);

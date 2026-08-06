@@ -126,46 +126,47 @@ func _ready() -> void:
 	crosshair.texture = PlayerVariables.cross_hair_texture;
 	
 func _process(_delta: float) -> void:
-	if (initial_timer.is_stopped()):
-		if (Input.is_action_pressed("left_click")):
-			if (target_spawner.lives > 0):
-				if (delay_timer.is_stopped()):
-					delay_timer.start();
-					if (ammo == 0):
-						if (reload_timer.is_stopped()):
-							reload_timer.start();
-							
-							var animation_player : AnimationPlayer = rifle.get_child(0);
-							animation_player.play("dying")
-							
-							bullet_outline1.get_child(0).visible = true;
-							bullet_outline1.get_child(0).texture = silver_bullet;
-					else:
-						if (ammo == 3):
-							bullet_outline3.get_child(0).visible = false;
-						elif (ammo == 2):
-							bullet_outline2.get_child(0).visible = false;
-						elif (ammo == 1):
-							bullet_outline1.get_child(0).visible = false;
-							loaded = false;		
-							
-						ammo -= 1;
+	if (!pause_manager.is_paused()):
+		if (initial_timer.is_stopped()):
+			if (Input.is_action_pressed("left_click")):
+				if (target_spawner.lives > 0):
+					if (delay_timer.is_stopped()):
+						delay_timer.start();
+						if (ammo == 0):
+							if (reload_timer.is_stopped()):
+								reload_timer.start();
+								
+								var animation_player : AnimationPlayer = rifle.get_child(0);
+								animation_player.play("dying")
+								
+								bullet_outline1.get_child(0).visible = true;
+								bullet_outline1.get_child(0).texture = silver_bullet;
+						else:
+							if (ammo == 3):
+								bullet_outline3.get_child(0).visible = false;
+							elif (ammo == 2):
+								bullet_outline2.get_child(0).visible = false;
+							elif (ammo == 1):
+								bullet_outline1.get_child(0).visible = false;
+								loaded = false;		
+								
+							ammo -= 1;
 		
+		if (!reload_timer.is_stopped()):
+			var time_left := reload_timer.time_left;
+			
+			if (time_left <= bullet_3_reload_time):
+				bullet_outline3.get_child(0).visible = true;
+				bullet_outline3.get_child(0).texture = silver_bullet;
+			elif (time_left <= bullet_2_reload_time):
+				bullet_outline2.get_child(0).visible = true;
+				bullet_outline2.get_child(0).texture = silver_bullet;
+	
 	var mouse_pos := crosshair.get_global_mouse_position();
 	var offset := Vector2(-PlayerVariables.cross_hair_texture.get_width()/2.0, -PlayerVariables.cross_hair_texture.get_height()/2.0);
 
 	crosshair.position = mouse_pos + offset;
 	
-	if (!reload_timer.is_stopped()):
-		var time_left := reload_timer.time_left;
-		
-		if (time_left <= bullet_3_reload_time):
-			bullet_outline3.get_child(0).visible = true;
-			bullet_outline3.get_child(0).texture = silver_bullet;
-		elif (time_left <= bullet_2_reload_time):
-			bullet_outline2.get_child(0).visible = true;
-			bullet_outline2.get_child(0).texture = silver_bullet;
-			
 func _on_reload_timer_timeout() -> void:
 	ammo = 3;
 	loaded = true;
