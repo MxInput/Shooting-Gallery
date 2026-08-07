@@ -1,52 +1,50 @@
-[gd_scene format=3 uid="uid://cr2lrhkvlmgcw"]
+[gd_scene format=3 uid="uid://yatpaw35756i"]
 
-[ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshairs/crosshair_outline_small.png" id="1_gtafp"]
-[ext_resource type="Texture2D" uid="uid://cu4mbydrx3ovm" path="res://images/rifle.png" id="2_utfi2"]
-[ext_resource type="Texture2D" uid="uid://b2pysu0r2i7hc" path="res://images/clouds/cloud1.png" id="3_u1vwu"]
-[ext_resource type="Script" uid="uid://dk60mg2ah7mmj" path="res://scripts/cloud_movement.gd" id="4_yjbog"]
-[ext_resource type="Texture2D" uid="uid://daqgtta2l3dqu" path="res://images/clouds/cloud2.png" id="5_xxcmm"]
-[ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="6_aowaw"]
-[ext_resource type="Texture2D" uid="uid://cjohdwb7ksmkn" path="res://images/words/text_gameover.png" id="7_utfi2"]
-[ext_resource type="Texture2D" uid="uid://2qv6sebyxgaf" path="res://images/words/text_ready.png" id="9_lhmj2"]
-[ext_resource type="Texture2D" uid="uid://dvkajuh7r20e7" path="res://images/words/text_go.png" id="10_vrdas"]
-[ext_resource type="Texture2D" uid="uid://es5f86flxtia" path="res://images/curtains/curtain_top.png" id="11_cgpsn"]
-[ext_resource type="Texture2D" uid="uid://db1trufita3ew" path="res://images/curtains/curtain_straight.png" id="12_igja6"]
-[ext_resource type="Texture2D" uid="uid://0sprqq1u60dd" path="res://images/curtains/curtain.png" id="13_6qi6q"]
-[ext_resource type="Texture2D" uid="uid://cfedxeautpdmm" path="res://images/curtains/curtain_rope.png" id="14_bedoe"]
-[ext_resource type="Texture2D" uid="uid://cf4wfn77gqsor" path="res://images/bullets/icon_bullet_empty_short.png" id="15_t5die"]
-[ext_resource type="Texture2D" uid="uid://bci1emp7ci1h5" path="res://images/bullets/icon_bullet_gold_short.png" id="16_3u5go"]
-[ext_resource type="Texture2D" uid="uid://dnpej35ajkds1" path="res://images/icons/icon_duck.png" id="17_a4b64"]
-[ext_resource type="Texture2D" uid="uid://cikjucu56ltg" path="res://images/icons/icon_target.png" id="18_yp141"]
-[ext_resource type="Script" uid="uid://cdneh5ul8r832" path="res://scripts/target_spawner_hunting.gd" id="19_utfi2"]
-[ext_resource type="FontFile" uid="uid://bqhltna5u2i5f" path="res://fonts/ChailceNogginRegular-2OXoW.ttf" id="19_xxcmm"]
-[ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="20_u1vwu"]
-[ext_resource type="Texture2D" uid="uid://bn0bl82qelwmc" path="res://images/checks/check_square_color.png" id="20_utfi2"]
-[ext_resource type="Texture2D" uid="uid://dfyfatu8qjh1a" path="res://images/shots/shot_blue_large.png" id="20_ys27s"]
-[ext_resource type="Script" uid="uid://cw0rcyq2dxlg3" path="res://scripts/aim_controller_hunting.gd" id="21_5ikoq"]
-[ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="21_6bdp1"]
-[ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="22_4fgw0"]
-[ext_resource type="Texture2D" uid="uid://dis6a6dygughr" path="res://images/shots/shot_yellow_large.png" id="23_pyxs7"]
-[ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="24_8vba6"]
-[ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="25_n8ett"]
-[ext_resource type="PackedScene" uid="uid://c615hf1ce8red" path="res://nodes/target.tscn" id="27_wmhc1"]
-[ext_resource type="PackedScene" uid="uid://ejgc54eqt668" path="res://nodes/duck.tscn" id="28_hwsv3"]
-[ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="28_yjbog"]
-[ext_resource type="Texture2D" uid="uid://cdo161nvwj1om" path="res://images/targets/target_colored.png" id="29_5darq"]
-[ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="30_ew3wv"]
-[ext_resource type="Texture2D" uid="uid://dgx3ium1xm0ew" path="res://images/targets/target_white.png" id="31_1qy6q"]
-[ext_resource type="Texture2D" uid="uid://bmco8f52vri1k" path="res://images/ducks/duck_target_brown.png" id="32_s6tsc"]
-[ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="33_qfxit"]
-[ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="34_0qjv5"]
-[ext_resource type="Script" uid="uid://c1hmg26vn0yb6" path="res://scripts/move_waves.gd" id="35_kfn6k"]
-[ext_resource type="Texture2D" uid="uid://cepm0jemtdvo3" path="res://images/scenery/water2.png" id="36_d5swe"]
-[ext_resource type="Texture2D" uid="uid://du5r10lt74524" path="res://images/checks/check_square_color_cross.png" id="36_u1vwu"]
-[ext_resource type="Texture2D" uid="uid://r71e3ldnb754" path="res://images/scenery/water1.png" id="37_xi4tk"]
-[ext_resource type="Texture2D" uid="uid://dbe8msqmll04s" path="res://images/scenery/grass1.png" id="38_7xa58"]
-[ext_resource type="Texture2D" uid="uid://c6k12oqk8hhq2" path="res://images/scenery/grass2.png" id="39_b3g4p"]
-[ext_resource type="Texture2D" uid="uid://b54pcyr3ja50r" path="res://images/game_background/bg_wood.png" id="40_vqm4g"]
-[ext_resource type="PackedScene" uid="uid://fqhia3wjxywc" path="res://nodes/oak.tscn" id="41_pffjl"]
-[ext_resource type="PackedScene" uid="uid://d4ch0ashg2rki" path="res://nodes/pine.tscn" id="42_0q1ue"]
-[ext_resource type="Script" uid="uid://cjotw7ugv01bs" path="res://scripts/pause_manager.gd" id="47_aowaw"]
+[ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshairs/crosshair_outline_small.png" id="1_lc6ld"]
+[ext_resource type="Texture2D" uid="uid://cu4mbydrx3ovm" path="res://images/rifle.png" id="2_6ihl5"]
+[ext_resource type="Texture2D" uid="uid://b2pysu0r2i7hc" path="res://images/clouds/cloud1.png" id="3_hupd6"]
+[ext_resource type="Script" uid="uid://dk60mg2ah7mmj" path="res://scripts/cloud_movement.gd" id="4_jruk4"]
+[ext_resource type="Texture2D" uid="uid://daqgtta2l3dqu" path="res://images/clouds/cloud2.png" id="5_2xve6"]
+[ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="6_ydgvg"]
+[ext_resource type="FontFile" uid="uid://bqhltna5u2i5f" path="res://fonts/ChailceNogginRegular-2OXoW.ttf" id="7_cd2y2"]
+[ext_resource type="Texture2D" uid="uid://cy70516ppu4b0" path="res://images/words/text_timeup.png" id="8_wmsgg"]
+[ext_resource type="Texture2D" uid="uid://2qv6sebyxgaf" path="res://images/words/text_ready.png" id="9_tn72q"]
+[ext_resource type="Texture2D" uid="uid://dvkajuh7r20e7" path="res://images/words/text_go.png" id="10_aah8p"]
+[ext_resource type="Texture2D" uid="uid://es5f86flxtia" path="res://images/curtains/curtain_top.png" id="11_jd5wu"]
+[ext_resource type="Texture2D" uid="uid://db1trufita3ew" path="res://images/curtains/curtain_straight.png" id="12_g3qcc"]
+[ext_resource type="Texture2D" uid="uid://0sprqq1u60dd" path="res://images/curtains/curtain.png" id="13_7t0vq"]
+[ext_resource type="Texture2D" uid="uid://cfedxeautpdmm" path="res://images/curtains/curtain_rope.png" id="14_f3mmx"]
+[ext_resource type="Texture2D" uid="uid://cf4wfn77gqsor" path="res://images/bullets/icon_bullet_empty_short.png" id="15_4j2jy"]
+[ext_resource type="Texture2D" uid="uid://bci1emp7ci1h5" path="res://images/bullets/icon_bullet_gold_short.png" id="16_p28i4"]
+[ext_resource type="Texture2D" uid="uid://dnpej35ajkds1" path="res://images/icons/icon_duck.png" id="17_dyomy"]
+[ext_resource type="Texture2D" uid="uid://cikjucu56ltg" path="res://images/icons/icon_target.png" id="18_ovcn6"]
+[ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="19_b6ryw"]
+[ext_resource type="Script" uid="uid://e6t01tta7kxc" path="res://scripts/aim_controller.gd" id="20_uf02t"]
+[ext_resource type="Texture2D" uid="uid://dfyfatu8qjh1a" path="res://images/shots/shot_blue_large.png" id="21_b4l8j"]
+[ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="22_jv8fr"]
+[ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="23_vh7xs"]
+[ext_resource type="Texture2D" uid="uid://dis6a6dygughr" path="res://images/shots/shot_yellow_large.png" id="24_lvlla"]
+[ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="25_m27jk"]
+[ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="26_y0imm"]
+[ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="27_2es1g"]
+[ext_resource type="Script" uid="uid://cpufec1r6ag50" path="res://scripts/target_spawner.gd" id="28_pwfq3"]
+[ext_resource type="PackedScene" uid="uid://c615hf1ce8red" path="res://nodes/target.tscn" id="29_u7ew7"]
+[ext_resource type="PackedScene" uid="uid://ejgc54eqt668" path="res://nodes/duck.tscn" id="30_86gdd"]
+[ext_resource type="Texture2D" uid="uid://cdo161nvwj1om" path="res://images/targets/target_colored.png" id="31_7wjri"]
+[ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="32_504g1"]
+[ext_resource type="Texture2D" uid="uid://dgx3ium1xm0ew" path="res://images/targets/target_white.png" id="33_3d7fg"]
+[ext_resource type="Texture2D" uid="uid://bmco8f52vri1k" path="res://images/ducks/duck_target_brown.png" id="34_n247l"]
+[ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="35_c5dlo"]
+[ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="36_r1t4f"]
+[ext_resource type="Script" uid="uid://c1hmg26vn0yb6" path="res://scripts/move_waves.gd" id="37_sypbi"]
+[ext_resource type="Texture2D" uid="uid://cepm0jemtdvo3" path="res://images/scenery/water2.png" id="38_sqalk"]
+[ext_resource type="Texture2D" uid="uid://r71e3ldnb754" path="res://images/scenery/water1.png" id="39_t36p2"]
+[ext_resource type="Texture2D" uid="uid://dbe8msqmll04s" path="res://images/scenery/grass1.png" id="40_dgo02"]
+[ext_resource type="Texture2D" uid="uid://c6k12oqk8hhq2" path="res://images/scenery/grass2.png" id="41_nanye"]
+[ext_resource type="Texture2D" uid="uid://b54pcyr3ja50r" path="res://images/game_background/bg_wood.png" id="42_d22sn"]
+[ext_resource type="PackedScene" uid="uid://fqhia3wjxywc" path="res://nodes/oak.tscn" id="43_14ahh"]
+[ext_resource type="PackedScene" uid="uid://d4ch0ashg2rki" path="res://nodes/pine.tscn" id="44_w3mnj"]
+[ext_resource type="Script" uid="uid://cjotw7ugv01bs" path="res://scripts/pause_manager.gd" id="45_nybl1"]
 
 [sub_resource type="Animation" id="Animation_k35x6"]
 length = 0.001
@@ -97,7 +95,7 @@ offset_right = 618.0
 offset_bottom = 430.0
 mouse_filter = 2
 mouse_behavior_recursive = 1
-texture = ExtResource("1_gtafp")
+texture = ExtResource("1_lc6ld")
 
 [node name="Rifle" type="TextureRect" parent="CanvasLayer" unique_id=22720746]
 z_index = 10
@@ -105,7 +103,7 @@ offset_left = 978.0
 offset_top = 312.0
 offset_right = 1120.0
 offset_bottom = 631.0
-texture = ExtResource("2_utfi2")
+texture = ExtResource("2_6ihl5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Rifle" unique_id=1287633496]
 libraries/ = SubResource("AnimationLibrary_k35x6")
@@ -117,8 +115,8 @@ offset_top = 90.0
 offset_right = 1437.0
 offset_bottom = 172.0
 mouse_filter = 2
-texture = ExtResource("3_u1vwu")
-script = ExtResource("4_yjbog")
+texture = ExtResource("3_hupd6")
+script = ExtResource("4_jruk4")
 
 [node name="Cloud2" type="TextureRect" parent="CanvasLayer" unique_id=704814391]
 visible = false
@@ -127,8 +125,8 @@ offset_top = 90.0
 offset_right = 1582.0
 offset_bottom = 172.0
 mouse_filter = 2
-texture = ExtResource("5_xxcmm")
-script = ExtResource("4_yjbog")
+texture = ExtResource("5_2xve6")
+script = ExtResource("4_jruk4")
 
 [node name="PointTeller" type="RichTextLabel" parent="CanvasLayer" unique_id=2066224391]
 z_index = 5
@@ -137,9 +135,36 @@ offset_top = 11.0
 offset_right = 249.0
 offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_aowaw")
+theme_override_fonts/normal_font = ExtResource("6_ydgvg")
 theme_override_font_sizes/normal_font_size = 36
 text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PerfectTeller" type="RichTextLabel" parent="CanvasLayer" unique_id=1128582590]
+z_index = 5
+offset_left = -18.0
+offset_top = 172.0
+offset_right = 149.0
+offset_bottom = 252.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_ydgvg")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[rainbow sat=0.65 val=.865][wave]GO FOR PERFECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Clock" type="RichTextLabel" parent="CanvasLayer" unique_id=1447923825]
+z_index = 5
+offset_left = 872.0
+offset_top = 29.0
+offset_right = 1141.0
+offset_bottom = 172.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("7_cd2y2")
+theme_override_font_sizes/normal_font_size = 45
+text = "2:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -151,8 +176,8 @@ offset_top = 105.0
 offset_right = 185.0
 offset_bottom = 185.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_aowaw")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_fonts/normal_font = ExtResource("6_ydgvg")
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "x2 COMBO"
 horizontal_alignment = 1
@@ -161,11 +186,11 @@ vertical_alignment = 1
 [node name="GameOver" type="TextureRect" parent="CanvasLayer" unique_id=1195811075]
 visible = false
 z_index = 5
-offset_left = 426.0
+offset_left = 458.0
 offset_top = 110.0
-offset_right = 775.0
-offset_bottom = 182.0
-texture = ExtResource("7_utfi2")
+offset_right = 753.0
+offset_bottom = 179.0
+texture = ExtResource("8_wmsgg")
 
 [node name="Ready" type="TextureRect" parent="CanvasLayer" unique_id=1031185667]
 visible = false
@@ -174,7 +199,7 @@ offset_left = 458.0
 offset_top = 110.0
 offset_right = 753.0
 offset_bottom = 179.0
-texture = ExtResource("9_lhmj2")
+texture = ExtResource("9_tn72q")
 
 [node name="Go" type="TextureRect" parent="CanvasLayer" unique_id=1263268304]
 visible = false
@@ -183,7 +208,7 @@ offset_left = 539.0
 offset_top = 110.0
 offset_right = 650.0
 offset_bottom = 176.0
-texture = ExtResource("10_vrdas")
+texture = ExtResource("10_aah8p")
 
 [node name="Curtains" type="Control" parent="CanvasLayer" unique_id=2047063306]
 layout_mode = 3
@@ -198,7 +223,7 @@ offset_left = 371.0
 offset_top = 60.0
 offset_right = 627.0
 offset_bottom = 140.0
-texture = ExtResource("11_cgpsn")
+texture = ExtResource("11_jd5wu")
 
 [node name="CurvedCurtains3" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=442911112]
 z_index = 1
@@ -207,7 +232,7 @@ offset_left = 579.0
 offset_top = 60.0
 offset_right = 835.0
 offset_bottom = 140.0
-texture = ExtResource("11_cgpsn")
+texture = ExtResource("11_jd5wu")
 
 [node name="CurvedCurtains4" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=1070442684]
 z_index = 1
@@ -216,14 +241,14 @@ offset_left = 798.0
 offset_top = 60.0
 offset_right = 1054.0
 offset_bottom = 140.0
-texture = ExtResource("11_cgpsn")
+texture = ExtResource("11_jd5wu")
 
 [node name="Curtains" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=1043752201]
 z_index = 3
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 80.0
-texture = ExtResource("12_igja6")
+texture = ExtResource("12_g3qcc")
 
 [node name="Curtains2" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=1826913710]
 z_index = 3
@@ -231,7 +256,7 @@ layout_mode = 0
 offset_left = 256.0
 offset_right = 512.0
 offset_bottom = 80.0
-texture = ExtResource("12_igja6")
+texture = ExtResource("12_g3qcc")
 
 [node name="Curtains3" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=428466821]
 z_index = 3
@@ -239,7 +264,7 @@ layout_mode = 0
 offset_left = 512.0
 offset_right = 768.0
 offset_bottom = 80.0
-texture = ExtResource("12_igja6")
+texture = ExtResource("12_g3qcc")
 
 [node name="Curtains4" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=1286391748]
 z_index = 3
@@ -247,7 +272,7 @@ layout_mode = 0
 offset_left = 768.0
 offset_right = 1024.0
 offset_bottom = 80.0
-texture = ExtResource("12_igja6")
+texture = ExtResource("12_g3qcc")
 
 [node name="Curtains5" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=919382094]
 z_index = 3
@@ -255,7 +280,7 @@ layout_mode = 0
 offset_left = 1024.0
 offset_right = 1280.0
 offset_bottom = 80.0
-texture = ExtResource("12_igja6")
+texture = ExtResource("12_g3qcc")
 
 [node name="Tied_Curtains1" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=1256283787]
 z_index = 2
@@ -266,7 +291,7 @@ offset_right = 206.0
 offset_bottom = 489.0
 mouse_filter = 2
 mouse_behavior_recursive = 1
-texture = ExtResource("13_6qi6q")
+texture = ExtResource("13_7t0vq")
 
 [node name="Rope" type="TextureRect" parent="CanvasLayer/Curtains/Tied_Curtains1" unique_id=723403050]
 layout_mode = 0
@@ -274,7 +299,7 @@ offset_left = 27.0
 offset_top = 204.0
 offset_right = 67.0
 offset_bottom = 225.0
-texture = ExtResource("14_bedoe")
+texture = ExtResource("14_f3mmx")
 
 [node name="Tied_Curtains2" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=844573992]
 z_index = 2
@@ -285,7 +310,7 @@ offset_right = 1202.0
 offset_bottom = 489.0
 mouse_filter = 0
 mouse_behavior_recursive = 1
-texture = ExtResource("13_6qi6q")
+texture = ExtResource("13_7t0vq")
 flip_h = true
 
 [node name="Rope" type="TextureRect" parent="CanvasLayer/Curtains/Tied_Curtains2" unique_id=351718953]
@@ -294,7 +319,7 @@ offset_left = 178.0
 offset_top = 204.0
 offset_right = 218.0
 offset_bottom = 225.0
-texture = ExtResource("14_bedoe")
+texture = ExtResource("14_f3mmx")
 
 [node name="CurvedCurtains" type="TextureRect" parent="CanvasLayer/Curtains" unique_id=1797765843]
 z_index = 1
@@ -303,7 +328,7 @@ offset_left = 150.0
 offset_top = 61.0
 offset_right = 406.0
 offset_bottom = 141.0
-texture = ExtResource("11_cgpsn")
+texture = ExtResource("11_jd5wu")
 
 [node name="Bullets" type="Control" parent="CanvasLayer" unique_id=282495835]
 layout_mode = 3
@@ -317,13 +342,13 @@ offset_left = 17.0
 offset_top = 599.0
 offset_right = 38.0
 offset_bottom = 635.0
-texture = ExtResource("15_t5die")
+texture = ExtResource("15_4j2jy")
 
 [node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline1" unique_id=1199231854]
 layout_mode = 0
 offset_right = 21.0
 offset_bottom = 36.0
-texture = ExtResource("16_3u5go")
+texture = ExtResource("16_p28i4")
 
 [node name="BulletOutline2" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=361983933]
 layout_mode = 0
@@ -331,13 +356,13 @@ offset_left = 43.0
 offset_top = 599.0
 offset_right = 64.0
 offset_bottom = 635.0
-texture = ExtResource("15_t5die")
+texture = ExtResource("15_4j2jy")
 
 [node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline2" unique_id=1404913085]
 layout_mode = 0
 offset_right = 21.0
 offset_bottom = 36.0
-texture = ExtResource("16_3u5go")
+texture = ExtResource("16_p28i4")
 
 [node name="BulletOutline3" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=408085949]
 layout_mode = 0
@@ -345,13 +370,13 @@ offset_left = 71.0
 offset_top = 599.0
 offset_right = 92.0
 offset_bottom = 635.0
-texture = ExtResource("15_t5die")
+texture = ExtResource("15_4j2jy")
 
 [node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline3" unique_id=1403312024]
 layout_mode = 0
 offset_right = 21.0
 offset_bottom = 36.0
-texture = ExtResource("16_3u5go")
+texture = ExtResource("16_p28i4")
 
 [node name="TargetCounts" type="Control" parent="CanvasLayer" unique_id=1745872370]
 layout_mode = 3
@@ -371,7 +396,7 @@ offset_left = 395.0
 offset_top = 33.0
 offset_right = 435.0
 offset_bottom = 73.0
-texture = ExtResource("17_a4b64")
+texture = ExtResource("17_dyomy")
 
 [node name="DuckCount" type="RichTextLabel" parent="CanvasLayer/TargetCounts/Ducks" unique_id=548178202]
 z_index = 11
@@ -381,7 +406,7 @@ offset_top = 36.0
 offset_right = 490.0
 offset_bottom = 76.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_aowaw")
+theme_override_fonts/normal_font = ExtResource("6_ydgvg")
 theme_override_font_sizes/normal_font_size = 30
 text = "0"
 horizontal_alignment = 1
@@ -399,7 +424,7 @@ offset_left = 628.0
 offset_top = 33.0
 offset_right = 668.0
 offset_bottom = 73.0
-texture = ExtResource("18_yp141")
+texture = ExtResource("18_ovcn6")
 
 [node name="TargetCount" type="RichTextLabel" parent="CanvasLayer/TargetCounts/Target" unique_id=815337721]
 z_index = 11
@@ -409,163 +434,83 @@ offset_top = 36.0
 offset_right = 727.0
 offset_bottom = 76.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_aowaw")
+theme_override_fonts/normal_font = ExtResource("6_ydgvg")
 theme_override_font_sizes/normal_font_size = 30
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CurrentTeller" type="Control" parent="CanvasLayer" unique_id=918161993]
-z_index = 10
-layout_mode = 3
-anchors_preset = 0
-offset_left = 828.0
-offset_top = 466.0
-offset_right = 868.0
-offset_bottom = 506.0
-
-[node name="Picture" type="TextureRect" parent="CanvasLayer/CurrentTeller" unique_id=1358007230]
-z_index = 1
-layout_mode = 0
-offset_left = 12.0
-offset_top = 19.0
-offset_right = 140.0
-offset_bottom = 147.0
-texture = ExtResource("30_ew3wv")
-
-[node name="Text" type="RichTextLabel" parent="CanvasLayer/CurrentTeller" unique_id=1600269968]
-z_index = 1
-layout_mode = 0
-offset_left = -1.0
-offset_top = -27.0
-offset_right = 155.0
-offset_bottom = 16.0
-theme_override_colors/default_color = Color(0.93333334, 0.15294118, 0.2784314, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_aowaw")
-theme_override_font_sizes/normal_font_size = 20
-text = "CURRENT TARGET"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/CurrentTeller" unique_id=1543529009]
-layout_mode = 0
-offset_left = -17.0
-offset_top = -41.0
-offset_right = 165.0
-offset_bottom = 167.0
-color = Color(0.93333334, 0.15294118, 0.2784314, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/CurrentTeller" unique_id=1113829541]
-layout_mode = 0
-offset_left = -2.0
-offset_top = -27.0
-offset_right = 154.0
-offset_bottom = 154.0
-
-[node name="TimeLeft" type="RichTextLabel" parent="CanvasLayer/CurrentTeller" unique_id=761812729]
+[node name="PerfectFinal" type="RichTextLabel" parent="CanvasLayer" unique_id=1960558147]
 visible = false
-layout_mode = 0
-offset_left = -188.0
-offset_top = 120.0
-offset_right = -31.0
-offset_bottom = 160.0
+offset_left = 472.0
+offset_top = 194.0
+offset_right = 743.0
+offset_bottom = 234.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_aowaw")
+theme_override_fonts/normal_font = ExtResource("7_cd2y2")
 theme_override_font_sizes/normal_font_size = 30
-text = "1.000s"
+text = "No Misses"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Crosses" type="Control" parent="CanvasLayer" unique_id=247741753]
-z_index = 10
-layout_mode = 3
-anchors_preset = 0
-offset_top = 61.0
-offset_right = 40.0
-offset_bottom = 101.0
-
-[node name="Cross1" type="TextureRect" parent="CanvasLayer/Crosses" unique_id=1443260121]
-layout_mode = 0
-offset_left = 900.0
-offset_right = 932.0
-offset_bottom = 32.0
-texture = ExtResource("20_utfi2")
-
-[node name="Cross2" type="TextureRect" parent="CanvasLayer/Crosses" unique_id=1697220092]
-layout_mode = 0
-offset_left = 960.0
-offset_right = 992.0
-offset_bottom = 32.0
-texture = ExtResource("20_utfi2")
-
-[node name="Cross3" type="TextureRect" parent="CanvasLayer/Crosses" unique_id=957512791]
-layout_mode = 0
-offset_left = 1020.0
-offset_right = 1052.0
-offset_bottom = 32.0
-texture = ExtResource("20_utfi2")
-
-[node name="Return" type="Button" parent="CanvasLayer" unique_id=947007059]
+[node name="Return" type="Button" parent="CanvasLayer" unique_id=867593819]
 visible = false
-offset_left = 583.0
+offset_left = 546.0
 offset_top = 282.0
-offset_right = 707.0
+offset_right = 673.0
 offset_bottom = 313.0
+theme_override_fonts/font = ExtResource("6_ydgvg")
+theme_override_font_sizes/font_size = 20
 text = "RETURN HOME"
 
-[node name="ScoreWord" type="TextureRect" parent="CanvasLayer" unique_id=710500692]
+[node name="ScoreWord" type="TextureRect" parent="CanvasLayer" unique_id=50385871]
 z_index = 10
 offset_left = 35.0
 offset_top = 28.0
 offset_right = 151.0
 offset_bottom = 67.0
-texture = ExtResource("20_u1vwu")
+texture = ExtResource("19_b6ryw")
 
-[node name="Pause" type="Button" parent="CanvasLayer" unique_id=2004385590]
+[node name="Pause" type="Button" parent="CanvasLayer" unique_id=117297849]
 visible = false
 z_index = 3
 offset_left = 546.0
 offset_top = 88.0
 offset_right = 568.0
 offset_bottom = 137.0
-theme_override_fonts/font = ExtResource("19_xxcmm")
+theme_override_fonts/font = ExtResource("7_cd2y2")
 theme_override_font_sizes/font_size = 30
 text = "||"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
 [node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text", "initial_timer", "canvas_layer", "pause_manager")]
-script = ExtResource("21_5ikoq")
+script = ExtResource("20_uf02t")
 crosshair = NodePath("../CanvasLayer/Crosshair")
 rifle = NodePath("../CanvasLayer/Rifle")
 point_teller = NodePath("../CanvasLayer/PointTeller")
-blue_shot_texture = ExtResource("20_ys27s")
-brown_shot_texture = ExtResource("21_6bdp1")
-grey_shot_texture = ExtResource("22_4fgw0")
-yellow_shot_texture = ExtResource("23_pyxs7")
-shot_sprite = ExtResource("24_8vba6")
+blue_shot_texture = ExtResource("21_b4l8j")
+brown_shot_texture = ExtResource("22_jv8fr")
+grey_shot_texture = ExtResource("23_vh7xs")
+yellow_shot_texture = ExtResource("24_lvlla")
+shot_sprite = ExtResource("25_m27jk")
 target_spawner = NodePath("../TargetSpawner")
 reload_timer = NodePath("ReloadTimer")
 delay_timer = NodePath("DelayTimer")
 bullet_outline1 = NodePath("../CanvasLayer/Bullets/BulletOutline1")
 bullet_outline2 = NodePath("../CanvasLayer/Bullets/BulletOutline2")
 bullet_outline3 = NodePath("../CanvasLayer/Bullets/BulletOutline3")
-gold_bullet = ExtResource("16_3u5go")
-silver_bullet = ExtResource("25_n8ett")
+gold_bullet = ExtResource("16_p28i4")
+silver_bullet = ExtResource("26_y0imm")
 combo_teller = NodePath("../CanvasLayer/ComboTeller")
 combo_timer = NodePath("ComboTimer")
 disappear_timer = NodePath("DisappearTimer")
 duck_count_text = NodePath("../CanvasLayer/TargetCounts/Ducks/DuckCount")
 target_count_text = NodePath("../CanvasLayer/TargetCounts/Target/TargetCount")
 initial_timer = NodePath("InitialTimer")
-points_icon = ExtResource("28_yjbog")
+points_icon = ExtResource("27_2es1g")
 canvas_layer = NodePath("../CanvasLayer")
 pause_manager = NodePath("../PauseManager")
-
-[node name="InitialTimer" type="Timer" parent="AimController" unique_id=137918211]
-wait_time = 0.5
-one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="AimController" unique_id=218863506]
 wait_time = 1.5
@@ -583,18 +528,23 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "return_button", "time_till_change", "canvas_layer", "crosses", "cross1", "cross2", "cross3", "target_display", "entire_target_display", "pause_manager", "pause_button")]
-script = ExtResource("19_utfi2")
-target = ExtResource("27_wmhc1")
-duck = ExtResource("28_hwsv3")
-colored_target_texture = ExtResource("29_5darq")
-red_target_texture = ExtResource("30_ew3wv")
-white_target_texture = ExtResource("31_1qy6q")
-brown_duck_texture = ExtResource("32_s6tsc")
-yellow_duck_texture = ExtResource("33_qfxit")
-white_duck_texture = ExtResource("34_0qjv5")
+[node name="InitialTimer" type="Timer" parent="AimController" unique_id=404490791]
+wait_time = 0.5
+one_shot = true
+
+[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "game_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "clock", "perfect_final_text", "perfect_teller", "canvas_layer", "return_button", "pause_manager", "pause_button")]
+script = ExtResource("28_pwfq3")
+target = ExtResource("29_u7ew7")
+duck = ExtResource("30_86gdd")
+colored_target_texture = ExtResource("31_7wjri")
+red_target_texture = ExtResource("32_504g1")
+white_target_texture = ExtResource("33_3d7fg")
+brown_duck_texture = ExtResource("34_n247l")
+yellow_duck_texture = ExtResource("35_c5dlo")
+white_duck_texture = ExtResource("36_r1t4f")
 delay_timer = NodePath("DelayTimer")
 cloud_timer = NodePath("CloudTimer")
+game_timer = NodePath("GameTimer")
 duck_timer = NodePath("DuckTimer")
 countdown_timer = NodePath("CountdownTimer")
 game = NodePath("..")
@@ -604,16 +554,11 @@ cloud2 = NodePath("../CanvasLayer/Cloud2")
 game_over = NodePath("../CanvasLayer/GameOver")
 start = NodePath("../CanvasLayer/Ready")
 go = NodePath("../CanvasLayer/Go")
-return_button = NodePath("../CanvasLayer/Return")
-time_till_change = NodePath("../CanvasLayer/CurrentTeller/TimeLeft")
+clock = NodePath("../CanvasLayer/Clock")
+perfect_final_text = NodePath("../CanvasLayer/PerfectFinal")
+perfect_teller = NodePath("../CanvasLayer/PerfectTeller")
 canvas_layer = NodePath("../CanvasLayer")
-crosses = NodePath("../CanvasLayer/Crosses")
-cross1 = NodePath("../CanvasLayer/Crosses/Cross1")
-cross2 = NodePath("../CanvasLayer/Crosses/Cross2")
-cross3 = NodePath("../CanvasLayer/Crosses/Cross3")
-cross_texture = ExtResource("36_u1vwu")
-target_display = NodePath("../CanvasLayer/CurrentTeller/Picture")
-entire_target_display = NodePath("../CanvasLayer/CurrentTeller")
+return_button = NodePath("../CanvasLayer/Return")
 pause_manager = NodePath("../PauseManager")
 pause_button = NodePath("../CanvasLayer/Pause")
 
@@ -623,6 +568,10 @@ one_shot = true
 
 [node name="DuckTimer" type="Timer" parent="TargetSpawner" unique_id=123717928]
 wait_time = 3.0
+one_shot = true
+
+[node name="GameTimer" type="Timer" parent="TargetSpawner" unique_id=2523586]
+wait_time = 120.0
 one_shot = true
 
 [node name="CloudTimer" type="Timer" parent="TargetSpawner" unique_id=450915509]
@@ -635,7 +584,7 @@ one_shot = true
 
 [node name="Waves" type="Node2D" parent="." unique_id=1925072304 node_paths=PackedStringArray("front_waves", "back_waves")]
 z_index = 6
-script = ExtResource("35_kfn6k")
+script = ExtResource("37_sypbi")
 front_waves = NodePath("Front")
 back_waves = NodePath("Back")
 
@@ -645,184 +594,184 @@ position = Vector2(0, 9)
 [node name="Wave1" type="Sprite2D" parent="Waves/Front" unique_id=1724919786]
 z_index = 2
 position = Vector2(-510, 219)
-texture = ExtResource("36_d5swe")
+texture = ExtResource("38_sqalk")
 
 [node name="Wave2" type="Sprite2D" parent="Waves/Front" unique_id=576749167]
 z_index = 2
 position = Vector2(-378, 219)
-texture = ExtResource("36_d5swe")
+texture = ExtResource("38_sqalk")
 
 [node name="Wave3" type="Sprite2D" parent="Waves/Front" unique_id=1158018682]
 z_index = 2
 position = Vector2(-246, 219)
-texture = ExtResource("36_d5swe")
+texture = ExtResource("38_sqalk")
 
 [node name="Wave4" type="Sprite2D" parent="Waves/Front" unique_id=2041700117]
 z_index = 2
 position = Vector2(-114, 219)
-texture = ExtResource("36_d5swe")
+texture = ExtResource("38_sqalk")
 
 [node name="Wave5" type="Sprite2D" parent="Waves/Front" unique_id=513268677]
 z_index = 2
 position = Vector2(18, 219)
-texture = ExtResource("36_d5swe")
+texture = ExtResource("38_sqalk")
 
 [node name="Wave6" type="Sprite2D" parent="Waves/Front" unique_id=1047460600]
 z_index = 2
 position = Vector2(150, 219)
-texture = ExtResource("36_d5swe")
+texture = ExtResource("38_sqalk")
 
 [node name="Wave7" type="Sprite2D" parent="Waves/Front" unique_id=1466377760]
 z_index = 2
 position = Vector2(282, 219)
-texture = ExtResource("36_d5swe")
+texture = ExtResource("38_sqalk")
 
 [node name="Wave8" type="Sprite2D" parent="Waves/Front" unique_id=748853065]
 z_index = 2
 position = Vector2(414, 219)
-texture = ExtResource("36_d5swe")
+texture = ExtResource("38_sqalk")
 
 [node name="Wave9" type="Sprite2D" parent="Waves/Front" unique_id=314493338]
 z_index = 2
 position = Vector2(546, 219)
-texture = ExtResource("36_d5swe")
+texture = ExtResource("38_sqalk")
 
 [node name="Back" type="Node2D" parent="Waves" unique_id=2056899081]
 
 [node name="Wave10" type="Sprite2D" parent="Waves/Back" unique_id=573968795]
 position = Vector2(-425, 191.5)
-texture = ExtResource("37_xi4tk")
+texture = ExtResource("39_t36p2")
 
 [node name="Wave11" type="Sprite2D" parent="Waves/Back" unique_id=176294312]
 position = Vector2(-293, 191.5)
-texture = ExtResource("37_xi4tk")
+texture = ExtResource("39_t36p2")
 
 [node name="Wave12" type="Sprite2D" parent="Waves/Back" unique_id=529573218]
 position = Vector2(-161, 191.5)
-texture = ExtResource("37_xi4tk")
+texture = ExtResource("39_t36p2")
 
 [node name="Wave13" type="Sprite2D" parent="Waves/Back" unique_id=604520731]
 position = Vector2(-29, 191.5)
-texture = ExtResource("37_xi4tk")
+texture = ExtResource("39_t36p2")
 
 [node name="Wave14" type="Sprite2D" parent="Waves/Back" unique_id=1984069564]
 position = Vector2(103, 191.5)
-texture = ExtResource("37_xi4tk")
+texture = ExtResource("39_t36p2")
 
 [node name="Wave15" type="Sprite2D" parent="Waves/Back" unique_id=645268010]
 position = Vector2(235, 191.5)
-texture = ExtResource("37_xi4tk")
+texture = ExtResource("39_t36p2")
 
 [node name="Wave16" type="Sprite2D" parent="Waves/Back" unique_id=28855231]
 position = Vector2(367, 191.5)
-texture = ExtResource("37_xi4tk")
+texture = ExtResource("39_t36p2")
 
 [node name="Wave17" type="Sprite2D" parent="Waves/Back" unique_id=1922145135]
 position = Vector2(499, 191.5)
-texture = ExtResource("37_xi4tk")
+texture = ExtResource("39_t36p2")
 
 [node name="Wave18" type="Sprite2D" parent="Waves/Back" unique_id=359779652]
 position = Vector2(-560, 197)
-texture = ExtResource("37_xi4tk")
+texture = ExtResource("39_t36p2")
 
 [node name="Grass" type="Node2D" parent="." unique_id=1614654496]
 z_index = 5
 
 [node name="Wave10" type="Sprite2D" parent="Grass" unique_id=1373063400]
 position = Vector2(-425, 86)
-texture = ExtResource("38_7xa58")
+texture = ExtResource("40_dgo02")
 
 [node name="Wave11" type="Sprite2D" parent="Grass" unique_id=1389624625]
 position = Vector2(-293, 86)
-texture = ExtResource("38_7xa58")
+texture = ExtResource("40_dgo02")
 
 [node name="Wave12" type="Sprite2D" parent="Grass" unique_id=714427397]
 position = Vector2(-161, 79)
-texture = ExtResource("39_b3g4p")
+texture = ExtResource("41_nanye")
 
 [node name="Wave13" type="Sprite2D" parent="Grass" unique_id=1345556794]
 position = Vector2(-29, 86)
-texture = ExtResource("38_7xa58")
+texture = ExtResource("40_dgo02")
 
 [node name="Wave14" type="Sprite2D" parent="Grass" unique_id=112659528]
 position = Vector2(103, 86)
-texture = ExtResource("38_7xa58")
+texture = ExtResource("40_dgo02")
 
 [node name="Wave15" type="Sprite2D" parent="Grass" unique_id=712843184]
 position = Vector2(235, 86)
-texture = ExtResource("38_7xa58")
+texture = ExtResource("40_dgo02")
 
 [node name="Wave16" type="Sprite2D" parent="Grass" unique_id=246456010]
 position = Vector2(367, 78)
-texture = ExtResource("39_b3g4p")
+texture = ExtResource("41_nanye")
 
 [node name="Wave17" type="Sprite2D" parent="Grass" unique_id=1690510153]
 position = Vector2(499, 86)
-texture = ExtResource("38_7xa58")
+texture = ExtResource("40_dgo02")
 
 [node name="Wave18" type="Sprite2D" parent="Grass" unique_id=238116080]
 position = Vector2(-556, 77)
-texture = ExtResource("39_b3g4p")
+texture = ExtResource("41_nanye")
 
 [node name="WoodBackground" type="Node2D" parent="." unique_id=672185089]
 
 [node name="BgWood" type="Sprite2D" parent="WoodBackground" unique_id=125243103]
 position = Vector2(-498, -195)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="BgWood2" type="Sprite2D" parent="WoodBackground" unique_id=1141712185]
 position = Vector2(-242, -195)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="BgWood3" type="Sprite2D" parent="WoodBackground" unique_id=1106493731]
 position = Vector2(13, -195)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="BgWood4" type="Sprite2D" parent="WoodBackground" unique_id=1816172104]
 position = Vector2(269, -195)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="BgWood5" type="Sprite2D" parent="WoodBackground" unique_id=1443928844]
 position = Vector2(525, -195)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="BgWood6" type="Sprite2D" parent="WoodBackground" unique_id=1976594759]
 position = Vector2(-498, 61)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="BgWood7" type="Sprite2D" parent="WoodBackground" unique_id=1494570994]
 position = Vector2(-242, 61)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="BgWood8" type="Sprite2D" parent="WoodBackground" unique_id=79945604]
 position = Vector2(13, 61)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="BgWood9" type="Sprite2D" parent="WoodBackground" unique_id=868417313]
 position = Vector2(269, 61)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="BgWood10" type="Sprite2D" parent="WoodBackground" unique_id=1119936337]
 position = Vector2(525, 61)
-texture = ExtResource("40_vqm4g")
+texture = ExtResource("42_d22sn")
 
 [node name="Trees" type="Node2D" parent="." unique_id=343002866]
 z_index = 3
 
-[node name="Oak1" parent="Trees" unique_id=1420543239 instance=ExtResource("41_pffjl")]
+[node name="Oak1" parent="Trees" unique_id=1420543239 instance=ExtResource("43_14ahh")]
 position = Vector2(0, -108)
 
-[node name="Oak2" parent="Trees" unique_id=230151973 instance=ExtResource("41_pffjl")]
+[node name="Oak2" parent="Trees" unique_id=230151973 instance=ExtResource("43_14ahh")]
 position = Vector2(442, -108)
 
-[node name="Pine1" parent="Trees" unique_id=1324752454 instance=ExtResource("42_0q1ue")]
+[node name="Pine1" parent="Trees" unique_id=1324752454 instance=ExtResource("44_w3mnj")]
 position = Vector2(-451, -108)
 
-[node name="Pine2" parent="Trees" unique_id=96647167 instance=ExtResource("42_0q1ue")]
+[node name="Pine2" parent="Trees" unique_id=96647167 instance=ExtResource("44_w3mnj")]
 position = Vector2(290, -108)
 
-[node name="PauseManager" type="Node" parent="." unique_id=2103090731 node_paths=PackedStringArray("delay_timer", "countdown_timer", "pause_button", "target_spawner", "duck_timer", "target_timer", "return_button")]
-script = ExtResource("47_aowaw")
+[node name="PauseManager" type="Node" parent="." unique_id=1315596314 node_paths=PackedStringArray("delay_timer", "countdown_timer", "pause_button", "target_spawner", "duck_timer", "target_timer", "return_button")]
+script = ExtResource("45_nybl1")
 delay_timer = NodePath("DelayTimer")
 countdown_timer = NodePath("../TargetSpawner/CountdownTimer")
 pause_button = NodePath("../CanvasLayer/Pause")
@@ -831,7 +780,7 @@ duck_timer = NodePath("../TargetSpawner/DuckTimer")
 target_timer = NodePath("../TargetSpawner/DelayTimer")
 return_button = NodePath("../CanvasLayer/Return")
 
-[node name="DelayTimer" type="Timer" parent="PauseManager" unique_id=2074948873]
+[node name="DelayTimer" type="Timer" parent="PauseManager" unique_id=763182041]
 one_shot = true
 
 [connection signal="button_down" from="CanvasLayer/Return" to="TargetSpawner" method="_on_return_button_down"]
@@ -841,5 +790,7 @@ one_shot = true
 [connection signal="timeout" from="AimController/DisappearTimer" to="AimController" method="_on_disappear_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/DelayTimer" to="TargetSpawner" method="_on_delay_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/DuckTimer" to="TargetSpawner" method="_on_duck_timer_timeout"]
+[connection signal="timeout" from="TargetSpawner/GameTimer" to="TargetSpawner" method="_on_game_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/CloudTimer" to="TargetSpawner" method="_on_cloud_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/CountdownTimer" to="TargetSpawner" method="_on_countdown_timer_timeout"]
+[connection signal="timeout" from="PauseManager/DelayTimer" to="PauseManager" method="_on_delay_timer_timeout"]

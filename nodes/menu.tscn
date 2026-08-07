@@ -28,6 +28,20 @@ offset_right = 83.0
 offset_bottom = 315.0
 text = "HUNTING"
 
+[node name="Perfect" type="Button" parent="CanvasLayer" unique_id=2102209113]
+offset_left = 133.0
+offset_top = 284.0
+offset_right = 216.0
+offset_bottom = 315.0
+text = "PERFECT"
+
+[node name="Bursts" type="Button" parent="CanvasLayer" unique_id=1768349896]
+offset_left = 133.0
+offset_top = 322.0
+offset_right = 216.0
+offset_bottom = 353.0
+text = "BURSTS"
+
 [node name="Customize" type="Button" parent="CanvasLayer" unique_id=1767538120]
 offset_top = 324.0
 offset_right = 99.0
@@ -55,5 +69,7 @@ vertical_alignment = 1
 
 [connection signal="button_down" from="CanvasLayer/Timed" to="." method="_on_timed_button_down"]
 [connection signal="button_down" from="CanvasLayer/Hunting" to="." method="_on_hunting_button_down"]
+[connection signal="button_down" from="CanvasLayer/Perfect" to="." method="_on_hunting_button_down"]
+[connection signal="button_down" from="CanvasLayer/Bursts" to="." method="_on_hunting_button_down"]
 [connection signal="button_down" from="CanvasLayer/Customize" to="." method="_on_customize_button_down"]
 [connection signal="button_down" from="CanvasLayer/Info" to="." method="_on_info_button_down"]

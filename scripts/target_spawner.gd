@@ -80,6 +80,8 @@ var target_color
 
 var inc_amt = 0.0;
 
+var original_clock_size;
+
 func _ready() -> void:
 	countdown_timer.start();
 	
@@ -142,8 +144,13 @@ func _process(delta: float) -> void:
 			clock.text = str(minutes) + ":" + str(seconds);
 			
 		if (time_left < 10.0 && time_left > 0):
-			var clock_font_size = clock.get_theme_font_size("normal_font_size");
-			var new_font_size = clock_font_size + 1;
+			inc_amt += 0.05;
+			
+			if (original_clock_size == null):
+				original_clock_size = clock.get_theme_font_size("normal_font_size");
+			
+			var new_font_size = int(original_clock_size + inc_amt);
+			
 			clock.add_theme_font_size_override("normal_font_size", new_font_size);
 
 func _on_delay_timer_timeout() -> void:
@@ -204,6 +211,9 @@ func _on_countdown_timer_timeout() -> void:
 		game_timer.start();
 	else:
 		game_timer.paused = false;
+		delay_timer.paused = false;
+		duck_timer.paused = false;
+		return_button.visible = false;
 		pause_manager.unpause();
 		
 	pause_button.visible = true;
