@@ -32,6 +32,8 @@ signal updateLives;
 var pause_manager : Node;
 
 func _ready() -> void:
+	var game_container = get_parent();
+	
 	var aim_controller = get_parent().find_child("AimController");
 	var target_spawner = get_parent().find_child("TargetSpawner");
 	pause_manager = get_parent().find_child("PauseManager");
@@ -42,6 +44,10 @@ func _ready() -> void:
 	
 	if (target_spawner.find_child("GameTimer") == null):
 		updateLives.connect(target_spawner.updateLives);
+		
+	if (game_container.game_mode == GameDetails.GameModes.BURST):
+		upper_speed = 10.0;
+		lower_speed = 8.0;
 
 func _process(delta: float) -> void:	
 	if (!pause_manager.is_paused()):
@@ -65,8 +71,8 @@ func _process(delta: float) -> void:
 				var target_sprite = find_child("Target", true, false);
 				
 				var target_spawner = get_parent().find_child("TargetSpawner");
-				if (target_spawner.find_child("GameTimer") != null):
-					if (!target_spawner.game_timer.is_stopped()):
+				if (target_spawner.find_child("GameTimer") != null || target_spawner.game_mode == GameDetails.GameModes.BURST):
+					if (!target_spawner.game_timer.is_stopped() || target_spawner.game_mode == GameDetails.GameModes.BURST):
 						var perfect_text := canvas_layer.find_child("PerfectTeller");
 						perfect_text.visible = false;
 				else:
@@ -213,8 +219,8 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 								7:
 									points_teller.modulate = Color.YELLOW;
 						hit.emit(self, points, z_index);
-		else:		
-			if (target_spawner.lives > 0):
+		elif (target_spawner.game_mode == GameDetails.GameModes.BURST && target_spawner.waves <= target_spawner.max_waves):
+		elif (target_spawner.game_mode == GameDetails.GameModes.HUNTING && target_spawner.lives > 0):
 				if (event.is_action("left_click")):
 					var wrong_target = false;
 					

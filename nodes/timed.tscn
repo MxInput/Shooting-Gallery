@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dc3bvg3wiwqgr"]
 
 [ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshairs/crosshair_outline_small.png" id="1_hneav"]
+[ext_resource type="Script" uid="uid://d3f87ha4b3sxp" path="res://scripts/game_details.gd" id="1_vbnyw"]
 [ext_resource type="Script" uid="uid://e6t01tta7kxc" path="res://scripts/aim_controller.gd" id="2_cpdmu"]
 [ext_resource type="Texture2D" uid="uid://r71e3ldnb754" path="res://images/scenery/water1.png" id="2_e8xm5"]
 [ext_resource type="Texture2D" uid="uid://cu4mbydrx3ovm" path="res://images/rifle.png" id="2_g5j3c"]
@@ -84,6 +85,8 @@ _data = {
 }
 
 [node name="Game" type="Node" unique_id=1002405761]
+script = ExtResource("1_vbnyw")
+game_mode = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=70036684]
 

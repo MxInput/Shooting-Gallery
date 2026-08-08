@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://yatpaw35756i"]
 
+[ext_resource type="Script" uid="uid://d3f87ha4b3sxp" path="res://scripts/game_details.gd" id="1_2xtdh"]
 [ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshairs/crosshair_outline_small.png" id="1_lc6ld"]
 [ext_resource type="Texture2D" uid="uid://cu4mbydrx3ovm" path="res://images/rifle.png" id="2_6ihl5"]
 [ext_resource type="Texture2D" uid="uid://b2pysu0r2i7hc" path="res://images/clouds/cloud1.png" id="3_hupd6"]
@@ -19,23 +20,16 @@
 [ext_resource type="Texture2D" uid="uid://dnpej35ajkds1" path="res://images/icons/icon_duck.png" id="17_dyomy"]
 [ext_resource type="Texture2D" uid="uid://cikjucu56ltg" path="res://images/icons/icon_target.png" id="18_ovcn6"]
 [ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="19_b6ryw"]
-[ext_resource type="Script" uid="uid://e6t01tta7kxc" path="res://scripts/aim_controller.gd" id="20_uf02t"]
-[ext_resource type="Texture2D" uid="uid://dfyfatu8qjh1a" path="res://images/shots/shot_blue_large.png" id="21_b4l8j"]
-[ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="22_jv8fr"]
-[ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="23_vh7xs"]
-[ext_resource type="Texture2D" uid="uid://dis6a6dygughr" path="res://images/shots/shot_yellow_large.png" id="24_lvlla"]
-[ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="25_m27jk"]
-[ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="26_y0imm"]
-[ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="27_2es1g"]
-[ext_resource type="Script" uid="uid://cpufec1r6ag50" path="res://scripts/target_spawner.gd" id="28_pwfq3"]
-[ext_resource type="PackedScene" uid="uid://c615hf1ce8red" path="res://nodes/target.tscn" id="29_u7ew7"]
-[ext_resource type="PackedScene" uid="uid://ejgc54eqt668" path="res://nodes/duck.tscn" id="30_86gdd"]
-[ext_resource type="Texture2D" uid="uid://cdo161nvwj1om" path="res://images/targets/target_colored.png" id="31_7wjri"]
-[ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="32_504g1"]
-[ext_resource type="Texture2D" uid="uid://dgx3ium1xm0ew" path="res://images/targets/target_white.png" id="33_3d7fg"]
-[ext_resource type="Texture2D" uid="uid://bmco8f52vri1k" path="res://images/ducks/duck_target_brown.png" id="34_n247l"]
-[ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="35_c5dlo"]
-[ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="36_r1t4f"]
+[ext_resource type="Script" uid="uid://ccjxy6eurrvtq" path="res://scripts/aim_controller_burst.gd" id="20_18joi"]
+[ext_resource type="Script" uid="uid://6flsobixtaru" path="res://scripts/target_spawner_burst.gd" id="21_2xtdh"]
+[ext_resource type="PackedScene" uid="uid://c615hf1ce8red" path="res://nodes/target.tscn" id="23_rulmk"]
+[ext_resource type="PackedScene" uid="uid://ejgc54eqt668" path="res://nodes/duck.tscn" id="24_wnf5o"]
+[ext_resource type="Texture2D" uid="uid://cdo161nvwj1om" path="res://images/targets/target_colored.png" id="25_whkt7"]
+[ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="26_ti3hu"]
+[ext_resource type="Texture2D" uid="uid://dgx3ium1xm0ew" path="res://images/targets/target_white.png" id="27_awgxm"]
+[ext_resource type="Texture2D" uid="uid://bmco8f52vri1k" path="res://images/ducks/duck_target_brown.png" id="28_tccke"]
+[ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="29_lpkoo"]
+[ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="30_lc6ld"]
 [ext_resource type="Script" uid="uid://c1hmg26vn0yb6" path="res://scripts/move_waves.gd" id="37_sypbi"]
 [ext_resource type="Texture2D" uid="uid://cepm0jemtdvo3" path="res://images/scenery/water2.png" id="38_sqalk"]
 [ext_resource type="Texture2D" uid="uid://r71e3ldnb754" path="res://images/scenery/water1.png" id="39_t36p2"]
@@ -83,7 +77,9 @@ _data = {
 &"dying": SubResource("Animation_jdg4n")
 }
 
-[node name="Game" type="Node" unique_id=1002405761]
+[node name="Burst" type="Node" unique_id=1002405761]
+script = ExtResource("1_2xtdh")
+game_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=70036684]
 
@@ -157,14 +153,14 @@ vertical_alignment = 1
 
 [node name="Clock" type="RichTextLabel" parent="CanvasLayer" unique_id=1447923825]
 z_index = 5
-offset_left = 872.0
+offset_left = 796.0
 offset_top = 29.0
 offset_right = 1141.0
 offset_bottom = 172.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("7_cd2y2")
 theme_override_font_sizes/normal_font_size = 45
-text = "2:00"
+text = "WAVE:         1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -378,6 +374,48 @@ offset_right = 21.0
 offset_bottom = 36.0
 texture = ExtResource("16_p28i4")
 
+[node name="BulletOutline4" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=1702452556]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 599.0
+offset_right = 121.0
+offset_bottom = 635.0
+texture = ExtResource("15_4j2jy")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline4" unique_id=338857022]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_p28i4")
+
+[node name="BulletOutline5" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=100395075]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 599.0
+offset_right = 147.0
+offset_bottom = 635.0
+texture = ExtResource("15_4j2jy")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline5" unique_id=2135589984]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_p28i4")
+
+[node name="BulletOutline6" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=365545778]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 599.0
+offset_right = 175.0
+offset_bottom = 635.0
+texture = ExtResource("15_4j2jy")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline6" unique_id=1029661022]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_p28i4")
+
 [node name="TargetCounts" type="Control" parent="CanvasLayer" unique_id=1745872370]
 layout_mode = 3
 anchors_preset = 0
@@ -484,33 +522,14 @@ text = "||"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
-[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text", "initial_timer", "canvas_layer", "pause_manager")]
-script = ExtResource("20_uf02t")
-crosshair = NodePath("../CanvasLayer/Crosshair")
-rifle = NodePath("../CanvasLayer/Rifle")
-point_teller = NodePath("../CanvasLayer/PointTeller")
-blue_shot_texture = ExtResource("21_b4l8j")
-brown_shot_texture = ExtResource("22_jv8fr")
-grey_shot_texture = ExtResource("23_vh7xs")
-yellow_shot_texture = ExtResource("24_lvlla")
-shot_sprite = ExtResource("25_m27jk")
-target_spawner = NodePath("../TargetSpawner")
-reload_timer = NodePath("ReloadTimer")
-delay_timer = NodePath("DelayTimer")
+[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("bullet_outline1", "bullet_outline2", "bullet_outline3", "bullet_outline4", "bullet_outline5", "bullet_outline6")]
+script = ExtResource("20_18joi")
 bullet_outline1 = NodePath("../CanvasLayer/Bullets/BulletOutline1")
 bullet_outline2 = NodePath("../CanvasLayer/Bullets/BulletOutline2")
 bullet_outline3 = NodePath("../CanvasLayer/Bullets/BulletOutline3")
-gold_bullet = ExtResource("16_p28i4")
-silver_bullet = ExtResource("26_y0imm")
-combo_teller = NodePath("../CanvasLayer/ComboTeller")
-combo_timer = NodePath("ComboTimer")
-disappear_timer = NodePath("DisappearTimer")
-duck_count_text = NodePath("../CanvasLayer/TargetCounts/Ducks/DuckCount")
-target_count_text = NodePath("../CanvasLayer/TargetCounts/Target/TargetCount")
-initial_timer = NodePath("InitialTimer")
-points_icon = ExtResource("27_2es1g")
-canvas_layer = NodePath("../CanvasLayer")
-pause_manager = NodePath("../PauseManager")
+bullet_outline4 = NodePath("../CanvasLayer/Bullets/BulletOutline4")
+bullet_outline5 = NodePath("../CanvasLayer/Bullets/BulletOutline5")
+bullet_outline6 = NodePath("../CanvasLayer/Bullets/BulletOutline6")
 
 [node name="ReloadTimer" type="Timer" parent="AimController" unique_id=218863506]
 wait_time = 1.5
@@ -532,19 +551,18 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "game_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "clock", "perfect_final_text", "perfect_teller", "canvas_layer", "return_button", "pause_manager", "pause_button")]
-script = ExtResource("28_pwfq3")
-target = ExtResource("29_u7ew7")
-duck = ExtResource("30_86gdd")
-colored_target_texture = ExtResource("31_7wjri")
-red_target_texture = ExtResource("32_504g1")
-white_target_texture = ExtResource("33_3d7fg")
-brown_duck_texture = ExtResource("34_n247l")
-yellow_duck_texture = ExtResource("35_c5dlo")
-white_duck_texture = ExtResource("36_r1t4f")
+[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "return_button", "canvas_layer", "pause_manager", "pause_button")]
+script = ExtResource("21_2xtdh")
+target = ExtResource("23_rulmk")
+duck = ExtResource("24_wnf5o")
+colored_target_texture = ExtResource("25_whkt7")
+red_target_texture = ExtResource("26_ti3hu")
+white_target_texture = ExtResource("27_awgxm")
+brown_duck_texture = ExtResource("28_tccke")
+yellow_duck_texture = ExtResource("29_lpkoo")
+white_duck_texture = ExtResource("30_lc6ld")
 delay_timer = NodePath("DelayTimer")
 cloud_timer = NodePath("CloudTimer")
-game_timer = NodePath("GameTimer")
 duck_timer = NodePath("DuckTimer")
 countdown_timer = NodePath("CountdownTimer")
 game = NodePath("..")
@@ -554,11 +572,8 @@ cloud2 = NodePath("../CanvasLayer/Cloud2")
 game_over = NodePath("../CanvasLayer/GameOver")
 start = NodePath("../CanvasLayer/Ready")
 go = NodePath("../CanvasLayer/Go")
-clock = NodePath("../CanvasLayer/Clock")
-perfect_final_text = NodePath("../CanvasLayer/PerfectFinal")
-perfect_teller = NodePath("../CanvasLayer/PerfectTeller")
-canvas_layer = NodePath("../CanvasLayer")
 return_button = NodePath("../CanvasLayer/Return")
+canvas_layer = NodePath("../CanvasLayer")
 pause_manager = NodePath("../PauseManager")
 pause_button = NodePath("../CanvasLayer/Pause")
 
@@ -568,10 +583,6 @@ one_shot = true
 
 [node name="DuckTimer" type="Timer" parent="TargetSpawner" unique_id=123717928]
 wait_time = 3.0
-one_shot = true
-
-[node name="GameTimer" type="Timer" parent="TargetSpawner" unique_id=2523586]
-wait_time = 120.0
 one_shot = true
 
 [node name="CloudTimer" type="Timer" parent="TargetSpawner" unique_id=450915509]
@@ -790,7 +801,6 @@ one_shot = true
 [connection signal="timeout" from="AimController/DisappearTimer" to="AimController" method="_on_disappear_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/DelayTimer" to="TargetSpawner" method="_on_delay_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/DuckTimer" to="TargetSpawner" method="_on_duck_timer_timeout"]
-[connection signal="timeout" from="TargetSpawner/GameTimer" to="TargetSpawner" method="_on_game_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/CloudTimer" to="TargetSpawner" method="_on_cloud_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/CountdownTimer" to="TargetSpawner" method="_on_countdown_timer_timeout"]
 [connection signal="timeout" from="PauseManager/DelayTimer" to="PauseManager" method="_on_delay_timer_timeout"]

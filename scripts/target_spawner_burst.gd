@@ -30,8 +30,6 @@ extends Node
 
 @export var return_button : Button;
 
-@export var time_till_change : RichTextLabel;
-
 enum Targets {
 	RED,
 	COLORED,
@@ -76,17 +74,8 @@ var upper_target_spawn := -200.0;
 
 @export var canvas_layer : CanvasLayer;
 
-@export var crosses : Control;
-@export var cross1 : TextureRect;
-@export var cross2 : TextureRect;
-@export var cross3 : TextureRect;
-
-@export var cross_texture : Texture2D;
-
-@export var target_display : TextureRect;
-@export var entire_target_display : Control;
-
-var lives := 3;
+var waves_remaining := 0;
+var max_waves := 10;
 var chosen_hit := "";
 var chosen_type := "";
 
@@ -120,10 +109,9 @@ var num_spawn := 0;
 
 var started = false;
 
+var already_spawned = false;
+
 func generate_random_hit_object() -> void:
-	time_till_change.visible = false;
-	time_till_change.modulate = Color.WHITE;
-	time_till_change.text = "1.000s";
 	color_change_time = 0.0;
 	number_on_screen = 0;
 	
@@ -139,13 +127,6 @@ func generate_random_hit_object() -> void:
 					chosen_hit = generate_random_duck();
 					
 			chosen_type = "Duck";
-			match (chosen_hit):
-				"YELLOW":
-					target_display.texture = yellow_duck_texture;
-				"BROWN":
-					target_display.texture = brown_duck_texture;
-				"WHITE":
-					target_display.texture = white_duck_texture;	
 		1:
 			chosen_hit = generate_random_target();
 			
@@ -154,13 +135,6 @@ func generate_random_hit_object() -> void:
 					chosen_hit = generate_random_target();
 					
 			chosen_type = "Target";
-			match (chosen_hit):
-				"RED":
-					target_display.texture = red_target_texture;
-				"COLORED":
-					target_display.texture = colored_target_texture;
-				"WHITE":
-					target_display.texture = white_target_texture;
 
 	if (first_time):
 		first_time = false;
@@ -218,14 +192,6 @@ func generate_random_target() -> String:
 	var target_arr = Targets.keys();
 	var chosen_target = target_arr.pick_random();
 	return chosen_target;
-	
-func updateLives() -> void:
-	if (lives == 2):
-		cross1.texture = cross_texture;
-	elif (lives == 1):
-		cross2.texture = cross_texture;
-	elif (lives == 0):
-		cross3.texture = cross_texture;
 		
 func _ready() -> void:
 	countdown_timer.start();
@@ -234,6 +200,20 @@ func round_to_dec(num, place) -> float:
 	return round(num * pow(10.0, place)) / pow(10.0, place);
 	
 func _process(delta: float) -> void:
+	if (already_spawned):
+		var counts_of_targets = spawned_targets.values();
+		var target_size = 0;
+		
+		for target_count in counts_of_targets:
+			var total_count = target_count;
+			
+			target_size += 1;
+			
+			if (target_size == counts_of_targets.size()):
+				if (total_count == 0):
+					waves_remaining += 1; 
+					already_spawned = false;
+	
 	if (!first_time):
 		if (num_cycles == target_cycle):
 			var time_left_countdown;
@@ -246,17 +226,13 @@ func _process(delta: float) -> void:
 			if (time_left_countdown < 1.00 && time_left_countdown > 0.0):
 				var target_color := Color.RED;
 				color_change_time += delta/12.0;
-				color_change_time = clampf(color_change_time, 0.0, 1.0)
-				
-				time_till_change.visible = true;
-				time_till_change.text = str(round_to_dec(time_left_countdown, 3)) + "s";
-				time_till_change.modulate = lerp(time_till_change.modulate, target_color, color_change_time);
+				color_change_time = clampf(color_change_time, 0.0, 1.0);
 			
-	if (lives == 0):
-		PlayerVariables.game_last_played = "Hunting";
+	if (waves_remaining > max_waves):
+		PlayerVariables.game_last_played = "Burst";
 
-		if (PlayerVariables.points > PlayerVariables.high_score_hunting):
-			PlayerVariables.high_score_hunting = PlayerVariables.points;
+		if (PlayerVariables.points > PlayerVariables.high_score_burst):
+			PlayerVariables.high_score_burst = PlayerVariables.points;
 			
 		game_over.visible = true;
 		return_button.visible = true;
@@ -275,7 +251,7 @@ func _process(delta: float) -> void:
 		else:
 			start.visible = true;
 		
-	if (lives > 0):
+	if (waves_remaining < max_waves):
 		time_ongoing += delta;
 		
 		if (delay_timer.is_stopped()):
@@ -294,6 +270,7 @@ func _process(delta: float) -> void:
 			cloud_timer.start();
 			
 func _on_delay_timer_timeout() -> void:
+	already_spawned = true;
 	if (chosen_type == "Target"):
 		num_cycles += 1;
 		
@@ -335,13 +312,14 @@ func _on_delay_timer_timeout() -> void:
 	
 func _on_cloud_timer_timeout() -> void:
 	var selected_cloud = clouds.pick_random().duplicate();
-	var y_pos = randf_range(cloud_lower_y, cloud_upper_y);
+	var y_pos = randf_range(cloud_lower_y, cloud_upper_y);"text"
 	
 	canvas_layer.add_child(selected_cloud)
 	cloud.position.y = y_pos;
 	selected_cloud.visible = true;
 
 func _on_duck_timer_timeout() -> void:
+	already_spawned = true;
 	if (chosen_type == "Duck"):
 		num_cycles += 1;
 		
@@ -379,7 +357,6 @@ func _on_duck_timer_timeout() -> void:
 func _on_countdown_timer_timeout() -> void:
 	if (!started):
 		started = true;
-		entire_target_display.visible = true;
 		
 		target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
 		generate_random_hit_object();

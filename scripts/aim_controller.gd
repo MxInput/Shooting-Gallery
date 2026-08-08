@@ -156,7 +156,7 @@ func _process(_delta: float) -> void:
 	crosshair.position = mouse_pos + offset;
 	
 func _on_reload_timer_timeout() -> void:
-	ammo = 3;
+	ammo = max_ammo;
 	loaded = true;
 	
 	bullet_outline1.get_child(0).texture = gold_bullet;

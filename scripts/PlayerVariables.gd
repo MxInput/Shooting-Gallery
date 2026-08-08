@@ -5,6 +5,8 @@ var cross_hair_texture := load("res://images/crosshairs/crosshair_outline_small.
 var game_last_played := "";
 var high_score_hunting := 0;
 var high_score_timed := 0;
+var high_score_burst := 0;
+var high_score_perfect := 0;
 var target_color := Color.WHITE;
 var num_shot = {
 	"WHITE_TARGET": 0,
