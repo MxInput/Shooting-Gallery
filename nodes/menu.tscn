@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://cgjhkm3fvmsvg" path="res://scripts/menu_manager.gd" id="1_01rij"]
 [ext_resource type="PackedScene" uid="uid://dc3bvg3wiwqgr" path="res://nodes/timed.tscn" id="2_gfiw5"]
 [ext_resource type="PackedScene" uid="uid://cr2lrhkvlmgcw" path="res://nodes/hunting.tscn" id="3_v4lp8"]
+[ext_resource type="PackedScene" uid="uid://yatpaw35756i" path="res://nodes/burst.tscn" id="4_jday5"]
 [ext_resource type="PackedScene" uid="uid://b45psw7pvjmil" path="res://nodes/customization.tscn" id="4_v4lp8"]
+[ext_resource type="PackedScene" uid="uid://ggvqaenw4kd0" path="res://nodes/perfect.tscn" id="5_ewqsw"]
 [ext_resource type="PackedScene" uid="uid://dk5q43x7ix3ci" path="res://nodes/info.tscn" id="5_n0hwq"]
 [ext_resource type="FontFile" uid="uid://bqhltna5u2i5f" path="res://fonts/ChailceNogginRegular-2OXoW.ttf" id="6_8hci8"]
 
@@ -11,6 +13,8 @@
 script = ExtResource("1_01rij")
 timed_game = ExtResource("2_gfiw5")
 hunting_game = ExtResource("3_v4lp8")
+burst_game = ExtResource("4_jday5")
+perfect_game = ExtResource("5_ewqsw")
 customize_page = ExtResource("4_v4lp8")
 info_page = ExtResource("5_n0hwq")
 
@@ -69,7 +73,7 @@ vertical_alignment = 1
 
 [connection signal="button_down" from="CanvasLayer/Timed" to="." method="_on_timed_button_down"]
 [connection signal="button_down" from="CanvasLayer/Hunting" to="." method="_on_hunting_button_down"]
-[connection signal="button_down" from="CanvasLayer/Perfect" to="." method="_on_hunting_button_down"]
-[connection signal="button_down" from="CanvasLayer/Bursts" to="." method="_on_hunting_button_down"]
+[connection signal="button_down" from="CanvasLayer/Perfect" to="." method="_on_perfect_button_down"]
+[connection signal="button_down" from="CanvasLayer/Bursts" to="." method="_on_bursts_button_down"]
 [connection signal="button_down" from="CanvasLayer/Customize" to="." method="_on_customize_button_down"]
 [connection signal="button_down" from="CanvasLayer/Info" to="." method="_on_info_button_down"]

@@ -22,11 +22,18 @@
 [ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="19_b6ryw"]
 [ext_resource type="Script" uid="uid://ccjxy6eurrvtq" path="res://scripts/aim_controller_burst.gd" id="20_18joi"]
 [ext_resource type="Script" uid="uid://6flsobixtaru" path="res://scripts/target_spawner_burst.gd" id="21_2xtdh"]
+[ext_resource type="Texture2D" uid="uid://dfyfatu8qjh1a" path="res://images/shots/shot_blue_large.png" id="22_tccke"]
+[ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="23_lpkoo"]
 [ext_resource type="PackedScene" uid="uid://c615hf1ce8red" path="res://nodes/target.tscn" id="23_rulmk"]
+[ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="24_lc6ld"]
 [ext_resource type="PackedScene" uid="uid://ejgc54eqt668" path="res://nodes/duck.tscn" id="24_wnf5o"]
+[ext_resource type="Texture2D" uid="uid://dis6a6dygughr" path="res://images/shots/shot_yellow_large.png" id="25_6ihl5"]
 [ext_resource type="Texture2D" uid="uid://cdo161nvwj1om" path="res://images/targets/target_colored.png" id="25_whkt7"]
+[ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="26_6ihl5"]
 [ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="26_ti3hu"]
 [ext_resource type="Texture2D" uid="uid://dgx3ium1xm0ew" path="res://images/targets/target_white.png" id="27_awgxm"]
+[ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="27_hupd6"]
+[ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="28_jruk4"]
 [ext_resource type="Texture2D" uid="uid://bmco8f52vri1k" path="res://images/ducks/duck_target_brown.png" id="28_tccke"]
 [ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="29_lpkoo"]
 [ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="30_lc6ld"]
@@ -160,7 +167,7 @@ offset_bottom = 172.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("7_cd2y2")
 theme_override_font_sizes/normal_font_size = 45
-text = "WAVE:         1"
+text = "WAVE 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -522,14 +529,36 @@ text = "||"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
-[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("bullet_outline1", "bullet_outline2", "bullet_outline3", "bullet_outline4", "bullet_outline5", "bullet_outline6")]
+[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "bullet_outline4", "bullet_outline5", "bullet_outline6", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text", "initial_timer", "canvas_layer", "pause_manager")]
 script = ExtResource("20_18joi")
+crosshair = NodePath("../CanvasLayer/Crosshair")
+rifle = NodePath("../CanvasLayer/Rifle")
+point_teller = NodePath("../CanvasLayer/PointTeller")
+blue_shot_texture = ExtResource("22_tccke")
+brown_shot_texture = ExtResource("23_lpkoo")
+grey_shot_texture = ExtResource("24_lc6ld")
+yellow_shot_texture = ExtResource("25_6ihl5")
+shot_sprite = ExtResource("26_6ihl5")
+target_spawner = NodePath("../TargetSpawner")
+reload_timer = NodePath("ReloadTimer")
+delay_timer = NodePath("DelayTimer")
 bullet_outline1 = NodePath("../CanvasLayer/Bullets/BulletOutline1")
 bullet_outline2 = NodePath("../CanvasLayer/Bullets/BulletOutline2")
 bullet_outline3 = NodePath("../CanvasLayer/Bullets/BulletOutline3")
 bullet_outline4 = NodePath("../CanvasLayer/Bullets/BulletOutline4")
 bullet_outline5 = NodePath("../CanvasLayer/Bullets/BulletOutline5")
 bullet_outline6 = NodePath("../CanvasLayer/Bullets/BulletOutline6")
+gold_bullet = ExtResource("16_p28i4")
+silver_bullet = ExtResource("27_hupd6")
+combo_teller = NodePath("../CanvasLayer/ComboTeller")
+combo_timer = NodePath("ComboTimer")
+disappear_timer = NodePath("DisappearTimer")
+duck_count_text = NodePath("../CanvasLayer/TargetCounts/Ducks/DuckCount")
+target_count_text = NodePath("../CanvasLayer/TargetCounts/Target/TargetCount")
+initial_timer = NodePath("InitialTimer")
+points_icon = ExtResource("28_jruk4")
+canvas_layer = NodePath("../CanvasLayer")
+pause_manager = NodePath("../PauseManager")
 
 [node name="ReloadTimer" type="Timer" parent="AimController" unique_id=218863506]
 wait_time = 1.5

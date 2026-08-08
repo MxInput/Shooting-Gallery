@@ -85,6 +85,10 @@ var upper_target_cycle := 8;
 
 var target_cycle := 0;
 
+var spawns_now := 0;
+var spawns_possible := 0;
+var spawns_range := [12, 24];
+
 var menu = "res://nodes/menu.tscn";
 
 var time_ongoing := 0.0;
@@ -111,6 +115,14 @@ var started = false;
 
 var already_spawned = false;
 
+func generate_wave() -> void:
+	var count = 0;
+	while (spawns_now < spawns_possible):
+		generate_random_hit_object();
+		count += 1;
+		if (count > 50):
+			break;
+			
 func generate_random_hit_object() -> void:
 	color_change_time = 0.0;
 	number_on_screen = 0;
@@ -118,6 +130,13 @@ func generate_random_hit_object() -> void:
 	var found_chosen;
 	
 	var chance = randi_range(0, 1);
+	
+	if ((!delay_timer.is_stopped()) || (!duck_timer.is_stopped())):
+		if (!delay_timer.is_stopped()):
+			await delay_timer.timeout
+		if (!duck_timer.is_stopped()):
+			await duck_timer.timeout;
+
 	match (chance):
 		0:
 			chosen_hit = generate_random_duck();
@@ -183,6 +202,8 @@ func generate_random_hit_object() -> void:
 		last_spawn_type = chosen_type;
 		num_spawn = 0;
 			
+	print(spawns_now);
+	
 func generate_random_duck() -> String:
 	var duck_arr = Ducks.keys();
 	var chosen_duck = duck_arr.pick_random();
@@ -213,21 +234,7 @@ func _process(delta: float) -> void:
 				if (total_count == 0):
 					waves_remaining += 1; 
 					already_spawned = false;
-	
-	if (!first_time):
-		if (num_cycles == target_cycle):
-			var time_left_countdown;
-			
-			if (chosen_type == "Duck"):
-				time_left_countdown = duck_timer.time_left;
-			else:
-				time_left_countdown = delay_timer.time_left;
-			
-			if (time_left_countdown < 1.00 && time_left_countdown > 0.0):
-				var target_color := Color.RED;
-				color_change_time += delta/12.0;
-				color_change_time = clampf(color_change_time, 0.0, 1.0);
-			
+
 	if (waves_remaining > max_waves):
 		PlayerVariables.game_last_played = "Burst";
 
@@ -270,14 +277,8 @@ func _process(delta: float) -> void:
 			cloud_timer.start();
 			
 func _on_delay_timer_timeout() -> void:
-	already_spawned = true;
 	if (chosen_type == "Target"):
 		num_cycles += 1;
-		
-	if (num_cycles > target_cycle):
-		target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
-		num_cycles = 0;
-		generate_random_hit_object();
 		
 	var new_target := target.instantiate();
 	game.add_child(new_target);
@@ -309,6 +310,8 @@ func _on_delay_timer_timeout() -> void:
 			spawned_targets["WHITE_TARGET"].push_back(new_target);
 			
 	new_target.points = target_points[Targets.values()[Targets.keys().find(selected_target_value)]]
+	spawns_now += 1;
+	print("inc")
 	
 func _on_cloud_timer_timeout() -> void:
 	var selected_cloud = clouds.pick_random().duplicate();
@@ -319,14 +322,8 @@ func _on_cloud_timer_timeout() -> void:
 	selected_cloud.visible = true;
 
 func _on_duck_timer_timeout() -> void:
-	already_spawned = true;
 	if (chosen_type == "Duck"):
 		num_cycles += 1;
-		
-	if (num_cycles > target_cycle):
-		target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
-		num_cycles = 0;
-		generate_random_hit_object();
 		
 	var new_duck := duck.instantiate();
 	game.add_child(new_duck);
@@ -353,13 +350,18 @@ func _on_duck_timer_timeout() -> void:
 			spawned_targets["WHITE_DUCK"].push_back(new_duck);
 
 	new_duck.points = duck_points[Ducks.values()[Ducks.keys().find(selected_duck_value)]];
+	spawns_now += 1;
+	
+	print("inc")
 	
 func _on_countdown_timer_timeout() -> void:
 	if (!started):
 		started = true;
 		
+		spawns_possible = randi_range(spawns_range[0], spawns_range[1]);
 		target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
-		generate_random_hit_object();
+		generate_wave();
+		countdown_timer.wait_time = 0.5;
 	else:
 		delay_timer.paused = false;
 		duck_timer.paused = false;

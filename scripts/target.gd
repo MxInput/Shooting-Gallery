@@ -31,21 +31,22 @@ signal updateLives;
 
 var pause_manager : Node;
 
+var game;
+
 func _ready() -> void:
-	var game_container = get_parent();
-	
 	var aim_controller = get_parent().find_child("AimController");
 	var target_spawner = get_parent().find_child("TargetSpawner");
 	pause_manager = get_parent().find_child("PauseManager");
 	hit.connect(aim_controller.destroy_target);
 	
-	var game = get_parent();
+	game = get_parent();
 	canvas_layer = game.find_child("CanvasLayer");
 	
 	if (target_spawner.find_child("GameTimer") == null):
-		updateLives.connect(target_spawner.updateLives);
+		if (game.game_mode == GameDetails.GameModes.HUNTING):
+			updateLives.connect(target_spawner.updateLives);
 		
-	if (game_container.game_mode == GameDetails.GameModes.BURST):
+	if (game.game_mode == GameDetails.GameModes.BURST):
 		upper_speed = 10.0;
 		lower_speed = 8.0;
 
@@ -71,8 +72,8 @@ func _process(delta: float) -> void:
 				var target_sprite = find_child("Target", true, false);
 				
 				var target_spawner = get_parent().find_child("TargetSpawner");
-				if (target_spawner.find_child("GameTimer") != null || target_spawner.game_mode == GameDetails.GameModes.BURST):
-					if (!target_spawner.game_timer.is_stopped() || target_spawner.game_mode == GameDetails.GameModes.BURST):
+				if (target_spawner.find_child("GameTimer") != null || game.game_mode == GameDetails.GameModes.BURST):
+					if (game.game_mode == GameDetails.GameModes.BURST || !target_spawner.game_timer.is_stopped()):
 						var perfect_text := canvas_layer.find_child("PerfectTeller");
 						perfect_text.visible = false;
 				else:
@@ -219,8 +220,76 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 								7:
 									points_teller.modulate = Color.YELLOW;
 						hit.emit(self, points, z_index);
-		elif (target_spawner.game_mode == GameDetails.GameModes.BURST && target_spawner.waves <= target_spawner.max_waves):
-		elif (target_spawner.game_mode == GameDetails.GameModes.HUNTING && target_spawner.lives > 0):
+		elif (game.game_mode == GameDetails.GameModes.BURST && target_spawner.remaining_waves <= target_spawner.max_waves):
+			if (event.is_action("left_click")):
+					if (!shot && (!aim_controller.blocked || (z_index != 2))):
+						if (aim_controller.loaded):	
+							var new_points_icon = points_icon.instantiate();
+							canvas_layer.add_child(new_points_icon);
+							
+							var new_points_total_icon = points_icon.instantiate();
+							canvas_layer.add_child(new_points_total_icon);
+							new_points_total_icon.text = "+" + str(points);
+							new_points_total_icon.modulate = Color.DARK_GREEN;
+							new_points_total_icon.position = Vector2(160.0, 100.0);
+							
+							var new_shot_particles := shot_particles.instantiate();
+							add_child(new_shot_particles);
+							new_shot_particles.emitting = true;
+							new_shot_particles.global_position = get_global_mouse_position();
+							
+							if (is_in_group("duck")):
+								var duck_sprite = find_child("Duck", true, false);
+								match (duck_sprite.texture):
+									target_spawner.brown_duck_texture:
+										PlayerVariables.num_shot["BROWN_DUCK"] += 1;
+										new_shot_particles.color = Color.from_string("#a36a31", Color.SADDLE_BROWN);
+									target_spawner.yellow_duck_texture:
+										PlayerVariables.num_shot["YELLOW_DUCK"] += 1;
+										new_shot_particles.color = Color.from_string("#edae1a", Color.YELLOW);
+									target_spawner.white_duck_texture:
+										PlayerVariables.num_shot["WHITE_DUCK"] += 1;
+										new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
+										
+								PlayerVariables.num_shot_ducks += 1;
+								aim_controller.duck_count += 1;
+								new_points_icon.position = Vector2(434.0, 100.0);
+							else:
+								var target_sprite = find_child("Target", true, false);		
+								
+								match (target_sprite.texture):
+									target_spawner.colored_target_texture:
+										PlayerVariables.num_shot["COLORED_TARGET"] += 1;
+										new_shot_particles.color = Color.from_string("#207bb0", Color.WHITE);
+									target_spawner.red_target_texture:
+										PlayerVariables.num_shot["RED_TARGET"] += 1;
+										new_shot_particles.color = Color.from_string("#cf560a", Color.DARK_RED);
+									target_spawner.white_target_texture:
+										PlayerVariables.num_shot["WHITE_TARGET"] += 1;
+										new_shot_particles.color = Color.WHITE;
+										
+								PlayerVariables.num_shot_targets += 1;
+								aim_controller.target_count += 1;
+								new_points_icon.position = Vector2(670.0, 100.0);
+								
+							shot = true;
+							points_teller.text = "+" + str(points);
+							points_teller.reparent(canvas_layer);
+							points_teller.global_position = get_viewport().get_mouse_position();
+							points_teller.visible = true;
+							match points:
+								2:
+									points_teller.modulate = Color.DEEP_SKY_BLUE;
+								3:
+									points_teller.modulate = Color.HOT_PINK;
+								4:
+									points_teller.modulate = Color.ORANGE;
+								5:
+									points_teller.modulate = Color.SEA_GREEN;
+								7:
+									points_teller.modulate = Color.YELLOW;
+						hit.emit(self, points, z_index);
+		elif (game.game_mode == GameDetails.GameModes.HUNTING && target_spawner.lives > 0):
 				if (event.is_action("left_click")):
 					var wrong_target = false;
 					
