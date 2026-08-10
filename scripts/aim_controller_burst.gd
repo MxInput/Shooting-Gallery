@@ -65,7 +65,7 @@ var blocked := false;
 
 func destroy_target(target, points, order) -> void:
 	if (loaded && (!blocked || order != 2)):
-		if (target_spawner.waves <= target_spawner.max_waves):
+		if (target_spawner.waves_remaining <= target_spawner.max_waves):
 			if (combo_timer.is_stopped()):
 				combo = 0;
 				combo_timer.start();

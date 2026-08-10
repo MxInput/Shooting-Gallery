@@ -87,7 +87,7 @@ var target_cycle := 0;
 
 var spawns_now := 0;
 var spawns_possible := 0;
-var spawns_range := [12, 24];
+var spawns_range := [50, 75];
 
 var menu = "res://nodes/menu.tscn";
 
@@ -98,7 +98,7 @@ var lower_target_cycles = [4, 3, 2, 1];
 var upper_target_cycles = [8, 7, 6, 5];
 
 var number_on_screen := 0;
-var max_on_screen := 3;
+var max_on_screen := 8;
 
 var first_time = true;
 
@@ -106,7 +106,6 @@ var color_change_time := 0.0
 
 var last_spawn := "";
 var last_spawn_type := "";
-var num_spawn := 0;
 
 @export var pause_manager : Node;
 @export var pause_button : Button;
@@ -116,93 +115,42 @@ var started = false;
 var already_spawned = false;
 
 func generate_wave() -> void:
-	var count = 0;
 	while (spawns_now < spawns_possible):
-		generate_random_hit_object();
-		count += 1;
-		if (count > 50):
-			break;
+		await generate_random_hit_object();
 			
 func generate_random_hit_object() -> void:
 	color_change_time = 0.0;
 	number_on_screen = 0;
 	
-	var found_chosen;
-	
 	var chance = randi_range(0, 1);
-	
-	if ((!delay_timer.is_stopped()) || (!duck_timer.is_stopped())):
-		if (!delay_timer.is_stopped()):
-			await delay_timer.timeout
-		if (!duck_timer.is_stopped()):
-			await duck_timer.timeout;
 
 	match (chance):
 		0:
-			chosen_hit = generate_random_duck();
-			
-			if (num_spawn >= 1):
-				while (chosen_hit == last_spawn && chosen_type == last_spawn_type):
-					chosen_hit = generate_random_duck();
-					
 			chosen_type = "Duck";
-		1:
-			chosen_hit = generate_random_target();
 			
-			if (num_spawn >= 1):
-				while (chosen_hit == last_spawn && chosen_type == last_spawn_type):
-					chosen_hit = generate_random_target();
-					
+			if (!duck_timer.is_stopped()):
+				await duck_timer.timeout;
+			
+			if (spawns_now >= spawns_possible):
+				return;
+				
+			duck_timer.start();
+		1:
 			chosen_type = "Target";
+			
+			if (!delay_timer.is_stopped()):
+				await delay_timer.timeout;
+			
+			if (spawns_now >= spawns_possible):
+				return;
+				
+			delay_timer.start();					
 
 	if (first_time):
 		first_time = false;
-	else:
-		if (chosen_type == "Duck"):	
-			match (chosen_hit):
-				"YELLOW":
-					found_chosen = spawned_targets["YELLOW_DUCK"];
-				"BROWN":
-					found_chosen = spawned_targets["BROWN_DUCK"];
-				"WHITE":
-					found_chosen = spawned_targets["WHITE_DUCK"];
-					
-			for found_chosen_duck in found_chosen:
-				var duck_sprite = found_chosen_duck.find_child("Duck", true, false);
-				var new_duck = Ducks.keys().pick_random();
-					
-				while (new_duck == chosen_hit):
-					new_duck = Ducks.keys().pick_random();
-						
-				duck_sprite.texture = duck_textures[Ducks.values()[Ducks.keys().find(new_duck)]]
-				found_chosen_duck.points = duck_points[Ducks.values()[Ducks.keys().find(new_duck)]];
-		else:
-			match (chosen_hit):
-				"RED":
-					found_chosen = spawned_targets["RED_TARGET"];
-				"COLORED":
-					found_chosen = spawned_targets["COLORED_TARGET"];
-				"WHITE":
-					found_chosen = spawned_targets["WHITE_TARGET"];
-					
-			for found_chosen_target in found_chosen:
-				var target_sprite = found_chosen_target.find_child("Target", true, false);
-				var new_target = Targets.keys().pick_random();
-					
-				while (new_target == chosen_hit):
-					new_target = Targets.keys().pick_random();
-						
-				target_sprite.texture = target_textures[Targets.values()[Targets.keys().find(new_target)]]
-				found_chosen_target.points = target_points[Targets.values()[Targets.keys().find(new_target)]];
-	
-	if (last_spawn == chosen_hit && last_spawn_type == chosen_type):
-		num_spawn += 1;
-	else:
-		last_spawn = chosen_hit;
-		last_spawn_type = chosen_type;
-		num_spawn = 0;
-			
-	print(spawns_now);
+		
+	last_spawn = chosen_hit;
+	last_spawn_type = chosen_type;
 	
 func generate_random_duck() -> String:
 	var duck_arr = Ducks.keys();
@@ -261,16 +209,6 @@ func _process(delta: float) -> void:
 	if (waves_remaining < max_waves):
 		time_ongoing += delta;
 		
-		if (delay_timer.is_stopped()):
-			var random_start_time := randf_range(lower_delay_limit, upper_delay_limit);
-			delay_timer.wait_time = random_start_time;
-			
-			delay_timer.start();
-		if (duck_timer.is_stopped()):
-			var random_start_time := randf_range(lower_duck_limit, upper_duck_limit);
-			duck_timer.wait_time = random_start_time;
-			
-			duck_timer.start();
 		if (cloud_timer.is_stopped()):
 			var selected_time = randf_range(cloud_upper_limit, cloud_lower_limit);
 			cloud_timer.wait_time = selected_time;
@@ -290,11 +228,19 @@ func _on_delay_timer_timeout() -> void:
 	var selected_target_value = Targets.keys().pick_random();
 	
 	if (chosen_type == "Target" && chosen_hit == selected_target_value):	
-		if (number_on_screen < max_on_screen):
-			number_on_screen += 1;
-		else:
-			while (selected_target_value == chosen_hit):
-				selected_target_value = Targets.keys().pick_random();
+			var target_array;
+			
+			match (selected_target_value):
+				"RED":
+					target_array = spawned_targets["RED_TARGET"];
+				"COLORED":
+					target_array = spawned_targets["COLORED_TARGET"];
+				"WHITE":
+					target_array = spawned_targets["WHITE_TARGET"];
+					
+			if (target_array.size() >= max_on_screen):
+				while (selected_target_value == chosen_hit):
+					selected_target_value = Targets.keys().pick_random();
 				
 	match (selected_target_value):
 		"RED":
@@ -311,7 +257,7 @@ func _on_delay_timer_timeout() -> void:
 			
 	new_target.points = target_points[Targets.values()[Targets.keys().find(selected_target_value)]]
 	spawns_now += 1;
-	print("inc")
+	print("doing2")
 	
 func _on_cloud_timer_timeout() -> void:
 	var selected_cloud = clouds.pick_random().duplicate();
@@ -332,27 +278,23 @@ func _on_duck_timer_timeout() -> void:
 	var selected_duck_value = Ducks.keys().pick_random();
 	
 	if (chosen_type == "Duck" && chosen_hit == selected_duck_value):	
-		if (number_on_screen < max_on_screen):
-			number_on_screen += 1;
-		else:
+		var target_array;
+			
+		match (selected_duck_value):
+			"YELLOW":
+				target_array = spawned_targets["YELLOW_DUCK"];
+			"BROWN":
+				target_array = spawned_targets["BROWN_DUCK"];
+			"WHITE":
+				target_array = spawned_targets["WHITE_DUCK"];
+					
+		if (target_array.size() >= max_on_screen):
 			while (selected_duck_value == chosen_hit):
 				selected_duck_value = Ducks.keys().pick_random();
-		
-	match (selected_duck_value):
-		"YELLOW":
-			new_duck.find_child("Duck").texture = yellow_duck_texture;
-			spawned_targets["YELLOW_DUCK"].push_back(new_duck);
-		"BROWN":
-			new_duck.find_child("Duck").texture = brown_duck_texture;
-			spawned_targets["BROWN_DUCK"].push_back(new_duck);
-		"WHITE":
-			new_duck.find_child("Duck").texture = white_duck_texture;
-			spawned_targets["WHITE_DUCK"].push_back(new_duck);
 
 	new_duck.points = duck_points[Ducks.values()[Ducks.keys().find(selected_duck_value)]];
 	spawns_now += 1;
-	
-	print("inc")
+	print("doing1")
 	
 func _on_countdown_timer_timeout() -> void:
 	if (!started):

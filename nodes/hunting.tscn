@@ -620,11 +620,11 @@ pause_manager = NodePath("../PauseManager")
 pause_button = NodePath("../CanvasLayer/Pause")
 
 [node name="DelayTimer" type="Timer" parent="TargetSpawner" unique_id=1665403982]
-wait_time = 3.0
+wait_time = 0.05
 one_shot = true
 
 [node name="DuckTimer" type="Timer" parent="TargetSpawner" unique_id=123717928]
-wait_time = 3.0
+wait_time = 0.025
 one_shot = true
 
 [node name="CloudTimer" type="Timer" parent="TargetSpawner" unique_id=450915509]

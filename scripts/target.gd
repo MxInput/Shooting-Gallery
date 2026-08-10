@@ -50,6 +50,8 @@ func _ready() -> void:
 		upper_speed = 10.0;
 		lower_speed = 8.0;
 
+		speed = randf_range(lower_speed, upper_speed);
+		
 func _process(delta: float) -> void:	
 	if (!pause_manager.is_paused()):
 		if (!shot):
@@ -220,7 +222,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 								7:
 									points_teller.modulate = Color.YELLOW;
 						hit.emit(self, points, z_index);
-		elif (game.game_mode == GameDetails.GameModes.BURST && target_spawner.remaining_waves <= target_spawner.max_waves):
+		elif (game.game_mode == GameDetails.GameModes.BURST && target_spawner.waves_remaining <= target_spawner.max_waves):
 			if (event.is_action("left_click")):
 					if (!shot && (!aim_controller.blocked || (z_index != 2))):
 						if (aim_controller.loaded):	
