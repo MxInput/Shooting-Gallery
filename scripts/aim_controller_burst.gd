@@ -128,7 +128,7 @@ func _process(_delta: float) -> void:
 	if (!pause_manager.is_paused()):
 		if (initial_timer.is_stopped()):
 			if (Input.is_action_pressed("left_click")):
-				if (target_spawner.waves <= target_spawner.max_waves):
+				if (target_spawner.waves_remaining <= target_spawner.max_waves):
 					if (delay_timer.is_stopped()):
 						delay_timer.start();
 						if (ammo == 0):

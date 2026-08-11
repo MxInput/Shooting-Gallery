@@ -258,6 +258,7 @@ func _process(delta: float) -> void:
 		if (PlayerVariables.points > PlayerVariables.high_score_hunting):
 			PlayerVariables.high_score_hunting = PlayerVariables.points;
 			
+		pause_button.visible = false;
 		game_over.visible = true;
 		return_button.visible = true;
 		

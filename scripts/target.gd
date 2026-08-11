@@ -47,8 +47,8 @@ func _ready() -> void:
 			updateLives.connect(target_spawner.updateLives);
 		
 	if (game.game_mode == GameDetails.GameModes.BURST):
-		upper_speed = 10.0;
-		lower_speed = 8.0;
+		upper_speed = 8.0;
+		lower_speed = 6.0;
 
 		speed = randf_range(lower_speed, upper_speed);
 		
@@ -78,6 +78,24 @@ func _process(delta: float) -> void:
 					if (game.game_mode == GameDetails.GameModes.BURST || !target_spawner.game_timer.is_stopped()):
 						var perfect_text := canvas_layer.find_child("PerfectTeller");
 						perfect_text.visible = false;
+						
+						if (game.game_mode == GameDetails.GameModes.BURST):
+							if (duck_sprite != null):
+								match (duck_sprite.texture):
+									target_spawner.white_duck_texture:
+										target_spawner.spawned_targets["WHITE_DUCK"].erase(self);
+									target_spawner.brown_duck_texture:
+										target_spawner.spawned_targets["BROWN_DUCK"].erase(self);
+									target_spawner.yellow_duck_texture:					
+										target_spawner.spawned_targets["YELLOW_DUCK"].erase(self);
+							elif (target_sprite != null):
+								match (target_sprite.texture):
+									target_spawner.colored_target_texture:
+										target_spawner.spawned_targets["COLORED_TARGET"].erase(self);
+									target_spawner.red_target_texture:
+										target_spawner.spawned_targets["RED_TARGET"].erase(self);			
+									target_spawner.white_target_texture:					
+										target_spawner.spawned_targets["WHITE_TARGET"].erase(self);
 				else:
 					var current_target = target_spawner.chosen_hit;
 					var target_type = target_spawner.chosen_type;

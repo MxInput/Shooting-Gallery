@@ -580,7 +580,7 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "return_button", "canvas_layer", "pause_manager", "pause_button")]
+[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("cloud_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "return_button", "canvas_layer", "pause_manager", "pause_button", "wave_display")]
 script = ExtResource("21_2xtdh")
 target = ExtResource("23_rulmk")
 duck = ExtResource("24_wnf5o")
@@ -590,9 +590,7 @@ white_target_texture = ExtResource("27_awgxm")
 brown_duck_texture = ExtResource("28_tccke")
 yellow_duck_texture = ExtResource("29_lpkoo")
 white_duck_texture = ExtResource("30_lc6ld")
-delay_timer = NodePath("DelayTimer")
 cloud_timer = NodePath("CloudTimer")
-duck_timer = NodePath("DuckTimer")
 countdown_timer = NodePath("CountdownTimer")
 game = NodePath("..")
 aim_controller = NodePath("../AimController")
@@ -605,14 +603,7 @@ return_button = NodePath("../CanvasLayer/Return")
 canvas_layer = NodePath("../CanvasLayer")
 pause_manager = NodePath("../PauseManager")
 pause_button = NodePath("../CanvasLayer/Pause")
-
-[node name="DelayTimer" type="Timer" parent="TargetSpawner" unique_id=1665403982]
-wait_time = 3.0
-one_shot = true
-
-[node name="DuckTimer" type="Timer" parent="TargetSpawner" unique_id=123717928]
-wait_time = 3.0
-one_shot = true
+wave_display = NodePath("../CanvasLayer/Clock")
 
 [node name="CloudTimer" type="Timer" parent="TargetSpawner" unique_id=450915509]
 wait_time = 0.5
@@ -810,14 +801,12 @@ position = Vector2(-451, -108)
 [node name="Pine2" parent="Trees" unique_id=96647167 instance=ExtResource("44_w3mnj")]
 position = Vector2(290, -108)
 
-[node name="PauseManager" type="Node" parent="." unique_id=1315596314 node_paths=PackedStringArray("delay_timer", "countdown_timer", "pause_button", "target_spawner", "duck_timer", "target_timer", "return_button")]
+[node name="PauseManager" type="Node" parent="." unique_id=1315596314 node_paths=PackedStringArray("delay_timer", "countdown_timer", "pause_button", "target_spawner", "return_button")]
 script = ExtResource("45_nybl1")
 delay_timer = NodePath("DelayTimer")
 countdown_timer = NodePath("../TargetSpawner/CountdownTimer")
 pause_button = NodePath("../CanvasLayer/Pause")
 target_spawner = NodePath("../TargetSpawner")
-duck_timer = NodePath("../TargetSpawner/DuckTimer")
-target_timer = NodePath("../TargetSpawner/DelayTimer")
 return_button = NodePath("../CanvasLayer/Return")
 
 [node name="DelayTimer" type="Timer" parent="PauseManager" unique_id=763182041]
@@ -828,8 +817,6 @@ one_shot = true
 [connection signal="timeout" from="AimController/ReloadTimer" to="AimController" method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="AimController/ComboTimer" to="AimController" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="AimController/DisappearTimer" to="AimController" method="_on_disappear_timer_timeout"]
-[connection signal="timeout" from="TargetSpawner/DelayTimer" to="TargetSpawner" method="_on_delay_timer_timeout"]
-[connection signal="timeout" from="TargetSpawner/DuckTimer" to="TargetSpawner" method="_on_duck_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/CloudTimer" to="TargetSpawner" method="_on_cloud_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/CountdownTimer" to="TargetSpawner" method="_on_countdown_timer_timeout"]
 [connection signal="timeout" from="PauseManager/DelayTimer" to="PauseManager" method="_on_delay_timer_timeout"]

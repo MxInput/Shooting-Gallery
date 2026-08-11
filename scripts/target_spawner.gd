@@ -201,6 +201,7 @@ func _on_game_timer_timeout() -> void:
 	if (PlayerVariables.points > PlayerVariables.high_score_timed):
 		PlayerVariables.high_score_timed = PlayerVariables.points;
 		
+	pause_button.visible = false;
 	return_button.visible = true;
 	game_over.visible = true;
 	if (perfect_teller.visible):
