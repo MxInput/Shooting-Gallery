@@ -47,11 +47,15 @@ func _ready() -> void:
 			updateLives.connect(target_spawner.updateLives);
 		
 	if (game.game_mode == GameDetails.GameModes.BURST):
-		upper_speed = 8.0;
-		lower_speed = 6.0;
+		upper_speed = target_spawner.upper_speeds[target_spawner.waves_remaining];
+		lower_speed = target_spawner.lower_speeds[target_spawner.waves_remaining];
 
 		speed = randf_range(lower_speed, upper_speed);
 		
+func change_speed(us, ls) -> void:
+	lower_speed = ls;
+	upper_speed = us;
+	
 func _process(delta: float) -> void:	
 	if (!pause_manager.is_paused()):
 		if (!shot):
@@ -264,11 +268,14 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 									target_spawner.brown_duck_texture:
 										PlayerVariables.num_shot["BROWN_DUCK"] += 1;
 										new_shot_particles.color = Color.from_string("#a36a31", Color.SADDLE_BROWN);
+										target_spawner.spawned_targets["BROWN_DUCK"].erase(self);
 									target_spawner.yellow_duck_texture:
 										PlayerVariables.num_shot["YELLOW_DUCK"] += 1;
 										new_shot_particles.color = Color.from_string("#edae1a", Color.YELLOW);
+										target_spawner.spawned_targets["YELLOW_DUCK"].erase(self);
 									target_spawner.white_duck_texture:
 										PlayerVariables.num_shot["WHITE_DUCK"] += 1;
+										target_spawner.spawned_targets["WHITE_DUCK"].erase(self);
 										new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
 										
 								PlayerVariables.num_shot_ducks += 1;
@@ -280,12 +287,15 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 								match (target_sprite.texture):
 									target_spawner.colored_target_texture:
 										PlayerVariables.num_shot["COLORED_TARGET"] += 1;
+										target_spawner.spawned_targets["COLORED_TARGET"].erase(self);	
 										new_shot_particles.color = Color.from_string("#207bb0", Color.WHITE);
 									target_spawner.red_target_texture:
 										PlayerVariables.num_shot["RED_TARGET"] += 1;
 										new_shot_particles.color = Color.from_string("#cf560a", Color.DARK_RED);
+										target_spawner.spawned_targets["RED_TARGET"].erase(self);
 									target_spawner.white_target_texture:
 										PlayerVariables.num_shot["WHITE_TARGET"] += 1;
+										target_spawner.spawned_targets["WHITE_TARGET"].erase(self);	
 										new_shot_particles.color = Color.WHITE;
 										
 								PlayerVariables.num_shot_targets += 1;

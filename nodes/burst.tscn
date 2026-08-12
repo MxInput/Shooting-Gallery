@@ -110,6 +110,7 @@ texture = ExtResource("2_6ihl5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Rifle" unique_id=1287633496]
 libraries/ = SubResource("AnimationLibrary_k35x6")
+speed_scale = 7.5
 
 [node name="Cloud" type="TextureRect" parent="CanvasLayer" unique_id=1384056266]
 visible = false
@@ -561,7 +562,7 @@ canvas_layer = NodePath("../CanvasLayer")
 pause_manager = NodePath("../PauseManager")
 
 [node name="ReloadTimer" type="Timer" parent="AimController" unique_id=218863506]
-wait_time = 1.5
+wait_time = 0.2
 one_shot = true
 
 [node name="DelayTimer" type="Timer" parent="AimController" unique_id=1300094183]
@@ -580,7 +581,7 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("cloud_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "return_button", "canvas_layer", "pause_manager", "pause_button", "wave_display")]
+[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("cloud_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "return_button", "canvas_layer", "pause_manager", "pause_button", "wave_display", "intermission_timer")]
 script = ExtResource("21_2xtdh")
 target = ExtResource("23_rulmk")
 duck = ExtResource("24_wnf5o")
@@ -604,6 +605,7 @@ canvas_layer = NodePath("../CanvasLayer")
 pause_manager = NodePath("../PauseManager")
 pause_button = NodePath("../CanvasLayer/Pause")
 wave_display = NodePath("../CanvasLayer/Clock")
+intermission_timer = NodePath("IntermissionTimer")
 
 [node name="CloudTimer" type="Timer" parent="TargetSpawner" unique_id=450915509]
 wait_time = 0.5
@@ -611,6 +613,9 @@ one_shot = true
 
 [node name="CountdownTimer" type="Timer" parent="TargetSpawner" unique_id=619445193]
 wait_time = 2.0
+one_shot = true
+
+[node name="IntermissionTimer" type="Timer" parent="TargetSpawner" unique_id=1404028552]
 one_shot = true
 
 [node name="Waves" type="Node2D" parent="." unique_id=1925072304 node_paths=PackedStringArray("front_waves", "back_waves")]
@@ -819,4 +824,5 @@ one_shot = true
 [connection signal="timeout" from="AimController/DisappearTimer" to="AimController" method="_on_disappear_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/CloudTimer" to="TargetSpawner" method="_on_cloud_timer_timeout"]
 [connection signal="timeout" from="TargetSpawner/CountdownTimer" to="TargetSpawner" method="_on_countdown_timer_timeout"]
+[connection signal="timeout" from="TargetSpawner/IntermissionTimer" to="TargetSpawner" method="_on_intermission_timer_timeout"]
 [connection signal="timeout" from="PauseManager/DelayTimer" to="PauseManager" method="_on_delay_timer_timeout"]

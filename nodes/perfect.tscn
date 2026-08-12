@@ -19,23 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://dnpej35ajkds1" path="res://images/icons/icon_duck.png" id="17_74gud"]
 [ext_resource type="Texture2D" uid="uid://cikjucu56ltg" path="res://images/icons/icon_target.png" id="18_nhbfy"]
 [ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="19_4sr1k"]
-[ext_resource type="Script" uid="uid://e6t01tta7kxc" path="res://scripts/aim_controller.gd" id="20_yg461"]
-[ext_resource type="Texture2D" uid="uid://dfyfatu8qjh1a" path="res://images/shots/shot_blue_large.png" id="21_pfjim"]
-[ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="22_jxo8a"]
-[ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="23_4y1r6"]
-[ext_resource type="Texture2D" uid="uid://dis6a6dygughr" path="res://images/shots/shot_yellow_large.png" id="24_ibwxm"]
-[ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="25_4xvkx"]
-[ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="26_r3sj1"]
-[ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="27_1sqel"]
-[ext_resource type="Script" uid="uid://cpufec1r6ag50" path="res://scripts/target_spawner.gd" id="28_lbb72"]
-[ext_resource type="PackedScene" uid="uid://c615hf1ce8red" path="res://nodes/target.tscn" id="29_0xho3"]
-[ext_resource type="PackedScene" uid="uid://ejgc54eqt668" path="res://nodes/duck.tscn" id="30_fs72u"]
-[ext_resource type="Texture2D" uid="uid://cdo161nvwj1om" path="res://images/targets/target_colored.png" id="31_ux1wb"]
-[ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="32_vqqwb"]
-[ext_resource type="Texture2D" uid="uid://dgx3ium1xm0ew" path="res://images/targets/target_white.png" id="33_ftqsu"]
-[ext_resource type="Texture2D" uid="uid://bmco8f52vri1k" path="res://images/ducks/duck_target_brown.png" id="34_dtu6m"]
-[ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="35_k540c"]
-[ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="36_uqyxp"]
+[ext_resource type="Script" uid="uid://bwbwrdw7eo451" path="res://nodes/aim_controller_perfect.gd" id="20_ql8ts"]
+[ext_resource type="Script" uid="uid://nrku5teat7xq" path="res://nodes/target_spawner_perfect.gd" id="21_6v2x7"]
 [ext_resource type="Script" uid="uid://c1hmg26vn0yb6" path="res://scripts/move_waves.gd" id="37_r4krb"]
 [ext_resource type="Texture2D" uid="uid://cepm0jemtdvo3" path="res://images/scenery/water2.png" id="38_1toi4"]
 [ext_resource type="Texture2D" uid="uid://r71e3ldnb754" path="res://images/scenery/water1.png" id="39_wwxed"]
@@ -378,6 +363,132 @@ offset_right = 21.0
 offset_bottom = 36.0
 texture = ExtResource("16_ivota")
 
+[node name="BulletOutline4" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=324924868]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 599.0
+offset_right = 122.0
+offset_bottom = 635.0
+texture = ExtResource("15_jbjd4")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline4" unique_id=1365478064]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_ivota")
+
+[node name="BulletOutline5" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=1100776937]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 599.0
+offset_right = 148.0
+offset_bottom = 635.0
+texture = ExtResource("15_jbjd4")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline5" unique_id=70250526]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_ivota")
+
+[node name="BulletOutline6" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=414482454]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 599.0
+offset_right = 176.0
+offset_bottom = 635.0
+texture = ExtResource("15_jbjd4")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline6" unique_id=545880988]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_ivota")
+
+[node name="BulletOutline7" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=171327575]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 599.0
+offset_right = 206.0
+offset_bottom = 635.0
+texture = ExtResource("15_jbjd4")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline7" unique_id=749524816]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_ivota")
+
+[node name="BulletOutline8" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=1402439846]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 599.0
+offset_right = 232.0
+offset_bottom = 635.0
+texture = ExtResource("15_jbjd4")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline8" unique_id=401705924]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_ivota")
+
+[node name="BulletOutline9" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=392893886]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 599.0
+offset_right = 260.0
+offset_bottom = 635.0
+texture = ExtResource("15_jbjd4")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline9" unique_id=336973724]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_ivota")
+
+[node name="BulletOutline10" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=1587582777]
+layout_mode = 0
+offset_left = 268.0
+offset_top = 599.0
+offset_right = 289.0
+offset_bottom = 635.0
+texture = ExtResource("15_jbjd4")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline10" unique_id=1233194816]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_ivota")
+
+[node name="BulletOutline11" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=87801967]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 599.0
+offset_right = 315.0
+offset_bottom = 635.0
+texture = ExtResource("15_jbjd4")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline11" unique_id=1904462584]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_ivota")
+
+[node name="BulletOutline12" type="TextureRect" parent="CanvasLayer/Bullets" unique_id=460069703]
+layout_mode = 0
+offset_left = 322.0
+offset_top = 599.0
+offset_right = 343.0
+offset_bottom = 635.0
+texture = ExtResource("15_jbjd4")
+
+[node name="BulletColor" type="TextureRect" parent="CanvasLayer/Bullets/BulletOutline12" unique_id=534508672]
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 36.0
+texture = ExtResource("16_ivota")
+
 [node name="TargetCounts" type="Control" parent="CanvasLayer" unique_id=1745872370]
 layout_mode = 3
 anchors_preset = 0
@@ -484,33 +595,8 @@ text = "||"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
-[node name="AimController" type="Node2D" parent="." unique_id=213442519 node_paths=PackedStringArray("crosshair", "rifle", "point_teller", "target_spawner", "reload_timer", "delay_timer", "bullet_outline1", "bullet_outline2", "bullet_outline3", "combo_teller", "combo_timer", "disappear_timer", "duck_count_text", "target_count_text", "initial_timer", "canvas_layer", "pause_manager")]
-script = ExtResource("20_yg461")
-crosshair = NodePath("../CanvasLayer/Crosshair")
-rifle = NodePath("../CanvasLayer/Rifle")
-point_teller = NodePath("../CanvasLayer/PointTeller")
-blue_shot_texture = ExtResource("21_pfjim")
-brown_shot_texture = ExtResource("22_jxo8a")
-grey_shot_texture = ExtResource("23_4y1r6")
-yellow_shot_texture = ExtResource("24_ibwxm")
-shot_sprite = ExtResource("25_4xvkx")
-target_spawner = NodePath("../TargetSpawner")
-reload_timer = NodePath("ReloadTimer")
-delay_timer = NodePath("DelayTimer")
-bullet_outline1 = NodePath("../CanvasLayer/Bullets/BulletOutline1")
-bullet_outline2 = NodePath("../CanvasLayer/Bullets/BulletOutline2")
-bullet_outline3 = NodePath("../CanvasLayer/Bullets/BulletOutline3")
-gold_bullet = ExtResource("16_ivota")
-silver_bullet = ExtResource("26_r3sj1")
-combo_teller = NodePath("../CanvasLayer/ComboTeller")
-combo_timer = NodePath("ComboTimer")
-disappear_timer = NodePath("DisappearTimer")
-duck_count_text = NodePath("../CanvasLayer/TargetCounts/Ducks/DuckCount")
-target_count_text = NodePath("../CanvasLayer/TargetCounts/Target/TargetCount")
-initial_timer = NodePath("InitialTimer")
-points_icon = ExtResource("27_1sqel")
-canvas_layer = NodePath("../CanvasLayer")
-pause_manager = NodePath("../PauseManager")
+[node name="AimController" type="Node2D" parent="." unique_id=213442519]
+script = ExtResource("20_ql8ts")
 
 [node name="ReloadTimer" type="Timer" parent="AimController" unique_id=218863506]
 wait_time = 1.5
@@ -532,35 +618,8 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110 node_paths=PackedStringArray("delay_timer", "cloud_timer", "game_timer", "duck_timer", "countdown_timer", "game", "aim_controller", "cloud", "cloud2", "game_over", "start", "go", "clock", "perfect_final_text", "perfect_teller", "canvas_layer", "return_button", "pause_manager", "pause_button")]
-script = ExtResource("28_lbb72")
-target = ExtResource("29_0xho3")
-duck = ExtResource("30_fs72u")
-colored_target_texture = ExtResource("31_ux1wb")
-red_target_texture = ExtResource("32_vqqwb")
-white_target_texture = ExtResource("33_ftqsu")
-brown_duck_texture = ExtResource("34_dtu6m")
-yellow_duck_texture = ExtResource("35_k540c")
-white_duck_texture = ExtResource("36_uqyxp")
-delay_timer = NodePath("DelayTimer")
-cloud_timer = NodePath("CloudTimer")
-game_timer = NodePath("GameTimer")
-duck_timer = NodePath("DuckTimer")
-countdown_timer = NodePath("CountdownTimer")
-game = NodePath("..")
-aim_controller = NodePath("../AimController")
-cloud = NodePath("../CanvasLayer/Cloud")
-cloud2 = NodePath("../CanvasLayer/Cloud2")
-game_over = NodePath("../CanvasLayer/GameOver")
-start = NodePath("../CanvasLayer/Ready")
-go = NodePath("../CanvasLayer/Go")
-clock = NodePath("../CanvasLayer/Clock")
-perfect_final_text = NodePath("../CanvasLayer/PerfectFinal")
-perfect_teller = NodePath("../CanvasLayer/PerfectTeller")
-canvas_layer = NodePath("../CanvasLayer")
-return_button = NodePath("../CanvasLayer/Return")
-pause_manager = NodePath("../PauseManager")
-pause_button = NodePath("../CanvasLayer/Pause")
+[node name="TargetSpawner" type="Node" parent="." unique_id=1437629110]
+script = ExtResource("21_6v2x7")
 
 [node name="DelayTimer" type="Timer" parent="TargetSpawner" unique_id=1665403982]
 wait_time = 3.0

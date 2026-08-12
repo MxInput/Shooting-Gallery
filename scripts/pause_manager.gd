@@ -61,10 +61,16 @@ func _on_pause_button_down() -> void:
 		paused = true;
 		
 		var game_timer := target_spawner.find_child("GameTimer");
+		var intermission_timer := target_spawner.find_child("IntermissionTimer");
 		if (game_timer != null):
 			game_timer.paused = true;
-		target_timer.paused = true;
-		duck_timer.paused = true;
+			
+		if (target_timer != null):
+			target_timer.paused = true;
+		if (duck_timer != null):
+			duck_timer.paused = true;
+		if (intermission_timer != null):
+			intermission_timer.paused = true;
 	else:
 		countdown_timer.start();
 		pause_button.visible = false;

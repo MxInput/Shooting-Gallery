@@ -47,12 +47,12 @@ var combo := 0;
 @export var duck_count_text : RichTextLabel;
 @export var target_count_text : RichTextLabel;
 
-var bullet_6_reload_time := 0.05;
-var bullet_5_reload_time := 0.10;
-var bullet_4_reload_time := 0.15;
-var bullet_3_reload_time := 0.20;
-var bullet_2_reload_time := 0.25;
-var bullet_1_reload_time := 0.30;
+var bullet_6_reload_time := 0.03;
+var bullet_5_reload_time := 0.06;
+var bullet_4_reload_time := 0.09;
+var bullet_3_reload_time := 0.12;
+var bullet_2_reload_time := 0.15;
+var bullet_1_reload_time := 0.18;
 
 var blocked := false;
 
@@ -62,6 +62,8 @@ var blocked := false;
 @export var canvas_layer : CanvasLayer;
 
 @export var pause_manager : Node;
+
+@export var intermission_timer : Timer;
 
 func destroy_target(target, points, order) -> void:
 	if (loaded && (!blocked || order != 2)):
