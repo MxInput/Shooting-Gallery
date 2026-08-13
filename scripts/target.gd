@@ -46,12 +46,13 @@ func _ready() -> void:
 		if (game.game_mode == GameDetails.GameModes.HUNTING):
 			updateLives.connect(target_spawner.updateLives);
 		
-	if (game.game_mode == GameDetails.GameModes.BURST):
-		upper_speed = target_spawner.upper_speeds[target_spawner.waves_remaining];
-		lower_speed = target_spawner.lower_speeds[target_spawner.waves_remaining];
+	if (game.game_mode == GameDetails.GameModes.BURST || game.game_mode == GameDetails.GameModes.EXACT):
+		if (target_spawner.waves_remaining <= target_spawner.max_waves):
+			upper_speed = target_spawner.upper_speeds[target_spawner.waves_remaining];
+			lower_speed = target_spawner.lower_speeds[target_spawner.waves_remaining];
 
-		speed = randf_range(lower_speed, upper_speed);
-		
+			speed = randf_range(lower_speed, upper_speed);		
+			
 func change_speed(us, ls) -> void:
 	lower_speed = ls;
 	upper_speed = us;
@@ -78,12 +79,12 @@ func _process(delta: float) -> void:
 				var target_sprite = find_child("Target", true, false);
 				
 				var target_spawner = get_parent().find_child("TargetSpawner");
-				if (target_spawner.find_child("GameTimer") != null || game.game_mode == GameDetails.GameModes.BURST):
-					if (game.game_mode == GameDetails.GameModes.BURST || !target_spawner.game_timer.is_stopped()):
+				if (target_spawner.find_child("GameTimer") != null || game.game_mode == GameDetails.GameModes.BURST || game.game_mode == GameDetails.GameModes.EXACT):
+					if (game.game_mode == GameDetails.GameModes.BURST || game.game_mode == GameDetails.GameModes.EXACT || !target_spawner.game_timer.is_stopped()):
 						var perfect_text := canvas_layer.find_child("PerfectTeller");
 						perfect_text.visible = false;
 						
-						if (game.game_mode == GameDetails.GameModes.BURST):
+						if (game.game_mode == GameDetails.GameModes.BURST || game.game_mode == GameDetails.GameModes.EXACT):
 							if (duck_sprite != null):
 								match (duck_sprite.texture):
 									target_spawner.white_duck_texture:
@@ -100,6 +101,15 @@ func _process(delta: float) -> void:
 										target_spawner.spawned_targets["RED_TARGET"].erase(self);			
 									target_spawner.white_target_texture:					
 										target_spawner.spawned_targets["WHITE_TARGET"].erase(self);
+						
+						if (game.game_mode == GameDetails.GameModes.EXACT):
+							var new_points_total_icon = points_icon.instantiate();
+							canvas_layer.add_child(new_points_total_icon);
+							new_points_total_icon.text = "-" + str(points);
+							new_points_total_icon.modulate = Color.CRIMSON;
+							new_points_total_icon.position = Vector2(160.0, 100.0);
+							
+							hit.emit(self, -points, z_index);	
 				else:
 					var current_target = target_spawner.chosen_hit;
 					var target_type = target_spawner.chosen_type;
@@ -244,7 +254,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 								7:
 									points_teller.modulate = Color.YELLOW;
 						hit.emit(self, points, z_index);
-		elif (game.game_mode == GameDetails.GameModes.BURST && target_spawner.waves_remaining <= target_spawner.max_waves):
+		elif ((game.game_mode == GameDetails.GameModes.BURST && target_spawner.waves_remaining <= target_spawner.max_waves) || (game.game_mode == GameDetails.GameModes.EXACT && target_spawner.waves_remaining <= target_spawner.max_waves)):
 			if (event.is_action("left_click")):
 					if (!shot && (!aim_controller.blocked || (z_index != 2))):
 						if (aim_controller.loaded):	

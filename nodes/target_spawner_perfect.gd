@@ -84,8 +84,7 @@ var upper_target_cycle := 8;
 var target_cycle := 0;
 
 var spawns_now := 0;
-var spawns_possible := 0;
-var spawns_range := [32, 40];
+var spawns_possible := 12;
 
 var menu = "res://nodes/menu.tscn";
 
@@ -123,8 +122,8 @@ signal target_done
 
 @export var wave_display : RichTextLabel;
 
-var lower_speeds = [6.0, 6.5, 7.0, 7.5]
-var upper_speeds = [8.0, 8.5, 9.0, 9.5]
+var lower_speeds = [5.0, 5.5, 6.0, 6.5]
+var upper_speeds = [7.0, 7.5, 8.0, 8.5]
  
 @export var intermission_timer : Timer;
 
@@ -206,12 +205,12 @@ func _process(delta: float) -> void:
 							wave_display.text = "END";
 							
 						spawns_now = 0;
-						spawns_possible = randi_range(spawns_range[0], spawns_range[1]);
-						
+
 						already_spawned = false;
 						finished_spawning = false;
 						
 						intermission_timer.start();
+						aim_controller.reload();
 					
 		if (duck_clock < duck_activate_time):
 			duck_clock += delta;
@@ -350,8 +349,7 @@ func duck_activate() -> void:
 func _on_countdown_timer_timeout() -> void:
 	if (!started):
 		started = true;
-		
-		spawns_possible = randi_range(spawns_range[0], spawns_range[1]);
+
 		target_cycle = randi_range(lower_target_cycle, upper_target_cycle);
 		generate_wave();
 		countdown_timer.wait_time = 0.5;

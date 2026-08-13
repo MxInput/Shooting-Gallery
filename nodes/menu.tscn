@@ -71,6 +71,10 @@ text = "[wave freq=20]SHOOTING GALLERY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1924023914]
+offset_right = 1162.0
+offset_bottom = 648.0
+
 [connection signal="button_down" from="CanvasLayer/Timed" to="." method="_on_timed_button_down"]
 [connection signal="button_down" from="CanvasLayer/Hunting" to="." method="_on_hunting_button_down"]
 [connection signal="button_down" from="CanvasLayer/Perfect" to="." method="_on_perfect_button_down"]

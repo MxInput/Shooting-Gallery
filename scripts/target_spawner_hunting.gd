@@ -312,10 +312,20 @@ func _on_delay_timer_timeout() -> void:
 	
 	var selected_target_value = Targets.keys().pick_random();
 	
+	match (selected_target_value):
+		"RED":
+			number_on_screen = spawned_targets["RED_TARGET"].size();
+		
+		"COLORED":
+			new_target.find_child("Target").texture = colored_target_texture;
+			spawned_targets["COLORED_TARGET"].push_back(new_target);
+			
+		"WHITE":
+			new_target.find_child("Target").texture = white_target_texture;
+			spawned_targets["WHITE_TARGET"].push_back(new_target);
+	
 	if (chosen_type == "Target" && chosen_hit == selected_target_value):	
-		if (number_on_screen < max_on_screen):
-			number_on_screen += 1;
-		else:
+		if (number_on_screen >= max_on_screen):
 			while (selected_target_value == chosen_hit):
 				selected_target_value = Targets.keys().pick_random();
 				
