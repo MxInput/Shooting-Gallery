@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d3hmvgoq8nud1"]
+
+[ext_resource type="Script" uid="uid://slcdqncfiwsa" path="res://scripts/home_target.gd" id="1_7ccv0"]
+[ext_resource type="Texture2D" uid="uid://esx07d6t5h8p" path="res://images/stick_metal.png" id="4_dbt2w"]
+[ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="5_a0gii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jabdv"]
+size = Vector2(144, 149)
+
+[node name="MenuTarget" type="Node2D" unique_id=1861554854 groups=["target"]]
+top_level = true
+script = ExtResource("1_7ccv0")
+
+[node name="Stick" type="Sprite2D" parent="." unique_id=746360038]
+position = Vector2(67, 188)
+texture = ExtResource("4_dbt2w")
+
+[node name="Target" type="Sprite2D" parent="." unique_id=830299947]
+clip_children = 2
+position = Vector2(67, 67)
+texture = ExtResource("5_a0gii")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1629788621]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=527996678]
+position = Vector2(66, 67.5)
+shape = SubResource("RectangleShape2D_jabdv")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

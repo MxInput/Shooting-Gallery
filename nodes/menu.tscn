@@ -8,8 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://ggvqaenw4kd0" path="res://nodes/perfect.tscn" id="5_ewqsw"]
 [ext_resource type="PackedScene" uid="uid://dk5q43x7ix3ci" path="res://nodes/info.tscn" id="5_n0hwq"]
 [ext_resource type="FontFile" uid="uid://bqhltna5u2i5f" path="res://fonts/ChailceNogginRegular-2OXoW.ttf" id="6_8hci8"]
+[ext_resource type="PackedScene" uid="uid://b2icq318xxqoq" path="res://nodes/menu_duck.tscn" id="9_fhr7y"]
+[ext_resource type="PackedScene" uid="uid://d3hmvgoq8nud1" path="res://nodes/menu_target.tscn" id="10_2l3r8"]
+[ext_resource type="PackedScene" uid="uid://btyieeu5inpvk" path="res://nodes/shot_particles.tscn" id="11_2l3r8"]
 
-[node name="Menu" type="Node" unique_id=1250484082]
+[node name="Menu" type="Node" unique_id=1250484082 node_paths=PackedStringArray("delay_timer")]
 script = ExtResource("1_01rij")
 timed_game = ExtResource("2_gfiw5")
 hunting_game = ExtResource("3_v4lp8")
@@ -17,48 +20,18 @@ burst_game = ExtResource("4_jday5")
 perfect_game = ExtResource("5_ewqsw")
 customize_page = ExtResource("4_v4lp8")
 info_page = ExtResource("5_n0hwq")
+delay_timer = NodePath("DelayTimer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=316015984]
 
-[node name="Timed" type="Button" parent="CanvasLayer" unique_id=745311735]
-offset_top = 247.0
-offset_right = 58.0
-offset_bottom = 278.0
-text = "TIMED"
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=1924023914]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 1
+color = Color(0.17140675, 0.18740287, 0.2526308, 1)
 
-[node name="Hunting" type="Button" parent="CanvasLayer" unique_id=446894185]
-offset_top = 284.0
-offset_right = 83.0
-offset_bottom = 315.0
-text = "HUNTING"
-
-[node name="Perfect" type="Button" parent="CanvasLayer" unique_id=2102209113]
-offset_left = 133.0
-offset_top = 284.0
-offset_right = 216.0
-offset_bottom = 315.0
-text = "PERFECT"
-
-[node name="Bursts" type="Button" parent="CanvasLayer" unique_id=1768349896]
-offset_left = 133.0
-offset_top = 322.0
-offset_right = 216.0
-offset_bottom = 353.0
-text = "BURSTS"
-
-[node name="Customize" type="Button" parent="CanvasLayer" unique_id=1767538120]
-offset_top = 324.0
-offset_right = 99.0
-offset_bottom = 355.0
-text = "CUSTOMIZE"
-
-[node name="Info" type="Button" parent="CanvasLayer" unique_id=403362943]
-offset_top = 362.0
-offset_right = 99.0
-offset_bottom = 393.0
-text = "INFO"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=1762828201]
+[node name="Title" type="RichTextLabel" parent="CanvasLayer" unique_id=1762828201]
+z_index = 1
 offset_left = 11.0
 offset_top = 15.0
 offset_right = 1145.0
@@ -67,17 +40,114 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("6_8hci8")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[wave freq=20]SHOOTING GALLERY"
+text = "[wave freq=2 radius=40]SHOOTING GALLERY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1924023914]
-offset_right = 1162.0
-offset_bottom = 648.0
+[node name="menu_duck" parent="CanvasLayer" unique_id=95386575 node_paths=PackedStringArray("menu") instance=ExtResource("9_fhr7y")]
+position = Vector2(230, 463)
+menu = NodePath("../..")
 
-[connection signal="button_down" from="CanvasLayer/Timed" to="." method="_on_timed_button_down"]
-[connection signal="button_down" from="CanvasLayer/Hunting" to="." method="_on_hunting_button_down"]
-[connection signal="button_down" from="CanvasLayer/Perfect" to="." method="_on_perfect_button_down"]
-[connection signal="button_down" from="CanvasLayer/Bursts" to="." method="_on_bursts_button_down"]
-[connection signal="button_down" from="CanvasLayer/Customize" to="." method="_on_customize_button_down"]
-[connection signal="button_down" from="CanvasLayer/Info" to="." method="_on_info_button_down"]
+[node name="Label" type="Label" parent="CanvasLayer/menu_duck" unique_id=1449670784]
+offset_left = -205.0
+offset_top = -68.0
+offset_right = -25.0
+offset_bottom = -19.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "TIMED"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="menu_duck2" parent="CanvasLayer" unique_id=1115989504 node_paths=PackedStringArray("menu") instance=ExtResource("9_fhr7y")]
+position = Vector2(391, 463)
+menu = NodePath("../..")
+target_type = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/menu_duck2" unique_id=477926740]
+offset_left = -35.0
+offset_top = -54.0
+offset_right = 145.0
+offset_bottom = -5.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "HUNTING"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="menu_duck3" parent="CanvasLayer" unique_id=878057141 node_paths=PackedStringArray("menu") instance=ExtResource("9_fhr7y")]
+position = Vector2(47, 463)
+menu = NodePath("../..")
+target_type = 2
+
+[node name="Label3" type="Label" parent="CanvasLayer/menu_duck3" unique_id=2022928282]
+offset_left = 147.0
+offset_top = -67.0
+offset_right = 327.0
+offset_bottom = -18.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "PERFECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuTarget" parent="CanvasLayer" unique_id=1861554854 node_paths=PackedStringArray("menu") instance=ExtResource("10_2l3r8")]
+position = Vector2(554, 463)
+shot_particles = ExtResource("11_2l3r8")
+menu = NodePath("../..")
+target_type = 3
+
+[node name="Label4" type="Label" parent="CanvasLayer/MenuTarget" unique_id=1049817986]
+offset_left = -11.0
+offset_top = -72.0
+offset_right = 169.0
+offset_bottom = -23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "BURSTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuTarget2" parent="CanvasLayer" unique_id=1580084058 node_paths=PackedStringArray("menu") instance=ExtResource("10_2l3r8")]
+position = Vector2(735, 463)
+shot_particles = ExtResource("11_2l3r8")
+menu = NodePath("../..")
+target_type = 4
+
+[node name="Label5" type="Label" parent="CanvasLayer/MenuTarget2" unique_id=1015546214]
+offset_left = -9.0
+offset_top = -65.0
+offset_right = 171.0
+offset_bottom = -16.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "CUSTOMIZE"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuTarget3" parent="CanvasLayer" unique_id=721997250 node_paths=PackedStringArray("menu") instance=ExtResource("10_2l3r8")]
+position = Vector2(943, 451)
+shot_particles = ExtResource("11_2l3r8")
+menu = NodePath("../..")
+target_type = 5
+
+[node name="Label6" type="Label" parent="CanvasLayer/MenuTarget3" unique_id=603696000]
+offset_left = -39.0
+offset_top = -61.0
+offset_right = 141.0
+offset_bottom = -12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "INFO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DelayTimer" type="Timer" parent="." unique_id=4709917]
+one_shot = true
+
+[connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]

@@ -8,24 +8,54 @@ extends Node
 @export var customize_page : PackedScene;
 @export var info_page : PackedScene;
 
-func _on_timed_button_down() -> void:
+var hit_already := false;
+
+@export var delay_timer : Timer;
+
+var chosen_location;
+var chosen_target;
+
+func transition(location, target) -> void:
+	if (!hit_already):
+		hit_already = true;
+		
+		chosen_target = target;
+		chosen_location = location;
+		delay_timer.start();
+		
+func go_to_timed() -> void:
 	PlayerVariables.points = 0;
 	get_tree().change_scene_to_packed(timed_game);
 	
-func _on_hunting_button_down() -> void:
+func go_to_hunting() -> void:
 	PlayerVariables.points = 0;
 	get_tree().change_scene_to_packed(hunting_game);
 
-func _on_customize_button_down() -> void:
+func go_to_customize() -> void:
 	get_tree().change_scene_to_packed(customize_page);
 
-func _on_info_button_down() -> void:
+func go_to_info() -> void:
 	get_tree().change_scene_to_packed(info_page);
 
-func _on_bursts_button_down() -> void:
+func go_to_bursts() -> void:
 	PlayerVariables.points = 0;
 	get_tree().change_scene_to_packed(burst_game);
 
-func _on_perfect_button_down() -> void:
+func go_to_perfect() -> void:
 	PlayerVariables.points = 0;
 	get_tree().change_scene_to_packed(perfect_game);
+
+func _on_delay_timer_timeout() -> void:
+	match chosen_location:
+		chosen_target.Location.HUNTING:
+			go_to_hunting();
+		chosen_target.Location.TIMED:
+			go_to_timed();
+		chosen_target.Location.PERFECT:
+			go_to_perfect();
+		chosen_target.Location.BURSTS:
+			go_to_bursts();
+		chosen_target.Location.CUSTOMIZE:
+			go_to_customize();
+		chosen_target.Location.INFO:
+			go_to_info();
