@@ -10,7 +10,9 @@
 [ext_resource type="FontFile" uid="uid://bqhltna5u2i5f" path="res://fonts/ChailceNogginRegular-2OXoW.ttf" id="6_8hci8"]
 [ext_resource type="Script" uid="uid://br08qjnel0ldj" path="res://nodes/flash.gd" id="9_4fy0s"]
 [ext_resource type="Script" uid="uid://slcdqncfiwsa" path="res://scripts/home_target.gd" id="9_jt0lk"]
+[ext_resource type="PackedScene" uid="uid://fqhia3wjxywc" path="res://nodes/oak.tscn" id="10_7wqum"]
 [ext_resource type="PackedScene" uid="uid://btyieeu5inpvk" path="res://nodes/shot_particles.tscn" id="11_2l3r8"]
+[ext_resource type="PackedScene" uid="uid://d4ch0ashg2rki" path="res://nodes/pine.tscn" id="11_6nmrq"]
 [ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="11_eu7fr"]
 [ext_resource type="Texture2D" uid="uid://c62qldanl6gj5" path="res://images/stick_wood.png" id="11_pys32"]
 [ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="12_7lium"]
@@ -31,6 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://r71e3ldnb754" path="res://images/scenery/water1.png" id="26_4fy0s"]
 [ext_resource type="Texture2D" uid="uid://c6k12oqk8hhq2" path="res://images/scenery/grass2.png" id="26_ct581"]
 [ext_resource type="Texture2D" uid="uid://b54pcyr3ja50r" path="res://images/game_background/bg_wood.png" id="30_bqtq0"]
+[ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshairs/crosshair_outline_small.png" id="32_26j0n"]
+[ext_resource type="Script" uid="uid://bc6yj6ydickk" path="res://scripts/crosshair_handler.gd" id="32_y8dmt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eodfl"]
 size = Vector2(103, 86)
@@ -87,11 +91,29 @@ text = "[wave freq=2 radius=40]SHOOT ANY TARGET TO START"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_4fy0s")
-color1 = Color(1, 0.37200922, 0.49276, 1)
+color1 = Color(0.78, 0.11699998, 0.21644974, 1)
 color2 = Color(1, 1, 1, 1)
 
+[node name="Trees" type="Node2D" parent="CanvasLayer" unique_id=821729632]
+z_index = 1
+position = Vector2(537, 412)
+
+[node name="Oak1" parent="CanvasLayer/Trees" unique_id=1420543239 instance=ExtResource("10_7wqum")]
+z_index = 1
+position = Vector2(-238, -108)
+
+[node name="Oak2" parent="CanvasLayer/Trees" unique_id=1891215717 instance=ExtResource("10_7wqum")]
+position = Vector2(442, -108)
+
+[node name="Pine1" parent="CanvasLayer/Trees" unique_id=96647167 instance=ExtResource("11_6nmrq")]
+position = Vector2(-451, -108)
+
+[node name="Pine2" parent="CanvasLayer/Trees" unique_id=889335429 instance=ExtResource("11_6nmrq")]
+z_index = 1
+position = Vector2(-23, -108)
+
 [node name="Waves" type="Node2D" parent="CanvasLayer" unique_id=89270707 node_paths=PackedStringArray("front_waves", "back_waves")]
-z_index = 2
+z_index = 4
 position = Vector2(568, 383)
 script = ExtResource("24_tnk8a")
 front_waves = NodePath("Front")
@@ -183,9 +205,9 @@ texture = ExtResource("26_4fy0s")
 position = Vector2(-560, 191.5)
 texture = ExtResource("26_4fy0s")
 
-[node name="PerfectDuck" type="Node2D" parent="CanvasLayer" unique_id=95386575 node_paths=PackedStringArray("menu") groups=["duck"]]
+[node name="PerfectDuck" type="Node2D" parent="CanvasLayer" unique_id=95386575 node_paths=PackedStringArray("menu", "crosshair_handler") groups=["duck"]]
 top_level = true
-z_index = 3
+z_index = 4
 position = Vector2(230, 373)
 script = ExtResource("9_jt0lk")
 shot_particles = ExtResource("11_2l3r8")
@@ -195,12 +217,13 @@ blue_shot_texture = ExtResource("12_w33sj")
 brown_shot_texture = ExtResource("13_iclm0")
 grey_shot_texture = ExtResource("14_j5k8f")
 yellow_shot_texture = ExtResource("15_o2bas")
+crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/PerfectDuck" unique_id=2022928282]
-offset_left = -36.0
+offset_left = -1.0
 offset_top = -67.0
-offset_right = 144.0
+offset_right = 107.0
 offset_bottom = -18.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.019763226, 0.096311934, 0.2317738, 0.7490196)
@@ -231,10 +254,10 @@ shape = SubResource("RectangleShape2D_eodfl")
 position = Vector2(73.5, 57)
 shape = SubResource("RectangleShape2D_5nbxs")
 
-[node name="HuntingDuck" type="Node2D" parent="CanvasLayer" unique_id=1115989504 node_paths=PackedStringArray("menu") groups=["duck"]]
+[node name="HuntingDuck" type="Node2D" parent="CanvasLayer" unique_id=1115989504 node_paths=PackedStringArray("menu", "crosshair_handler") groups=["duck"]]
 top_level = true
-z_index = 3
-position = Vector2(391, 373)
+z_index = 4
+position = Vector2(391, 387)
 script = ExtResource("9_jt0lk")
 shot_particles = ExtResource("11_2l3r8")
 shot_effect = ExtResource("11_eu7fr")
@@ -243,6 +266,7 @@ blue_shot_texture = ExtResource("12_w33sj")
 brown_shot_texture = ExtResource("13_iclm0")
 grey_shot_texture = ExtResource("14_j5k8f")
 yellow_shot_texture = ExtResource("15_o2bas")
+crosshair_handler = NodePath("../../CrosshairHandler")
 target_type = 1
 
 [node name="Stick" type="Sprite2D" parent="CanvasLayer/HuntingDuck" unique_id=443761499]
@@ -267,10 +291,10 @@ position = Vector2(73.5, 57)
 shape = SubResource("RectangleShape2D_5nbxs")
 
 [node name="Label" type="Label" parent="CanvasLayer/HuntingDuck" unique_id=477926740]
-offset_left = -35.0
-offset_top = -54.0
-offset_right = 145.0
-offset_bottom = -5.0
+offset_left = -5.0
+offset_top = -67.0
+offset_right = 110.0
+offset_bottom = -18.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.019763226, 0.096311934, 0.2317738, 0.7490196)
 theme_override_fonts/font = ExtResource("16_iclm0")
@@ -279,10 +303,10 @@ text = "HUNTING"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimedDuck" type="Node2D" parent="CanvasLayer" unique_id=878057141 node_paths=PackedStringArray("menu") groups=["duck"]]
+[node name="TimedDuck" type="Node2D" parent="CanvasLayer" unique_id=878057141 node_paths=PackedStringArray("menu", "crosshair_handler") groups=["duck"]]
 top_level = true
-z_index = 3
-position = Vector2(714, 374)
+z_index = 4
+position = Vector2(714, 354)
 script = ExtResource("9_jt0lk")
 shot_particles = ExtResource("11_2l3r8")
 shot_effect = ExtResource("11_eu7fr")
@@ -291,13 +315,14 @@ blue_shot_texture = ExtResource("12_w33sj")
 brown_shot_texture = ExtResource("13_iclm0")
 grey_shot_texture = ExtResource("14_j5k8f")
 yellow_shot_texture = ExtResource("15_o2bas")
+crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 1
 target_type = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/TimedDuck" unique_id=1449670784]
-offset_left = -22.0
+offset_left = -3.0
 offset_top = -68.0
-offset_right = 158.0
+offset_right = 107.0
 offset_bottom = -19.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.019763226, 0.096311934, 0.2317738, 0.7490196)
@@ -328,7 +353,7 @@ shape = SubResource("RectangleShape2D_eodfl")
 position = Vector2(73.5, 57)
 shape = SubResource("RectangleShape2D_5nbxs")
 
-[node name="BurstTarget" type="Node2D" parent="CanvasLayer" unique_id=1861554854 node_paths=PackedStringArray("menu") groups=["target"]]
+[node name="BurstTarget" type="Node2D" parent="CanvasLayer" unique_id=1861554854 node_paths=PackedStringArray("menu", "crosshair_handler") groups=["target"]]
 top_level = true
 z_index = 1
 position = Vector2(121, 216)
@@ -340,6 +365,7 @@ blue_shot_texture = ExtResource("12_w33sj")
 brown_shot_texture = ExtResource("13_iclm0")
 grey_shot_texture = ExtResource("14_j5k8f")
 yellow_shot_texture = ExtResource("15_o2bas")
+crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 3
 target_type = 3
 
@@ -360,9 +386,9 @@ position = Vector2(66, 67.5)
 shape = SubResource("RectangleShape2D_jabdv")
 
 [node name="Label" type="Label" parent="CanvasLayer/BurstTarget" unique_id=1049817986]
-offset_left = -11.0
+offset_left = -5.0
 offset_top = -72.0
-offset_right = 169.0
+offset_right = 138.0
 offset_bottom = -23.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.019763226, 0.096311934, 0.2317738, 0.7490196)
@@ -372,10 +398,10 @@ text = "BURSTS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CustomizeTarget" type="Node2D" parent="CanvasLayer" unique_id=1580084058 node_paths=PackedStringArray("menu") groups=["target"]]
+[node name="CustomizeTarget" type="Node2D" parent="CanvasLayer" unique_id=1580084058 node_paths=PackedStringArray("menu", "crosshair_handler") groups=["target"]]
 top_level = true
 z_index = 1
-position = Vector2(568, 217)
+position = Vector2(568, 264)
 script = ExtResource("9_jt0lk")
 shot_particles = ExtResource("11_2l3r8")
 shot_effect = ExtResource("11_eu7fr")
@@ -384,6 +410,7 @@ blue_shot_texture = ExtResource("12_w33sj")
 brown_shot_texture = ExtResource("13_iclm0")
 grey_shot_texture = ExtResource("14_j5k8f")
 yellow_shot_texture = ExtResource("15_o2bas")
+crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 4
 target_type = 4
 
@@ -404,9 +431,9 @@ position = Vector2(66, 67.5)
 shape = SubResource("RectangleShape2D_jabdv")
 
 [node name="Label" type="Label" parent="CanvasLayer/CustomizeTarget" unique_id=1015546214]
-offset_left = -9.0
+offset_left = -8.0
 offset_top = -65.0
-offset_right = 171.0
+offset_right = 140.0
 offset_bottom = -16.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.019763226, 0.096311934, 0.2317738, 0.7490196)
@@ -416,7 +443,7 @@ text = "CUSTOMIZE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InfoTarget" type="Node2D" parent="CanvasLayer" unique_id=721997250 node_paths=PackedStringArray("menu") groups=["target"]]
+[node name="InfoTarget" type="Node2D" parent="CanvasLayer" unique_id=721997250 node_paths=PackedStringArray("menu", "crosshair_handler") groups=["target"]]
 top_level = true
 z_index = 1
 position = Vector2(832, 246)
@@ -428,6 +455,7 @@ blue_shot_texture = ExtResource("12_w33sj")
 brown_shot_texture = ExtResource("13_iclm0")
 grey_shot_texture = ExtResource("14_j5k8f")
 yellow_shot_texture = ExtResource("15_o2bas")
+crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 5
 target_type = 5
 
@@ -448,9 +476,9 @@ position = Vector2(66, 67.5)
 shape = SubResource("RectangleShape2D_jabdv")
 
 [node name="Label" type="Label" parent="CanvasLayer/InfoTarget" unique_id=603696000]
-offset_left = -39.0
+offset_left = -6.0
 offset_top = -61.0
-offset_right = 141.0
+offset_right = 138.0
 offset_bottom = -12.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.019763226, 0.096311934, 0.2317738, 0.7490196)
@@ -461,7 +489,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Grass" type="Node2D" parent="CanvasLayer" unique_id=843654778]
-z_index = 1
+z_index = 2
 position = Vector2(607, 414)
 
 [node name="Wave10" type="Sprite2D" parent="CanvasLayer/Grass" unique_id=758463978]
@@ -543,13 +571,33 @@ texture = ExtResource("30_bqtq0")
 position = Vector2(525, 61)
 texture = ExtResource("30_bqtq0")
 
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer" unique_id=754672718]
+z_index = 12
+offset_left = 572.0
+offset_top = 384.0
+offset_right = 618.0
+offset_bottom = 430.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+texture = ExtResource("32_26j0n")
+
 [node name="DelayTimer" type="Timer" parent="." unique_id=4709917]
 one_shot = true
 
+[node name="CrosshairHandler" type="Node2D" parent="." unique_id=221442955 node_paths=PackedStringArray("crosshair")]
+script = ExtResource("32_y8dmt")
+crosshair = NodePath("../CanvasLayer/Crosshair")
+
 [connection signal="input_event" from="CanvasLayer/PerfectDuck/Area2D" to="CanvasLayer/PerfectDuck" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/PerfectDuck/Area2D" to="CanvasLayer/PerfectDuck" method="_on_area_2d_mouse_entered"]
 [connection signal="input_event" from="CanvasLayer/HuntingDuck/Area2D" to="CanvasLayer/HuntingDuck" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/HuntingDuck/Area2D" to="CanvasLayer/HuntingDuck" method="_on_area_2d_mouse_entered"]
 [connection signal="input_event" from="CanvasLayer/TimedDuck/Area2D" to="CanvasLayer/TimedDuck" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/TimedDuck/Area2D" to="CanvasLayer/TimedDuck" method="_on_area_2d_mouse_entered"]
 [connection signal="input_event" from="CanvasLayer/BurstTarget/Area2D" to="CanvasLayer/BurstTarget" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/BurstTarget/Area2D" to="CanvasLayer/BurstTarget" method="_on_area_2d_mouse_entered"]
 [connection signal="input_event" from="CanvasLayer/CustomizeTarget/Area2D" to="CanvasLayer/CustomizeTarget" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/CustomizeTarget/Area2D" to="CanvasLayer/CustomizeTarget" method="_on_area_2d_mouse_entered"]
 [connection signal="input_event" from="CanvasLayer/InfoTarget/Area2D" to="CanvasLayer/InfoTarget" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/InfoTarget/Area2D" to="CanvasLayer/InfoTarget" method="_on_area_2d_mouse_entered"]
 [connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]

@@ -40,6 +40,8 @@ var game;
 @export var grey_shot_texture : Texture2D;
 @export var yellow_shot_texture : Texture2D;
 
+@export var crosshair_handler : Node2D;
+
 enum Location {
 	HUNTING,
 	TIMED,
@@ -94,7 +96,7 @@ func _process(_delta: float) -> void:
 					moving_right = true;
 		
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if (event.is_action("left_click")):
+	if (event.is_action("left_click") && !crosshair_handler.blocked):
 		var new_shot_particles := shot_particles.instantiate();
 		add_child(new_shot_particles);
 		new_shot_particles.emitting = true;
@@ -138,3 +140,5 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 					new_shot_sprite.texture = grey_shot_texture;
 		hit.emit(chosen_location, self);
 		
+func _on_area_2d_mouse_entered() -> void:
+	print(name)
