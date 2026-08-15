@@ -8,16 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://ggvqaenw4kd0" path="res://nodes/perfect.tscn" id="5_ewqsw"]
 [ext_resource type="PackedScene" uid="uid://dk5q43x7ix3ci" path="res://nodes/info.tscn" id="5_n0hwq"]
 [ext_resource type="FontFile" uid="uid://bqhltna5u2i5f" path="res://fonts/ChailceNogginRegular-2OXoW.ttf" id="6_8hci8"]
+[ext_resource type="Texture2D" uid="uid://cbo24vrp06l14" path="res://images/targets/outlines/target_colored_outline.png" id="8_8ec8d"]
 [ext_resource type="Script" uid="uid://br08qjnel0ldj" path="res://nodes/flash.gd" id="9_4fy0s"]
 [ext_resource type="Script" uid="uid://slcdqncfiwsa" path="res://scripts/home_target.gd" id="9_jt0lk"]
+[ext_resource type="Texture2D" uid="uid://bxg7tagom7mhy" path="res://images/targets/outlines/target_red1_outline.png" id="9_r8qsc"]
 [ext_resource type="PackedScene" uid="uid://fqhia3wjxywc" path="res://nodes/oak.tscn" id="10_7wqum"]
+[ext_resource type="Texture2D" uid="uid://bmndokpliibfl" path="res://images/targets/outlines/target_white_outline.png" id="10_jr27i"]
 [ext_resource type="PackedScene" uid="uid://btyieeu5inpvk" path="res://nodes/shot_particles.tscn" id="11_2l3r8"]
 [ext_resource type="PackedScene" uid="uid://d4ch0ashg2rki" path="res://nodes/pine.tscn" id="11_6nmrq"]
 [ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="11_eu7fr"]
+[ext_resource type="Texture2D" uid="uid://vl2h1etwnclv" path="res://images/ducks/outlines/duck_outline_target_yellow.png" id="11_ncofs"]
 [ext_resource type="Texture2D" uid="uid://c62qldanl6gj5" path="res://images/stick_wood.png" id="11_pys32"]
 [ext_resource type="Texture2D" uid="uid://crfb7hwluby6i" path="res://images/ducks/duck_target_yellow.png" id="12_7lium"]
+[ext_resource type="Texture2D" uid="uid://t2a4qsouo12t" path="res://images/ducks/outlines/duck_outline_target_white.png" id="12_ohtj3"]
 [ext_resource type="Texture2D" uid="uid://dfyfatu8qjh1a" path="res://images/shots/shot_blue_large.png" id="12_w33sj"]
 [ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="13_eu7fr"]
+[ext_resource type="Texture2D" uid="uid://csxlg3aewtjuy" path="res://images/ducks/outlines/duck_outline_target_brown.png" id="13_gmy8o"]
 [ext_resource type="Texture2D" uid="uid://bmco8f52vri1k" path="res://images/ducks/duck_target_brown.png" id="13_go8rg"]
 [ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="13_iclm0"]
 [ext_resource type="Texture2D" uid="uid://esx07d6t5h8p" path="res://images/stick_metal.png" id="14_eu7fr"]
@@ -54,6 +60,18 @@ perfect_game = ExtResource("5_ewqsw")
 customize_page = ExtResource("4_v4lp8")
 info_page = ExtResource("5_n0hwq")
 delay_timer = NodePath("DelayTimer")
+colored_target_outline = ExtResource("8_8ec8d")
+red_target_outline = ExtResource("9_r8qsc")
+white_target_outline = ExtResource("10_jr27i")
+yellow_duck_outline = ExtResource("11_ncofs")
+white_duck_outline = ExtResource("12_ohtj3")
+brown_duck_outline = ExtResource("13_gmy8o")
+colored_target_normal = ExtResource("17_qfplv")
+red_target_normal = ExtResource("15_qfplv")
+white_target_normal = ExtResource("18_b42ci")
+yellow_duck_normal = ExtResource("12_7lium")
+white_duck_normal = ExtResource("13_eu7fr")
+brown_duck_normal = ExtResource("13_go8rg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=316015984]
 
@@ -445,7 +463,7 @@ vertical_alignment = 1
 
 [node name="InfoTarget" type="Node2D" parent="CanvasLayer" unique_id=721997250 node_paths=PackedStringArray("menu", "crosshair_handler") groups=["target"]]
 top_level = true
-z_index = 1
+z_index = 2
 position = Vector2(832, 246)
 script = ExtResource("9_jt0lk")
 shot_particles = ExtResource("11_2l3r8")
@@ -590,14 +608,20 @@ crosshair = NodePath("../CanvasLayer/Crosshair")
 
 [connection signal="input_event" from="CanvasLayer/PerfectDuck/Area2D" to="CanvasLayer/PerfectDuck" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/PerfectDuck/Area2D" to="CanvasLayer/PerfectDuck" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/PerfectDuck/Area2D" to="CanvasLayer/PerfectDuck" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="CanvasLayer/HuntingDuck/Area2D" to="CanvasLayer/HuntingDuck" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/HuntingDuck/Area2D" to="CanvasLayer/HuntingDuck" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/HuntingDuck/Area2D" to="CanvasLayer/HuntingDuck" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="CanvasLayer/TimedDuck/Area2D" to="CanvasLayer/TimedDuck" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/TimedDuck/Area2D" to="CanvasLayer/TimedDuck" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/TimedDuck/Area2D" to="CanvasLayer/TimedDuck" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="CanvasLayer/BurstTarget/Area2D" to="CanvasLayer/BurstTarget" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/BurstTarget/Area2D" to="CanvasLayer/BurstTarget" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/BurstTarget/Area2D" to="CanvasLayer/BurstTarget" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="CanvasLayer/CustomizeTarget/Area2D" to="CanvasLayer/CustomizeTarget" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/CustomizeTarget/Area2D" to="CanvasLayer/CustomizeTarget" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/CustomizeTarget/Area2D" to="CanvasLayer/CustomizeTarget" method="_on_area_2d_mouse_exited"]
 [connection signal="input_event" from="CanvasLayer/InfoTarget/Area2D" to="CanvasLayer/InfoTarget" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/InfoTarget/Area2D" to="CanvasLayer/InfoTarget" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/InfoTarget/Area2D" to="CanvasLayer/InfoTarget" method="_on_area_2d_mouse_exited"]
 [connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]

@@ -15,6 +15,22 @@ var hit_already := false;
 var chosen_location;
 var chosen_target;
 
+@export var colored_target_outline : CompressedTexture2D;
+@export var red_target_outline : CompressedTexture2D;
+@export var white_target_outline : CompressedTexture2D;
+
+@export var yellow_duck_outline : CompressedTexture2D;
+@export var white_duck_outline : CompressedTexture2D;
+@export var brown_duck_outline : CompressedTexture2D;
+
+@export var colored_target_normal : CompressedTexture2D;
+@export var red_target_normal : CompressedTexture2D;
+@export var white_target_normal : CompressedTexture2D;
+
+@export var yellow_duck_normal : CompressedTexture2D;
+@export var white_duck_normal : CompressedTexture2D;
+@export var brown_duck_normal : CompressedTexture2D;
+
 func transition(location, target) -> void:
 	if (!hit_already):
 		hit_already = true;

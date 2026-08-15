@@ -42,6 +42,9 @@ var game;
 
 @export var crosshair_handler : Node2D;
 
+var hovering := false;
+var is_in := false;
+
 enum Location {
 	HUNTING,
 	TIMED,
@@ -95,8 +98,57 @@ func _process(_delta: float) -> void:
 				if (position.x <= original_x - distance_x):
 					moving_right = true;
 		
+	if (is_in && !hovering):
+		if (!crosshair_handler.blocked || (z_index != 1)):
+			hovering = true;
+		else:
+			hovering = false;
+		
+	if (hovering):
+		if (is_in_group("duck")):
+				var duck_sprite = find_child("Duck", true, false);
+				
+				match (target_type):
+					Target.BROWN_DUCK:
+						duck_sprite.texture = menu.brown_duck_outline;
+					Target.YELLOW_DUCK:
+						duck_sprite.texture = menu.yellow_duck_outline;
+					Target.WHITE_DUCK:
+						duck_sprite.texture = menu.white_duck_outline;
+		else:
+				var target_sprite = find_child("Target", true, false);		
+									
+				match (target_type):
+					Target.COLORED_TARGET:
+						target_sprite.texture = menu.colored_target_outline;
+					Target.RED_TARGET:
+						target_sprite.texture = menu.red_target_outline;
+					Target.WHITE_TARGET:
+						target_sprite.texture = menu.white_target_outline;
+	else:
+		if (is_in_group("duck")):
+				var duck_sprite = find_child("Duck", true, false);
+				
+				match (target_type):
+					Target.BROWN_DUCK:
+						duck_sprite.texture = menu.brown_duck_normal;
+					Target.YELLOW_DUCK:
+						duck_sprite.texture = menu.yellow_duck_normal;
+					Target.WHITE_DUCK:
+						duck_sprite.texture = menu.white_duck_normal;
+		else:
+				var target_sprite = find_child("Target", true, false);		
+									
+				match (target_type):
+					Target.COLORED_TARGET:
+						target_sprite.texture = menu.colored_target_normal;
+					Target.RED_TARGET:
+						target_sprite.texture = menu.red_target_normal;
+					Target.WHITE_TARGET:
+						target_sprite.texture = menu.white_target_normal;
+						
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if (event.is_action("left_click") && !crosshair_handler.blocked):
+	if (event.is_action("left_click") && (!crosshair_handler.blocked || z_index != 1)):
 		var new_shot_particles := shot_particles.instantiate();
 		add_child(new_shot_particles);
 		new_shot_particles.emitting = true;
@@ -141,4 +193,12 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		hit.emit(chosen_location, self);
 		
 func _on_area_2d_mouse_entered() -> void:
-	print(name)
+	is_in = true;
+	
+	if (!crosshair_handler.blocked || (z_index != 1)):
+		hovering = true;
+
+func _on_area_2d_mouse_exited() -> void:
+	is_in = false;
+	
+	hovering = false;
