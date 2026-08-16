@@ -66,13 +66,24 @@ enum Target {
 @export var chosen_location : Location;
 @export var target_type : Target;
 
+var label : Label;
+var original_color;
+@export var transition_color : Color;
+
+var time := 0.0;
+
+var change_forward := true;
+
 func _ready() -> void:
 	hit.connect(menu.transition);
 	
 	original_y = position.y;
 	original_x = position.x;
+	
+	label = find_child("Label");
+	original_color = label.get_theme_color("font_color");
 			
-func _process(_delta: float) -> void:	
+func _process(delta: float) -> void:	
 	if (!shot):
 		if (original_y != null):
 			if (moving_up):
@@ -105,6 +116,24 @@ func _process(_delta: float) -> void:
 			hovering = false;
 		
 	if (hovering):
+		time += delta;
+		
+		var font_color = label.get_theme_color("font_color");
+		
+		if (font_color == original_color && !change_forward):
+			time = 0.0;
+			change_forward = true;
+		elif (font_color == transition_color && change_forward):
+			time = 0.0;
+			change_forward = false;
+
+		if (change_forward):
+			var new_font_color = lerp(font_color, transition_color, time);
+			label.add_theme_color_override("font_color", new_font_color);
+		else:
+			var new_font_color = lerp(font_color, original_color, time);
+			label.add_theme_color_override("font_color", new_font_color);
+			
 		if (is_in_group("duck")):
 				var duck_sprite = find_child("Duck", true, false);
 				
@@ -126,6 +155,9 @@ func _process(_delta: float) -> void:
 					Target.WHITE_TARGET:
 						target_sprite.texture = menu.white_target_outline;
 	else:
+		time = 0.0;
+		label.add_theme_color_override("font_color", original_color);
+		
 		if (is_in_group("duck")):
 				var duck_sprite = find_child("Duck", true, false);
 				

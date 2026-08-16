@@ -237,6 +237,7 @@ grey_shot_texture = ExtResource("14_j5k8f")
 yellow_shot_texture = ExtResource("15_o2bas")
 crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 2
+transition_color = Color(0.6778492, 0.6643066, 0.9826459, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/PerfectDuck" unique_id=2022928282]
 offset_left = -1.0
@@ -286,6 +287,7 @@ grey_shot_texture = ExtResource("14_j5k8f")
 yellow_shot_texture = ExtResource("15_o2bas")
 crosshair_handler = NodePath("../../CrosshairHandler")
 target_type = 1
+transition_color = Color(0.6778492, 0.6643066, 0.9826459, 1)
 
 [node name="Stick" type="Sprite2D" parent="CanvasLayer/HuntingDuck" unique_id=443761499]
 position = Vector2(52, 156)
@@ -336,6 +338,7 @@ yellow_shot_texture = ExtResource("15_o2bas")
 crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 1
 target_type = 2
+transition_color = Color(0.6778492, 0.6643066, 0.9826459, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/TimedDuck" unique_id=1449670784]
 offset_left = -3.0
@@ -386,6 +389,7 @@ yellow_shot_texture = ExtResource("15_o2bas")
 crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 3
 target_type = 3
+transition_color = Color(0.6778492, 0.6643066, 0.9826459, 1)
 
 [node name="Stick" type="Sprite2D" parent="CanvasLayer/BurstTarget" unique_id=746360038]
 position = Vector2(67, 188)
@@ -431,6 +435,7 @@ yellow_shot_texture = ExtResource("15_o2bas")
 crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 4
 target_type = 4
+transition_color = Color(0.6778492, 0.6643066, 0.9826459, 1)
 
 [node name="Stick" type="Sprite2D" parent="CanvasLayer/CustomizeTarget" unique_id=1155449962]
 position = Vector2(67, 188)
@@ -476,6 +481,7 @@ yellow_shot_texture = ExtResource("15_o2bas")
 crosshair_handler = NodePath("../../CrosshairHandler")
 chosen_location = 5
 target_type = 5
+transition_color = Color(0.6778492, 0.6643066, 0.9826459, 1)
 
 [node name="Stick" type="Sprite2D" parent="CanvasLayer/InfoTarget" unique_id=1319863625]
 position = Vector2(67, 188)
