@@ -31,6 +31,16 @@ var chosen_target;
 @export var white_duck_normal : CompressedTexture2D;
 @export var brown_duck_normal : CompressedTexture2D;
 
+var current_hover_target;
+
+var description_texts = {
+	"YELLOW_DUCK": "A game mode where you are given a limited number of bullets to shoot the targets in each wave.",
+	"WHITE_DUCK": "A game mode where you are only allowed to shoot specific targets.",
+	"BROWN_DUCK": "A game mode where you try to shoot as many targets as possible while against a 2-minute clock.",
+	"RED_TARGET": "A fast-paced game mode with shorter reload times and faster spawns.",
+	"COLORED_TARGET": "Change your currently selected cosmetics including crosshair designs and their colors.",
+	"WHITE_TARGET": "Information regarding the game including credits and player stats."
+}
 func transition(location, target) -> void:
 	if (!hit_already):
 		hit_already = true;

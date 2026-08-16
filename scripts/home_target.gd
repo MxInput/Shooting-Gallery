@@ -74,6 +74,9 @@ var time := 0.0;
 
 var change_forward := true;
 
+@export var description : TextureRect;
+@export var description_text : Label;
+
 func _ready() -> void:
 	hit.connect(menu.transition);
 	
@@ -227,10 +230,24 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 func _on_area_2d_mouse_entered() -> void:
 	is_in = true;
 	
+	menu.current_hover_target = self;
+	description.visible = true;
+
+	var offset = Vector2(-description.size.x/4, description.size.y);
+	description.global_position = Vector2(position.x, position.y) + offset;
+	
+	var target_name = Target.keys()[target_type];
+	
+	description_text.text = menu.description_texts[target_name];
+		
 	if (!crosshair_handler.blocked || (z_index != 1)):
 		hovering = true;
 
 func _on_area_2d_mouse_exited() -> void:
 	is_in = false;
 	
+	if (menu.current_hover_target == self):
+		menu.current_hover_target = null;
+		description.visible = false;
+		
 	hovering = false;
