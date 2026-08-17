@@ -175,14 +175,15 @@ func generate_random_hit_object() -> void:
 					found_chosen = spawned_targets["WHITE_DUCK"];
 					
 			for found_chosen_duck in found_chosen:
-				var duck_sprite = found_chosen_duck.find_child("Duck", true, false);
-				var new_duck = Ducks.keys().pick_random();
-					
-				while (new_duck == chosen_hit):
-					new_duck = Ducks.keys().pick_random();
+				if (is_instance_valid(found_chosen_duck)):
+					var duck_sprite = found_chosen_duck.find_child("Duck", true, false);
+					var new_duck = Ducks.keys().pick_random();
 						
-				duck_sprite.texture = duck_textures[Ducks.values()[Ducks.keys().find(new_duck)]]
-				found_chosen_duck.points = duck_points[Ducks.values()[Ducks.keys().find(new_duck)]];
+					while (new_duck == chosen_hit):
+						new_duck = Ducks.keys().pick_random();
+							
+					duck_sprite.texture = duck_textures[Ducks.values()[Ducks.keys().find(new_duck)]]
+					found_chosen_duck.points = duck_points[Ducks.values()[Ducks.keys().find(new_duck)]];
 		else:
 			match (chosen_hit):
 				"RED":
@@ -193,14 +194,15 @@ func generate_random_hit_object() -> void:
 					found_chosen = spawned_targets["WHITE_TARGET"];
 					
 			for found_chosen_target in found_chosen:
-				var target_sprite = found_chosen_target.find_child("Target", true, false);
-				var new_target = Targets.keys().pick_random();
-					
-				while (new_target == chosen_hit):
-					new_target = Targets.keys().pick_random();
+				if (is_instance_valid(found_chosen_target)):
+					var target_sprite = found_chosen_target.find_child("Target", true, false);
+					var new_target = Targets.keys().pick_random();
 						
-				target_sprite.texture = target_textures[Targets.values()[Targets.keys().find(new_target)]]
-				found_chosen_target.points = target_points[Targets.values()[Targets.keys().find(new_target)]];
+					while (new_target == chosen_hit):
+						new_target = Targets.keys().pick_random();
+							
+					target_sprite.texture = target_textures[Targets.values()[Targets.keys().find(new_target)]]
+					found_chosen_target.points = target_points[Targets.values()[Targets.keys().find(new_target)]];
 	
 	if (last_spawn == chosen_hit && last_spawn_type == chosen_type):
 		num_spawn += 1;

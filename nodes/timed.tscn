@@ -831,6 +831,8 @@ one_shot = true
 [connection signal="mouse_entered" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/Pause" to="PauseManager" method="_on_pause_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Pause" to="CanvasLayer/Pause" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Pause" to="CanvasLayer/Pause" method="_on_mouse_exited"]
 [connection signal="timeout" from="AimController/ReloadTimer" to="AimController" method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="AimController/ComboTimer" to="AimController" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="AimController/DisappearTimer" to="AimController" method="_on_disappear_timer_timeout"]
