@@ -65,12 +65,12 @@ var upper_target_spawn := -200.0;
 
 @export var canvas_layer : CanvasLayer;
 
-@export var return_button : Button;
+@export var return_button : TextureButton;
 
 var menu = "res://nodes/menu.tscn";
 
 @export var pause_manager : Node;
-@export var pause_button : Button;
+@export var pause_button : TextureButton;
 
 var color_change_time := 0.0;
 var reach_30 := false;

@@ -28,7 +28,7 @@ extends Node
 @export var start : TextureRect;
 @export var go : TextureRect;
 
-@export var return_button : Button;
+@export var return_button : TextureButton;
 
 @export var time_till_change : RichTextLabel;
 
@@ -116,7 +116,7 @@ var last_spawn_type := "";
 var num_spawn := 0;
 
 @export var pause_manager : Node;
-@export var pause_button : Button;
+@export var pause_button : TextureButton;
 
 var started = false;
 

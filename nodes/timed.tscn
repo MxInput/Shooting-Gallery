@@ -37,8 +37,14 @@
 [ext_resource type="Texture2D" uid="uid://cikjucu56ltg" path="res://images/icons/icon_target.png" id="17_n8beo"]
 [ext_resource type="Texture2D" uid="uid://bfhdu68d7kr8" path="res://images/ducks/duck_target_white.png" id="17_s00i6"]
 [ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="19_faxbm"]
+[ext_resource type="Texture2D" uid="uid://bqpc11w266wjq" path="res://images/buttons/button_rectangle_depth_border.png" id="21_ylm40"]
+[ext_resource type="Texture2D" uid="uid://gp323oqwxsyg" path="res://images/buttons/button_rectangle_depth_flat.png" id="22_yju2k"]
+[ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="23_sw821"]
 [ext_resource type="Texture2D" uid="uid://b54pcyr3ja50r" path="res://images/game_background/bg_wood.png" id="24_engdv"]
 [ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="24_k35x6"]
+[ext_resource type="Texture2D" uid="uid://c7okycv4u8uex" path="res://images/buttons/button_round_depth_border.png" id="24_mrcty"]
+[ext_resource type="Texture2D" uid="uid://db1d58hysuj11" path="res://images/buttons/button_round_depth_gradient.png" id="25_7bp2j"]
+[ext_resource type="FontFile" uid="uid://dohcibfjpe0ct" path="res://fonts/YangBagus-DYMX9.ttf" id="26_viwyo"]
 [ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="27_t5q4l"]
 [ext_resource type="Texture2D" uid="uid://dbe8msqmll04s" path="res://images/scenery/grass1.png" id="34_04f7f"]
 [ext_resource type="Texture2D" uid="uid://c6k12oqk8hhq2" path="res://images/scenery/grass2.png" id="35_ds6ls"]
@@ -456,16 +462,6 @@ text = "No Misses"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Return" type="Button" parent="CanvasLayer" unique_id=867593819]
-visible = false
-offset_left = 546.0
-offset_top = 282.0
-offset_right = 673.0
-offset_bottom = 313.0
-theme_override_fonts/font = ExtResource("9_rylax")
-theme_override_font_sizes/font_size = 20
-text = "RETURN HOME"
-
 [node name="ScoreWord" type="TextureRect" parent="CanvasLayer" unique_id=50385871]
 z_index = 10
 offset_left = 35.0
@@ -474,16 +470,61 @@ offset_right = 151.0
 offset_bottom = 67.0
 texture = ExtResource("19_faxbm")
 
-[node name="Pause" type="Button" parent="CanvasLayer" unique_id=117297849]
+[node name="Return" type="TextureButton" parent="CanvasLayer" unique_id=2102250270 node_paths=PackedStringArray("label")]
+visible = false
+offset_left = 404.0
+offset_top = 470.0
+offset_right = 788.0
+offset_bottom = 598.0
+texture_normal = ExtResource("21_ylm40")
+texture_pressed = ExtResource("22_yju2k")
+texture_hover = ExtResource("22_yju2k")
+script = ExtResource("23_sw821")
+label = NodePath("Label")
+original_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+new_color = Color(0.85882354, 0.8666667, 0.9098039, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Return" unique_id=1528205538]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 367.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_rylax")
+theme_override_font_sizes/font_size = 60
+text = "RETURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" type="TextureButton" parent="CanvasLayer" unique_id=1330991577 node_paths=PackedStringArray("label")]
 visible = false
 z_index = 3
 offset_left = 546.0
 offset_top = 88.0
 offset_right = 568.0
 offset_bottom = 137.0
-theme_override_fonts/font = ExtResource("7_wlji1")
-theme_override_font_sizes/font_size = 30
+texture_normal = ExtResource("24_mrcty")
+texture_pressed = ExtResource("25_7bp2j")
+texture_hover = ExtResource("25_7bp2j")
+script = ExtResource("23_sw821")
+label = NodePath("Label")
+original_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+new_color = Color(0.85882354, 0.8666667, 0.9098039, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Pause" unique_id=90305000]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 62.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("26_viwyo")
+theme_override_font_sizes/font_size = 25
 text = "||"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
@@ -787,6 +828,8 @@ return_button = NodePath("../CanvasLayer/Return")
 one_shot = true
 
 [connection signal="button_down" from="CanvasLayer/Return" to="TargetSpawner" method="_on_return_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/Pause" to="PauseManager" method="_on_pause_button_down"]
 [connection signal="timeout" from="AimController/ReloadTimer" to="AimController" method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="AimController/ComboTimer" to="AimController" method="_on_combo_timer_timeout"]

@@ -5,13 +5,13 @@ var paused := false;
 @export var delay_timer : Timer;
 
 @export var countdown_timer : Timer;
-@export var pause_button : Button;
+@export var pause_button : TextureButton;
 
 @export var target_spawner : Node;
 @export var duck_timer : Timer;
 @export var target_timer : Timer;
 
-@export var return_button : Button;
+@export var return_button : TextureButton;
 
 var delaying := false;
 

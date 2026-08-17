@@ -22,11 +22,17 @@
 [ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="19_4sr1k"]
 [ext_resource type="Script" uid="uid://bwbwrdw7eo451" path="res://scripts/aim_controller_perfect.gd" id="20_ql8ts"]
 [ext_resource type="Script" uid="uid://nrku5teat7xq" path="res://scripts/target_spawner_perfect.gd" id="21_6v2x7"]
+[ext_resource type="Texture2D" uid="uid://bqpc11w266wjq" path="res://images/buttons/button_rectangle_depth_border.png" id="21_eh8we"]
 [ext_resource type="Texture2D" uid="uid://dfyfatu8qjh1a" path="res://images/shots/shot_blue_large.png" id="21_pfjim"]
+[ext_resource type="Texture2D" uid="uid://gp323oqwxsyg" path="res://images/buttons/button_rectangle_depth_flat.png" id="22_114gf"]
 [ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="22_jxo8a"]
 [ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="23_4y1r6"]
+[ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="23_w4hwh"]
+[ext_resource type="Texture2D" uid="uid://c7okycv4u8uex" path="res://images/buttons/button_round_depth_border.png" id="24_5opfe"]
 [ext_resource type="Texture2D" uid="uid://dis6a6dygughr" path="res://images/shots/shot_yellow_large.png" id="24_ibwxm"]
 [ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="25_4xvkx"]
+[ext_resource type="Texture2D" uid="uid://db1d58hysuj11" path="res://images/buttons/button_round_depth_gradient.png" id="25_lo1vm"]
+[ext_resource type="FontFile" uid="uid://dohcibfjpe0ct" path="res://fonts/YangBagus-DYMX9.ttf" id="26_7m2cq"]
 [ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="26_r3sj1"]
 [ext_resource type="PackedScene" uid="uid://vt2sly1s4bh1" path="res://nodes/points.tscn" id="27_1sqel"]
 [ext_resource type="PackedScene" uid="uid://c615hf1ce8red" path="res://nodes/target.tscn" id="29_0xho3"]
@@ -582,16 +588,6 @@ text = "No Misses"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Return" type="Button" parent="CanvasLayer" unique_id=867593819]
-visible = false
-offset_left = 546.0
-offset_top = 282.0
-offset_right = 673.0
-offset_bottom = 313.0
-theme_override_fonts/font = ExtResource("6_adm2h")
-theme_override_font_sizes/font_size = 20
-text = "RETURN HOME"
-
 [node name="ScoreWord" type="TextureRect" parent="CanvasLayer" unique_id=50385871]
 z_index = 10
 offset_left = 35.0
@@ -600,16 +596,61 @@ offset_right = 151.0
 offset_bottom = 67.0
 texture = ExtResource("19_4sr1k")
 
-[node name="Pause" type="Button" parent="CanvasLayer" unique_id=117297849]
+[node name="Return" type="TextureButton" parent="CanvasLayer" unique_id=859806053 node_paths=PackedStringArray("label")]
+visible = false
+offset_left = 404.0
+offset_top = 470.0
+offset_right = 788.0
+offset_bottom = 598.0
+texture_normal = ExtResource("21_eh8we")
+texture_pressed = ExtResource("22_114gf")
+texture_hover = ExtResource("22_114gf")
+script = ExtResource("23_w4hwh")
+label = NodePath("Label")
+original_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+new_color = Color(0.85882354, 0.8666667, 0.9098039, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Return" unique_id=445142731]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 367.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_adm2h")
+theme_override_font_sizes/font_size = 60
+text = "RETURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" type="TextureButton" parent="CanvasLayer" unique_id=2041524265 node_paths=PackedStringArray("label")]
 visible = false
 z_index = 3
 offset_left = 546.0
 offset_top = 88.0
 offset_right = 568.0
 offset_bottom = 137.0
-theme_override_fonts/font = ExtResource("7_uckuq")
-theme_override_font_sizes/font_size = 30
+texture_normal = ExtResource("24_5opfe")
+texture_pressed = ExtResource("25_lo1vm")
+texture_hover = ExtResource("25_lo1vm")
+script = ExtResource("23_w4hwh")
+label = NodePath("Label")
+original_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+new_color = Color(0.85882354, 0.8666667, 0.9098039, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Pause" unique_id=1054195576]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 62.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("26_7m2cq")
+theme_override_font_sizes/font_size = 25
 text = "||"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=260357595]
 
@@ -896,20 +937,20 @@ position = Vector2(-451, -108)
 [node name="Pine2" parent="Trees" unique_id=96647167 instance=ExtResource("44_vp37p")]
 position = Vector2(290, -108)
 
-[node name="PauseManager" type="Node" parent="." unique_id=1315596314 node_paths=PackedStringArray("delay_timer", "countdown_timer", "pause_button", "target_spawner", "duck_timer", "target_timer", "return_button")]
+[node name="PauseManager" type="Node" parent="." unique_id=1315596314 node_paths=PackedStringArray("delay_timer", "countdown_timer", "pause_button", "target_spawner", "return_button")]
 script = ExtResource("45_spwwh")
 delay_timer = NodePath("DelayTimer")
 countdown_timer = NodePath("../TargetSpawner/CountdownTimer")
 pause_button = NodePath("../CanvasLayer/Pause")
 target_spawner = NodePath("../TargetSpawner")
-duck_timer = NodePath("")
-target_timer = NodePath("")
 return_button = NodePath("../CanvasLayer/Return")
 
 [node name="DelayTimer" type="Timer" parent="PauseManager" unique_id=763182041]
 one_shot = true
 
 [connection signal="button_down" from="CanvasLayer/Return" to="TargetSpawner" method="_on_return_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/Pause" to="PauseManager" method="_on_pause_button_down"]
 [connection signal="timeout" from="AimController/ReloadTimer" to="AimController" method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="AimController/ComboTimer" to="AimController" method="_on_combo_timer_timeout"]

@@ -26,7 +26,7 @@ extends Node
 @export var start : TextureRect;
 @export var go : TextureRect;
 
-@export var return_button : Button;
+@export var return_button : TextureButton;
 
 enum Targets {
 	RED,
@@ -105,7 +105,7 @@ var last_spawn := "";
 var last_spawn_type := "";
 
 @export var pause_manager : Node;
-@export var pause_button : Button;
+@export var pause_button : TextureButton;
 
 var started = false;
 
