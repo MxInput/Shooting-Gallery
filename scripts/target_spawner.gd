@@ -206,6 +206,7 @@ func _on_game_timer_timeout() -> void:
 	game_over.visible = true;
 	if (perfect_teller.visible):
 		perfect_final_text.visible = true;
+		PlayerVariables.number_of_perfects += 1;
 
 func _on_countdown_timer_timeout() -> void:
 	if (!game_timer.paused):

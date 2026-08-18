@@ -13,8 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://gp323oqwxsyg" path="res://images/buttons/button_rectangle_depth_flat.png" id="11_5b314"]
 [ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="12_5b314"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="13_onrhq"]
+[ext_resource type="Texture2D" uid="uid://cikjucu56ltg" path="res://images/icons/icon_target.png" id="14_m2oeo"]
+[ext_resource type="Texture2D" uid="uid://dnpej35ajkds1" path="res://images/icons/icon_duck.png" id="15_fntib"]
 
-[node name="Info" type="Node" unique_id=727299429 node_paths=PackedStringArray("timed_high_score", "hunting_high_score", "burst_high_score", "perfect_high_score", "last_played", "least_fav_display", "num_shot_targets", "num_shot_ducks")]
+[node name="Info" type="Node" unique_id=727299429 node_paths=PackedStringArray("timed_high_score", "hunting_high_score", "burst_high_score", "perfect_high_score", "last_played", "least_fav_display", "blank_least_fav", "num_shot_targets", "num_shot_ducks", "perfect_game_teller")]
 script = ExtResource("1_5spqv")
 timed_high_score = NodePath("CanvasLayer/HighScoreSection/TimedHighScore")
 hunting_high_score = NodePath("CanvasLayer/HighScoreSection/HuntingHighScore")
@@ -22,14 +24,16 @@ burst_high_score = NodePath("CanvasLayer/HighScoreSection/BurstHighScore")
 perfect_high_score = NodePath("CanvasLayer/HighScoreSection/PerfectHighScore")
 last_played = NodePath("CanvasLayer/LastPlayed")
 least_fav_display = NodePath("CanvasLayer/LeastFavSection/LeastFav")
+blank_least_fav = NodePath("CanvasLayer/LeastFavSection/Teller")
 white_duck_texture = ExtResource("2_2w34u")
 brown_duck_texture = ExtResource("3_bwtb8")
 yellow_duck_texture = ExtResource("4_01wjk")
 red_target_texture = ExtResource("5_glwyq")
 colored_target_texture = ExtResource("6_glwyq")
 white_target_texture = ExtResource("7_m8lj4")
-num_shot_targets = NodePath("CanvasLayer/NumShotTargets")
-num_shot_ducks = NodePath("CanvasLayer/NumShotDucks")
+num_shot_targets = NodePath("CanvasLayer/NumShot/NumShotTargets")
+num_shot_ducks = NodePath("CanvasLayer/NumShot/NumShotDucks")
+perfect_game_teller = NodePath("CanvasLayer/PerfectSection/NumberPerfect")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1444414097]
 
@@ -41,6 +45,7 @@ color = Color(0.37276945, 0.68267685, 0.68170804, 1)
 [node name="Title" type="RichTextLabel" parent="CanvasLayer" unique_id=1099400306]
 offset_right = 1152.0
 offset_bottom = 74.0
+theme_override_colors/default_color = Color(0.85870004, 0.7469822, 0.54753214, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("8_m8lj4")
 theme_override_font_sizes/normal_font_size = 40
@@ -54,27 +59,12 @@ z_index = 1
 offset_top = 81.0
 offset_right = 1152.0
 offset_bottom = 121.0
+theme_override_colors/default_color = Color(0.5347361, 0.8079652, 0.6132968, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("8_m8lj4")
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
 text = "LAST PLAYED"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="NumShotTargets" type="RichTextLabel" parent="CanvasLayer" unique_id=928452600]
-z_index = 1
-offset_left = 764.0
-offset_top = 319.0
-offset_right = 1115.0
-offset_bottom = 359.0
-text = "Number of Targets shot: "
-
-[node name="NumShotDucks" type="RichTextLabel" parent="CanvasLayer" unique_id=1148105528]
-z_index = 1
-offset_left = 764.0
-offset_top = 393.0
-offset_right = 1115.0
-offset_bottom = 433.0
-text = "Number of Ducks shot: "
 
 [node name="Return" type="TextureButton" parent="CanvasLayer" unique_id=1624096235 node_paths=PackedStringArray("label")]
 z_index = 1
@@ -130,6 +120,7 @@ layout_mode = 0
 offset_top = 112.0
 offset_right = 340.0
 offset_bottom = 183.0
+theme_override_colors/default_color = Color(0.85870004, 0.7469822, 0.54753214, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("8_kfv5i")
 theme_override_font_sizes/normal_font_size = 30
@@ -190,6 +181,7 @@ offset_bottom = 554.0
 texture = ExtResource("5_glwyq")
 
 [node name="Teller" type="RichTextLabel" parent="CanvasLayer/LeastFavSection" unique_id=588702640]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_top = 433.0
@@ -208,10 +200,110 @@ layout_mode = 0
 offset_top = 355.0
 offset_right = 340.0
 offset_bottom = 426.0
+theme_override_colors/default_color = Color(0.85870004, 0.7469822, 0.54753214, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("8_kfv5i")
 theme_override_font_sizes/normal_font_size = 22
 text = "Least Favorite Target (Hit Most Across Games)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumShot" type="Control" parent="CanvasLayer" unique_id=616908268]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NumShotTargets" type="RichTextLabel" parent="CanvasLayer/NumShot" unique_id=928452600]
+z_index = 1
+layout_mode = 0
+offset_left = 420.0
+offset_top = 185.0
+offset_right = 760.0
+offset_bottom = 225.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+theme_override_font_sizes/normal_font_size = 16
+text = "Number of Targets shot: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumShotDucks" type="RichTextLabel" parent="CanvasLayer/NumShot" unique_id=1148105528]
+z_index = 1
+layout_mode = 0
+offset_left = 420.0
+offset_top = 259.0
+offset_right = 760.0
+offset_bottom = 299.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+theme_override_font_sizes/normal_font_size = 16
+text = "Number of Ducks shot: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeastLabel" type="RichTextLabel" parent="CanvasLayer/NumShot" unique_id=145408411]
+z_index = 1
+layout_mode = 0
+offset_left = 420.0
+offset_top = 112.0
+offset_right = 760.0
+offset_bottom = 183.0
+theme_override_colors/default_color = Color(0.85870004, 0.7469822, 0.54753214, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+theme_override_font_sizes/normal_font_size = 26
+text = "Number of targets shot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TargetIcon" type="TextureRect" parent="CanvasLayer/NumShot" unique_id=575499485]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 184.0
+offset_right = 482.0
+offset_bottom = 224.0
+texture = ExtResource("14_m2oeo")
+
+[node name="DuckIcon" type="TextureRect" parent="CanvasLayer/NumShot" unique_id=1757909295]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 258.0
+offset_right = 482.0
+offset_bottom = 298.0
+texture = ExtResource("15_fntib")
+
+[node name="PerfectSection" type="Control" parent="CanvasLayer" unique_id=1660089739]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NumberPerfect" type="RichTextLabel" parent="CanvasLayer/PerfectSection" unique_id=1902724306]
+z_index = 1
+layout_mode = 0
+offset_left = 353.0
+offset_top = 374.0
+offset_right = 741.0
+offset_bottom = 414.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[rainbow]Number of perfects: 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Warning" type="RichTextLabel" parent="CanvasLayer/PerfectSection" unique_id=1791100765]
+z_index = 1
+layout_mode = 0
+offset_left = 353.0
+offset_top = 414.0
+offset_right = 741.0
+offset_bottom = 466.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+text = "**PERECT GAMES are only achievable in the timed and perfect game modes"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -23,12 +23,14 @@ extends Node
 @export var num_shot_targets : RichTextLabel;
 @export var num_shot_ducks : RichTextLabel;
 
+@export var perfect_game_teller : RichTextLabel;
+
 func find_most_shot(dict):
 	var max_shot = dict.values().max();
 	
 	if (max_shot == 0):
 		return null;
-	return dict.keys().get(dict.values().find());
+	return dict.keys().get(dict.values().find(max_shot));
 	
 func _ready() -> void:
 	timed_high_score.text = "High Score (Timed): " + str(PlayerVariables.high_score_timed) + " points";
@@ -63,5 +65,7 @@ func _ready() -> void:
 	num_shot_ducks.text = "Number of ducks shot: " + str(PlayerVariables.num_shot_ducks);
 	num_shot_targets.text = "Number of targets shot: " + str(PlayerVariables.num_shot_targets);
 			
+	perfect_game_teller.text = "[rainbow] Number of Perfects: " + str(PlayerVariables.number_of_perfects);
+	
 func _on_return_button_down() -> void:
 	tree.change_scene_to_file(menu);

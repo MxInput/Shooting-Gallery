@@ -127,6 +127,9 @@ var upper_speeds = [7.0, 7.5, 8.0, 8.5]
  
 @export var intermission_timer : Timer;
 
+@export var perfect_teller : RichTextLabel;
+@export var perfect_final_text : RichTextLabel;
+
 func generate_wave() -> void:
 	already_spawned = true;
 	while (spawns_now < spawns_possible):
@@ -222,14 +225,17 @@ func _process(delta: float) -> void:
 			target_done.emit();
 			
 	if (waves_remaining > max_waves):
-		PlayerVariables.game_last_played = "Burst";
+		PlayerVariables.game_last_played = "Perfect";
 
-		if (PlayerVariables.points > PlayerVariables.high_score_burst):
-			PlayerVariables.high_score_burst = PlayerVariables.points;
+		if (PlayerVariables.points > PlayerVariables.high_score_perfect):
+			PlayerVariables.high_score_perfect = PlayerVariables.points;
 			
 		pause_button.visible = false;
 		game_over.visible = true;
 		return_button.visible = true;
+		if (perfect_teller.visible):
+			perfect_final_text.visible = true;
+			PlayerVariables.number_of_perfects += 1;
 		
 	if (current_cycle < change_times.size()):
 		if (time_ongoing >= change_times[current_cycle]):

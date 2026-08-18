@@ -76,6 +76,7 @@ var blocked := false;
 @export var pause_manager : Node;
 
 @export var intermission_timer : Timer;
+@export var first_appear_timer : Timer;
 
 func destroy_target(target, points, order) -> void:
 	if (loaded && (!blocked || order != 2)):
@@ -143,12 +144,10 @@ func reload() -> void:
 		reload_timer.start();
 								
 		var animation_player : AnimationPlayer = rifle.get_child(0);
-		animation_player.play("dying")
+		animation_player.play("dying");
 		
-		if (!bullet_outline1.visible):
-			bullet_outline1.get_child(0).texture = silver_bullet;						
-		bullet_outline1.get_child(0).visible = true;
-		
+		if (first_appear_timer.is_stopped()):
+			first_appear_timer.start();
 		
 func _process(_delta: float) -> void:
 	if (!pause_manager.is_paused()):
@@ -182,8 +181,7 @@ func _process(_delta: float) -> void:
 								bullet_outline2.get_child(0).visible = false;
 							elif (ammo == 1):
 								bullet_outline1.get_child(0).visible = false;
-								loaded = false;		
-								
+								loaded = false;	
 							ammo -= 1;
 		
 		if (!reload_timer.is_stopped()):
@@ -270,3 +268,8 @@ func _on_combo_timer_timeout() -> void:
 		new_points_total_icon.position = Vector2(160.0, 100.0);
 		new_points_total_icon.text = "+" + str(points_val);
 		new_points_total_icon.modulate = Color.GOLD;
+
+func _on_first_appear_timer_timeout() -> void:
+	if (!bullet_outline1.visible):
+		bullet_outline1.get_child(0).texture = silver_bullet;						
+	bullet_outline1.get_child(0).visible = true;
