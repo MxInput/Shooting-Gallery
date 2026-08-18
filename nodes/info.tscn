@@ -7,13 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://bpvrwf0uhyf6l" path="res://images/targets/target_red1.png" id="5_glwyq"]
 [ext_resource type="Texture2D" uid="uid://cdo161nvwj1om" path="res://images/targets/target_colored.png" id="6_glwyq"]
 [ext_resource type="Texture2D" uid="uid://dgx3ium1xm0ew" path="res://images/targets/target_white.png" id="7_m8lj4"]
+[ext_resource type="FontFile" uid="uid://cym6mw7vfhsif" path="res://fonts/SuperCartoon-6R791.ttf" id="8_kfv5i"]
+[ext_resource type="FontFile" uid="uid://bqhltna5u2i5f" path="res://fonts/ChailceNogginRegular-2OXoW.ttf" id="8_m8lj4"]
+[ext_resource type="Texture2D" uid="uid://bqpc11w266wjq" path="res://images/buttons/button_rectangle_depth_border.png" id="10_ylcld"]
+[ext_resource type="Texture2D" uid="uid://gp323oqwxsyg" path="res://images/buttons/button_rectangle_depth_flat.png" id="11_5b314"]
+[ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="12_5b314"]
+[ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="13_onrhq"]
 
-[node name="Info" type="Node" unique_id=727299429 node_paths=PackedStringArray("timed_high_score", "hunting_high_score", "last_played", "least_fav_display", "num_shot_targets", "num_shot_ducks")]
+[node name="Info" type="Node" unique_id=727299429 node_paths=PackedStringArray("timed_high_score", "hunting_high_score", "burst_high_score", "perfect_high_score", "last_played", "least_fav_display", "num_shot_targets", "num_shot_ducks")]
 script = ExtResource("1_5spqv")
-timed_high_score = NodePath("CanvasLayer/TimedHighScore")
-hunting_high_score = NodePath("CanvasLayer/HuntingHighScore")
+timed_high_score = NodePath("CanvasLayer/HighScoreSection/TimedHighScore")
+hunting_high_score = NodePath("CanvasLayer/HighScoreSection/HuntingHighScore")
+burst_high_score = NodePath("CanvasLayer/HighScoreSection/BurstHighScore")
+perfect_high_score = NodePath("CanvasLayer/HighScoreSection/PerfectHighScore")
 last_played = NodePath("CanvasLayer/LastPlayed")
-least_fav_display = NodePath("CanvasLayer/LeastFav")
+least_fav_display = NodePath("CanvasLayer/LeastFavSection/LeastFav")
 white_duck_texture = ExtResource("2_2w34u")
 brown_duck_texture = ExtResource("3_bwtb8")
 yellow_duck_texture = ExtResource("4_01wjk")
@@ -25,52 +33,188 @@ num_shot_ducks = NodePath("CanvasLayer/NumShotDucks")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1444414097]
 
-[node name="TimedHighScore" type="RichTextLabel" parent="CanvasLayer" unique_id=1398266000]
-offset_right = 370.0
-offset_bottom = 40.0
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=2144590347]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.37276945, 0.68267685, 0.68170804, 1)
 
-[node name="HuntingHighScore" type="RichTextLabel" parent="CanvasLayer" unique_id=587507763]
-offset_top = 61.0
-offset_right = 326.0
-offset_bottom = 101.0
+[node name="Title" type="RichTextLabel" parent="CanvasLayer" unique_id=1099400306]
+offset_right = 1152.0
+offset_bottom = 74.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_m8lj4")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[wave freq=2]Information"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LastPlayed" type="RichTextLabel" parent="CanvasLayer" unique_id=564283181]
-offset_top = 151.0
-offset_right = 566.0
-offset_bottom = 191.0
-
-[node name="Return" type="Button" parent="CanvasLayer" unique_id=32758297]
-offset_left = 583.0
-offset_right = 654.0
-offset_bottom = 31.0
-text = "RETURN"
-
-[node name="LeastFav" type="TextureRect" parent="CanvasLayer" unique_id=1073178602]
-offset_left = 44.0
-offset_top = 389.0
-offset_right = 172.0
-offset_bottom = 517.0
-texture = ExtResource("5_glwyq")
-
-[node name="LeastLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=623387030]
-offset_left = 4.0
-offset_top = 319.0
-offset_right = 208.0
-offset_bottom = 359.0
-text = "Least favorite target"
+z_index = 1
+offset_top = 81.0
+offset_right = 1152.0
+offset_bottom = 121.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_m8lj4")
+text = "LAST PLAYED"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NumShotTargets" type="RichTextLabel" parent="CanvasLayer" unique_id=928452600]
-offset_left = 303.0
+z_index = 1
+offset_left = 764.0
 offset_top = 319.0
-offset_right = 654.0
+offset_right = 1115.0
 offset_bottom = 359.0
 text = "Number of Targets shot: "
 
 [node name="NumShotDucks" type="RichTextLabel" parent="CanvasLayer" unique_id=1148105528]
-offset_left = 303.0
+z_index = 1
+offset_left = 764.0
 offset_top = 393.0
-offset_right = 654.0
+offset_right = 1115.0
 offset_bottom = 433.0
 text = "Number of Ducks shot: "
 
+[node name="Return" type="TextureButton" parent="CanvasLayer" unique_id=1624096235 node_paths=PackedStringArray("label")]
+z_index = 1
+offset_left = 15.0
+offset_top = 570.0
+offset_right = 207.0
+offset_bottom = 634.0
+texture_normal = ExtResource("10_ylcld")
+texture_pressed = ExtResource("11_5b314")
+texture_hover = ExtResource("11_5b314")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("12_5b314")
+label = NodePath("Label")
+original_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+new_color = Color(0.85882354, 0.8666667, 0.9098039, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Return" unique_id=828462824]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_onrhq")
+theme_override_font_sizes/font_size = 30
+text = "RETURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScoreSection" type="Control" parent="CanvasLayer" unique_id=785870605]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimedHighScore" type="RichTextLabel" parent="CanvasLayer/HighScoreSection" unique_id=1398266000]
+z_index = 1
+layout_mode = 0
+offset_top = 192.0
+offset_right = 340.0
+offset_bottom = 232.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+text = "TIMED HIGH SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScoreTitle" type="RichTextLabel" parent="CanvasLayer/HighScoreSection" unique_id=1853923497]
+z_index = 1
+layout_mode = 0
+offset_top = 112.0
+offset_right = 340.0
+offset_bottom = 183.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+theme_override_font_sizes/normal_font_size = 30
+text = "HIGH SCORES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HuntingHighScore" type="RichTextLabel" parent="CanvasLayer/HighScoreSection" unique_id=587507763]
+z_index = 1
+layout_mode = 0
+offset_top = 232.0
+offset_right = 340.0
+offset_bottom = 272.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+text = "HUNTING HIGH SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BurstHighScore" type="RichTextLabel" parent="CanvasLayer/HighScoreSection" unique_id=1069007161]
+z_index = 1
+layout_mode = 0
+offset_top = 272.0
+offset_right = 340.0
+offset_bottom = 312.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+text = "BURST HIGH SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PerfectHighScore" type="RichTextLabel" parent="CanvasLayer/HighScoreSection" unique_id=1315324062]
+z_index = 1
+layout_mode = 0
+offset_top = 312.0
+offset_right = 340.0
+offset_bottom = 352.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+text = "PERFECT HIGH SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeastFavSection" type="Control" parent="CanvasLayer" unique_id=840432651]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeastFav" type="TextureRect" parent="CanvasLayer/LeastFavSection" unique_id=1073178602]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 426.0
+offset_right = 228.0
+offset_bottom = 554.0
+texture = ExtResource("5_glwyq")
+
+[node name="Teller" type="RichTextLabel" parent="CanvasLayer/LeastFavSection" unique_id=588702640]
+z_index = 1
+layout_mode = 0
+offset_top = 433.0
+offset_right = 340.0
+offset_bottom = 504.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+theme_override_font_sizes/normal_font_size = 22
+text = "NONE YET!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeastLabel" type="RichTextLabel" parent="CanvasLayer/LeastFavSection" unique_id=623387030]
+z_index = 1
+layout_mode = 0
+offset_top = 355.0
+offset_right = 340.0
+offset_bottom = 426.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+theme_override_font_sizes/normal_font_size = 22
+text = "Least Favorite Target (Hit Most Across Games)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_down" from="CanvasLayer/Return" to="." method="_on_return_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_exited"]

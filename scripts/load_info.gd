@@ -2,12 +2,15 @@ extends Node
 
 @export var timed_high_score : RichTextLabel;
 @export var hunting_high_score : RichTextLabel;
+@export var burst_high_score : RichTextLabel;
+@export var perfect_high_score : RichTextLabel;
 @export var last_played : RichTextLabel;
 
 @onready var tree = get_tree();
 @onready var menu = "res://nodes/menu.tscn";
 
 @export var least_fav_display : TextureRect;
+@export var blank_least_fav : RichTextLabel;
 
 @export var white_duck_texture : Texture2D;
 @export var brown_duck_texture : Texture2D;
@@ -21,31 +24,41 @@ extends Node
 @export var num_shot_ducks : RichTextLabel;
 
 func find_most_shot(dict):
-	return dict.keys().get(dict.values().find(dict.values().max()));
+	var max_shot = dict.values().max();
+	
+	if (max_shot == 0):
+		return null;
+	return dict.keys().get(dict.values().find());
 	
 func _ready() -> void:
 	timed_high_score.text = "High Score (Timed): " + str(PlayerVariables.high_score_timed) + " points";
 	hunting_high_score.text = "High Score (Hunting): " + str(PlayerVariables.high_score_hunting) + " points";
+	burst_high_score.text = "High Score (Burst): " + str(PlayerVariables.high_score_burst) + " points";
+	perfect_high_score.text = "High Score (Perfect): " + str(PlayerVariables.high_score_perfect) + " points";
 	if (PlayerVariables.game_last_played == ""):
 		last_played.text = "No games played yet.";
 	else:
 		last_played.text = "Score in last played game (" + PlayerVariables.game_last_played + "): " + str(PlayerVariables.points) + " points";
 		
 	var most_shot_target = find_most_shot(PlayerVariables.num_shot);
-
-	match (most_shot_target):
-		"WHITE_TARGET":
-			least_fav_display.texture = white_target_texture;
-		"COLORED_TARGET":
-			least_fav_display.texture = colored_target_texture;
-		"RED_TARGET":
-			least_fav_display.texture = red_target_texture;
-		"YELLOW_DUCK":
-			least_fav_display.texture = yellow_duck_texture;
-		"BROWN_DUCK":
-			least_fav_display.texture = brown_duck_texture;
-		"WHITE_DUCK":
-			least_fav_display.texture = white_duck_texture;
+	
+	if (most_shot_target != null):
+		least_fav_display.visible = true;
+		match (most_shot_target):
+			"WHITE_TARGET":
+				least_fav_display.texture = white_target_texture;
+			"COLORED_TARGET":
+				least_fav_display.texture = colored_target_texture;
+			"RED_TARGET":
+				least_fav_display.texture = red_target_texture;
+			"YELLOW_DUCK":
+				least_fav_display.texture = yellow_duck_texture;
+			"BROWN_DUCK":
+				least_fav_display.texture = brown_duck_texture;
+			"WHITE_DUCK":
+				least_fav_display.texture = white_duck_texture;
+	else:
+		blank_least_fav.visible = true;
 			
 	num_shot_ducks.text = "Number of ducks shot: " + str(PlayerVariables.num_shot_ducks);
 	num_shot_targets.text = "Number of targets shot: " + str(PlayerVariables.num_shot_targets);

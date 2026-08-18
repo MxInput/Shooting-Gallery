@@ -195,28 +195,41 @@ vertical_alignment = 1
 [node name="GameOver" type="TextureRect" parent="CanvasLayer" unique_id=1195811075]
 visible = false
 z_index = 5
-offset_left = 458.0
-offset_top = 110.0
-offset_right = 753.0
-offset_bottom = 179.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.5
+offset_top = 100.0
+offset_right = 147.5
+offset_bottom = 169.0
+grow_horizontal = 2
 texture = ExtResource("8_ukblw")
 
 [node name="Ready" type="TextureRect" parent="CanvasLayer" unique_id=1031185667]
 visible = false
 z_index = 5
-offset_left = 458.0
-offset_top = 110.0
-offset_right = 753.0
-offset_bottom = 179.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.0
+offset_top = 100.0
+offset_right = 115.0
+offset_bottom = 166.0
+grow_horizontal = 2
 texture = ExtResource("11_urx1x")
+stretch_mode = 2
 
 [node name="Go" type="TextureRect" parent="CanvasLayer" unique_id=1263268304]
 visible = false
 z_index = 5
-offset_left = 539.0
-offset_top = 110.0
-offset_right = 650.0
-offset_bottom = 176.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.5
+offset_top = 100.0
+offset_right = 55.5
+offset_bottom = 166.0
+grow_horizontal = 2
 texture = ExtResource("12_fflsj")
 
 [node name="Curtains" type="Control" parent="CanvasLayer" unique_id=2047063306]

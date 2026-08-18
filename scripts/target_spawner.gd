@@ -117,7 +117,7 @@ func _process(delta: float) -> void:
 				
 		if (time_left <= 30.0):
 			if (!reach_30):
-				target_color = Color.ORANGE_RED;
+				target_color = Color.FIREBRICK;
 				reach_30 = true;
 				
 				color_change_time = 0.0;
