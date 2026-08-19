@@ -51,10 +51,12 @@ func transition(location, target) -> void:
 		
 func go_to_timed() -> void:
 	PlayerVariables.points = 0;
+	PlayerVariables.completed_last_game = false;
 	get_tree().change_scene_to_packed(timed_game);
 	
 func go_to_hunting() -> void:
 	PlayerVariables.points = 0;
+	PlayerVariables.completed_last_game = false;
 	get_tree().change_scene_to_packed(hunting_game);
 
 func go_to_customize() -> void:
@@ -65,10 +67,12 @@ func go_to_info() -> void:
 
 func go_to_bursts() -> void:
 	PlayerVariables.points = 0;
+	PlayerVariables.completed_last_game = false;
 	get_tree().change_scene_to_packed(burst_game);
 
 func go_to_perfect() -> void:
 	PlayerVariables.points = 0;
+	PlayerVariables.completed_last_game = false;
 	get_tree().change_scene_to_packed(perfect_game);
 
 func _on_delay_timer_timeout() -> void:

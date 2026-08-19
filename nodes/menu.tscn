@@ -41,7 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://b54pcyr3ja50r" path="res://images/game_background/bg_wood.png" id="30_bqtq0"]
 [ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshairs/crosshair_outline_small.png" id="32_26j0n"]
 [ext_resource type="Script" uid="uid://bc6yj6ydickk" path="res://scripts/crosshair_handler.gd" id="32_y8dmt"]
-[ext_resource type="Texture2D" uid="uid://bqpc11w266wjq" path="res://images/buttons/button_rectangle_depth_border.png" id="41_r8qsc"]
+[ext_resource type="Texture2D" uid="uid://by4q0hmepuhlj" path="res://images/buttons/button_rectangle_depth_border-384x128.svg" id="41_gmy8o"]
 [ext_resource type="Texture2D" uid="uid://es5f86flxtia" path="res://images/curtains/curtain_top.png" id="42_gmy8o"]
 [ext_resource type="Texture2D" uid="uid://db1trufita3ew" path="res://images/curtains/curtain_straight.png" id="43_phhy2"]
 [ext_resource type="Texture2D" uid="uid://0sprqq1u60dd" path="res://images/curtains/curtain.png" id="44_h5akv"]
@@ -635,7 +635,8 @@ offset_left = 237.0
 offset_top = 254.0
 offset_right = 621.0
 offset_bottom = 382.0
-texture = ExtResource("41_r8qsc")
+texture = ExtResource("41_gmy8o")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/Description" unique_id=874003471]
 layout_mode = 0

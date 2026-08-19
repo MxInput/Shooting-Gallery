@@ -25,14 +25,14 @@
 [ext_resource type="Script" uid="uid://cw0rcyq2dxlg3" path="res://scripts/aim_controller_hunting.gd" id="21_5ikoq"]
 [ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="21_6bdp1"]
 [ext_resource type="Texture2D" uid="uid://cp1x6jc5ff0uu" path="res://images/buttons/button_square_depth_border-226x226.svg" id="21_6qi6q"]
-[ext_resource type="Texture2D" uid="uid://bqpc11w266wjq" path="res://images/buttons/button_rectangle_depth_border.png" id="21_cgpsn"]
 [ext_resource type="Texture2D" uid="uid://c7okycv4u8uex" path="res://images/buttons/button_round_depth_border.png" id="21_lhmj2"]
 [ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="22_4fgw0"]
-[ext_resource type="Texture2D" uid="uid://gp323oqwxsyg" path="res://images/buttons/button_rectangle_depth_flat.png" id="22_igja6"]
 [ext_resource type="Texture2D" uid="uid://db1d58hysuj11" path="res://images/buttons/button_round_depth_gradient.png" id="22_vrdas"]
+[ext_resource type="Texture2D" uid="uid://by4q0hmepuhlj" path="res://images/buttons/button_rectangle_depth_border-384x128.svg" id="23_6qi6q"]
 [ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="23_igja6"]
 [ext_resource type="Texture2D" uid="uid://dis6a6dygughr" path="res://images/shots/shot_yellow_large.png" id="23_pyxs7"]
 [ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="24_8vba6"]
+[ext_resource type="Texture2D" uid="uid://ccaxumq1lvhon" path="res://images/buttons/button_rectangle_depth_flat-384x128.svg" id="24_bedoe"]
 [ext_resource type="FontFile" uid="uid://dohcibfjpe0ct" path="res://fonts/YangBagus-DYMX9.ttf" id="24_lhmj2"]
 [ext_resource type="Texture2D" uid="uid://dhbofltcqbfm" path="res://images/bullets/icon_bullet_silver_short.png" id="25_n8ett"]
 [ext_resource type="PackedScene" uid="uid://c615hf1ce8red" path="res://nodes/target.tscn" id="27_wmhc1"]
@@ -427,6 +427,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CurrentTeller" type="Control" parent="CanvasLayer" unique_id=918161993]
+visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
@@ -515,9 +516,9 @@ offset_left = 404.0
 offset_top = 470.0
 offset_right = 788.0
 offset_bottom = 598.0
-texture_normal = ExtResource("21_cgpsn")
-texture_pressed = ExtResource("22_igja6")
-texture_hover = ExtResource("22_igja6")
+texture_normal = ExtResource("23_6qi6q")
+texture_pressed = ExtResource("24_bedoe")
+texture_hover = ExtResource("24_bedoe")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("23_igja6")

@@ -230,6 +230,7 @@ func updateLives() -> void:
 		cross3.texture = cross_texture;
 		
 func _ready() -> void:
+	PlayerVariables.game_last_played = "Hunting";
 	countdown_timer.start();
 	
 func round_to_dec(num, place) -> float:
@@ -255,11 +256,12 @@ func _process(delta: float) -> void:
 				time_till_change.modulate = lerp(time_till_change.modulate, target_color, color_change_time);
 			
 	if (lives == 0):
-		PlayerVariables.game_last_played = "Hunting";
-
 		if (PlayerVariables.points > PlayerVariables.high_score_hunting):
 			PlayerVariables.high_score_hunting = PlayerVariables.points;
 			
+		PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+		PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
+		PlayerVariables.completed_last_game = true;
 		pause_button.visible = false;
 		game_over.visible = true;
 		return_button.visible = true;

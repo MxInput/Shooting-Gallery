@@ -22,6 +22,8 @@ extends Node
 
 @export var num_shot_targets : RichTextLabel;
 @export var num_shot_ducks : RichTextLabel;
+@export var num_shot_completed_targets : RichTextLabel;
+@export var num_shot_completed_ducks : RichTextLabel;
 
 @export var perfect_game_teller : RichTextLabel;
 
@@ -37,10 +39,16 @@ func _ready() -> void:
 	hunting_high_score.text = "High Score (Hunting): " + str(PlayerVariables.high_score_hunting) + " points";
 	burst_high_score.text = "High Score (Burst): " + str(PlayerVariables.high_score_burst) + " points";
 	perfect_high_score.text = "High Score (Perfect): " + str(PlayerVariables.high_score_perfect) + " points";
+	
 	if (PlayerVariables.game_last_played == ""):
 		last_played.text = "No games played yet.";
 	else:
-		last_played.text = "Score in last played game (" + PlayerVariables.game_last_played + "): " + str(PlayerVariables.points) + " points";
+		var was_completed := PlayerVariables.completed_last_game;
+		
+		if (was_completed):
+			last_played.text = "Score in last played game (" + PlayerVariables.game_last_played + "): " + str(PlayerVariables.points) + " points";
+		else:
+			last_played.text = "(INCOMPLETE) Score in last played game (" + PlayerVariables.game_last_played + "): " + str(PlayerVariables.points) + " points";
 		
 	var most_shot_target = find_most_shot(PlayerVariables.num_shot);
 	
@@ -62,9 +70,11 @@ func _ready() -> void:
 	else:
 		blank_least_fav.visible = true;
 			
-	num_shot_ducks.text = "Number of ducks shot: " + str(PlayerVariables.num_shot_ducks);
-	num_shot_targets.text = "Number of targets shot: " + str(PlayerVariables.num_shot_targets);
-			
+	num_shot_ducks.text = "Number of ducks shot (TOTAL): " + str(PlayerVariables.num_shot_ducks);
+	num_shot_targets.text = "Number of targets shot (TOTAL): " + str(PlayerVariables.num_shot_targets);
+	num_shot_completed_ducks.text = "Number of ducks shot (COMPLETED GAMES): " + str(PlayerVariables.num_shot_ducks);
+	num_shot_completed_targets.text = "Number of targets shot (COMPLETED GAMES): " + str(PlayerVariables.num_shot_targets);
+	
 	perfect_game_teller.text = "[rainbow] Number of Perfects: " + str(PlayerVariables.number_of_perfects);
 	
 func _on_return_button_down() -> void:

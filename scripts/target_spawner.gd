@@ -83,6 +83,7 @@ var inc_amt = 0.0;
 var original_clock_size;
 
 func _ready() -> void:
+	PlayerVariables.game_last_played = "Timed";
 	countdown_timer.start();
 	
 func _process(delta: float) -> void:
@@ -197,10 +198,12 @@ func _on_duck_timer_timeout() -> void:
 	new_duck.points = duck_points[Ducks.values()[Ducks.keys().find(selected_duck_value)]];
 
 func _on_game_timer_timeout() -> void:
-	PlayerVariables.game_last_played = "Timed";
 	if (PlayerVariables.points > PlayerVariables.high_score_timed):
 		PlayerVariables.high_score_timed = PlayerVariables.points;
 		
+	PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+	PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
+	PlayerVariables.completed_last_game = true;
 	pause_button.visible = false;
 	return_button.visible = true;
 	game_over.visible = true;

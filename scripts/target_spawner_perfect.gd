@@ -181,6 +181,7 @@ func generate_random_target() -> String:
 	return chosen_target;
 		
 func _ready() -> void:
+	PlayerVariables.game_last_played = "Perfect";
 	countdown_timer.start();
 
 func round_to_dec(num, place) -> float:
@@ -225,11 +226,12 @@ func _process(delta: float) -> void:
 			target_done.emit();
 			
 	if (waves_remaining > max_waves):
-		PlayerVariables.game_last_played = "Perfect";
-
 		if (PlayerVariables.points > PlayerVariables.high_score_perfect):
 			PlayerVariables.high_score_perfect = PlayerVariables.points;
 			
+		PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+		PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
+		PlayerVariables.completed_last_game = true;
 		pause_button.visible = false;
 		game_over.visible = true;
 		return_button.visible = true;

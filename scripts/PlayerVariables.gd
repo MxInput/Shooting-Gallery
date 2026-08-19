@@ -3,6 +3,7 @@ extends Node
 var points := 0;
 var cross_hair_texture := load("res://images/crosshairs/crosshair_outline_small.png");
 var game_last_played := "";
+var completed_last_game := false;
 var high_score_hunting := 0;
 var high_score_timed := 0;
 var high_score_burst := 0;
@@ -19,3 +20,5 @@ var num_shot = {
 }
 var num_shot_ducks := 0;
 var num_shot_targets := 0;
+var num_shot_ducks_comp := 0;
+var num_shot_targets_comp := 0;
