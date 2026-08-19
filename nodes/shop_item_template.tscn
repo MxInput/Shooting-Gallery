@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://siccwcto2xov"]
 
-[ext_resource type="Texture2D" uid="uid://bqohl1ei4ct81" path="res://icon.svg" id="1_05rh6"]
+[ext_resource type="Texture2D" uid="uid://dkorc14fo7ri3" path="res://images/buttons/button_square_depth_border-256x256.svg" id="1_b3lsg"]
 [ext_resource type="Texture2D" uid="uid://l6s1r0laa1gx" path="res://images/crosshairs/crosshair002.png" id="2_b3lsg"]
 [ext_resource type="Script" uid="uid://dwerp60ch4phn" path="res://scripts/cross_hair_container.gd" id="2_fp3rd"]
 
 [node name="CrosshairContainer" type="TextureRect" unique_id=1968619012]
-offset_right = 223.0
-offset_bottom = 285.0
-texture = ExtResource("1_05rh6")
+custom_minimum_size = Vector2(256, 256)
+offset_right = 280.0
+offset_bottom = 280.0
+texture = ExtResource("1_b3lsg")
+expand_mode = 1
 script = ExtResource("2_fp3rd")
 
 [node name="CrosshairImage" type="TextureRect" parent="." unique_id=946553461]

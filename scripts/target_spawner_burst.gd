@@ -123,7 +123,7 @@ signal target_done
 
 @export var wave_display : RichTextLabel;
 
-var lower_speeds = [6.0, 6.5, 7.0, 7.5]
+var lower_speeds = [7.0, 7.5, 8.0, 8.5]
 var upper_speeds = [8.0, 8.5, 9.0, 9.5]
  
 @export var intermission_timer : Timer;

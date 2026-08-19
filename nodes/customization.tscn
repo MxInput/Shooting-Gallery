@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bqanoghc26a3d" path="res://scripts/customize_game.gd" id="1_60ugw"]
 [ext_resource type="PackedScene" uid="uid://siccwcto2xov" path="res://nodes/shop_item_template.tscn" id="2_my0bv"]
+[ext_resource type="Texture2D" uid="uid://dpn311iffyk3f" path="res://images/buttons/button_rectangle_depth_border_yellow.png" id="3_pil2m"]
+[ext_resource type="Texture2D" uid="uid://dpqh7nfxt5tqk" path="res://images/buttons/button_rectangle_depth_flat_yellow.png" id="4_le5wm"]
+[ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="5_6xwtn"]
+[ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="5_le5wm"]
+[ext_resource type="FontFile" uid="uid://cym6mw7vfhsif" path="res://fonts/SuperCartoon-6R791.ttf" id="7_xdecg"]
 
 [node name="Customization" type="Node" unique_id=1072075760 node_paths=PackedStringArray("color_picker", "h_box")]
 script = ExtResource("1_60ugw")
@@ -29,20 +34,59 @@ offset_right = 332.0
 offset_bottom = 615.0
 presets_visible = false
 
-[node name="Return" type="Button" parent="." unique_id=145855524]
+[node name="Return" type="TextureButton" parent="." unique_id=1383862459 node_paths=PackedStringArray("label")]
 z_index = 1
-offset_left = 1054.0
-offset_top = 596.0
-offset_right = 1125.0
-offset_bottom = 627.0
-text = "RETURN"
+offset_left = 928.0
+offset_top = 561.0
+offset_right = 1120.0
+offset_bottom = 625.0
+texture_normal = ExtResource("3_pil2m")
+texture_pressed = ExtResource("4_le5wm")
+texture_hover = ExtResource("4_le5wm")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_6xwtn")
+label = NodePath("Label")
+original_color = Color(0.9369596, 0.7080985, 0.2204158, 1)
+new_color = Color(0.85882354, 0.8666667, 0.9098039, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1766399528]
-offset_left = 395.0
-offset_top = 117.0
-offset_right = 886.0
-offset_bottom = 157.0
-text = "CHOOSE THE COLOR FOR YOUR CROSSHAIR"
+[node name="Label" type="Label" parent="Return" unique_id=2004889133]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.9369596, 0.7080985, 0.2204158, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_le5wm")
+theme_override_font_sizes/font_size = 30
+text = "RETURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorTitle" type="RichTextLabel" parent="." unique_id=1766399528]
+offset_left = 20.0
+offset_top = 7.0
+offset_right = 345.0
+offset_bottom = 55.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("7_xdecg")
+theme_override_font_sizes/normal_font_size = 26
+text = "CROSSHAIR COLOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorTitle2" type="RichTextLabel" parent="." unique_id=453548029]
+offset_left = 354.0
+offset_top = 71.0
+offset_right = 1132.0
+offset_bottom = 175.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("7_xdecg")
+theme_override_font_sizes/normal_font_size = 50
+text = "CROSSHAIRS"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1426171422]
 offset_left = 433.0
@@ -55,3 +99,5 @@ layout_mode = 2
 
 [connection signal="color_changed" from="ColorPicker" to="." method="_on_color_picker_color_changed"]
 [connection signal="button_down" from="Return" to="." method="_on_return_button_down"]
+[connection signal="mouse_entered" from="Return" to="Return" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Return" to="Return" method="_on_mouse_exited"]

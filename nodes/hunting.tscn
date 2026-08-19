@@ -19,12 +19,12 @@
 [ext_resource type="Texture2D" uid="uid://dnpej35ajkds1" path="res://images/icons/icon_duck.png" id="17_a4b64"]
 [ext_resource type="Texture2D" uid="uid://cikjucu56ltg" path="res://images/icons/icon_target.png" id="18_yp141"]
 [ext_resource type="Script" uid="uid://cdneh5ul8r832" path="res://scripts/target_spawner_hunting.gd" id="19_utfi2"]
-[ext_resource type="Texture2D" uid="uid://dya0ih2qlcwxc" path="res://images/buttons/button_square_depth_border.svg" id="20_6qi6q"]
 [ext_resource type="Texture2D" uid="uid://cacwhinjj0q1w" path="res://images/words/text_score_small.png" id="20_u1vwu"]
 [ext_resource type="Texture2D" uid="uid://bn0bl82qelwmc" path="res://images/checks/check_square_color.png" id="20_utfi2"]
 [ext_resource type="Texture2D" uid="uid://dfyfatu8qjh1a" path="res://images/shots/shot_blue_large.png" id="20_ys27s"]
 [ext_resource type="Script" uid="uid://cw0rcyq2dxlg3" path="res://scripts/aim_controller_hunting.gd" id="21_5ikoq"]
 [ext_resource type="Texture2D" uid="uid://cgmaefveep0vh" path="res://images/shots/shot_brown_large.png" id="21_6bdp1"]
+[ext_resource type="Texture2D" uid="uid://cp1x6jc5ff0uu" path="res://images/buttons/button_square_depth_border-226x226.svg" id="21_6qi6q"]
 [ext_resource type="Texture2D" uid="uid://bqpc11w266wjq" path="res://images/buttons/button_rectangle_depth_border.png" id="21_cgpsn"]
 [ext_resource type="Texture2D" uid="uid://c7okycv4u8uex" path="res://images/buttons/button_round_depth_border.png" id="21_lhmj2"]
 [ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="22_4fgw0"]
@@ -427,45 +427,44 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CurrentTeller" type="Control" parent="CanvasLayer" unique_id=918161993]
-visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
-offset_left = 828.0
+offset_left = 781.0
 offset_top = 466.0
-offset_right = 868.0
+offset_right = 821.0
 offset_bottom = 506.0
 
 [node name="Picture" type="TextureRect" parent="CanvasLayer/CurrentTeller" unique_id=1358007230]
 z_index = 1
 layout_mode = 0
-offset_left = 19.0
-offset_right = 147.0
+offset_left = 32.0
+offset_right = 160.0
 offset_bottom = 128.0
 texture = ExtResource("30_ew3wv")
 
 [node name="Text" type="RichTextLabel" parent="CanvasLayer/CurrentTeller" unique_id=1600269968]
 z_index = 1
 layout_mode = 0
-offset_left = -1.0
-offset_top = -39.0
-offset_right = 155.0
+offset_left = 11.0
+offset_top = -35.0
+offset_right = 187.0
 offset_bottom = 4.0
-theme_override_colors/default_color = Color(0.9794963, 0.30247095, 0.3632936, 1)
+theme_override_colors/default_color = Color(0.93333334, 0.15294118, 0.2784314, 1)
 theme_override_colors/font_shadow_color = Color(0.3368956, 0.14467043, 0.1932126, 1)
 theme_override_fonts/normal_font = ExtResource("24_lhmj2")
-theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/normal_font_size = 20
 text = "CURRENT TARGET"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="TextureRect" parent="CanvasLayer/CurrentTeller" unique_id=855776906]
+[node name="Background" type="TextureRect" parent="CanvasLayer/CurrentTeller" unique_id=855776906]
 layout_mode = 0
 offset_left = -17.0
 offset_top = -56.0
-offset_right = 175.0
-offset_bottom = 167.0
-texture = ExtResource("20_6qi6q")
+offset_right = 209.0
+offset_bottom = 170.0
+texture = ExtResource("21_6qi6q")
 
 [node name="TimeLeft" type="RichTextLabel" parent="CanvasLayer/CurrentTeller" unique_id=761812729]
 visible = false
@@ -519,6 +518,8 @@ offset_bottom = 598.0
 texture_normal = ExtResource("21_cgpsn")
 texture_pressed = ExtResource("22_igja6")
 texture_hover = ExtResource("22_igja6")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("23_igja6")
 label = NodePath("Label")
 original_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
