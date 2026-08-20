@@ -66,6 +66,11 @@ func _ready() -> void:
 		complete_status_quests = save_game.completed_quests_values;
 	else:
 		save_game = SaveGame.new();
+		
+		var temp_shop_inventory = ShopInventory.new();
+		var shop_items = temp_shop_inventory.inventory;
+		for item in shop_items:
+			complete_status_quests.push_back(false);
 
 func write_to_save() -> void:
 	var error := ResourceSaver.save(save_game, SAVE_PATH);

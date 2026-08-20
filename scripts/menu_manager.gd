@@ -42,10 +42,23 @@ var description_texts = {
 	"WHITE_TARGET": "Information regarding the game including credits and player stats."
 }
 
+func is_completed(given_value) -> bool: 
+	if (given_value):
+		return true;
+	return false;
+	
 func _ready() -> void:
 	if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("003")]):
 		if ((PlayerVariables.num_shot_ducks + PlayerVariables.num_shot_targets) >= 15):
 			PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("003")];
+			PlayerVariables.write_to_save();
+	
+	if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("008")]):
+		var temp_arr := PlayerVariables.complete_status_quests;
+		temp_arr.pop_front();
+		
+		if (temp_arr.any(is_completed)):
+			PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("008")] = true;
 			PlayerVariables.write_to_save();
 			
 func transition(location, target) -> void:
