@@ -128,6 +128,8 @@ var upper_speeds = [8.0, 8.5, 9.0, 9.5]
  
 @export var intermission_timer : Timer;
 
+var ended := false;
+
 func generate_wave() -> void:
 	already_spawned = true;
 	while (spawns_now < spawns_possible):
@@ -224,16 +226,23 @@ func _process(delta: float) -> void:
 			target_done.emit();
 			
 	if (waves_remaining > max_waves):
-		if (PlayerVariables.points > PlayerVariables.high_score_burst):
-			PlayerVariables.high_score_burst = PlayerVariables.points;
+		if (!ended):
+			ended = true;
+			if (PlayerVariables.points > PlayerVariables.high_score_burst):
+				PlayerVariables.high_score_burst = PlayerVariables.points;
+				
+			PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+			PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
 			
-		PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
-		PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
-		PlayerVariables.completed_last_game = true;
-		pause_button.visible = false;
-		game_over.visible = true;
-		return_button.visible = true;
-		
+			PlayerVariables.completed_last_game = true;
+			
+			pause_button.visible = false;
+			return_button.visible = true;
+			
+			game_over.visible = true;
+			
+			PlayerVariables.write_to_save();
+
 	if (current_cycle < change_times.size()):
 		if (time_ongoing >= change_times[current_cycle]):
 			current_cycle += 1;

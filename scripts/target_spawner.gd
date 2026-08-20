@@ -203,13 +203,19 @@ func _on_game_timer_timeout() -> void:
 		
 	PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
 	PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
+	
 	PlayerVariables.completed_last_game = true;
+	
 	pause_button.visible = false;
 	return_button.visible = true;
+	
 	game_over.visible = true;
+	
 	if (perfect_teller.visible):
 		perfect_final_text.visible = true;
 		PlayerVariables.number_of_perfects += 1;
+		
+	PlayerVariables.write_to_save();
 
 func _on_countdown_timer_timeout() -> void:
 	if (!game_timer.paused):

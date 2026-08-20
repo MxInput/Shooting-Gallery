@@ -130,6 +130,8 @@ var upper_speeds = [7.0, 7.5, 8.0, 8.5]
 @export var perfect_teller : RichTextLabel;
 @export var perfect_final_text : RichTextLabel;
 
+var ended := false;
+
 func generate_wave() -> void:
 	already_spawned = true;
 	while (spawns_now < spawns_possible):
@@ -226,19 +228,26 @@ func _process(delta: float) -> void:
 			target_done.emit();
 			
 	if (waves_remaining > max_waves):
-		if (PlayerVariables.points > PlayerVariables.high_score_perfect):
-			PlayerVariables.high_score_perfect = PlayerVariables.points;
+		if (!ended):
+			if (PlayerVariables.points > PlayerVariables.high_score_perfect):
+				PlayerVariables.high_score_perfect = PlayerVariables.points;
+				
+			PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+			PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
 			
-		PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
-		PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
-		PlayerVariables.completed_last_game = true;
-		pause_button.visible = false;
-		game_over.visible = true;
-		return_button.visible = true;
-		if (perfect_teller.visible):
-			perfect_final_text.visible = true;
-			PlayerVariables.number_of_perfects += 1;
+			PlayerVariables.completed_last_game = true;
 		
+			pause_button.visible = false;
+			game_over.visible = true;
+			
+			return_button.visible = true;
+			
+			if (perfect_teller.visible):
+				perfect_final_text.visible = true;
+				PlayerVariables.number_of_perfects += 1;
+		
+			PlayerVariables.write_to_save();
+			
 	if (current_cycle < change_times.size()):
 		if (time_ongoing >= change_times[current_cycle]):
 			current_cycle += 1;

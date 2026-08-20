@@ -120,6 +120,8 @@ var num_spawn := 0;
 
 var started = false;
 
+var ended := false;
+
 func generate_random_hit_object() -> void:
 	time_till_change.visible = false;
 	time_till_change.modulate = Color.WHITE;
@@ -256,15 +258,23 @@ func _process(delta: float) -> void:
 				time_till_change.modulate = lerp(time_till_change.modulate, target_color, color_change_time);
 			
 	if (lives == 0):
-		if (PlayerVariables.points > PlayerVariables.high_score_hunting):
-			PlayerVariables.high_score_hunting = PlayerVariables.points;
+		if (!ended):
+			ended = true;
 			
-		PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
-		PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
-		PlayerVariables.completed_last_game = true;
-		pause_button.visible = false;
-		game_over.visible = true;
-		return_button.visible = true;
+			if (PlayerVariables.points > PlayerVariables.high_score_hunting):
+				PlayerVariables.high_score_hunting = PlayerVariables.points;
+				
+			PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+			PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
+			
+			PlayerVariables.completed_last_game = true;
+			
+			pause_button.visible = false;
+			return_button.visible = true;
+			
+			game_over.visible = true;
+			
+			PlayerVariables.write_to_save();
 		
 	if (current_cycle < change_times.size()):
 		if (time_ongoing >= change_times[current_cycle]):
