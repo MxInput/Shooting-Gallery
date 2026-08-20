@@ -276,11 +276,16 @@ func _process(delta: float) -> void:
 			
 			PlayerVariables.write_to_save();
 		
-	if (current_cycle < change_times.size()):
+	var last_change_index := (change_times.size() - 1);
+	if (current_cycle < last_change_index):
 		if (time_ongoing >= change_times[current_cycle]):
 			current_cycle += 1;
 			lower_target_cycle = lower_target_cycles[current_cycle];
 			upper_target_cycle = upper_target_cycles[current_cycle];
+
+			if (current_cycle == last_change_index):
+				if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("004")]):
+					PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("004")] = true;
 		
 	if (!countdown_timer.is_stopped()):
 		var time_left := countdown_timer.time_left;
@@ -416,7 +421,6 @@ func _on_countdown_timer_timeout() -> void:
 
 	pause_button.visible = true;
 	go.visible = false;
-	
 
 func _on_return_button_down() -> void:
 	get_tree().change_scene_to_file(menu);

@@ -216,6 +216,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 										PlayerVariables.num_shot["WHITE_DUCK"] += 1;
 										new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
 										
+								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")]):
+									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")] = true;
+									PlayerVariables.write_to_save();
+									
 								PlayerVariables.num_shot_ducks += 1;
 								aim_controller.duck_count += 1;
 								new_points_icon.position = Vector2(434.0, 100.0);
@@ -233,6 +237,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 										PlayerVariables.num_shot["WHITE_TARGET"] += 1;
 										new_shot_particles.color = Color.WHITE;
 										
+								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("002")]):
+									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("002")] = true;
+									PlayerVariables.write_to_save();
+									
 								PlayerVariables.num_shot_targets += 1;
 								aim_controller.target_count += 1;
 								new_points_icon.position = Vector2(670.0, 100.0);
@@ -288,6 +296,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 										target_spawner.spawned_targets["WHITE_DUCK"].erase(self);
 										new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
 										
+								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")]):
+									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")] = true;
+									PlayerVariables.write_to_save();
+								
 								PlayerVariables.num_shot_ducks += 1;
 								aim_controller.duck_count += 1;
 								new_points_icon.position = Vector2(434.0, 100.0);
@@ -307,7 +319,11 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 										PlayerVariables.num_shot["WHITE_TARGET"] += 1;
 										target_spawner.spawned_targets["WHITE_TARGET"].erase(self);	
 										new_shot_particles.color = Color.WHITE;
-										
+								
+								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("002")]):
+									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("002")] = true;
+									PlayerVariables.write_to_save();
+									
 								PlayerVariables.num_shot_targets += 1;
 								aim_controller.target_count += 1;
 								new_points_icon.position = Vector2(670.0, 100.0);
@@ -429,6 +445,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 											PlayerVariables.num_shot["WHITE_DUCK"] += 1;
 											
 								if (!wrong_target):
+									if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")]):
+										PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")] = true;
+										PlayerVariables.write_to_save();
+									
 									PlayerVariables.num_shot_ducks += 1;
 									aim_controller.duck_count += 1;
 								new_points_icon.position = Vector2(434.0, 100.0);
@@ -450,6 +470,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 											PlayerVariables.num_shot["WHITE_TARGET"] += 1;
 											
 								if (!wrong_target):		
+									if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("002")]):
+										PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("002")] = true;
+										PlayerVariables.write_to_save();
+									
 									aim_controller.target_count += 1;
 									PlayerVariables.num_shot_targets += 1;
 									

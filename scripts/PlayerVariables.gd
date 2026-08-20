@@ -30,6 +30,8 @@ var num_shot_targets := 0;
 var num_shot_ducks_comp := 0;
 var num_shot_targets_comp := 0;
 
+var complete_status_quests : Array;
+
 const SAVE_PATH := "user://shooting_save.tres"
 
 var save_game : SaveGame = null;
@@ -60,6 +62,8 @@ func _ready() -> void:
 		
 		num_shot_ducks_comp = save_game.num_shot_ducks_comp;
 		num_shot_targets_comp = save_game.num_shot_targets_comp;
+		
+		complete_status_quests = save_game.completed_quests_values;
 	else:
 		save_game = SaveGame.new();
 

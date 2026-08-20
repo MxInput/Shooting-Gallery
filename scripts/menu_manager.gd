@@ -41,6 +41,13 @@ var description_texts = {
 	"COLORED_TARGET": "Change your currently selected cosmetics including crosshair designs and their colors.",
 	"WHITE_TARGET": "Information regarding the game including credits and player stats."
 }
+
+func _ready() -> void:
+	if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("003")]):
+		if ((PlayerVariables.num_shot_ducks + PlayerVariables.num_shot_targets) >= 15):
+			PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("003")];
+			PlayerVariables.write_to_save();
+			
 func transition(location, target) -> void:
 	if (!hit_already):
 		hit_already = true;
