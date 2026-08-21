@@ -5,3 +5,4 @@ var unlocked := false;
 
 func _on_equip_button_down() -> void:
 	PlayerVariables.cross_hair_texture = selected_item.item_texture;
+	PlayerVariables.write_to_save();

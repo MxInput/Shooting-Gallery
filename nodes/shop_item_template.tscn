@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bqpc11w266wjq" path="res://images/buttons/button_rectangle_depth_border.png" id="4_hgdes"]
 [ext_resource type="FontFile" uid="uid://cym6mw7vfhsif" path="res://fonts/SuperCartoon-6R791.ttf" id="4_sxhvn"]
 [ext_resource type="Texture2D" uid="uid://gp323oqwxsyg" path="res://images/buttons/button_rectangle_depth_flat.png" id="5_fywnm"]
-[ext_resource type="Script" uid="uid://boelvqfw5uke5" path="res://nodes/item_color_change.gd" id="7_suyho"]
+[ext_resource type="Script" uid="uid://boelvqfw5uke5" path="res://scripts/item_color_change.gd" id="7_suyho"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="7_sxhvn"]
 [ext_resource type="Texture2D" uid="uid://cnmlg046pl3b1" path="res://images/buttons/button_rectangle_depth_border_red.png" id="8_gjb6x"]
 [ext_resource type="Texture2D" uid="uid://bk66sxombg4j8" path="res://images/buttons/button_rectangle_depth_flat_red.png" id="9_06y8m"]
@@ -70,6 +70,7 @@ text = "EQUIP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="renamed" from="." to="Equip" method="_on_crosshair_container_renamed"]
 [connection signal="button_down" from="Equip" to="." method="_on_equip_button_down"]
 [connection signal="mouse_entered" from="Equip" to="Equip" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Equip" to="Equip" method="_on_mouse_exited"]

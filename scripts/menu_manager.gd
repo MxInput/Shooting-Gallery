@@ -54,7 +54,7 @@ func _ready() -> void:
 			PlayerVariables.write_to_save();
 	
 	if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("008")]):
-		var temp_arr := PlayerVariables.complete_status_quests;
+		var temp_arr := PlayerVariables.complete_status_quests.duplicate();
 		temp_arr.pop_front();
 		
 		if (temp_arr.any(is_completed)):
