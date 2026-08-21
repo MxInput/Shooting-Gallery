@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bqpc11w266wjq" path="res://images/buttons/button_rectangle_depth_border.png" id="4_hgdes"]
 [ext_resource type="FontFile" uid="uid://cym6mw7vfhsif" path="res://fonts/SuperCartoon-6R791.ttf" id="4_sxhvn"]
 [ext_resource type="Texture2D" uid="uid://gp323oqwxsyg" path="res://images/buttons/button_rectangle_depth_flat.png" id="5_fywnm"]
-[ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="6_2higo"]
+[ext_resource type="Script" uid="uid://boelvqfw5uke5" path="res://nodes/item_color_change.gd" id="7_suyho"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="7_sxhvn"]
+[ext_resource type="Texture2D" uid="uid://cnmlg046pl3b1" path="res://images/buttons/button_rectangle_depth_border_red.png" id="8_gjb6x"]
+[ext_resource type="Texture2D" uid="uid://bk66sxombg4j8" path="res://images/buttons/button_rectangle_depth_flat_red.png" id="9_06y8m"]
 
 [node name="CrosshairContainer" type="TextureRect" unique_id=1968619012]
 custom_minimum_size = Vector2(256, 256)
@@ -36,7 +38,7 @@ theme_override_fonts/normal_font = ExtResource("4_sxhvn")
 theme_override_font_sizes/normal_font_size = 22
 text = "aaaaaaaaaaaaaaaaaaaaaaaaa"
 
-[node name="Equip" type="TextureButton" parent="." unique_id=1435707952 node_paths=PackedStringArray("label")]
+[node name="Equip" type="TextureButton" parent="." unique_id=1435707952 node_paths=PackedStringArray("label", "container")]
 layout_mode = 0
 offset_left = 23.0
 offset_top = 20.0
@@ -47,10 +49,14 @@ texture_pressed = ExtResource("5_fywnm")
 texture_hover = ExtResource("5_fywnm")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("6_2higo")
+script = ExtResource("7_suyho")
 label = NodePath("Label")
 original_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
 new_color = Color(0.85882354, 0.8666667, 0.9098039, 1)
+container = NodePath("..")
+red_button_normal = ExtResource("8_gjb6x")
+red_button_hover = ExtResource("9_06y8m")
+red_color = Color(0.8039216, 0.043137256, 0.16470589, 1)
 
 [node name="Label" type="Label" parent="Equip" unique_id=1113975377]
 layout_mode = 0
