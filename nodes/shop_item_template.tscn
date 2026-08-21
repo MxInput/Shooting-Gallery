@@ -11,13 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://cnmlg046pl3b1" path="res://images/buttons/button_rectangle_depth_border_red.png" id="8_gjb6x"]
 [ext_resource type="Texture2D" uid="uid://bk66sxombg4j8" path="res://images/buttons/button_rectangle_depth_flat_red.png" id="9_06y8m"]
 
-[node name="CrosshairContainer" type="TextureRect" unique_id=1968619012]
+[node name="CrosshairContainer" type="TextureRect" unique_id=1968619012 node_paths=PackedStringArray("equip_button")]
 custom_minimum_size = Vector2(256, 256)
 offset_right = 280.0
 offset_bottom = 280.0
 texture = ExtResource("1_b3lsg")
 expand_mode = 1
 script = ExtResource("2_fp3rd")
+equip_button = NodePath("Equip")
 
 [node name="CrosshairImage" type="TextureRect" parent="." unique_id=946553461]
 layout_mode = 0
