@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://du5qw0r3aex6"
+path="res://.godot/imported/crosshair_outline_small.png-38ae6e4974faed63b328f582cf0a8730.image"
+
+[deps]
+
+source_file="res://images/crosshair_img/crosshair_outline_small.png"
+dest_files=["res://.godot/imported/crosshair_outline_small.png-38ae6e4974faed63b328f582cf0a8730.image"]
+
+[params]
+

@@ -215,6 +215,7 @@ func _on_game_timer_timeout() -> void:
 		perfect_final_text.visible = true;
 		PlayerVariables.number_of_perfects += 1;
 		
+	
 	PlayerVariables.write_to_save();
 
 func _on_countdown_timer_timeout() -> void:

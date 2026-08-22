@@ -51,14 +51,16 @@ func _ready() -> void:
 	if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("003")]):
 		if ((PlayerVariables.num_shot_ducks + PlayerVariables.num_shot_targets) >= 15):
 			PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("003")];
+			PlayerVariables.save_game.completed_quests_values = PlayerVariables.complete_status_quests;
 			PlayerVariables.write_to_save();
-	
+			
 	if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("008")]):
 		var temp_arr := PlayerVariables.complete_status_quests.duplicate();
 		temp_arr.pop_front();
 		
 		if (temp_arr.any(is_completed)):
 			PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("008")] = true;
+			PlayerVariables.save_game.completed_quests_values = PlayerVariables.complete_status_quests;
 			PlayerVariables.write_to_save();
 			
 func transition(location, target) -> void:
@@ -72,11 +74,13 @@ func transition(location, target) -> void:
 func go_to_timed() -> void:
 	PlayerVariables.points = 0;
 	PlayerVariables.completed_last_game = false;
+	
 	get_tree().change_scene_to_packed(timed_game);
 	
 func go_to_hunting() -> void:
 	PlayerVariables.points = 0;
 	PlayerVariables.completed_last_game = false;
+	
 	get_tree().change_scene_to_packed(hunting_game);
 
 func go_to_customize() -> void:
@@ -88,11 +92,13 @@ func go_to_info() -> void:
 func go_to_bursts() -> void:
 	PlayerVariables.points = 0;
 	PlayerVariables.completed_last_game = false;
+	
 	get_tree().change_scene_to_packed(burst_game);
 
 func go_to_perfect() -> void:
 	PlayerVariables.points = 0;
 	PlayerVariables.completed_last_game = false;
+	
 	get_tree().change_scene_to_packed(perfect_game);
 
 func _on_delay_timer_timeout() -> void:

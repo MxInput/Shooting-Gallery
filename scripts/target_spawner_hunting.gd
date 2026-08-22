@@ -286,6 +286,9 @@ func _process(delta: float) -> void:
 			if (current_cycle == last_change_index):
 				if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("004")]):
 					PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("004")] = true;
+					
+					PlayerVariables.save_game.completed_quests_values = PlayerVariables.complete_status_quests;
+					PlayerVariables.write_to_save();
 		
 	if (!countdown_timer.is_stopped()):
 		var time_left := countdown_timer.time_left;

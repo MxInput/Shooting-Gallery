@@ -35,6 +35,8 @@ func _ready() -> void:
 			
 func _on_color_picker_color_changed(color: Color) -> void:
 	PlayerVariables.target_color = color;
+	PlayerVariables.save_game.target_color = PlayerVariables.target_color;
+	PlayerVariables.write_to_save();
 
 func _on_return_button_down() -> void:
 	tree.change_scene_to_file(menu);

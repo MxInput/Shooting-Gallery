@@ -8,6 +8,7 @@ var unlocked := false;
 func _on_equip_button_down() -> void:
 	if (unlocked):
 		PlayerVariables.cross_hair_texture = selected_item.item_texture;
+		PlayerVariables.save_game.cross_hair_texture = PlayerVariables.cross_hair_texture;
 		PlayerVariables.write_to_save();
 	else:
 		if (!equip_button.is_moving()):

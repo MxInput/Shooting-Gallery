@@ -41,7 +41,7 @@ func _ready() -> void:
 		save_game = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE);
 	
 		points = save_game.points;
-		
+
 		cross_hair_texture = save_game.cross_hair_texture;
 		target_color = save_game.target_color;
 		
@@ -62,7 +62,7 @@ func _ready() -> void:
 		
 		num_shot_ducks_comp = save_game.num_shot_ducks_comp;
 		num_shot_targets_comp = save_game.num_shot_targets_comp;
-		
+
 		complete_status_quests = save_game.completed_quests_values;
 	else:
 		save_game = SaveGame.new();
@@ -77,6 +77,9 @@ func _ready() -> void:
 			else:
 				complete_status_quests.push_back(false);
 			count += 1;
+			
+		save_game.completed_quests_values = complete_status_quests;
+		write_to_save();
 			
 func write_to_save() -> void:
 	var error := ResourceSaver.save(save_game, SAVE_PATH);

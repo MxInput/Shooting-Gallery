@@ -3,7 +3,7 @@ extends Resource
 
 @export var points : int;
 
-@export var cross_hair_texture : CompressedTexture2D;
+@export var cross_hair_texture : ImageTexture;
 @export var target_color : Color;
 
 @export var game_last_played : String;
@@ -24,5 +24,5 @@ extends Resource
 @export var num_shot_ducks_comp : int;
 @export var num_shot_targets_comp : int;
 
-var completed_quests = ["000", "001", "002", "003", "004"];
-var completed_quests_values : Array;
+@export var completed_quests = ["000", "001", "002", "003", "004"];
+@export var completed_quests_values : Array;

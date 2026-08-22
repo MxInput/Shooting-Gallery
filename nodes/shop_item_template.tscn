@@ -41,10 +41,10 @@ text = "aaaaaaaaaaaaaaaaaaaaaaaaa"
 
 [node name="Equip" type="TextureButton" parent="." unique_id=1435707952 node_paths=PackedStringArray("label", "container")]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 20.0
-offset_right = 119.0
-offset_bottom = 52.0
+offset_left = 36.0
+offset_top = 36.0
+offset_right = 132.0
+offset_bottom = 68.0
 texture_normal = ExtResource("4_hgdes")
 texture_pressed = ExtResource("5_fywnm")
 texture_hover = ExtResource("5_fywnm")

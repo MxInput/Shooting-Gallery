@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dphm7q2iarqs5"
+path="res://.godot/imported/crosshair192.png-2208ebf0ab781b41f462b21b37800768.image"
+
+[deps]
+
+source_file="res://images/crosshair_img/crosshair192.png"
+dest_files=["res://.godot/imported/crosshair192.png-2208ebf0ab781b41f462b21b37800768.image"]
+
+[params]
+
