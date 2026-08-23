@@ -81,7 +81,7 @@ func _ready() -> void:
 		save_game.points = points;
 		
 		var initial_crosshair_img := load("res://images/crosshair_img/crosshair_outline_small.png");
-		save_game.cross_hair_texture = ImageTexture.new().create_from_image(initial_crosshair_img);
+		save_game.cross_hair_texture = ImageTexture.create_from_image(initial_crosshair_img);
 		save_game.target_color = target_color;
 		
 		save_game.game_last_played = game_last_played;

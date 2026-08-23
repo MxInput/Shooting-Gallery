@@ -7,8 +7,23 @@
 [ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="5_6xwtn"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="5_le5wm"]
 [ext_resource type="FontFile" uid="uid://cym6mw7vfhsif" path="res://fonts/SuperCartoon-6R791.ttf" id="7_xdecg"]
+[ext_resource type="Texture2D" uid="uid://dmbs6mog0d1yk" path="res://images/scroll/button_rectangle_depth_gradient.png" id="8_75l3s"]
 [ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshairs/crosshair_outline_small.png" id="8_jt8wc"]
 [ext_resource type="Script" uid="uid://bc6yj6ydickk" path="res://scripts/crosshair_handler.gd" id="9_75l3s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqhwl"]
+texture = ExtResource("8_75l3s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ah0bx"]
+texture = ExtResource("8_75l3s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yom8g"]
+texture = ExtResource("8_75l3s")
+
+[sub_resource type="Theme" id="Theme_ah0bx"]
+HScrollBar/styles/grabber = SubResource("StyleBoxTexture_iqhwl")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_ah0bx")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_yom8g")
 
 [node name="Customization" type="Node" unique_id=1072075760 node_paths=PackedStringArray("color_picker", "h_box", "crosshair")]
 script = ExtResource("1_60ugw")
@@ -96,6 +111,7 @@ offset_left = 433.0
 offset_top = 193.0
 offset_right = 1084.0
 offset_bottom = 489.0
+theme = SubResource("Theme_ah0bx")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=820785989]
 layout_mode = 2

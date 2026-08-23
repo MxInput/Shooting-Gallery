@@ -23,7 +23,10 @@ func _ready() -> void:
 	for shop_item in inventory_arr:
 		var new_item_container = shop_item_template.instantiate();
 		h_box.add_child(new_item_container);
-		new_item_container.find_child("CrosshairImage").texture = shop_item.item_texture;
+		
+		var crosshair_img = new_item_container.find_child("CrosshairImage");
+		crosshair_img.texture = shop_item.item_texture;
+		crosshair_img.find_child("Shadow").texture = shop_item.item_texture;
 		new_item_container.find_child("Description").text = shop_item.unlock_description;
 		
 		new_item_container.selected_item = shop_item;

@@ -21,20 +21,46 @@ script = ExtResource("2_fp3rd")
 equip_button = NodePath("Equip")
 
 [node name="CrosshairImage" type="TextureRect" parent="." unique_id=946553461]
-layout_mode = 0
-offset_left = 106.0
-offset_top = 76.0
-offset_right = 170.0
-offset_bottom = 140.0
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -50.0
+offset_right = 32.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_b3lsg")
+
+[node name="Shadow" type="TextureRect" parent="CrosshairImage" unique_id=1986822758]
+modulate = Color(0, 0, 0, 1)
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -30.0
+offset_right = 32.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_b3lsg")
 
 [node name="Description" type="RichTextLabel" parent="." unique_id=360436196]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 167.0
-offset_right = 245.0
-offset_bottom = 227.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+offset_left = 30.0
+offset_top = 150.0
+offset_right = 251.0
+offset_bottom = 233.0
+theme_override_colors/default_color = Color(0.20784314, 0.7372549, 0.9647059, 1)
+theme_override_colors/font_shadow_color = Color(0.05944498, 0.12138816, 0.27787766, 1)
 theme_override_fonts/normal_font = ExtResource("4_sxhvn")
 theme_override_font_sizes/normal_font_size = 22
 text = "aaaaaaaaaaaaaaaaaaaaaaaaa"
