@@ -7,12 +7,15 @@
 [ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="5_6xwtn"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="5_le5wm"]
 [ext_resource type="FontFile" uid="uid://cym6mw7vfhsif" path="res://fonts/SuperCartoon-6R791.ttf" id="7_xdecg"]
+[ext_resource type="Texture2D" uid="uid://mbpy0iaoat8c" path="res://images/crosshairs/crosshair_outline_small.png" id="8_jt8wc"]
+[ext_resource type="Script" uid="uid://bc6yj6ydickk" path="res://scripts/crosshair_handler.gd" id="9_75l3s"]
 
-[node name="Customization" type="Node" unique_id=1072075760 node_paths=PackedStringArray("color_picker", "h_box")]
+[node name="Customization" type="Node" unique_id=1072075760 node_paths=PackedStringArray("color_picker", "h_box", "crosshair")]
 script = ExtResource("1_60ugw")
 color_picker = NodePath("ColorPicker")
 shop_item_template = ExtResource("2_my0bv")
 h_box = NodePath("ScrollContainer/HBoxContainer")
+crosshair = NodePath("Crosshair")
 
 [node name="Background" type="ColorRect" parent="." unique_id=973405137]
 offset_right = 1152.0
@@ -96,6 +99,20 @@ offset_bottom = 489.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=820785989]
 layout_mode = 2
+
+[node name="Crosshair" type="TextureRect" parent="." unique_id=1263572112]
+z_index = 12
+offset_left = 572.0
+offset_top = 384.0
+offset_right = 618.0
+offset_bottom = 430.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+texture = ExtResource("8_jt8wc")
+
+[node name="CrosshairHandler" type="Node2D" parent="." unique_id=240054223 node_paths=PackedStringArray("crosshair")]
+script = ExtResource("9_75l3s")
+crosshair = NodePath("../Crosshair")
 
 [connection signal="color_changed" from="ColorPicker" to="." method="_on_color_picker_color_changed"]
 [connection signal="button_down" from="Return" to="." method="_on_return_button_down"]

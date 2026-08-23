@@ -33,8 +33,8 @@ func find_most_shot(dict):
 	if (max_shot == 0):
 		return null;
 	return dict.keys().get(dict.values().find(max_shot));
-	
-func _ready() -> void:
+
+func set_values() -> void:
 	timed_high_score.text = "High Score (Timed): " + str(PlayerVariables.high_score_timed) + " points";
 	hunting_high_score.text = "High Score (Hunting): " + str(PlayerVariables.high_score_hunting) + " points";
 	burst_high_score.text = "High Score (Burst): " + str(PlayerVariables.high_score_burst) + " points";
@@ -75,7 +75,10 @@ func _ready() -> void:
 	num_shot_completed_ducks.text = "Number of ducks shot (COMPLETED GAMES): " + str(PlayerVariables.num_shot_ducks);
 	num_shot_completed_targets.text = "Number of targets shot (COMPLETED GAMES): " + str(PlayerVariables.num_shot_targets);
 	
-	perfect_game_teller.text = "[rainbow] Number of Perfects: " + str(PlayerVariables.number_of_perfects);
+	perfect_game_teller.text = "[rainbow] Number of Perfects: " + str(PlayerVariables.number_of_perfects);	
+	
+func _ready() -> void:
+	set_values();
 	
 func _on_return_button_down() -> void:
 	tree.change_scene_to_file(menu);

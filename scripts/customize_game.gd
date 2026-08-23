@@ -10,6 +10,8 @@ extends Node
 
 @export var h_box : HBoxContainer;
 
+@export var crosshair : TextureRect;
+
 func _ready() -> void:
 	color_picker.color = PlayerVariables.target_color;
 
@@ -37,6 +39,8 @@ func _on_color_picker_color_changed(color: Color) -> void:
 	PlayerVariables.target_color = color;
 	PlayerVariables.save_game.target_color = PlayerVariables.target_color;
 	PlayerVariables.write_to_save();
+	
+	crosshair.modulate = color;
 
 func _on_return_button_down() -> void:
 	tree.change_scene_to_file(menu);

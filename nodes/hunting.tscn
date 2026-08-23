@@ -431,9 +431,9 @@ visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
-offset_left = 781.0
+offset_left = 822.0
 offset_top = 466.0
-offset_right = 821.0
+offset_right = 862.0
 offset_bottom = 506.0
 
 [node name="Picture" type="TextureRect" parent="CanvasLayer/CurrentTeller" unique_id=1358007230]

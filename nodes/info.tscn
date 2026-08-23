@@ -13,8 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://gp323oqwxsyg" path="res://images/buttons/button_rectangle_depth_flat.png" id="11_5b314"]
 [ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="12_5b314"]
 [ext_resource type="FontFile" uid="uid://b22soeamvnjv3" path="res://fonts/MotleyForcesRegular-w1rZ3.ttf" id="13_onrhq"]
+[ext_resource type="Texture2D" uid="uid://cnmlg046pl3b1" path="res://images/buttons/button_rectangle_depth_border_red.png" id="14_144id"]
 [ext_resource type="Texture2D" uid="uid://cikjucu56ltg" path="res://images/icons/icon_target.png" id="14_m2oeo"]
+[ext_resource type="Texture2D" uid="uid://bk66sxombg4j8" path="res://images/buttons/button_rectangle_depth_flat_red.png" id="15_exklh"]
 [ext_resource type="Texture2D" uid="uid://dnpej35ajkds1" path="res://images/icons/icon_duck.png" id="15_fntib"]
+[ext_resource type="Script" uid="uid://cnn7gk1m7yx6n" path="res://nodes/reset_manager.gd" id="16_exklh"]
 
 [node name="Info" type="Node" unique_id=727299429 node_paths=PackedStringArray("timed_high_score", "hunting_high_score", "burst_high_score", "perfect_high_score", "last_played", "least_fav_display", "blank_least_fav", "num_shot_targets", "num_shot_ducks", "num_shot_completed_targets", "num_shot_completed_ducks", "perfect_game_teller")]
 script = ExtResource("1_5spqv")
@@ -337,6 +340,62 @@ text = "**PERECT GAMES are only achievable in the timed and perfect game modes"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Reset" type="Control" parent="CanvasLayer" unique_id=558886188 node_paths=PackedStringArray("info")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("16_exklh")
+info = NodePath("../..")
+
+[node name="Reset" type="TextureButton" parent="CanvasLayer/Reset" unique_id=863306828 node_paths=PackedStringArray("label")]
+z_index = 1
+layout_mode = 0
+offset_left = 864.0
+offset_top = 268.0
+offset_right = 1056.0
+offset_bottom = 332.0
+texture_normal = ExtResource("14_144id")
+texture_pressed = ExtResource("15_exklh")
+texture_hover = ExtResource("15_exklh")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("12_5b314")
+label = NodePath("Label")
+original_color = Color(0.93333334, 0.15294118, 0.2784314, 1)
+new_color = Color(0.85882354, 0.8666667, 0.9098039, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Reset/Reset" unique_id=492188800]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 184.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.93333334, 0.15294118, 0.2784314, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_onrhq")
+theme_override_font_sizes/font_size = 30
+text = "RESET"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Warning" type="RichTextLabel" parent="CanvasLayer/Reset" unique_id=1537281183]
+z_index = 1
+layout_mode = 0
+offset_left = 804.0
+offset_top = 342.0
+offset_right = 1144.0
+offset_bottom = 396.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("8_kfv5i")
+theme_override_font_sizes/normal_font_size = 16
+text = "Warning: THIS WILL DELETE ALL OF YOUR DATA INCLUDING YOUR SCORES AND AESTHETIC PREFERENCES."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_down" from="CanvasLayer/Return" to="." method="_on_return_button_down"]
 [connection signal="mouse_entered" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Return" to="CanvasLayer/Return" method="_on_mouse_exited"]
+[connection signal="button_down" from="CanvasLayer/Reset/Reset" to="CanvasLayer/Reset" method="_on_reset_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/Reset/Reset" to="CanvasLayer/Reset/Reset" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Reset/Reset" to="CanvasLayer/Reset/Reset" method="_on_mouse_exited"]

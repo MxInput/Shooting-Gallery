@@ -78,7 +78,32 @@ func _ready() -> void:
 				complete_status_quests.push_back(false);
 			count += 1;
 			
+		save_game.points = points;
+		
+		var initial_crosshair_img := load("res://images/crosshair_img/crosshair_outline_small.png");
+		save_game.cross_hair_texture = ImageTexture.new().create_from_image(initial_crosshair_img);
+		save_game.target_color = target_color;
+		
+		save_game.game_last_played = game_last_played;
+		save_game.completed_last_game = completed_last_game;
+		
+		save_game.high_score_burst = high_score_burst;
+		save_game.high_score_hunting = high_score_hunting;
+		save_game.high_score_perfect = high_score_perfect;
+		save_game.high_score_timed = high_score_timed;
+		
+		save_game.number_of_perfects = number_of_perfects;
+		
+		save_game.num_shot = num_shot;
+		
+		save_game.num_shot_ducks = num_shot_ducks;
+		save_game.num_shot_ducks_comp = num_shot_ducks_comp;
+		
+		save_game.num_shot_targets = num_shot_targets;
+		save_game.num_shot_targets_comp = num_shot_targets_comp;
+		
 		save_game.completed_quests_values = complete_status_quests;
+		
 		write_to_save();
 			
 func write_to_save() -> void:
