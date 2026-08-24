@@ -78,20 +78,30 @@ var blocked := false;
 @export var intermission_timer : Timer;
 @export var first_appear_timer : Timer;
 
+var combo_possible = true;
+
 func destroy_target(target, points, order) -> void:
 	if (loaded && (!blocked || order != 2)):
 		if (target_spawner.waves_remaining <= target_spawner.max_waves):
 			if (combo_timer.is_stopped()):
+				combo_possible = true;
+				
 				combo = 0;
 				combo_timer.start();
-			else:	
-				combo += 1;
-			
+			elif (points > 0):	
+				if (combo_possible):
+					combo += 1;
+			elif (points < 0):
+				combo_possible = false;
+				
 			if (combo >= 1):
 					var combo_additive = (1 + (combo * 0.25));
 					combo_teller.text = "[tornado freq=" + str(combo_additive) + "]x" + str(combo+1) + " COMBO";
 					combo_teller.visible = true;
 					disappear_timer.start();
+			if (!combo_possible):
+				combo_teller.visible = false;
+				combo = 0;
 				
 			var new_shot_sprite = shot_sprite.instantiate();
 		
@@ -127,12 +137,12 @@ func destroy_target(target, points, order) -> void:
 				target_object.add_child(new_shot_sprite);	
 				new_shot_sprite.global_position = mouse_pos;
 			
-			PlayerVariables.points += points;
+	PlayerVariables.points += points;
 			
-			if (PlayerVariables.points < 0):
-				PlayerVariables.points = 0;
+	if (PlayerVariables.points < 0):
+		PlayerVariables.points = 0;
 
-			point_teller.text = str(PlayerVariables.points);
+	point_teller.text = str(PlayerVariables.points);
 			
 func _ready() -> void:
 	initial_timer.start();	

@@ -54,6 +54,8 @@ func set_values() -> void:
 	
 	if (most_shot_target != null):
 		least_fav_display.visible = true;
+		blank_least_fav.visible = false;
+		
 		match (most_shot_target):
 			"WHITE_TARGET":
 				least_fav_display.texture = white_target_texture;
@@ -68,6 +70,7 @@ func set_values() -> void:
 			"WHITE_DUCK":
 				least_fav_display.texture = white_duck_texture;
 	else:
+		least_fav_display.visible = false;
 		blank_least_fav.visible = true;
 			
 	num_shot_ducks.text = "Number of ducks shot (TOTAL): " + str(PlayerVariables.num_shot_ducks);

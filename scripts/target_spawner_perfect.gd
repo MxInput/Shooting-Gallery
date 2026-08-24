@@ -132,13 +132,18 @@ var upper_speeds = [7.0, 7.5, 8.0, 8.5]
 
 var ended := false;
 
+var count = 0;
+
 func generate_wave() -> void:
 	already_spawned = true;
 	while (spawns_now < spawns_possible):
+		print("spawned", spawns_now)
 		await generate_random_hit_object();
 	finished_spawning = true;
 		
 func generate_random_hit_object() -> void:
+	print(count)
+	count += 1;
 	color_change_time = 0.0;
 	number_on_screen = 0;
 	
@@ -207,16 +212,17 @@ func _process(delta: float) -> void:
 						waves_remaining += 1; 
 						if (waves_remaining <= max_waves):
 							wave_display.text = "WAVE " + str(waves_remaining + 1);
+							spawns_now = 0;
+
+							already_spawned = false;
+							finished_spawning = false;
+							
+							intermission_timer.start();
+							aim_controller.reload();
 						else:
 							wave_display.text = "END";
 							
-						spawns_now = 0;
-
-						already_spawned = false;
-						finished_spawning = false;
 						
-						intermission_timer.start();
-						aim_controller.reload();
 					
 		if (duck_clock < duck_activate_time):
 			duck_clock += delta;
@@ -247,6 +253,7 @@ func _process(delta: float) -> void:
 				PlayerVariables.number_of_perfects += 1;
 		
 			PlayerVariables.write_to_save();
+			ended = true;
 			
 	if (current_cycle < change_times.size()):
 		if (time_ongoing >= change_times[current_cycle]):
@@ -269,6 +276,7 @@ func _process(delta: float) -> void:
 			var selected_time = randf_range(cloud_upper_limit, cloud_lower_limit);
 			cloud_timer.wait_time = selected_time;
 			cloud_timer.start();
+		
 			
 func delay_activate() -> void:
 	target_clock = 0.0;

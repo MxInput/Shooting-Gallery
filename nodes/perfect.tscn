@@ -592,14 +592,22 @@ vertical_alignment = 1
 
 [node name="PerfectFinal" type="RichTextLabel" parent="CanvasLayer" unique_id=1960558147]
 visible = false
-offset_left = 472.0
-offset_top = 194.0
-offset_right = 743.0
-offset_bottom = 234.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.5
+offset_top = -135.0
+offset_right = 135.5
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("7_uckuq")
+theme_override_fonts/normal_font = ExtResource("26_7m2cq")
 theme_override_font_sizes/normal_font_size = 30
-text = "No Misses"
+bbcode_enabled = true
+text = "[rainbow][wave]No Misses"
 horizontal_alignment = 1
 vertical_alignment = 1
 

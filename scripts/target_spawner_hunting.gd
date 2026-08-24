@@ -336,20 +336,19 @@ func _on_delay_timer_timeout() -> void:
 	
 	match (selected_target_value):
 		"RED":
-			number_on_screen = spawned_targets["RED_TARGET"].size();
-		
+			number_on_screen = spawned_targets["RED_TARGET"];
 		"COLORED":
-			new_target.find_child("Target").texture = colored_target_texture;
-			spawned_targets["COLORED_TARGET"].push_back(new_target);
-			
+			number_on_screen = spawned_targets["COLORED_TARGET"];
 		"WHITE":
-			new_target.find_child("Target").texture = white_target_texture;
-			spawned_targets["WHITE_TARGET"].push_back(new_target);
-	
+			number_on_screen = spawned_targets["WHITE_TARGET"];
+			
 	if (chosen_type == "Target" && chosen_hit == selected_target_value):	
-		if (number_on_screen >= max_on_screen):
-			while (selected_target_value == chosen_hit):
-				selected_target_value = Targets.keys().pick_random();
+		if (number_on_screen < max_on_screen):
+			number_on_screen += 1;
+		else:
+			if (number_on_screen >= max_on_screen):
+				while (selected_target_value == chosen_hit):
+					selected_target_value = Targets.keys().pick_random();
 				
 	match (selected_target_value):
 		"RED":
@@ -389,6 +388,14 @@ func _on_duck_timer_timeout() -> void:
 	
 	var selected_duck_value = Ducks.keys().pick_random();
 	
+	match (selected_duck_value):
+		"YELLOW":
+			number_on_screen = spawned_targets["YELLOW_DUCK"];
+		"BROWN":
+			number_on_screen = spawned_targets["BROWN_DUCK"];
+		"WHITE":
+			number_on_screen = spawned_targets["WHITE_DUCK"];
+			
 	if (chosen_type == "Duck" && chosen_hit == selected_duck_value):	
 		if (number_on_screen < max_on_screen):
 			number_on_screen += 1;
