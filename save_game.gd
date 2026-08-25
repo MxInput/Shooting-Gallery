@@ -24,5 +24,5 @@ extends Resource
 @export var num_shot_ducks_comp : int;
 @export var num_shot_targets_comp : int;
 
-@export var completed_quests = ["000", "001", "002", "003", "004"];
+@export var completed_quests = ["000", "001", "002", "003", "004", "005", "006", "007", "008"];
 @export var completed_quests_values : Array;

@@ -65,6 +65,8 @@ var blocked := false;
 
 @export var intermission_timer : Timer;
 
+var reload_count := 0;
+
 func destroy_target(target, points, order) -> void:
 	if (loaded && (!blocked || order != 2)):
 		if (target_spawner.waves_remaining <= target_spawner.max_waves):
@@ -154,6 +156,17 @@ func _process(_delta: float) -> void:
 							elif (ammo == 2):
 								bullet_outline2.get_child(0).visible = false;
 							elif (ammo == 1):
+								if (loaded):
+									var earned_status = PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("007")];
+									if (!earned_status):
+										reload_count += 1;
+										var goal_amount := 6;
+										if (reload_count >= goal_amount):
+											PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("007")] = true;
+											PlayerVariables.save_game.completed_quests_values[PlayerVariables.save_game.completed_quests.find("007")] = PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("007")];
+											
+											PlayerVariables.write_to_save();
+											
 								bullet_outline1.get_child(0).visible = false;
 								loaded = false;		
 								

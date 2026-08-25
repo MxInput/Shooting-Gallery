@@ -314,8 +314,7 @@ func _process(delta: float) -> void:
 				goal_time += delta;
 				
 				var target_time := 60.00;
-				print(goal_time)
-				
+
 				if (goal_time >= target_time):
 					PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("004")] = true;
 					PlayerVariables.save_game.completed_quests_values[PlayerVariables.save_game.completed_quests.find("004")] = PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("004")];
@@ -454,4 +453,5 @@ func _on_countdown_timer_timeout() -> void:
 	go.visible = false;
 
 func _on_return_button_down() -> void:
+	PlayerVariables.write_to_save();
 	get_tree().change_scene_to_file(menu);

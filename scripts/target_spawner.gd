@@ -203,6 +203,12 @@ func _on_duck_timer_timeout() -> void:
 	new_duck.points = duck_points[Ducks.values()[Ducks.keys().find(selected_duck_value)]];
 
 func _on_game_timer_timeout() -> void:
+	var score_to_goal := 275;
+	
+	if (PlayerVariables.points >= score_to_goal):
+		PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("005")] = true;
+		PlayerVariables.save_game.completed_quests_values[PlayerVariables.save_game.completed_quests.find("005")] = PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("005")];
+
 	if (PlayerVariables.points > PlayerVariables.high_score_timed):
 		PlayerVariables.high_score_timed = PlayerVariables.points;
 		PlayerVariables.save_game.high_score_timed = PlayerVariables.high_score_timed;
@@ -242,4 +248,5 @@ func _on_countdown_timer_timeout() -> void:
 	go.visible = false;
 	
 func _on_return_button_down() -> void:
+	PlayerVariables.write_to_save();
 	get_tree().change_scene_to_file(menu);

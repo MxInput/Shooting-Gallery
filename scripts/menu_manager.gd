@@ -48,9 +48,11 @@ func is_completed(given_value) -> bool:
 	return false;
 	
 func _ready() -> void:
-	if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("003")]):
-		if ((PlayerVariables.num_shot_ducks + PlayerVariables.num_shot_targets) >= 15):
-			PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("003")] = true;
+	if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("003")]):
+		var num_for_goal := 300;
+		
+		if ((PlayerVariables.num_shot_ducks + PlayerVariables.num_shot_targets) >= num_for_goal):
+			PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("003")] = true;
 			PlayerVariables.save_game.completed_quests_values = PlayerVariables.complete_status_quests;
 			PlayerVariables.write_to_save();
 			

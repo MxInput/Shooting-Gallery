@@ -398,6 +398,7 @@ func _on_countdown_timer_timeout() -> void:
 	go.visible = false;
 
 func _on_return_button_down() -> void:
+	PlayerVariables.write_to_save();
 	get_tree().change_scene_to_file(menu);
 
 func _on_intermission_timer_timeout() -> void:
