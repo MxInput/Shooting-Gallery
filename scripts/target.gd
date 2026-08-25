@@ -8,8 +8,8 @@ var original_y;
 
 var distance := 10.0;
 
-var upper_speed := 5.0;
-var lower_speed := 1.0;
+var upper_speed := 6.0;
+var lower_speed := 4.0;
 
 var end_pos := -700.0;
 

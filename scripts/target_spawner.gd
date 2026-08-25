@@ -102,16 +102,17 @@ func _process(delta: float) -> void:
 	if (!game_timer.is_stopped()):
 		var time_left := game_timer.time_left;
 		
-		if (delay_timer.is_stopped()):
-			var random_start_time := randf_range(lower_delay_limit, upper_delay_limit);
-			delay_timer.wait_time = random_start_time;
-			
-			delay_timer.start();
-		if (duck_timer.is_stopped()):
-			var random_start_time := randf_range(lower_duck_limit, upper_duck_limit);
-			duck_timer.wait_time = random_start_time;
-			
-			duck_timer.start();
+		if (time_left > 1.0):
+			if (delay_timer.is_stopped()):
+				var random_start_time := randf_range(lower_delay_limit, upper_delay_limit);
+				delay_timer.wait_time = random_start_time;
+				
+				delay_timer.start();
+			if (duck_timer.is_stopped()):
+				var random_start_time := randf_range(lower_duck_limit, upper_duck_limit);
+				duck_timer.wait_time = random_start_time;
+				
+				duck_timer.start();
 		if (cloud_timer.is_stopped()):
 			var selected_time = randf_range(cloud_upper_limit, cloud_lower_limit);
 			cloud_timer.wait_time = selected_time;

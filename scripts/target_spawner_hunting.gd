@@ -122,10 +122,12 @@ var started = false;
 
 var ended := false;
 
+var goal_time := 0.0;
+
 func generate_random_hit_object() -> void:
 	time_till_change.visible = false;
 	time_till_change.modulate = Color.WHITE;
-	time_till_change.text = "1.000s";
+	time_till_change.text = "Targets will swap in 1.000s";
 	color_change_time = 0.0;
 	number_on_screen = 0;
 	
@@ -254,7 +256,7 @@ func _process(delta: float) -> void:
 				color_change_time = clampf(color_change_time, 0.0, 1.0)
 				
 				time_till_change.visible = true;
-				time_till_change.text = str(round_to_dec(time_left_countdown, 3)) + "s";
+				time_till_change.text = "Targets will swap in " + str(round_to_dec(time_left_countdown, 3)) + "s";
 				time_till_change.modulate = lerp(time_till_change.modulate, target_color, color_change_time);
 			
 	if (lives == 0):
@@ -306,6 +308,20 @@ func _process(delta: float) -> void:
 	if (lives > 0):
 		time_ongoing += delta;
 		
+		if (!pause_manager.is_paused() && started):
+			var goal_status = PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("004")];
+			if (!goal_status):
+				goal_time += delta;
+				
+				var target_time := 60.00;
+				print(goal_time)
+				
+				if (goal_time >= target_time):
+					PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("004")] = true;
+					PlayerVariables.save_game.completed_quests_values[PlayerVariables.save_game.completed_quests.find("004")] = PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("004")];
+					
+					PlayerVariables.write_to_save();
+					
 		if (delay_timer.is_stopped()):
 			var random_start_time := randf_range(lower_delay_limit, upper_delay_limit);
 			delay_timer.wait_time = random_start_time;
@@ -341,11 +357,11 @@ func _on_delay_timer_timeout() -> void:
 	
 	match (selected_target_value):
 		"RED":
-			number_on_screen = spawned_targets["RED_TARGET"];
+			number_on_screen = spawned_targets["RED_TARGET"].size();
 		"COLORED":
-			number_on_screen = spawned_targets["COLORED_TARGET"];
+			number_on_screen = spawned_targets["COLORED_TARGET"].size();
 		"WHITE":
-			number_on_screen = spawned_targets["WHITE_TARGET"];
+			number_on_screen = spawned_targets["WHITE_TARGET"].size();
 			
 	if (chosen_type == "Target" && chosen_hit == selected_target_value):	
 		if (number_on_screen < max_on_screen):
@@ -395,11 +411,11 @@ func _on_duck_timer_timeout() -> void:
 	
 	match (selected_duck_value):
 		"YELLOW":
-			number_on_screen = spawned_targets["YELLOW_DUCK"];
+			number_on_screen = spawned_targets["YELLOW_DUCK"].size();
 		"BROWN":
-			number_on_screen = spawned_targets["BROWN_DUCK"];
+			number_on_screen = spawned_targets["BROWN_DUCK"].size();
 		"WHITE":
-			number_on_screen = spawned_targets["WHITE_DUCK"];
+			number_on_screen = spawned_targets["WHITE_DUCK"].size();
 			
 	if (chosen_type == "Duck" && chosen_hit == selected_duck_value):	
 		if (number_on_screen < max_on_screen):

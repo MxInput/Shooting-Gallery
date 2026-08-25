@@ -471,13 +471,13 @@ texture = ExtResource("21_6qi6q")
 visible = false
 layout_mode = 0
 offset_left = -188.0
-offset_top = 120.0
+offset_top = 35.0
 offset_right = -31.0
 offset_bottom = 160.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("6_aowaw")
 theme_override_font_sizes/normal_font_size = 30
-text = "1.000s"
+text = "Target will swap in 1.000s"
 horizontal_alignment = 1
 vertical_alignment = 1
 

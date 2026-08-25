@@ -85,7 +85,7 @@ var target_cycle := 0;
 
 var spawns_now := 0;
 var spawns_possible := 0;
-var spawns_range := [32, 40];
+var spawns_range := [22, 30];
 
 var menu = "res://nodes/menu.tscn";
 
@@ -209,16 +209,15 @@ func _process(delta: float) -> void:
 						waves_remaining += 1; 
 						if (waves_remaining <= max_waves):
 							wave_display.text = "WAVE " + str(waves_remaining + 1);
-						else:
-							wave_display.text = "END";
+							spawns_now = 0;
+							spawns_possible = randi_range(spawns_range[0], spawns_range[1]);
 							
-						spawns_now = 0;
-						spawns_possible = randi_range(spawns_range[0], spawns_range[1]);
-						
-						already_spawned = false;
-						finished_spawning = false;
-						
-						intermission_timer.start();
+							already_spawned = false;
+							finished_spawning = false;
+							
+							intermission_timer.start();
+						else:
+							wave_display.text = "END";			
 					
 		if (duck_clock < duck_activate_time):
 			duck_clock += delta;
