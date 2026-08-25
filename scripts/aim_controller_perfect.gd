@@ -80,9 +80,16 @@ var blocked := false;
 
 var combo_possible = true;
 
+var shot_count = 0;
+
 func destroy_target(target, points, order) -> void:
+	var valid_shot := false;
+	
 	if (loaded && (!blocked || order != 2)):
 		if (target_spawner.waves_remaining <= target_spawner.max_waves):
+			valid_shot = true;
+			print(shot_count)
+			shot_count += 1;
 			if (combo_timer.is_stopped()):
 				combo_possible = true;
 				
@@ -92,6 +99,7 @@ func destroy_target(target, points, order) -> void:
 				if (combo_possible):
 					combo += 1;
 			elif (points < 0):
+				print("unhit")
 				combo_possible = false;
 				
 			if (combo >= 1):
@@ -137,7 +145,8 @@ func destroy_target(target, points, order) -> void:
 				target_object.add_child(new_shot_sprite);	
 				new_shot_sprite.global_position = mouse_pos;
 			
-	PlayerVariables.points += points;
+	if ((points < 0 && target_spawner.waves_remaining <= target_spawner.max_waves) || (valid_shot)):
+		PlayerVariables.points += points;
 			
 	if (PlayerVariables.points < 0):
 		PlayerVariables.points = 0;

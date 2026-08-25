@@ -182,6 +182,10 @@ func generate_random_target() -> String:
 		
 func _ready() -> void:
 	PlayerVariables.game_last_played = "Burst";
+	PlayerVariables.save_game.game_last_played = PlayerVariables.game_last_played;
+	
+	PlayerVariables.write_to_save();
+
 	countdown_timer.start();
 
 func round_to_dec(num, place) -> float:
@@ -230,12 +234,17 @@ func _process(delta: float) -> void:
 			ended = true;
 			if (PlayerVariables.points > PlayerVariables.high_score_burst):
 				PlayerVariables.high_score_burst = PlayerVariables.points;
-				
+				PlayerVariables.save_game.high_score_burst = PlayerVariables.high_score_burst;
+
 			PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+			PlayerVariables.save_game.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+
 			PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
-			
+			PlayerVariables.save_game.num_shot_targets_comp += PlayerVariables.num_shot_targets;
+
 			PlayerVariables.completed_last_game = true;
-			
+			PlayerVariables.save_game.completed_last_game = true;
+
 			pause_button.visible = false;
 			return_button.visible = true;
 			

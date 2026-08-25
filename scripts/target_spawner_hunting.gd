@@ -263,12 +263,17 @@ func _process(delta: float) -> void:
 			
 			if (PlayerVariables.points > PlayerVariables.high_score_hunting):
 				PlayerVariables.high_score_hunting = PlayerVariables.points;
-				
+				PlayerVariables.save_game.high_score_hunting = PlayerVariables.high_score_hunting;
+
 			PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+			PlayerVariables.save_game.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+
 			PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
-			
+			PlayerVariables.save_game.num_shot_targets_comp += PlayerVariables.num_shot_targets;
+
 			PlayerVariables.completed_last_game = true;
-			
+			PlayerVariables.save_game.completed_last_game = true;
+
 			pause_button.visible = false;
 			return_button.visible = true;
 			
@@ -284,8 +289,8 @@ func _process(delta: float) -> void:
 			upper_target_cycle = upper_target_cycles[current_cycle];
 
 			if (current_cycle == last_change_index):
-				if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("004")]):
-					PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("004")] = true;
+				if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("004")]):
+					PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("004")] = true;
 					
 					PlayerVariables.save_game.completed_quests_values = PlayerVariables.complete_status_quests;
 					PlayerVariables.write_to_save();

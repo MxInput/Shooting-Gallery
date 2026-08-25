@@ -41,7 +41,6 @@ func _ready() -> void:
 		save_game = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE);
 	
 		points = save_game.points;
-
 		cross_hair_texture = save_game.cross_hair_texture;
 		target_color = save_game.target_color;
 		

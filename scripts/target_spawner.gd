@@ -84,6 +84,10 @@ var original_clock_size;
 
 func _ready() -> void:
 	PlayerVariables.game_last_played = "Timed";
+	PlayerVariables.save_game.game_last_played = PlayerVariables.game_last_played;
+	
+	PlayerVariables.write_to_save();
+
 	countdown_timer.start();
 	
 func _process(delta: float) -> void:
@@ -200,12 +204,17 @@ func _on_duck_timer_timeout() -> void:
 func _on_game_timer_timeout() -> void:
 	if (PlayerVariables.points > PlayerVariables.high_score_timed):
 		PlayerVariables.high_score_timed = PlayerVariables.points;
-		
+		PlayerVariables.save_game.high_score_timed = PlayerVariables.high_score_timed;
+
 	PlayerVariables.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+	PlayerVariables.save_game.num_shot_ducks_comp += PlayerVariables.num_shot_ducks;
+
 	PlayerVariables.num_shot_targets_comp += PlayerVariables.num_shot_targets;
-	
+	PlayerVariables.save_game.num_shot_targets_comp += PlayerVariables.num_shot_targets;
+
 	PlayerVariables.completed_last_game = true;
-	
+	PlayerVariables.save_game.completed_last_game = true;
+
 	pause_button.visible = false;
 	return_button.visible = true;
 	
@@ -214,8 +223,8 @@ func _on_game_timer_timeout() -> void:
 	if (perfect_teller.visible):
 		perfect_final_text.visible = true;
 		PlayerVariables.number_of_perfects += 1;
-		
-	
+		PlayerVariables.save_game.number_of_perfects += 1;
+
 	PlayerVariables.write_to_save();
 
 func _on_countdown_timer_timeout() -> void:

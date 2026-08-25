@@ -216,8 +216,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 										PlayerVariables.num_shot["WHITE_DUCK"] += 1;
 										new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
 										
-								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")]):
-									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")] = true;
+								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("001")]):
+									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("001")] = true;
+									PlayerVariables.save_game.completed_quests_values = PlayerVariables.complete_status_quests;
+
 									PlayerVariables.write_to_save();
 									
 								PlayerVariables.num_shot_ducks += 1;
@@ -237,8 +239,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 										PlayerVariables.num_shot["WHITE_TARGET"] += 1;
 										new_shot_particles.color = Color.WHITE;
 										
-								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("002")]):
-									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("002")] = true;
+								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("002")]):
+									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("002")] = true;
+									PlayerVariables.save_game.completed_quests_values = PlayerVariables.complete_status_quests;
+									
 									PlayerVariables.write_to_save();
 									
 								PlayerVariables.num_shot_targets += 1;
@@ -296,8 +300,8 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 										target_spawner.spawned_targets["WHITE_DUCK"].erase(self);
 										new_shot_particles.color = Color.from_string("#dbd895", Color.WHITE);
 										
-								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")]):
-									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests_values.find("001")] = true;
+								if (!PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("001")]):
+									PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("001")] = true;
 									PlayerVariables.write_to_save();
 								
 								PlayerVariables.num_shot_ducks += 1;
