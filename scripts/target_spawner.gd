@@ -82,7 +82,6 @@ var inc_amt = 0.0;
 
 var original_clock_size;
 
-
 func _ready() -> void:
 	PlayerVariables.game_last_played = "Timed";
 	PlayerVariables.save_game.game_last_played = PlayerVariables.game_last_played;

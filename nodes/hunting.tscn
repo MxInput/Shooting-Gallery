@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://2yw1s3ayxqg8" path="res://images/shots/shot_grey_large.png" id="22_4fgw0"]
 [ext_resource type="Texture2D" uid="uid://db1d58hysuj11" path="res://images/buttons/button_round_depth_gradient.png" id="22_vrdas"]
 [ext_resource type="Texture2D" uid="uid://by4q0hmepuhlj" path="res://images/buttons/button_rectangle_depth_border-384x128.svg" id="23_6qi6q"]
+[ext_resource type="Script" uid="uid://ctl11vfndbljl" path="res://nodes/expand.gd" id="23_bedoe"]
 [ext_resource type="Script" uid="uid://dtnk5ndgrhpx1" path="res://scripts/return_color_change.gd" id="23_igja6"]
 [ext_resource type="Texture2D" uid="uid://dis6a6dygughr" path="res://images/shots/shot_yellow_large.png" id="23_pyxs7"]
 [ext_resource type="PackedScene" uid="uid://b4war3bcgbudm" path="res://nodes/shot.tscn" id="24_8vba6"]
@@ -495,6 +496,7 @@ offset_left = 900.0
 offset_right = 932.0
 offset_bottom = 32.0
 texture = ExtResource("20_utfi2")
+script = ExtResource("23_bedoe")
 
 [node name="Cross2" type="TextureRect" parent="CanvasLayer/Crosses" unique_id=1697220092]
 layout_mode = 0
@@ -502,6 +504,7 @@ offset_left = 960.0
 offset_right = 992.0
 offset_bottom = 32.0
 texture = ExtResource("20_utfi2")
+script = ExtResource("23_bedoe")
 
 [node name="Cross3" type="TextureRect" parent="CanvasLayer/Crosses" unique_id=957512791]
 layout_mode = 0
@@ -509,6 +512,7 @@ offset_left = 1020.0
 offset_right = 1052.0
 offset_bottom = 32.0
 texture = ExtResource("20_utfi2")
+script = ExtResource("23_bedoe")
 
 [node name="Return" type="TextureButton" parent="CanvasLayer" unique_id=1459685940 node_paths=PackedStringArray("label")]
 visible = false

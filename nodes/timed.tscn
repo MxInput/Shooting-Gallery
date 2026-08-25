@@ -464,6 +464,7 @@ vertical_alignment = 1
 
 [node name="PerfectFinal" type="RichTextLabel" parent="CanvasLayer" unique_id=1960558147]
 visible = false
+z_index = 5
 offset_left = 440.5
 offset_top = 189.0
 offset_right = 711.5

@@ -137,12 +137,10 @@ var count = 0;
 func generate_wave() -> void:
 	already_spawned = true;
 	while (spawns_now < spawns_possible):
-		print("spawned", spawns_now)
 		await generate_random_hit_object();
 	finished_spawning = true;
 		
 func generate_random_hit_object() -> void:
-	print(count)
 	count += 1;
 	color_change_time = 0.0;
 	number_on_screen = 0;
@@ -213,7 +211,6 @@ func _process(delta: float) -> void:
 
 				if (target_arrs_size == targets_arrs.size()):
 					if (total_count == 0):
-						print("plus")
 						waves_remaining += 1; 
 						if (waves_remaining <= max_waves):
 							wave_display.text = "WAVE " + str(waves_remaining + 1);
@@ -262,7 +259,12 @@ func _process(delta: float) -> void:
 				perfect_final_text.visible = true;
 				PlayerVariables.number_of_perfects += 1;
 				PlayerVariables.save_game.number_of_perfects += 1;
-		
+				
+				var unlock_status = PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("006")];
+				if (!unlock_status):
+					PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("006")] = true;
+					PlayerVariables.save_game.completed_quests_values[PlayerVariables.save_game.completed_quests.find("006")] = PlayerVariables.complete_status_quests[PlayerVariables.save_game.completed_quests.find("006")];
+	
 			PlayerVariables.write_to_save();
 			ended = true;
 			

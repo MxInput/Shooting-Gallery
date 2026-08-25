@@ -228,10 +228,13 @@ func generate_random_target() -> String:
 func updateLives() -> void:
 	if (lives == 2):
 		cross1.texture = cross_texture;
+		cross1.expand();
 	elif (lives == 1):
 		cross2.texture = cross_texture;
+		cross2.expand();
 	elif (lives == 0):
 		cross3.texture = cross_texture;
+		cross3.expand();
 		
 func _ready() -> void:
 	PlayerVariables.game_last_played = "Hunting";

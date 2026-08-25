@@ -88,7 +88,6 @@ func destroy_target(target, points, order) -> void:
 	if (loaded && (!blocked || order != 2)):
 		if (target_spawner.waves_remaining <= target_spawner.max_waves):
 			valid_shot = true;
-			print(shot_count)
 			shot_count += 1;
 			if (combo_timer.is_stopped()):
 				combo_possible = true;
@@ -99,7 +98,6 @@ func destroy_target(target, points, order) -> void:
 				if (combo_possible):
 					combo += 1;
 			elif (points < 0):
-				print("unhit")
 				combo_possible = false;
 				
 			if (combo >= 1):

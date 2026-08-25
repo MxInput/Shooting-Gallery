@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 	if (font_color == color1 && turning):
 		turning = false;
 		time = 0.0;
+		
 	elif (font_color == color2 && !turning):
 		turning = true;
 		time = 0.0;

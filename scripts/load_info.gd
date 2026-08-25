@@ -75,8 +75,8 @@ func set_values() -> void:
 			
 	num_shot_ducks.text = "Number of ducks shot (TOTAL): " + str(PlayerVariables.num_shot_ducks);
 	num_shot_targets.text = "Number of targets shot (TOTAL): " + str(PlayerVariables.num_shot_targets);
-	num_shot_completed_ducks.text = "Number of ducks shot (COMPLETED GAMES): " + str(PlayerVariables.num_shot_ducks);
-	num_shot_completed_targets.text = "Number of targets shot (COMPLETED GAMES): " + str(PlayerVariables.num_shot_targets);
+	num_shot_completed_ducks.text = "Number of ducks shot (COMPLETED GAMES): " + str(PlayerVariables.num_shot_ducks_comp);
+	num_shot_completed_targets.text = "Number of targets shot (COMPLETED GAMES): " + str(PlayerVariables.num_shot_targets_comp);
 	
 	perfect_game_teller.text = "[rainbow] Number of Perfects: " + str(PlayerVariables.number_of_perfects);	
 	
