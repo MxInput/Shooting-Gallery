@@ -7,6 +7,11 @@ Made in Godot
 
 Get the game here: https://mxinput.itch.io/shooting-gallery
 
+### Installation Instructions
+1. Download this repo
+2. Install Godot from https://godotengine.org/download/windows/
+3. Import the folder the repo is in into Godot to begin editing.
+   
 ### Assets
 - #### UI Pack
   https://kenney.nl/assets/ui-pack 
